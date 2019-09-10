@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="generator" content="GitLab Pages">
-    <title>yaq</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="GitLab Pages">
+  <title>yaq</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	
+<h1>yaq - yet another acquisition</h1>
+
+a modular and extensible instrument control framework... <br>
+with opinions
+
+<hr>
+
+<h2>separate, but friendly</h2>
+
+<p>
+In yaq, each remote device is addressed via a daemon.
+yaq defines a commonunication standard on top of TCP which clients use to communicate with daemons.
+By communicating over TCP, yaq allows each client and daemon to... <br>
+- run in separate processes <br>
+- be implemented in a different language <br>
+- be versioned separately <br>
+- communicate without locking <br>
+</p>
+
+<p>
+This well-defined separtation between each daemon and client makes the yaq control framework less fragile than monolithic applications.
+At the same time, the language-agnostic and separate distribution channels for each daemon make it trivial to use and reuse pieces from instrument to instrument, as needed.
+The developer-friendly TCP communication standard makes it easy to write flexable clients for any application.
+</p>
+
+<h2>all in the family</h2>
+
+<p>
+yaq attempts to define a daemon family inheritence structure.
+By enforcing this structure, yaq highlights the similarities been different daemon instances, making it easier to create more flexable and generic clients.
+The family inheritence helps ensure that good conventions are known and applied well to each applicable daemon.
+</p>
+
+<p>
+Of course, the yaq communication standard is totally generic.
+yaq daemons are by no means required to have family members.
+</p>
+
+<h2>read more</h2>
+
+Please, read on... <br>
+- <a href="clients.html">clients</a><br>
+- <a href="daemons.html">daemons</a>
+
+</body>
 </html>
