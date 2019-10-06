@@ -24,7 +24,7 @@ at the users option.
 
 .SH REQUEST CONTENT
 .PP
-The request takes the form of a JSON serialized object.
+The request takes the form of a JSON-RPC v2.0 (https://www.jsonrpc.org/specification) request object.
 All standard JSON data types (Number, String, Boolean, Array, Object, null)
 are supported.
 In addition, the non-standard values "Infinity" "-Infinity" and "NaN" are allowed.
@@ -36,41 +36,14 @@ encoded.
 
 .PP
 Future versions of this standard may specify additional data types not in the JSON standard.
-This may include a N-Dimensional array type, of particular use when large arrays are to be transported.
-
-.PP 
-The following top level keys are expected in the request JSON query:
-
-.BI "command\t" required\t string\t "name of command to process"
-
-.BI "args\t\t" optional\t array\t "list of arguments to the command"
-
-.BI "kwargs\t" optional\t object\t "keyword arguments to the command"
-
-All other keys are ignored unless the specific daemon documents other behavior.
 
 .SH RESPONSE CONTENT
-The daemon's response uses the same JSON serialization as the request.
-
-The following top level keys are expected in the response:
-
-.BI ok\t\t required\t boolean\t
-indicate success or failure
-
-.BI "command\t" required\t string\t
-name of command processed
-
-.BI "result\t" optional\t any\t
-result of the command, null may be omitted
-
-.BI "reason\t" "on fail\t" string\t
-human-readable description of failure
-
-All other keys are ignored unless the specific daemon documents other behavior.
+The daemon's response MUST use the same JSON serialization as the request.
+The response object is complient with JSON-RPC v2.0
 
 .SH ENTRY POINT
 
-The standard entry point to initiate a daemon shall be
+The standard entry point to initiate a daemon SHALL be
 .B yaqd-
 .I <kind>
 where
@@ -105,7 +78,7 @@ Where
 is the same as in the ENTRY POINT section.
 
 Configuration is in TOML (https://github.com/toml-lang/toml).
-Any valid TOML types may be used.
+Any valid TOML types MAY be used.
 
 Top level keys are used for
 
@@ -123,7 +96,7 @@ to start daemons with the configuration
 .I optional\t
 .B boolean
 
-If given and set to false, the daemon should exit immediately without opening TCP ports.
+If given and set to false, the daemon MUST exit immediately without opening TCP ports.
 If not given, true is assumed.
 
 .B shared-settings\t
@@ -134,8 +107,8 @@ If present, provides defaults that apply to all other tables.
 These defaults MAY be overridden by the other tables for the individual port.
 
 Every other top-level key MUST be a table, for which the name indicates the name of the daemon
-which should be exposed on the given port.
-These names must be unique at the level of
+which MUST be exposed on the given port.
+These names MUST be unique at the level of
 .I <kind>.
 
 Each table MUST include a key "port" which provides the globally-unique (among all daemons) TCP port.
@@ -166,7 +139,7 @@ Common identifying information include:
 (units for numbers interpreted and sent).
 This limited subset (along with the <name> as defined by the table name and the <kind> as defined by the implementation) are returned by the 
 .B id
-command (see below).
+method (see below).
 
 
 The configuration file MUST be read from the file at daemon startup ONLY (restarting is considered "startup", and MUST re-read the configuration file in case changes were made).
@@ -175,7 +148,7 @@ The configuration file MUST be read from the file at daemon startup ONLY (restar
 .SH STATE SAVING
 
 Dynamic fields are saved to a similar TOML file.
-Included fields should be of potential value to clients or needed across restarts of the daemon.
+Included fields SHOULD be of potential value to clients or needed across restarts of the daemon.
 
 EACH daemon MUST SAVE a file at (unless that file is empty, in which case it MAY be omitted):
 
@@ -189,9 +162,9 @@ EACH daemon MUST SAVE a file at (unless that file is empty, in which case it MAY
 "C:\\Documents and Settings\\<User>\\Application Data\\Local Settings\\yaq\\yaqd-state\\<kind>\\<name>-state.toml"
 
 By default, there are no required keys in the state.
-The content saved should be the same as returned by the
+The content saved MUST be the same as returned by the
 .B get_state
-command (see below).
+method (see below).
 
 If possible, recorded state SHOULD fully describe the hardware such that recovery from a shutdown (including unepected shutdown) will be seamless without any additional user input.
 
@@ -220,13 +193,13 @@ This includes defaults and shared settings not directly specified in the daemon-
 .PP
 JSON object representing the current state, as saved in the <name>-state.toml file.
 
-.B list_commands
+.B list_methods
 .PP
-Array of the (string) names of all known (public) commands.
+Array of the (string) names of all known (public) methods.
 
-.BI help( command= None "" )
+.BI help( method= None "" )
 .PP
-If command not given, return a human-readable string with information about the daemon as a whole.
-If command is given, return a human-readable string with the signature of the command on the first line and a description of the command on subsequent lines.
+If method not given, return a human-readable string with information about the daemon as a whole.
+If method is given, return a human-readable string with the signature of the method on the first line and a description of the method on subsequent lines.
 The signature is not specified to be in any particular language.
 It is intended for usage by humans ONLY.
