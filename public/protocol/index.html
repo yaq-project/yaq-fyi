@@ -1,221 +1,119 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>yaq protocol</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
-<body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<title>yaqd protocol specification</title>
+<meta name="generator" content="roffit">
+<STYLE type="text/css">
+P.level0 {
+ padding-left: 2em;
+}
 
-<h1>yaq communication protocol</h1>
+P.level1 {
+ padding-left: 4em;
+}
 
-<hr>
+P.level2 {
+ padding-left: 6em;
+}
 
-.TH yaqd 7 2019-06-25 0.1.0
-.SH NAME
-yaqd - Daemon infrastructure for the yaq system
-.SH COMMUNICATION PROTOCOL
+span.emphasis {
+ font-style: italic;
+}
 
-.PP
-.B yaq daemons
-MUST communicate over
-.B tcp(7)
-ports.
-By convention, daemons SHOULD serve on ports in the range 36000-39999.
-This range avoids most collisions with common TCP port usage in other applications.
-Users MAY use ports outside of this range, however tools like
-.B yaqd-list-daemons(1)
-will not check ports other than this range by default.
+span.bold {
+ font-weight: bold;
+}
 
-.PP
-TCP was chosen to maximize cross system and cross language compatibility.
-Future versions of this specification may allow for other
-.B socket(7)
-implementations as alternatives to
-.B tcp(7)
-at the users option.
+span.manpage {
+ font-weight: bold;
+}
 
-.SH REQUEST CONTENT
-.PP
-The request takes the form of a JSON-RPC v2.0 (https://www.jsonrpc.org/specification) request object.
-All standard JSON data types (Number, String, Boolean, Array, Object, null)
-are supported.
-In addition, the non-standard values "Infinity" "-Infinity" and "NaN" are allowed.
-These are considered floating point numbers.
-Many JSON encoders/decoders support these values by default or with a simple flag.
-Strings are
-.B utf-8(7)
-encoded.
+h2.nroffsh {
+ background-color: #e0e0e0;
+ color: #1d1f21;
+}
 
-.PP
-Future versions of this standard may specify additional data types not in the JSON standard.
+span.nroffip {
+ font-weight: bold;
+ font-size: 120%;
+ font-family: monospace;
+}
 
-.SH RESPONSE CONTENT
-The daemon's response MUST use the same JSON serialization as the request.
-The response object is complient with JSON-RPC v2.0
+p.roffit {
+ text-align: center;
+ font-size: 80%;
+}
+</STYLE>
+<link rel="stylesheet" href="../style.css">
+</head><body>
 
-.SH ENTRY POINT
-
-The standard entry point to initiate a daemon SHALL be
-.B yaqd-
-.I <kind>
-where
-.I <kind>
-is a lowercase name for the daemon with words separated by hyphens.
-
-Examples of valid entry points include
-.B yaqd-base-hardware ,
-.B yaqd-micro-hr ,
-and
-.B yaqd-zaber-binary .
-
-The entry point SHALL accept the option --config <filepath> and the short form -c of this option.
-
-
-
-.SH CONFIGURATION
-
-The default configuration file location SHALL be:
-
-.B macOS\t
-"~/Library/Application Support/yaqd/<kind>/config.toml"
-
-.B XDG Spec (e.g. Linux)\t
-"~/.config/yaqd/<kind>/config.toml"
-
-.B Windows\t
-"C:\\Documents and Settings\\<User>\\Application Data\\Local Settings\\yaq\\yaqd\\<kind>\\config.toml"
-
-Where
-.I <kind>
-is the same as in the ENTRY POINT section.
-
-Configuration is in TOML (https://github.com/toml-lang/toml).
-Any valid TOML types MAY be used.
-
-Top level keys are used for
-
-.B entry\t
-.I recommended\t
-.B string
-
-The entry point associated with this configuration.
-Used by
-.B yaqd-start-daemons(1)
-to start daemons with the configuration
-
-
-.B enable\t
-.I optional\t
-.B boolean
-
-If given and set to false, the daemon MUST exit immediately without opening TCP ports.
-If not given, true is assumed.
-
-.B shared-settings\t
-.I optional\t
-.B table
-
-If present, provides defaults that apply to all other tables.
-These defaults MAY be overridden by the other tables for the individual port.
-
-Every other top-level key MUST be a table, for which the name indicates the name of the daemon
-which MUST be exposed on the given port.
-These names MUST be unique at the level of
-.I <kind>.
-
-Each table MUST include a key "port" which provides the globally-unique (among all daemons) TCP port.
-Additional fields MAY be added, as needed for configuring the daemon.
-Specific implementations MAY have additional required configuration parameters.
-Fields MAY be included that are only used by the clients, and retrieved by
-.B get_config
-(see below).
-
-ALL tables other than those that are disabled, and
-.B shared-settings
-MUST be started when invoking a daemon entry point with the config file.
-They MAY (and in many cases must for technical reasons) be starting several daemons listening in the same process.
-
-
-The configuration file MUST NOT be written by the daemon.
-Any runtime dynamic fields SHOULD be written in the state file (see below) and have ways of detecting and/or expose setting over the TCP communication protocol described above.
-
-Additional identifying information SHOULD be included, as applicable.
-Common identifying information include:
-.B make
-(manufacturer),
-.B model
-(identifies the kind as described by the manufacturer),
-.B serial
-(individual serial number of the device represented),
-.B units
-(units for numbers interpreted and sent).
-This limited subset (along with the <name> as defined by the table name and the <kind> as defined by the implementation) are returned by the
-.B id
-method (see below).
-
-
-The configuration file MUST be read from the file at daemon startup ONLY (restarting is considered "startup", and MUST re-read the configuration file in case changes were made).
-
-
-.SH STATE SAVING
-
-Dynamic fields are saved to a similar TOML file.
-Included fields SHOULD be of potential value to clients or needed across restarts of the daemon.
-
-EACH daemon MUST SAVE a file at (unless that file is empty, in which case it MAY be omitted):
-
-.B macOS\t
-"~/Library/Application Support/yaqd-state/<kind>/<name>-state.toml"
-
-.B XDG Spec (e.g. Linux)\t
-"~/.local/share/yaqd-state/<kind>/<name>-state.toml"
-
-.B Windows\t
-"C:\\Documents and Settings\\<User>\\Application Data\\Local Settings\\yaq\\yaqd-state\\<kind>\\<name>-state.toml"
-
-By default, there are no required keys in the state.
-The content saved MUST be the same as returned by the
-.B get_state
-method (see below).
-
-If possible, recorded state SHOULD fully describe the hardware such that recovery from a shutdown (including unepected shutdown) will be seamless without any additional user input.
-
-
-.SH STANDARD COMMANDS
-.B id
-.PP
-JSON object with information to identify the daemon, including
-.B name,
-.B kind,
-.B make,
-.B model,
-.B serial,
-.B units.
-
-.B config_filepath
-.PP
-String representing the absolute filepath of the configuration file on the host machine.
-
-.B get_config
-.PP
-JSON object with the full configuration for the individual daemon as defined in the TOML file.
-This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
-
-.B get_state
-.PP
-JSON object representing the current state, as saved in the <name>-state.toml file.
-
-.B list_methods
-.PP
-Array of the (string) names of all known (public) methods.
-
-.BI help( method= None "" )
-.PP
-If method not given, return a human-readable string with information about the daemon as a whole.
-If method is given, return a human-readable string with the signature of the method on the first line and a description of the method on subsequent lines.
-The signature is not specified to be in any particular language.
-It is intended for usage by humans ONLY.
-
-</body>
-</html>
+<p class="level0"><a name="NAME"></a><h2 class="nroffsh">NAME</h2>
+<p class="level0">yaqd - Daemon infrastructure for the yaq system <a name="COMMUNICATION"></a><h2 class="nroffsh">COMMUNICATION PROTOCOL</h2>
+<p class="level0">
+<p class="level0">
+<p class="level0"><span Class="bold">yaq daemons</span> MUST communicate over <span Class="bold">tcp(7)</span> ports. By convention, daemons SHOULD serve on ports in the range 36000-39999. This range avoids most collisions with common TCP port usage in other applications. Users MAY use ports outside of this range, however tools like <span Class="bold">yaqd-list-daemons(1)</span> will not check ports other than this range by default. 
+<p class="level0">
+<p class="level0">TCP was chosen to maximize cross system and cross language compatibility. Future versions of this specification may allow for other <span Class="bold">socket(7)</span> implementations as alternatives to <span Class="bold">tcp(7)</span> at the users option. 
+<p class="level0"><a name="REQUEST"></a><h2 class="nroffsh">REQUEST CONTENT</h2>
+<p class="level0">
+<p class="level0">The request takes the form of a JSON-RPC v2.0 (https://www.jsonrpc.org/specification) request object. All standard JSON data types (Number, String, Boolean, Array, Object, null) are supported. In addition, the non-standard values "Infinity" "-Infinity" and "NaN" are allowed. These are considered floating point numbers. Many JSON encoders/decoders support these values by default or with a simple flag. Strings are  <span Class="bold">utf-8(7)</span> encoded. 
+<p class="level0">
+<p class="level0">Future versions of this standard may specify additional data types not in the JSON standard. 
+<p class="level0"><a name="RESPONSE"></a><h2 class="nroffsh">RESPONSE CONTENT</h2>
+<p class="level0">The daemon's response MUST use the same JSON serialization as the request. The response object is complient with JSON-RPC v2.0 
+<p class="level0"><a name="ENTRY"></a><h2 class="nroffsh">ENTRY POINT</h2>
+<p class="level0">
+<p class="level0">The standard entry point to initiate a daemon SHALL be <span Class="bold">yaqd-</span> <span Class="emphasis">&lt;kind&gt;</span> where <span Class="emphasis">&lt;kind&gt;</span> is a lowercase name for the daemon with words separated by hyphens. 
+<p class="level0">Examples of valid entry points include <span Class="bold">yaqd-base-hardware ,</span> <span Class="bold">yaqd-micro-hr ,</span> and <span Class="bold">yaqd-zaber-binary .</span> 
+<p class="level0">The entry point SHALL accept the option --config &lt;filepath&gt; and the short form -c of this option. 
+<p class="level0">
+<p class="level0">
+<p class="level0"><a name="CONFIGURATION"></a><h2 class="nroffsh">CONFIGURATION</h2>
+<p class="level0">
+<p class="level0">The default configuration file location SHALL be: 
+<p class="level0"><span Class="bold">macOS	</span> "~/Library/Application Support/yaqd/&lt;kind&gt;/config.toml" 
+<p class="level0"><span Class="bold">XDG Spec (e.g. Linux)	</span> "~/.config/yaqd/&lt;kind&gt;/config.toml" 
+<p class="level0"><span Class="bold">Windows	</span> "C:\Documents and Settings\&lt;User&gt;\Application Data\Local Settings\yaq\yaqd&lt;kind&gt;\config.toml" 
+<p class="level0">Where <span Class="emphasis">&lt;kind&gt;</span> is the same as in the ENTRY POINT section. 
+<p class="level0">Configuration is in TOML (https://github.com/toml-lang/toml). Any valid TOML types MAY be used. 
+<p class="level0">Top level keys are used for 
+<p class="level0"><span Class="bold">entry	</span> <span Class="emphasis">recommended	</span> <span Class="bold">string</span> 
+<p class="level0">The entry point associated with this configuration. Used by <span Class="bold">yaqd-start-daemons(1)</span> to start daemons with the configuration 
+<p class="level0">
+<p class="level0"><span Class="bold">enable	</span> <span Class="emphasis">optional	</span> <span Class="bold">boolean</span> 
+<p class="level0">If given and set to false, the daemon MUST exit immediately without opening TCP ports. If not given, true is assumed. 
+<p class="level0"><span Class="bold">shared-settings	</span> <span Class="emphasis">optional	</span> <span Class="bold">table</span> 
+<p class="level0">If present, provides defaults that apply to all other tables. These defaults MAY be overridden by the other tables for the individual port. 
+<p class="level0">Every other top-level key MUST be a table, for which the name indicates the name of the daemon which MUST be exposed on the given port. These names MUST be unique at the level of <span Class="emphasis">&lt;kind&gt;.</span> 
+<p class="level0">Each table MUST include a key "port" which provides the globally-unique (among all daemons) TCP port. Additional fields MAY be added, as needed for configuring the daemon. Specific implementations MAY have additional required configuration parameters. Fields MAY be included that are only used by the clients, and retrieved by <span Class="bold">get_config</span> (see below). 
+<p class="level0">ALL tables other than those that are disabled, and  <span Class="bold">shared-settings</span> MUST be started when invoking a daemon entry point with the config file. They MAY (and in many cases must for technical reasons) be starting several daemons listening in the same process. 
+<p class="level0">
+<p class="level0">The configuration file MUST NOT be written by the daemon. Any runtime dynamic fields SHOULD be written in the state file (see below) and have ways of detecting and/or expose setting over the TCP communication protocol described above. 
+<p class="level0">Additional identifying information SHOULD be included, as applicable. Common identifying information include: <span Class="bold">make </span> (manufacturer), <span Class="bold">model</span> (identifies the kind as described by the manufacturer), <span Class="bold">serial</span> (individual serial number of the device represented), <span Class="bold">units</span> (units for numbers interpreted and sent). This limited subset (along with the &lt;name&gt; as defined by the table name and the &lt;kind&gt; as defined by the implementation) are returned by the  <span Class="bold">id</span> method (see below). 
+<p class="level0">
+<p class="level0">The configuration file MUST be read from the file at daemon startup ONLY (restarting is considered "startup", and MUST re-read the configuration file in case changes were made). 
+<p class="level0">
+<p class="level0"><a name="STATE"></a><h2 class="nroffsh">STATE SAVING</h2>
+<p class="level0">
+<p class="level0">Dynamic fields are saved to a similar TOML file. Included fields SHOULD be of potential value to clients or needed across restarts of the daemon. 
+<p class="level0">EACH daemon MUST SAVE a file at (unless that file is empty, in which case it MAY be omitted): 
+<p class="level0"><span Class="bold">macOS	</span> "~/Library/Application Support/yaqd-state/&lt;kind&gt;/&lt;name&gt;-state.toml" 
+<p class="level0"><span Class="bold">XDG Spec (e.g. Linux)	</span> "~/.local/share/yaqd-state/&lt;kind&gt;/&lt;name&gt;-state.toml" 
+<p class="level0"><span Class="bold">Windows	</span> "C:\Documents and Settings\&lt;User&gt;\Application Data\Local Settings\yaq\yaqd-state\&lt;kind&gt;\&lt;name&gt;-state.toml" 
+<p class="level0">By default, there are no required keys in the state. The content saved MUST be the same as returned by the <span Class="bold">get_state</span> method (see below). 
+<p class="level0">If possible, recorded state SHOULD fully describe the hardware such that recovery from a shutdown (including unepected shutdown) will be seamless without any additional user input. 
+<p class="level0">
+<p class="level0"><a name="STANDARD"></a><h2 class="nroffsh">STANDARD COMMANDS</h2>
+<p class="level0"><span Class="bold">id</span> 
+<p class="level0">JSON object with information to identify the daemon, including <span Class="bold">name,</span> <span Class="bold">kind,</span> <span Class="bold">make,</span> <span Class="bold">model,</span> <span Class="bold">serial,</span> <span Class="bold">units.</span> 
+<p class="level0"><span Class="bold">config_filepath</span> 
+<p class="level0">String representing the absolute filepath of the configuration file on the host machine. 
+<p class="level0"><span Class="bold">get_config</span> 
+<p class="level0">JSON object with the full configuration for the individual daemon as defined in the TOML file. This includes defaults and shared settings not directly specified in the daemon-specific TOML table. 
+<p class="level0"><span Class="bold">get_state</span> 
+<p class="level0">JSON object representing the current state, as saved in the &lt;name&gt;-state.toml file. 
+<p class="level0"><span Class="bold">list_methods</span> 
+<p class="level0">Array of the (string) names of all known (public) methods. 
+<p class="level0"><span Class="bold">help( method= None  )</span> 
+<p class="level0">If method not given, return a human-readable string with information about the daemon as a whole. If method is given, return a human-readable string with the signature of the method on the first line and a description of the method on subsequent lines. The signature is not specified to be in any particular language. It is intended for usage by humans ONLY. <p class="roffit">
+</body></html>
