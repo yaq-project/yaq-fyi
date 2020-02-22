@@ -37,6 +37,22 @@ template = env.get_template('protocol.html')
 with open(p, 'w') as fh:
     fh.write(template.render())
 
+# introduction ------------------------------------------------------------------------------------
+
+if not os.path.isdir(__here__ / "public" / "introduction"):
+    os.mkdir(__here__ / "public" / "introduction")
+
+p = __here__ / "public" / "introduction" / "index.html"
+template = env.get_template('introduction.html')
+with open(p, 'w') as fh:
+    fh.write(template.render())
+
+# licensing ---------------------------------------------------------------------------------------
+
+# glossary ----------------------------------------------------------------------------------------
+
+# traits ------------------------------------------------------------------------------------------
+
 # families ----------------------------------------------------------------------------------------
 
 if not os.path.isdir(__here__ / "public" / "families"):
