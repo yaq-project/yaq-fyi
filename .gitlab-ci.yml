@@ -3,8 +3,8 @@ image: python:latest
 pages:
   stage: deploy
   script:
-  - pip install jinja2
-  - pip install toml
+  - pip install jinja2 -U
+  - pip install toml -U
   - python build.py
   artifacts:
     paths:
