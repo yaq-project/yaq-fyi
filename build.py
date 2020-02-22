@@ -10,6 +10,16 @@ __here__ = pathlib.Path(__file__).resolve().parent
 
 env = Environment(loader = FileSystemLoader(str(__here__ / "templates")))
 
+if not os.path.isdir(__here__ / "public"):
+    os.mkdir(__here__ / "public")
+
+# css ---------------------------------------------------------------------------------------------
+
+p = __here__ / "public" / "style.css"
+template = env.get_template('style.css')
+with open(p, 'w') as fh:
+    fh.write(template.render())
+
 # landing page ------------------------------------------------------------------------------------
 
 p = __here__ / "public" / "index.html"
@@ -17,7 +27,17 @@ template = env.get_template('index.html')
 with open(p, 'w') as fh:
     fh.write(template.render())
 
+# protocol ----------------------------------------------------------------------------------------
+
+p = __here__ / "public" / "protcol.html"
+template = env.get_template('protocol.html')
+with open(p, 'w') as fh:
+    fh.write(template.render())
+
 # families ----------------------------------------------------------------------------------------
+
+if not os.path.isdir(__here__ / "public" / "families"):
+    os.mkdir(__here__ / "public" / "families")
 
 daemons = []
 for name in os.listdir(__here__ / "daemons"):
