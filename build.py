@@ -27,47 +27,23 @@ template = env.get_template('index.html')
 with open(p, 'w') as fh:
     fh.write(template.render())
 
-# protocol ----------------------------------------------------------------------------------------
+# pages without arguments -------------------------------------------------------------------------
 
-if not os.path.isdir(__here__ / "public" / "protocol"):
-    os.mkdir(__here__ / "public" / "protocol")
+names = ["protocol", "introduction", "licensing", "glossary"]
 
-p = __here__ / "public" / "protocol" / "index.html"
-template = env.get_template('protocol.html')
-with open(p, 'w') as fh:
-    fh.write(template.render())
+for name in names:
 
-# introduction ------------------------------------------------------------------------------------
+    if not os.path.isdir(__here__ / "public" / name):
+        os.mkdir(__here__ / "public" / name)
 
-if not os.path.isdir(__here__ / "public" / "introduction"):
-    os.mkdir(__here__ / "public" / "introduction")
-
-p = __here__ / "public" / "introduction" / "index.html"
-template = env.get_template('introduction.html')
-with open(p, 'w') as fh:
-    fh.write(template.render())
-
-# licensing ---------------------------------------------------------------------------------------
-
-if not os.path.isdir(__here__ / "public" / "licensing"):
-    os.mkdir(__here__ / "public" / "licensing")
-
-p = __here__ / "public" / "licensing" / "index.html"
-template = env.get_template('licensing.html')
-with open(p, 'w') as fh:
-    fh.write(template.render())
-
-# glossary ----------------------------------------------------------------------------------------
-
-if not os.path.isdir(__here__ / "public" / "glossary"):
-    os.mkdir(__here__ / "public" / "glossary")
-
-p = __here__ / "public" / "glossary" / "index.html"
-template = env.get_template('glossasry.html')
-with open(p, 'w') as fh:
-    fh.write(template.render())
+    p = __here__ / "public" / name / "index.html"
+    template = env.get_template(name + '.html')
+    with open(p, 'w') as fh:
+        fh.write(template.render())
 
 # traits ------------------------------------------------------------------------------------------
+
+
 
 # families ----------------------------------------------------------------------------------------
 
