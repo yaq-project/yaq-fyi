@@ -1,8 +1,9 @@
-image: alpine:latest
+image: python:latest
 
 pages:
   stage: deploy
   script:
+  - pip install jinja2
   - python build.py
   artifacts:
     paths:
