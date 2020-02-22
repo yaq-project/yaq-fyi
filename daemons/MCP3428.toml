@@ -1,0 +1,4 @@
+name = "MCP3428"
+url = "https://gitlab.com/yaq/yaqd-mcp3428"
+family = "Sensor"
+traits = []
