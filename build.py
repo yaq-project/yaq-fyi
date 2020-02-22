@@ -61,6 +61,12 @@ daemons = []
 for name in os.listdir(__here__ / "daemons"):
     daemons.append(toml.load(__here__ / "daemons" / name))
 
+# main daemon page
+p = __here__ / "public" / "daemons" / "index.html"
+template = env.get_template('daemons.html')
+with open(p, 'w') as fh:
+    fh.write(template.render(daemons=daemons))
+
 # page for each daemon
 for daemon in daemons:
     p = __here__ / "public" / "daemons" / daemon["name"] / "index.html"
