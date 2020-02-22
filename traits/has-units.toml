@@ -1,8 +1,6 @@
 name = "has-units"
 requires = []
 
-[state]
-
 [method]
 
   [method.id]
