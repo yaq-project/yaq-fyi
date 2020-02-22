@@ -13,9 +13,78 @@
 
 <hr>
 
+{{ trait["description"] }}
+
+<h2>requires</h2>
+
+{% if "requires" in trait.keys() %}
+
+TODO
+
+{% else %}
+
+{{ trait["name"] }} does not require any other traits
+
+{% endif %}
+
+<h2>config</h2>
+
+{% if "config" in trait.keys() %}
+
+TODO
+
+{% else %}
+
+{{ trait["name"] }} requires no configuration
+
+{% endif %}
+
+<h2>state</h2>
+
+{% if "state" in trait.keys() %}
+
+{{ trait["name"] }} requires the following key:value pairs in state
+
+<ul>
+{% for k in trait["state"].keys() %}
+   <li>{{ k }} : {{ trait["state"][k] }}</li>
+{% endfor %}
+</ul>
+
+{% else %}
+
+{{ trait["name"] }} does not modify the state of the daemon
+
+{% endif %}
+
+<h2>methods</h2>
+
+{% for m in trait["method"].keys() %}
+
+<h3>{{ m }}</h3>
+
+<p>{{ trait["method"][m]["description"] }}</p>
+
 <p>
-Here goes information about the {{ trait["name"] }} trait.
+{% if "args" in trait["method"][m].keys() %}
+  arguments... <br>
+  {% for a in trait["method"][m]["args"].keys() %}
+  {{ a }} : {{ trait["method"][m]["args"][a] }} <br>
+  {% endfor %}
+{% else %}
+  has no arguments
+{% endif %}
 </p>
+
+<p>
+{% if "returns" in trait["method"][m].keys() %}
+  returns {{ trait["method"][m]["returns"] }}
+{% else %}
+  returns nothing
+{% endif %}
+</p>
+
+{% endfor %}
 
 </body>
 </html>

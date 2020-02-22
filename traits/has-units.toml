@@ -1,7 +1,5 @@
 name = "has-units"
-dependents = []
-
-[config]
+requires = []
 
 [state]
 
@@ -9,4 +7,4 @@ dependents = []
 
   [method.id]
   returns = "dictionary"
-  comment = "Must return value under key 'units'. Value can be String or None."
+  description = "Must return value under key 'units'. Value can be String or None."
