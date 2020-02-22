@@ -58,7 +58,6 @@ with open(p, 'w') as fh:
 
 # page for each trait
 for trait in traits:
-    print(trait["state"])
     p = __here__ / "public" / "traits" / trait["name"] / "index.html"
     if not os.path.isdir(p.parent):
         os.mkdir(p.parent)
