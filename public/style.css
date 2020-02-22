@@ -7,10 +7,14 @@ body {
   font-family: sans-serif;
   margin: 40px auto;
   max-width: 650px;
-  line-height: 1.6;
+  line-height: 1.5;
   font-size: 16px;
   background-color: #1d1f21;
   color: #c5c8c6;
   padding: 0 10px;
   text-align: left;
+}
+
+.singlespaced {
+    line-height: 1;  /* try also a bit smaller line-height */
 }
