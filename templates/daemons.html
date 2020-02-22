@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>yaq daemons</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<h1>
+<a href=../>yaq</a>/daemons
+</h1>
+
+<hr>
+
+<p>
+This landing page simply lists public yaq daemon implementations in alphabetical order.
+You may also be interested in viewing <a href="../families/">families</a> and <a href="../traits/">traits</a>.
+</p>
+
+<ul>
+{% for d in daemons %}
+   <li><a href=./{{ d["name"] }}>{{ d["name"] }}</a></li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
