@@ -49,6 +49,14 @@ with open(p, 'w') as fh:
 
 # licensing ---------------------------------------------------------------------------------------
 
+if not os.path.isdir(__here__ / "public" / "licensing"):
+    os.mkdir(__here__ / "public" / "licensing")
+
+p = __here__ / "public" / "licensing" / "index.html"
+template = env.get_template('licensing.html')
+with open(p, 'w') as fh:
+    fh.write(template.render())
+
 # glossary ----------------------------------------------------------------------------------------
 
 # traits ------------------------------------------------------------------------------------------
