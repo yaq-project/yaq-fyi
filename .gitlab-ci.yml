@@ -4,6 +4,7 @@ pages:
   stage: deploy
   script:
   - pip install jinja2
+  - pip install toml
   - python build.py
   artifacts:
     paths:
