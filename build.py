@@ -29,7 +29,10 @@ with open(p, 'w') as fh:
 
 # protocol ----------------------------------------------------------------------------------------
 
-p = __here__ / "public" / "protcol.html"
+if not os.path.isdir(__here__ / "public" / "protocol"):
+    os.mkdir(__here__ / "public" / "protocol")
+
+p = __here__ / "public" / "protocol" / "index.html"
 template = env.get_template('protocol.html')
 with open(p, 'w') as fh:
     fh.write(template.render())
