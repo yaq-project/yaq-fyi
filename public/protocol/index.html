@@ -50,8 +50,9 @@ p.roffit {
 <p class="level0"><a name="NAME"></a><h2 class="nroffsh">NAME</h2>
 <p class="level0">yaqd - Daemon infrastructure for the yaq system <a name="COMMUNICATION"></a><h2 class="nroffsh">COMMUNICATION PROTOCOL</h2>
 <p class="level0">
+<p class="level0">Version 0.2.0
 <p class="level0">
-<p class="level0"><span Class="bold">yaq daemons</span> MUST communicate over <span Class="bold">tcp(7)</span> ports. By convention, daemons SHOULD serve on ports in the range 36000-39999. This range avoids most collisions with common TCP port usage in other applications. Users MAY use ports outside of this range, however tools like <span Class="bold">yaqd-list-daemons(1)</span> will not check ports other than this range by default. 
+<p class="level0"><span Class="bold">yaq daemons</span> MUST communicate over <span Class="bold">tcp(7)</span> ports. By convention, daemons SHOULD serve on ports in the range 36000-39999. This range avoids most collisions with common TCP port usage in other applications. Users MAY use ports outside of this range, however tools like <span Class="bold">yaqd scan</span> will not check ports other than this range by default. 
 <p class="level0">
 <p class="level0">TCP was chosen to maximize cross system and cross language compatibility. Future versions of this specification may allow for other <span Class="bold">socket(7)</span> implementations as alternatives to <span Class="bold">tcp(7)</span> at the users option. 
 <p class="level0"><a name="REQUEST"></a><h2 class="nroffsh">REQUEST CONTENT</h2>
@@ -64,8 +65,9 @@ p.roffit {
 <p class="level0"><a name="ENTRY"></a><h2 class="nroffsh">ENTRY POINT</h2>
 <p class="level0">
 <p class="level0">The standard entry point to initiate a daemon SHALL be <span Class="bold">yaqd-</span> <span Class="emphasis">&lt;kind&gt;</span> where <span Class="emphasis">&lt;kind&gt;</span> is a lowercase name for the daemon with words separated by hyphens. 
-<p class="level0">Examples of valid entry points include <span Class="bold">yaqd-base-hardware ,</span> <span Class="bold">yaqd-micro-hr ,</span> and <span Class="bold">yaqd-zaber-binary .</span> 
+<p class="level0">Examples of valid entry points include <span Class="bold">yaqd-base,</span> <span Class="bold">yaqd-micro-hr ,</span> and <span Class="bold">yaqd-zaber-binary .</span> 
 <p class="level0">The entry point SHALL accept the option --config &lt;filepath&gt; and the short form -c of this option. 
+<p class="level0">The entry point SHALL accept the option --version &lt;filepath&gt; which prints version information and exits without starting daemons. 
 <p class="level0">
 <p class="level0">
 <p class="level0"><a name="CONFIGURATION"></a><h2 class="nroffsh">CONFIGURATION</h2>
@@ -73,20 +75,18 @@ p.roffit {
 <p class="level0">The default configuration file location SHALL be: 
 <p class="level0"><span Class="bold">macOS	</span> "~/Library/Application Support/yaqd/&lt;kind&gt;/config.toml" 
 <p class="level0"><span Class="bold">XDG Spec (e.g. Linux)	</span> "~/.config/yaqd/&lt;kind&gt;/config.toml" 
-<p class="level0"><span Class="bold">Windows	</span> "C:\Documents and Settings\&lt;User&gt;\Application Data\Local Settings\yaq\yaqd&lt;kind&gt;\config.toml" 
+<p class="level0"><span Class="bold">Windows	</span> "C:\Users\&lt;User&gt;\AppData\Local\yaq\yaqd\&lt;kind&gt;\config.toml" 
 <p class="level0">Where <span Class="emphasis">&lt;kind&gt;</span> is the same as in the ENTRY POINT section. 
 <p class="level0">Configuration is in TOML (https://github.com/toml-lang/toml). Any valid TOML types MAY be used. 
 <p class="level0">Top level keys are used for 
-<p class="level0"><span Class="bold">entry	</span> <span Class="emphasis">recommended	</span> <span Class="bold">string</span> 
-<p class="level0">The entry point associated with this configuration. Used by <span Class="bold">yaqd-start-daemons(1)</span> to start daemons with the configuration 
-<p class="level0">
 <p class="level0"><span Class="bold">enable	</span> <span Class="emphasis">optional	</span> <span Class="bold">boolean</span> 
 <p class="level0">If given and set to false, the daemon MUST exit immediately without opening TCP ports. If not given, true is assumed. 
 <p class="level0"><span Class="bold">shared-settings	</span> <span Class="emphasis">optional	</span> <span Class="bold">table</span> 
 <p class="level0">If present, provides defaults that apply to all other tables. These defaults MAY be overridden by the other tables for the individual port. 
 <p class="level0">Every other top-level key MUST be a table, for which the name indicates the name of the daemon which MUST be exposed on the given port. These names MUST be unique at the level of <span Class="emphasis">&lt;kind&gt;.</span> 
 <p class="level0">Each table MUST include a key "port" which provides the globally-unique (among all daemons) TCP port. Additional fields MAY be added, as needed for configuring the daemon. Specific implementations MAY have additional required configuration parameters. Fields MAY be included that are only used by the clients, and retrieved by <span Class="bold">get_config</span> (see below). 
-<p class="level0">ALL tables other than those that are disabled, and  <span Class="bold">shared-settings</span> MUST be started when invoking a daemon entry point with the config file. They MAY (and in many cases must for technical reasons) be starting several daemons listening in the same process. 
+<break/>
+<p class="level0">ALL tables other than those that are disabled, and  <span Class="bold">shared-settings</span> MUST be started when invoking a daemon entry point with the config file. They MAY (and in many cases must for technical reasons) start several daemons listening in the same process. 
 <p class="level0">
 <p class="level0">The configuration file MUST NOT be written by the daemon. Any runtime dynamic fields SHOULD be written in the state file (see below) and have ways of detecting and/or expose setting over the TCP communication protocol described above. 
 <p class="level0">Additional identifying information SHOULD be included, as applicable. Common identifying information include: <span Class="bold">make </span> (manufacturer), <span Class="bold">model</span> (identifies the kind as described by the manufacturer), <span Class="bold">serial</span> (individual serial number of the device represented), <span Class="bold">units</span> (units for numbers interpreted and sent). This limited subset (along with the &lt;name&gt; as defined by the table name and the &lt;kind&gt; as defined by the implementation) are returned by the  <span Class="bold">id</span> method (see below). 
@@ -99,7 +99,7 @@ p.roffit {
 <p class="level0">EACH daemon MUST SAVE a file at (unless that file is empty, in which case it MAY be omitted): 
 <p class="level0"><span Class="bold">macOS	</span> "~/Library/Application Support/yaqd-state/&lt;kind&gt;/&lt;name&gt;-state.toml" 
 <p class="level0"><span Class="bold">XDG Spec (e.g. Linux)	</span> "~/.local/share/yaqd-state/&lt;kind&gt;/&lt;name&gt;-state.toml" 
-<p class="level0"><span Class="bold">Windows	</span> "C:\Documents and Settings\&lt;User&gt;\Application Data\Local Settings\yaq\yaqd-state\&lt;kind&gt;\&lt;name&gt;-state.toml" 
+<p class="level0"><span Class="bold">Windows	</span> "C:\Users\&lt;User&gt;\AppData\Local\yaq\yaqd-state\&lt;kind&gt;\&lt;name&gt;-state.toml" 
 <p class="level0">By default, there are no required keys in the state. The content saved MUST be the same as returned by the <span Class="bold">get_state</span> method (see below). 
 <p class="level0">If possible, recorded state SHOULD fully describe the hardware such that recovery from a shutdown (including unepected shutdown) will be seamless without any additional user input. 
 <p class="level0">
