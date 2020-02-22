@@ -43,7 +43,27 @@ for name in names:
 
 # traits ------------------------------------------------------------------------------------------
 
+if not os.path.isdir(__here__ / "public" / "traits"):
+    os.mkdir(__here__ / "public" / "traits")
 
+traits = []
+for name in os.listdir(__here__ / "traits"):
+    traits.append(toml.load(__here__ / "traits" / name))
+
+# traits landing page
+p = __here__ / "public" / "traits" / "index.html"
+template = env.get_template('traits.html')
+with open(p, 'w') as fh:
+    fh.write(template.render(traits=traits))
+
+# page for each trait
+for trait in traits:
+    p = __here__ / "public" / "traits" / trait["name"] / "index.html"
+    if not os.path.isdir(p.parent):
+        os.mkdir(p.parent)
+    template = env.get_template('trait.html')
+    with open(p, 'w') as fh:
+        fh.write(template.render(trait=trait))
 
 # families ----------------------------------------------------------------------------------------
 
@@ -60,6 +80,9 @@ template = env.get_template('families.html')
 with open(p, 'w') as fh:
     fh.write(template.render(daemons=daemons))
 
+# page for each family
+# TODO
+
 # daemons -----------------------------------------------------------------------------------------
 
 if not os.path.isdir(__here__ / "public" / "daemons"):
@@ -69,7 +92,7 @@ daemons = []
 for name in os.listdir(__here__ / "daemons"):
     daemons.append(toml.load(__here__ / "daemons" / name))
 
-# main daemon page
+# daemon landing page
 p = __here__ / "public" / "daemons" / "index.html"
 template = env.get_template('daemons.html')
 with open(p, 'w') as fh:

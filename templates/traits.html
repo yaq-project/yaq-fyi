@@ -3,13 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>yaq traits</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-<h1>yaq traits</h1>
+<h1>
+<a href=../>yaq</a>/daemons
+</h1>
 
 <hr>
+
+<ul>
+{% for t in traits %}
+   <li><a href=./{{ t["name"] }}>{{ t["name"] }}</a></li>
+{% endfor %}
+</ul>
 
 </body>
 </html>

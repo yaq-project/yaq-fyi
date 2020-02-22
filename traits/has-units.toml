@@ -1,0 +1,12 @@
+name = "has-units"
+dependents = []
+
+[config]
+
+[state]
+
+[method]
+
+  [method.id]
+  returns = "dictionary"
+  comment = "Must return value under key 'units'. Value can be String or None."
