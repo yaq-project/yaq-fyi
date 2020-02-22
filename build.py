@@ -59,6 +59,14 @@ with open(p, 'w') as fh:
 
 # glossary ----------------------------------------------------------------------------------------
 
+if not os.path.isdir(__here__ / "public" / "glossary"):
+    os.mkdir(__here__ / "public" / "glossary")
+
+p = __here__ / "public" / "glossary" / "index.html"
+template = env.get_template('glossasry.html')
+with open(p, 'w') as fh:
+    fh.write(template.render())
+
 # traits ------------------------------------------------------------------------------------------
 
 # families ----------------------------------------------------------------------------------------
