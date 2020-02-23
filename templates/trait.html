@@ -19,7 +19,12 @@
 
 {% if "requires" in trait.keys() %}
 
-TODO
+<ul>
+{% for r in trait["requires"] %}
+   <li><a href=../{{ r }}>{{ r }}</a></li>
+{% endfor %}
+</ul>
+
 
 {% else %}
 
