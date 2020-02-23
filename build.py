@@ -70,18 +70,24 @@ for trait in traits:
 if not os.path.isdir(__here__ / "public" / "families"):
     os.mkdir(__here__ / "public" / "families")
 
-daemons = []
-for name in os.listdir(__here__ / "daemons"):
-    daemons.append(toml.load(__here__ / "daemons" / name))
+families = []
+for name in os.listdir(__here__ / "families"):
+    families.append(toml.load(__here__ / "families" / name))
 
 # families landing page
 p = __here__ / "public" / "families" / "index.html"
 template = env.get_template('families.html')
 with open(p, 'w') as fh:
-    fh.write(template.render(daemons=daemons))
+    fh.write(template.render(families=families))
 
 # page for each family
-# TODO
+for family in families:
+    p = __here__ / "public" / "families" / family["name"] / "index.html"
+    if not os.path.isdir(p.parent):
+        os.mkdir(p.parent)
+    template = env.get_template('family.html')
+    with open(p, 'w') as fh:
+        fh.write(template.render(family=family))
 
 # daemons -----------------------------------------------------------------------------------------
 

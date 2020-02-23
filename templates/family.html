@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ family["name"] }}</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>families</a>/{{ family["name"] }}
+</h1>
+
+<hr>
+
+<p>{{ family["description"] }}</p>
+
+<p>
+{% if "parent" in family.keys() %}
+  {{ family["name"] }} inherits from <a href=../{{ family["parent"] }}>{{ family["parent"] }}</a>
+{% endif %}
+</p>
+
+<h2>traits</h2>
+
+<ul>
+{% for t in family["traits"] %}
+   <li><a href=../../traits/{{ t }}>{{ t }}</a></li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
