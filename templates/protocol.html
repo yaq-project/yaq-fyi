@@ -47,10 +47,9 @@ p.roffit {
 <link rel="stylesheet" href="../style.css">
 </head><body>
 
+<p class="level0">Version 0.2.1
 <p class="level0"><a name="NAME"></a><h2 class="nroffsh">NAME</h2>
 <p class="level0">yaqd - Daemon infrastructure for the yaq system <a name="COMMUNICATION"></a><h2 class="nroffsh">COMMUNICATION PROTOCOL</h2>
-<p class="level0">
-<p class="level0">Version 0.2.0
 <p class="level0">
 <p class="level0"><span Class="bold">yaq daemons</span> MUST communicate over <span Class="bold">tcp(7)</span> ports. By convention, daemons SHOULD serve on ports in the range 36000-39999. This range avoids most collisions with common TCP port usage in other applications. Users MAY use ports outside of this range, however tools like <span Class="bold">yaqd scan</span> will not check ports other than this range by default.
 <p class="level0">
@@ -89,7 +88,7 @@ p.roffit {
 <p class="level0">ALL tables other than those that are disabled, and  <span Class="bold">shared-settings</span> MUST be started when invoking a daemon entry point with the config file. They MAY (and in many cases must for technical reasons) start several daemons listening in the same process.
 <p class="level0">
 <p class="level0">The configuration file MUST NOT be written by the daemon. Any runtime dynamic fields SHOULD be written in the state file (see below) and have ways of detecting and/or expose setting over the TCP communication protocol described above.
-<p class="level0">Additional identifying information SHOULD be included, as applicable. Common identifying information include: <span Class="bold">make </span> (manufacturer), <span Class="bold">model</span> (identifies the kind as described by the manufacturer), <span Class="bold">serial</span> (individual serial number of the device represented), <span Class="bold">units</span> (units for numbers interpreted and sent). This limited subset (along with the &lt;name&gt; as defined by the table name and the &lt;kind&gt; as defined by the implementation) are returned by the  <span Class="bold">id</span> method (see below).
+<p class="level0">Additional identifying information SHOULD be included, as applicable. Common identifying information include: <span Class="bold">make </span> (manufacturer), <span Class="bold">model</span> (identifies the kind as described by the manufacturer), <span Class="bold">serial</span> (individual serial number of the device represented). This limited subset (along with the &lt;name&gt; as defined by the table name and the &lt;kind&gt; as defined by the implementation) are returned by the  <span Class="bold">id</span> method (see below).
 <p class="level0">
 <p class="level0">The configuration file MUST be read from the file at daemon startup ONLY (restarting is considered "startup", and MUST re-read the configuration file in case changes were made).
 <p class="level0">
@@ -105,11 +104,13 @@ p.roffit {
 <p class="level0">
 <p class="level0"><a name="STANDARD"></a><h2 class="nroffsh">STANDARD COMMANDS</h2>
 <p class="level0"><span Class="bold">id</span>
-<p class="level0">JSON object with information to identify the daemon, including <span Class="bold">name,</span> <span Class="bold">kind,</span> <span Class="bold">make,</span> <span Class="bold">model,</span> <span Class="bold">serial,</span> <span Class="bold">units.</span>
+<p class="level0">JSON object with information to identify the daemon, including <span Class="bold">name,</span> <span Class="bold">kind,</span> <span Class="bold">make,</span> <span Class="bold">model,</span> <span Class="bold">serial.</span> Additional keys MAY be required by Traits.
 <p class="level0"><span Class="bold">config_filepath</span>
 <p class="level0">String representing the absolute filepath of the configuration file on the host machine.
 <p class="level0"><span Class="bold">get_config</span>
 <p class="level0">JSON object with the full configuration for the individual daemon as defined in the TOML file. This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+<p class="level0"><span Class="bold">get_lineage</span>
+<p class="level0">Array of the (string) names of all families from which the daemon inherits.
 <p class="level0"><span Class="bold">get_state</span>
 <p class="level0">JSON object representing the current state, as saved in the &lt;name&gt;-state.toml file.
 <p class="level0"><span Class="bold">list_methods</span>
