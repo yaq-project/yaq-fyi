@@ -1,4 +1,9 @@
 name = "MCP3428"
-url = "https://gitlab.com/yaq/yaqd-mcp3428"
-family = "Sensor"
+description = "Daemon to interface with MCP3428 four-channel analog to digital converter chips."
+repository-url = "https://gitlab.com/yaq/yaqd-mcp3428"
+bugtracker-url = "https://gitlab.com/yaq/yaqd-mcp3428/issues"
+family = "sensor"
 traits = []
+
+[install]
+language = "python"

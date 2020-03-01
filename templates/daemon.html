@@ -17,5 +17,16 @@
 Here goes information about the {{ daemon["name"] }} daemon.
 </p>
 
+<p>
+external links:
+{% for url in ["repository-url", "documentation-url", "bugtracker-url"] %}
+<ul>
+  {% if url in daemon.keys() %}
+    <li><a href={{ daemon[url] }}>{{ url.split("-")[0] }}</a></li>
+  {% endif %}
+</ul>
+{% endfor %}
+</p>
+
 </body>
 </html>

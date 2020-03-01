@@ -1,3 +1,7 @@
 name = "hardware"
-description = "todo"
+description = """
+The hardware family contains all daemons that have a single unit-aware position.
+Note that units can be none-like.
+"""
+parent = "base"
 traits = ["has-units", "has-position"]
