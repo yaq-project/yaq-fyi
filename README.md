@@ -18,10 +18,13 @@ Note that only new or changed config, state, and methods should be documented he
 ```toml
 name = ""  # required
 description = ""  # required
-repository-url = ""  # optional
-bugtracker-url = ""  # optional
 family = ""  # required (can be base)
 traits = []  # required (can be empty)
+
+[links]  # all optional, arbitrary keys supported
+documentation = ""
+source = ""
+bugtracker = ""
 
 [install]
 language = "python"  # required
@@ -47,6 +50,7 @@ Families documentation goes in the `families` directory.
 Look there for examples.
 The following is a short overview of what kind of information is expected.
 Families are very simple.
+Note that inherited traits are implied.
 
 ```toml
 name = ""  # required
