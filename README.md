@@ -13,6 +13,7 @@ The website that is rendered from this information is hosted at https://yaq.fyi
 Daemon documentation goes in the `daemons` directory.
 Look there for examples.
 The following is a short overview of what kind of information is expected.
+Note that only new or changed config, state, and methods should be documented here, properties from traits and family are implied.
 
 ```toml
 name = ""  # required
@@ -25,6 +26,19 @@ traits = []  # required (can be empty)
 [install]
 language = "python"  # required
 # other keys optional, language dependent
+
+[config]  # optional
+NAME = "TYPE"
+
+[state]  # optional
+NAME = "TYPE"
+
+[method]  # optional
+
+  [method.NAME]
+  args.NAME = "TYPE"  # optional
+  returns = "TYPE"  # optional
+  description = ""  # required
 ```
 
 ## families
@@ -42,3 +56,27 @@ traits = []  # required (cannot be empty)
 ```
 
 ## traits
+
+Traits documentation goes in the `traits` directory.
+Look there for examples
+The following is a short overview of what kind of information is expected.
+Note that only new or changed config, state, and methods should be documented here, properties from required traits are implied.
+
+``` toml
+name = ""  # required
+description = ""  # required
+requires = []  # required (can be empty)
+
+[config]  # optional
+NAME = "TYPE"
+
+[state]  # optional
+NAME = "TYPE"
+
+[method]  # optional
+
+  [method.NAME]
+  args.NAME = "TYPE"  # optional
+  returns = "TYPE"  # optional
+  description = ""  # required
+```
