@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{{ daemon["name"] }}</title>
-  <link rel="stylesheet" href="../../style.css">
-</head>
-<body>
+{% include "header.html" %}
 
 <h1>
 <a href=../../>yaq</a>/<a href=../>daemons</a>/{{ daemon["name"] }}
@@ -14,19 +7,42 @@
 <hr>
 
 <p>
-Here goes information about the {{ daemon["name"] }} daemon.
+{{ daemon["description"] }}
 </p>
 
 <p>
-external links:
-{% for url in ["repository-url", "documentation-url", "bugtracker-url"] %}
-<ul>
-  {% if url in daemon.keys() %}
-    <li><a href={{ daemon[url] }}>{{ url.split("-")[0] }}</a></li>
-  {% endif %}
-</ul>
-{% endfor %}
+  Lineage:
 </p>
 
-</body>
-</html>
+<p>
+  Traits:
+</p>
+
+{% if "links" in daemon.keys() %}
+<p>
+External links:
+<ul>
+{% for name in daemon["links"].keys() %}
+  <li><a href={{ daemon["links"][name] }}>{{ name }}</a></li>
+{% endfor %}
+</ul>
+</p>
+{% endif %}
+
+<h2>
+Instillation
+</h2>
+
+<h2>
+Config
+</h2>
+
+<h2>
+State
+</h2>
+
+<h2>
+Methods
+</h2>
+
+{% include "footer.html" %}

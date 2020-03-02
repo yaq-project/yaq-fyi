@@ -6,7 +6,7 @@ a {
 body {
   font-family: sans-serif;
   margin: 40px auto;
-  max-width: 650px;
+  width: 650px;
   line-height: 1.5;
   font-size: 16px;
   background-color: #1d1f21;
@@ -16,5 +16,12 @@ body {
 }
 
 .singlespaced {
-    line-height: 1;  /* try also a bit smaller line-height */
+  line-height: 1;
+}
+
+.horizontal {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    justify-content: space-between;
 }

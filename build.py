@@ -4,7 +4,7 @@ import os
 import pathlib
 import toml
 from jinja2 import Environment, FileSystemLoader
-
+from datetime import datetime
 
 __here__ = pathlib.Path(__file__).resolve().parent
 
@@ -13,19 +13,14 @@ env = Environment(loader = FileSystemLoader(str(__here__ / "templates")))
 if not os.path.isdir(__here__ / "public"):
     os.mkdir(__here__ / "public")
 
-# css ---------------------------------------------------------------------------------------------
-
-p = __here__ / "public" / "style.css"
-template = env.get_template('style.css')
-with open(p, 'w') as fh:
-    fh.write(template.render())
+date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 # landing page ------------------------------------------------------------------------------------
 
 p = __here__ / "public" / "index.html"
 template = env.get_template('index.html')
 with open(p, 'w') as fh:
-    fh.write(template.render())
+    fh.write(template.render(title="yaq", date=date))
 
 # pages without arguments -------------------------------------------------------------------------
 
@@ -39,7 +34,7 @@ for name in names:
     p = __here__ / "public" / name / "index.html"
     template = env.get_template(name + '.html')
     with open(p, 'w') as fh:
-        fh.write(template.render())
+        fh.write(template.render(title=name, date=date))
 
 # traits ------------------------------------------------------------------------------------------
 
@@ -54,7 +49,7 @@ for name in os.listdir(__here__ / "traits"):
 p = __here__ / "public" / "traits" / "index.html"
 template = env.get_template('traits.html')
 with open(p, 'w') as fh:
-    fh.write(template.render(traits=traits))
+    fh.write(template.render(traits=traits, title="traits", date=date))
 
 # page for each trait
 for trait in traits:
@@ -63,7 +58,7 @@ for trait in traits:
         os.mkdir(p.parent)
     template = env.get_template('trait.html')
     with open(p, 'w') as fh:
-        fh.write(template.render(trait=trait))
+        fh.write(template.render(trait=trait, title=trait["name"], date=date))
 
 # families ----------------------------------------------------------------------------------------
 
@@ -78,7 +73,7 @@ for name in os.listdir(__here__ / "families"):
 p = __here__ / "public" / "families" / "index.html"
 template = env.get_template('families.html')
 with open(p, 'w') as fh:
-    fh.write(template.render(families=families))
+    fh.write(template.render(families=families, title="families", date=date))
 
 # page for each family
 for family in families:
@@ -87,7 +82,7 @@ for family in families:
         os.mkdir(p.parent)
     template = env.get_template('family.html')
     with open(p, 'w') as fh:
-        fh.write(template.render(family=family))
+        fh.write(template.render(family=family, title=family["name"], date=date))
 
 # daemons -----------------------------------------------------------------------------------------
 
@@ -102,7 +97,7 @@ for name in os.listdir(__here__ / "daemons"):
 p = __here__ / "public" / "daemons" / "index.html"
 template = env.get_template('daemons.html')
 with open(p, 'w') as fh:
-    fh.write(template.render(daemons=daemons))
+    fh.write(template.render(daemons=daemons, title="daemons", date=date))
 
 # page for each daemon
 for daemon in daemons:
@@ -111,4 +106,11 @@ for daemon in daemons:
         os.mkdir(p.parent)
     template = env.get_template('daemon.html')
     with open(p, 'w') as fh:
-        fh.write(template.render(daemon=daemon))
+        fh.write(template.render(daemon=daemon, title=daemon["name"], date=date))
+
+# css ---------------------------------------------------------------------------------------------
+
+for d, _, _ in os.walk(__here__ / "public", topdown=False):
+    template = env.get_template('style.css')
+    with open(os.path.join(d, "style.css"), 'w') as fh:
+        fh.write(template.render())
