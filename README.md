@@ -10,6 +10,10 @@ The website that is rendered from this information is hosted at https://yaq.fyi
 
 ## daemons
 
+Daemon documentation goes in the `daemons` directory.
+Look there for examples.
+The following is a short overview of what kind of information is expected.
+
 ```toml
 name = ""  # required
 description = ""  # required
@@ -24,5 +28,17 @@ language = "python"  # required
 ```
 
 ## families
+
+Families documentation goes in the `families` directory.
+Look there for examples.
+The following is a short overview of what kind of information is expected.
+Families are very simple.
+
+```toml
+name = ""  # required
+description = ""  # required
+parent = ""  # required (can be base)
+traits = []  # required (cannot be empty)
+```
 
 ## traits
