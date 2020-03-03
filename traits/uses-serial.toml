@@ -1,0 +1,20 @@
+name = "uses-serial"
+description = "Device which communicates over a serial bus with a given baud rate (e.g. /dev/ttyACM0 on unix and COM3 on windows at 9600 baud)"
+requires = []
+
+[config]
+serial_port = "string"
+baud_rate = "number"
+
+[method]
+    [method.direct_serial_write]
+    args.message = "string"
+    description = """
+Expose direct access to the serial port to clients.
+
+This should not be encouraged for normal use, but may be very important for debugging.
+If a device is expected to return data, it should be logged at the INFO level, not returned to the client.
+This is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.
+Setting `busy` to true is encouraged, but individual daemon writers should consider their own use case.
+"""
+

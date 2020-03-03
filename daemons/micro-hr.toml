@@ -1,0 +1,14 @@
+name = "micro-hr"
+description = " Horiba Jobin-Yvon Micro-Hr monochromator."
+family = "continuous-hardware"
+traits = ["has-turret", "is-homeable"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-horiba"
+bugtracker = "https://gitlab.com/yaq/yaqd-horiba/issues"
+
+[install]
+language = "python"
+
+[config]
+gratings = "[{'lines_per_mm': 'number'}, ...]"

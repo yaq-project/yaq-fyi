@@ -1,0 +1,35 @@
+name = "stepper-motor-hat"
+description = """
+Stepper motor drive hat made by Adafruit
+
+Uses rpi-gpio-pin daemons for limit switches.
+Allows for control of microstepping.
+"""
+family = "continuous-hardware"
+
+traits = ["is-homeable", "uses-i2c"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-adafruit/"
+bugtracker = "https://gitlab.com/yaq/yaqd-adafruit/issues"
+product = "https://www.adafruit.com/product/2348"
+
+[install]
+language = "python"
+
+[config]
+microsteps = "integer"
+stepper_index = "integer"
+lower_limit_port = "integer"
+upper_limit_port = "integer"
+
+
+[method]
+    [method.get_lower_limit_switch]
+    return = "boolean"
+    description = "Get state of the lower bound limit switch"
+
+    [method.get_upper_limit_switch]
+    return = "boolean"
+    description = "Get state of the upper bound limit switch"
+

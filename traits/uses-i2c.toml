@@ -1,0 +1,6 @@
+name = "uses-serial"
+description = "Device which communicates over an I2C bus with a given address"
+requires = []
+
+[config]
+i2c_addr = "integer"

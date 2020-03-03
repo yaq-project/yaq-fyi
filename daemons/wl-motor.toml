@@ -1,0 +1,13 @@
+name = "wl-motor"
+description = "Single axis stepper motor drive built for the purpose of controlling white light delay in an OPA."
+family = "continuous-hardware"
+
+traits = ["is-homeable", "uses-serial"]
+
+[links]
+source = "https://github.com/wright-group/wl-motor"
+bugtracker = "https://github.com/wright-group/wl-motor/issues"
+
+[install]
+language = "python"
+
