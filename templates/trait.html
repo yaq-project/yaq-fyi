@@ -54,6 +54,7 @@ TODO
 
 {% endif %}
 
+{% if "method" in trait %}
 <h2>methods</h2>
 
 {% for m in trait["method"].keys() %}
@@ -83,4 +84,5 @@ TODO
 
 {% endfor %}
 
+{% endif %}
 {% include "footer.html" %}
