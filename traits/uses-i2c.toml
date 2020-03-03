@@ -1,4 +1,4 @@
-name = "uses-serial"
+name = "uses-i2c"
 description = "Device which communicates over an I2C bus with a given address"
 requires = []
 
