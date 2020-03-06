@@ -1,10 +1,23 @@
 image: python:latest
 
+stages:
+  - test
+  - deploy
+
+before_script:
+  - python -V
+  - pip install jinja2 -U
+  - pip install toml -U
+  
+
+tomls:
+  stage: test
+  script:
+  - python validate_tomls.py
+
 pages:
   stage: deploy
   script:
-  - pip install jinja2 -U
-  - pip install toml -U
   - python build.py
   artifacts:
     paths:
