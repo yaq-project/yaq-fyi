@@ -31,15 +31,22 @@ language = "python"  # required
 # other keys optional, language dependent
 
 [config]  # optional
-NAME = "TYPE"
+NAME.type = "TYPE"  # required for each parameter
+NAME.default = ""  # if absent, parameter will be required
+NAME.options = ""  # optional
+NAME.description = ""  # optional
 
 [state]  # optional
-NAME = "TYPE"
+NAME.type = "TYPE"  # required for each parameter
+NAME.description = "" # optional
 
 [method]  # optional
 
   [method.NAME]
-  args.NAME = "TYPE"  # optional
+  args.NAME.type = "TYPE"  # required for each argument
+  args.NAME.default = ""  # if absent, argument will be required
+  args.NAME.options = ""  # optional
+  args.NAME.description = ""  # optional
   returns = "TYPE"  # optional
   description = ""  # required
 ```
@@ -72,15 +79,22 @@ description = ""  # required
 requires = []  # required (can be empty)
 
 [config]  # optional
-NAME = "TYPE"
+NAME.type = "TYPE"  # required for each parameter
+NAME.default = ""  # if absent, parameter will be required
+NAME.options = ""  # optional
+NAME.description = ""  # optional
 
 [state]  # optional
-NAME = "TYPE"
+NAME.type = "TYPE"  # required for each parameter
+NAME.description = "" # optional
 
 [method]  # optional
 
   [method.NAME]
-  args.NAME = "TYPE"  # optional
+  args.NAME.type = "TYPE"  # required for each argument
+  args.NAME.default = ""  # if absent, argument will be required
+  args.NAME.options = ""  # optional
+  args.NAME.description = ""  # optional
   returns = "TYPE"  # optional
   description = ""  # required
 ```
