@@ -1,12 +1,14 @@
-name = "has-turret" 
-description = "Daemon represents a device with an indexed turret that has a set of discrete positions, separate forom the device's setpoint"
+name = "has-turret"
+description = """
+Represents a device with an indexed turret that has a set of discrete positions, separate forom the device's setpoint
+"""
 requires = []
 
 [state]
-turret = "integer"
+turret.type = "number"
 
 [method]
 
   [method.set_turret]
-  args.index = "integer"
+  args.index.type = "number"
   description = "Set the turret to a given index. The turret position may be retrieved in the state"

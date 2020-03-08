@@ -5,11 +5,12 @@ This position can be set (using the set_position method).
 In general, these daemons may not be able to reach exactly the set position.
 The destination (get_destination) returns exactly the set position, while the position (get_position) returns the current actual position of the daemon.
 These daemons should start motion and become busy when set_daemon is called.
-They should release busy once they arrive as close as possible to the destination, and their position should not change until set_position is called again."""
+They should release busy once they arrive as close as possible to the destination, and their position should not change until set_position is called again.
+"""
 
 [state]
-position = "number"
-destination = "number"
+position.type = "number"
+destination.type = "number"
 
 [method]
 
@@ -22,5 +23,5 @@ destination = "number"
   description = "Get current daemon destination."
 
   [method.set_position]
-  args.position = "number"
+  args.position.type = "number"
   description = "Give the daemon a new destination, and begin motion towards that destination."
