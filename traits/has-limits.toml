@@ -1,19 +1,20 @@
 name = "has-limits"
 description = """
 The has-limits trait extends the has-positions trait with limits.
-It's assumed that any position within the limits is valid."""
+It's assumed that any position within the limits is valid.
+"""
 requires = ["has-position"]
 
 [state]
-limits = ["number", "number"]
+limits.type = "[number, number]"
 
 [method]
 
   [method.get_limits]
-  returns = ["limits", "limits"]
+  returns = "[number, number]"
   description = "Get daemon limits."
 
   [method.in_limits]
-  args.position = "number"
+  args.position.type = "number"
   returns = "boolean"
   description = "Check if a given position is within daemon limits."

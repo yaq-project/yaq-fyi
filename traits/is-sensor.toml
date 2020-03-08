@@ -7,7 +7,7 @@ Sensor daemons may have multiple channels if a single measurement returns multip
 [method]
 
   [method.measure]
-  args.loop = "boolean"
+  args.loop.type = "boolean"
   returns = "number"
   description = "Initiate a measurement. Returns integer, measurement ID."
 
