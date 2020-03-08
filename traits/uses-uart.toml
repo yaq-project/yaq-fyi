@@ -1,0 +1,9 @@
+name = "uses-uart"
+description = """
+Device which communicates over a serial bus with a given baud rate (e.g. /dev/ttyACM0 on unix and COM3 on windows at 9600 baud)
+"""
+requires = ["uses-serial"]
+
+[config]
+serial_port.type = "string"
+baud_rate.type = "number"
