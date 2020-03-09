@@ -64,18 +64,18 @@
    <b>{{ k }}</b> <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}
-     <i>from <a href="../{{ v['origin'].split('→')[-1] }}"→{{ v["origin"] }}</a→</i→ <br→
+     <i>from <a href="../{{ v['origin'].split('→')[-1] }}">{{ v["origin"] }}</a></i> <br>
    {% endif %}
-   {% if "returns" in v.keys() %} Returns : {{ v["returns"] }} <br→ {% endif %}
+   {% if "returns" in v.keys() %} Returns : {{ v["returns"] }} <br> {% endif %}
    {% if "args" in v.keys() %}
-     Arguments: <br→
-     </p→
+     Arguments: <br>
+     </p>
      {% for ak, av in v["args"].items() %}
-        <p class="tab60"→
-          {{ ak }}, {{ av }} <br→
-	</p→
+        <p class="tab60">
+          {{ ak }}, {{ av }} <br>
+	</p>
      {% endfor %}
-   {% else %} </p→
+   {% else %} </p>
    {% endif %}
 {% endfor %}
 {% endif %}
