@@ -25,3 +25,11 @@ body {
     padding: 0;
     justify-content: space-between;
 }
+
+.tab30 {
+  margin-left: 30px;
+}
+
+.tab60 {
+  margin-left: 60px;
+}

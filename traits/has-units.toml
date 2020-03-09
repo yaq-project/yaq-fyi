@@ -1,5 +1,6 @@
 name = "has-units"
 description = "Daemons with this trait have a single 'units' field."
+requires = []
 
 [method]
 

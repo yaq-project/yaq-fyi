@@ -8,81 +8,77 @@
 
 {{ trait["description"] }}
 
+
+{% if trait["requires"] %}
 <h2>requires</h2>
-
-{% if "requires" in trait.keys() %}
-
-<ul>
+<p class="tab30">
 {% for r in trait["requires"] %}
-   <li><a href=../{{ r }}>{{ r }}</a></li>
+   <a href=../{{ r }}>{{ r }}</a> <br>
 {% endfor %}
-</ul>
-
-{% else %}
-
-{{ trait["name"] }} does not require any other traits
-
+</p>
 {% endif %}
 
+
+{% if config %}
 <h2>config</h2>
+<p>
+  Daemons with the {{ trait["name"] }} trait expect the following configuration:
+</p>
+{% for k, v in config.items() %}
+   <p class="tab30">
+   <b>{{ k }}</b> <br>
+   type: {{ v["type"] }} <br>
+   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
+   {% if "origin" in v.keys() %}
+     <i>from <a href="../{{ v['origin'].split('>')[-1] }}">{{ v["origin"] }}</a></i> <br>
+   {% endif %}
 
-{% if "config" in trait.keys() %}
-
-TODO
-
-{% else %}
-
-{{ trait["name"] }} requires no configuration
-
+   </p>
+{% endfor %}
 {% endif %}
 
+{% if state %}
 <h2>state</h2>
-
-{% if "state" in trait.keys() %}
-
-{{ trait["name"] }} requires the following key:value pairs in state
-
-<ul>
-{% for k in trait["state"].keys() %}
-   <li>{{ k }} : {{ trait["state"][k] }}</li>
-{% endfor %}
-</ul>
-
-{% else %}
-
-{{ trait["name"] }} does not modify the state of the daemon
-
-{% endif %}
-
-{% if "method" in trait %}
-<h2>methods</h2>
-
-{% for m in trait["method"].keys() %}
-
-<h3>{{ m }}</h3>
-
-<p>{{ trait["method"][m]["description"] }}</p>
-
 <p>
-{% if "args" in trait["method"][m].keys() %}
-  arguments... <br>
-  {% for a in trait["method"][m]["args"].keys() %}
-  {{ a }} : {{ trait["method"][m]["args"][a] }} <br>
-  {% endfor %}
-{% else %}
-  has no arguments
-{% endif %}
+  Daemons with the {{ trait["name"] }} trait will provide the following state information:
 </p>
-
-<p>
-{% if "returns" in trait["method"][m].keys() %}
-  returns {{ trait["method"][m]["returns"] }}
-{% else %}
-  returns nothing
-{% endif %}
-</p>
-
+{% for k, v in state.items() %}
+   <p class="tab30">
+   <b>{{ k }}</b> <br>
+   type: {{ v["type"] }} <br>
+   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
+   {% if "origin" in v.keys() %}
+     <i>from <a href="../{{ v['origin'].split('>')[-1] }}">{{ v["origin"] }}</a></i> <br>
+   {% endif %}
+   </p>
 {% endfor %}
-
 {% endif %}
+
+{% if method %}
+<h2>method</h2>
+<p>
+  Daemons with the {{ trait["name"] }} trait expose the following public methods:
+</p>
+{% for k, v in method.items() %}
+   <p class="tab30">
+   <b>{{ k }}</b> <br>
+   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
+   {% if "origin" in v.keys() %}
+     <i>from <a href="../{{ v['origin'].split('→')[-1] }}"→{{ v["origin"] }}</a→</i→ <br→
+   {% endif %}
+   {% if "returns" in v.keys() %} Returns : {{ v["returns"] }} <br→ {% endif %}
+   {% if "args" in v.keys() %}
+     Arguments: <br→
+     </p→
+     {% for ak, av in v["args"].items() %}
+        <p class="tab60"→
+          {{ ak }}, {{ av }} <br→
+	</p→
+     {% endfor %}
+   {% else %} </p→
+   {% endif %}
+{% endfor %}
+{% endif %}
+
+
 {% include "footer.html" %}

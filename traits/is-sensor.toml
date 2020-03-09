@@ -3,6 +3,7 @@ description = """
 Daemons with the is-sensor trait are capable of measuring some unknown quantities.
 Sensor daemons may have multiple channels if a single measurement returns multiple values.
 """
+requires = []
 
 [method]
 
