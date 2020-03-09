@@ -61,12 +61,13 @@
 </p>
 {% for k, v in method.items() %}
    <p class="tab30">
-   <b>{{ k }}</b> <br>
+   <b>{{ k }}</b>
+   {% if "returns" in v.keys() %} → {{ v["returns"] }} {% endif %}
+   <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}
      <i>from <a href="../{{ v['origin'].split('→')[-1] }}">{{ v["origin"] }}</a></i> <br>
    {% endif %}
-   {% if "returns" in v.keys() %} Returns : {{ v["returns"] }} <br> {% endif %}
    {% if "args" in v.keys() %}
      Arguments: <br>
      </p>
