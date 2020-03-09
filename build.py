@@ -50,7 +50,7 @@ for name in os.listdir(__here__ / "traits"):
 p = __here__ / "public" / "traits" / "index.html"
 template = env.get_template('traits.html')
 with open(p, 'w') as fh:
-    fh.write(template.render(traits=traits, title="traits", date=date))
+    fh.write(template.render(traits=traits.values(), title="traits", date=date))
 
 # page for each trait
 for trait in traits.values():
