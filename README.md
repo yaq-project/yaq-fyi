@@ -51,21 +51,6 @@ NAME.description = "" # optional
   description = ""  # required
 ```
 
-## families
-
-Families documentation goes in the `families` directory.
-Look there for examples.
-The following is a short overview of what kind of information is expected.
-Families are very simple.
-Note that inherited traits are implied.
-
-```toml
-name = ""  # required
-description = ""  # required
-parent = ""  # required (can be base)
-traits = []  # required (cannot be empty)
-```
-
 ## traits
 
 Traits documentation goes in the `traits` directory.
