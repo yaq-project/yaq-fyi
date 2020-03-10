@@ -104,30 +104,6 @@ for trait in traits.values():
         fh.write(template.render(trait=trait, config=config, state=state, method=method,
                                  title=trait["name"], date=date))
 
-# families ----------------------------------------------------------------------------------------
-
-if not os.path.isdir(__here__ / "public" / "families"):
-    os.mkdir(__here__ / "public" / "families")
-
-families = []
-for name in os.listdir(__here__ / "families"):
-    families.append(toml.load(__here__ / "families" / name))
-
-# families landing page
-p = __here__ / "public" / "families" / "index.html"
-template = env.get_template('families.html')
-with open(p, 'w') as fh:
-    fh.write(template.render(families=families, title="families", date=date))
-
-# page for each family
-for family in families:
-    p = __here__ / "public" / "families" / family["name"] / "index.html"
-    if not os.path.isdir(p.parent):
-        os.mkdir(p.parent)
-    template = env.get_template('family.html')
-    with open(p, 'w') as fh:
-        fh.write(template.render(family=family, title=family["name"], date=date))
-
 # daemons -----------------------------------------------------------------------------------------
 
 if not os.path.isdir(__here__ / "public" / "daemons"):

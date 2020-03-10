@@ -1,4 +1,4 @@
-name = "stepper-motor-hat"
+name = "adafruit-stepper-motor-hat"
 description = """
 Stepper motor drive hat made by Adafruit
 
