@@ -66,6 +66,7 @@ for trait in traits.values():
         for new in traits[now.split("→")[-1]]["requires"]:
             todo.append(now + "→" + new)
         requires.append(now)
+    trait["requires"] = requires
     # generate config dict
     config = {}
     if "config" in trait.keys():
@@ -99,6 +100,7 @@ for trait in traits.values():
         method.update(traits[t]["method"])
         for key in traits[t]["method"].keys():
             method[key]["origin"] = r
+    # run template
     template = env.get_template('trait.html')
     with open(p, 'w') as fh:
         fh.write(template.render(trait=trait, config=config, state=state, method=method,
@@ -109,24 +111,57 @@ for trait in traits.values():
 if not os.path.isdir(__here__ / "public" / "daemons"):
     os.mkdir(__here__ / "public" / "daemons")
 
-daemons = []
+daemons = {}
 for name in os.listdir(__here__ / "daemons"):
-    daemons.append(toml.load(__here__ / "daemons" / name))
+    t = toml.load(__here__ / "daemons" / name)
+    daemons[t["name"]] = t
 
 # daemon landing page
 p = __here__ / "public" / "daemons" / "index.html"
 template = env.get_template('daemons.html')
 with open(p, 'w') as fh:
-    fh.write(template.render(daemons=daemons, title="daemons", date=date))
+    fh.write(template.render(daemons=daemons.values(), title="daemons", date=date))
 
 # page for each daemon
-for daemon in daemons:
+for name, daemon in daemons.items():
+    # ensure directory exists
     p = __here__ / "public" / "daemons" / daemon["name"] / "index.html"
     if not os.path.isdir(p.parent):
         os.mkdir(p.parent)
+    # generate lineage
+    lineage = []
+    d = daemon
+    while True:
+        if name == "base": break
+        parent = d["family"]
+        lineage.append(parent)
+        if parent == "base": break
+        d = daemons[parent]
+    # generate requires
+    requires = {}
+    requires[name] = daemon["traits"]
+    for l in lineage:
+        requires[l] = daemons[l]["traits"]
+    print(requires)
+    # TODO
+
+    # generate config dict
+
+    # TODO
+
+    # generate state dict
+
+    # TODO
+
+    # generate method dict
+
+    # TODO
+
+    # run template
     template = env.get_template('daemon.html')
     with open(p, 'w') as fh:
-        fh.write(template.render(daemon=daemon, title=daemon["name"], date=date))
+        fh.write(template.render(daemon=daemon, lineage=lineage, requires=requires,
+                                 title=daemon["name"], date=date))
 
 # css ---------------------------------------------------------------------------------------------
 

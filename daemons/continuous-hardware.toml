@@ -1,0 +1,5 @@
+name = "continuous-hardware"
+description = "Hardware with limits."
+family = "hardware"
+
+traits = ["has-limits"]

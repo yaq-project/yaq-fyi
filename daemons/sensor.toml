@@ -4,5 +4,5 @@ The sensor family is common to all measurement-focused daemons.
 Sensors have a method 'measure', which starts an acquisition.
 A secondn method 'get_measured' returns the most recently measured data.
 """
-parent = "base"
+family = "base"
 traits = ["is-sensor"]

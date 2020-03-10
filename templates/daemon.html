@@ -10,39 +10,38 @@
 {{ daemon["description"] }}
 </p>
 
-<p>
-  Lineage:
-</p>
-
-<p>
-  Traits:
-</p>
-
-{% if "links" in daemon.keys() %}
-<p>
-External links:
-<ul>
-{% for name in daemon["links"].keys() %}
-  <li><a href={{ daemon["links"][name] }}>{{ name }}</a></li>
+{% if lineage %}
+<h2>lineage</h2>
+<p class="tab30">
+{% for l in lineage[::-1] %}
+<a href="../{{ l }}">{{ l }}</a> <br>
+{% for t in requires[l] %}
+├── <a href="../../traits/{{ t }}">{{ t }}</a> <br>
 {% endfor %}
-</ul>
+│ <br>
+{% endfor %}
+{{ daemon["name"] }} <br>
+{% for t in requires[daemon["name"]] %}
+├──  <a href="../../traits/{{ t }}">{{ t }}</a> <br>
+{% endfor %}
 </p>
 {% endif %}
 
-<h2>
-Instillation
-</h2>
+{% if "links" in daemon.keys() %}
+<h2>external links</h2>
+<p class="tab30">
+{% for name in daemon["links"].keys() %}
+  <a href={{ daemon["links"][name] }}>{{ name }}</a><br>
+{% endfor %}
+</p>
+{% endif %}
 
-<h2>
-Config
-</h2>
+<h2>instillation</h2>
 
-<h2>
-State
-</h2>
+<h2>config</h2>
 
-<h2>
-Methods
-</h2>
+<h2>state</h2>
+
+<h2>methods</h2>
 
 {% include "footer.html" %}

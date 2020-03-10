@@ -6,7 +6,6 @@ Uses rpi-gpio-pin daemons for limit switches.
 Allows for control of microstepping.
 """
 family = "continuous-hardware"
-
 traits = ["is-homeable", "uses-i2c"]
 
 [links]
@@ -32,4 +31,3 @@ upper_limit_port = "integer"
     [method.get_upper_limit_switch]
     return = "boolean"
     description = "Get state of the upper bound limit switch"
-
