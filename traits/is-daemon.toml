@@ -41,9 +41,15 @@ returns = "[string]"
 description = "Get daemon state, as saved in the state.toml file."
 returns = "dictionary"
 
+[method.set_state]
+description = "Set daemon state. Accepts any subset of the state dictionary, dynamically."
+
 [method.list_methods]
 description = "Get an array of all known public method names."
 returns = "[string]"
+
+[method.shutdown]
+description = "Cleanly shutdown daemon."
 
 [method.help]
 description = """

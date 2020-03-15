@@ -9,6 +9,10 @@ turret.type = "number"
 
 [method]
 
-  [method.set_turret]
-  args.index.type = "number"
-  description = "Set the turret to a given index. The turret position may be retrieved in the state"
+[method.get_turret]
+returns = "number"
+descrption = "Get current turret index."
+
+[method.set_turret]
+args.index.type = "number"
+description = "Set the turret to a given index. The turret position may be retrieved in the state"

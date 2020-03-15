@@ -4,6 +4,6 @@ requires = []
 
 [method]
 
-  [method.id]
-  returns = "dictionary"
-  description = "Must return value under key 'units'. Value can be String or None."
+[method.get_units]
+returns = "string"
+description = "Get daemon units."
