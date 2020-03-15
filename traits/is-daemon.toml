@@ -9,3 +9,25 @@ blaise.type = "string"
 
 [state]
 kyle.type = "string"
+
+[method]
+
+[method.id]
+description = """
+JSON object with information to identify the daemon, including name, kind, make, model, serial.
+Additional keys MAY be required by traits.
+"""
+returns = "dictionary"
+
+[method.config_filepath]
+description = """
+String representing the absolute filepath of the configuration file on the host machine.
+"""
+returns = "string"
+
+[method.get_config]
+description = """
+Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+"""
+returns = "dictionary"
