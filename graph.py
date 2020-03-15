@@ -25,6 +25,7 @@ class Trait(object):
         self.config = kwargs.get("config", dict())
         self.state = kwargs.get("state", dict())
         self.method = kwargs.get("method", dict())
+        self.daemons = dict()
 
     def __repr__(self):
         return self.name
@@ -109,6 +110,12 @@ for name in os.listdir(__here__ / "daemons"):
 
 # sort
 daemons = collections.OrderedDict(sorted(daemons.items()))
+
+# back-populate
+for d in daemons.values():
+    for t, v in d.traits.items():
+        traits[t].daemons[d.name] = v
+
 
 # populate
 for d in daemons.values():

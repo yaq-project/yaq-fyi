@@ -1,6 +1,6 @@
 name = "wright-wl-motor"
 description = "Single axis stepper motor drive built for the purpose of controlling white light delay in an OPA."
-traits = ["is-homeable", "uses-uart"]
+traits = ["is-homeable", "uses-uart", "is-daemon"]
 
 [links]
 source = "https://github.com/wright-group/wl-motor"

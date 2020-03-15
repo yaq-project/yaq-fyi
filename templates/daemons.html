@@ -6,10 +6,14 @@
 
 <hr>
 
-<ul>
+<p>
+Daemons are small, single purpose programs.
+</p>
+
+<p>
 {% for d in daemons %}
-   <li><a href=./{{ d["name"] }}>{{ d["name"] }}</a></li>
+  <a href=./{{ d["name"] }}>{{ d["name"] }}</a> <br>
 {% endfor %}
-</ul>
+</p>
 
 {% include "footer.html" %}
