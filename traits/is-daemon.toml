@@ -7,6 +7,13 @@ requires = []
 [config]
 port.type = "integer"
 port.description = "TCP port for daemon to occupy."
+serial.type = "string"
+serial.default = "NULL"
+serial.description = "Serial number for the particular device represented by the daemon"
+make.type = "String"
+make.default = "NULL"
+model.type = "String"
+model.default = "NULL"
 
 [method]
 
