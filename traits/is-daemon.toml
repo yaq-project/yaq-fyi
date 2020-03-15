@@ -10,10 +10,13 @@ port.description = "TCP port for daemon to occupy."
 
 [method]
 
+[method.busy]
+description = "Returns true if daemon is currently busy."
+returns = "boolean"
+
 [method.id]
 description = """
 JSON object with information to identify the daemon, including name, kind, make, model, serial.
-Additional keys MAY be required by traits.
 """
 returns = "dictionary"
 

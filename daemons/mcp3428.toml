@@ -1,6 +1,6 @@
 name = "mcp3428"
 description = "Daemon to interface with MCP3428 four-channel analog to digital converter."
-traits = []
+traits = ["is-sensor", "uses-i2c", "is-daemon"]
 
 [links]
 repository = "https://gitlab.com/yaq/yaqd-mcp3428"

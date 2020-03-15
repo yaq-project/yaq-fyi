@@ -1,3 +1,3 @@
 name = "mcp9600"
 description = "none"
-traits = []
+traits = ["is-sensor", "uses-i2c", "is-daemon"]
