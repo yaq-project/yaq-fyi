@@ -1,6 +1,6 @@
 name = "has-turret"
 description = """
-Represents a device with an indexed turret that has a set of discrete positions, separate forom the device's setpoint
+Represents a device with an indexed turret that has a set of discrete positions, separate from the device's setpoint
 """
 requires = []
 
