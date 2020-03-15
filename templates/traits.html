@@ -6,9 +6,13 @@
 
 <hr>
 
-<ul>
+<p>
+Traits define collections of behaviors which are logically grouped together.
+</p>
+
+<p>
 {% for t in traits %}
-   <li><a href=./{{ t["name"] }}>{{ t["name"] }}</a></li>
+  <a href=./{{ t["name"] }}>{{ t["name"] }}</a> <br>
 {% endfor %}
 </ul>
 
