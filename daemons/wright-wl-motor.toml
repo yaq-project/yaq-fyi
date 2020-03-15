@@ -6,5 +6,8 @@ traits = ["is-homeable", "uses-uart", "is-daemon"]
 source = "https://github.com/wright-group/wl-motor"
 bugtracker = "https://github.com/wright-group/wl-motor/issues"
 
-[install]
-language = "python"
+[installation]
+PyPI = "https://pypi.org/project/yaqd-wright-wl-motor"
+
+[config]
+baudrate.default = 57600

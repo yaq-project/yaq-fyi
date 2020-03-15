@@ -6,5 +6,11 @@ traits = ["is-sensor", "uses-i2c", "is-daemon"]
 repository = "https://gitlab.com/yaq/yaqd-mcp3428"
 bugtracker = "https://gitlab.com/yaq/yaqd-mcp3428/issues"
 
-[install]
-language = "python"
+[installation]
+PyPI = "https://pypi.org/project/yaqd-mcp3428"
+
+[state]
+gain.type = "integer"
+gain.options = [1, 2, 4, 8]
+size.type = "integer"
+size.options = [12, 14, 16]

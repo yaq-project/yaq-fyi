@@ -11,3 +11,5 @@ PyPI = "https://pypi.org/project/yaqd-horiba/"
 
 [config]
 gratings.type = "[{'lines_per_mm': 'number'}, ...]"
+make.default = "Horiba Jobin-Yvon"
+model.default = "MicroHR"
