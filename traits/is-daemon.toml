@@ -1,0 +1,11 @@
+name = "is-daemon"
+description = """
+Core trait common to all yaq daemons.
+"""
+requires = []
+
+[config]
+blaise.type = "string"
+
+[state]
+kyle.type = "string"

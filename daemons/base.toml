@@ -1,7 +1,0 @@
-name = "base"
-description = """
-The base family is common to all yaq daemons.
-Much of the core functionality of base is documented in the yaq spec.
-"""
-family = ""
-traits = []

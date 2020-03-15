@@ -6,67 +6,70 @@
 
 <hr>
 
-{{ trait["description"] }}
+{{ trait.description }}
 
 
-{% if trait["requires"] %}
+{% if trait.requires %}
 <h2>requires</h2>
 <p class="tab30">
-{% for r in trait["requires"] %}
-   <a href=../{{ r }}>{{ r }}</a> <br>
+{% for r in trait.requires.keys() %}
+  <a href=../{{ r }}>{{ r }}</a>
+  {% if trait.requires[r] %}
+     <i>{{ trait.format_origin(trait.requires[r]) }}</i>
+  {% endif %}
+  <br>
 {% endfor %}
 </p>
 {% endif %}
 
 
-{% if config %}
-<h2>config</h2>
+{% if trait.config %}
+<h2>configuration</h2>
 <p>
   Daemons with the {{ trait["name"] }} trait expect the following configuration:
 </p>
-{% for k, v in config.items() %}
+{% for k, v in trait.config.items() %}
    <p class="tab30">
    <b>{{ k }}</b> <br>
    type: {{ v["type"] }} <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}
-     <i>from <a href="../{{ v['origin'].split('>')[-1] }}">{{ v["origin"] }}</a></i> <br>
+     <i>{{ trait.format_origin(v["origin"]) }}</i>
    {% endif %}
-
    </p>
 {% endfor %}
 {% endif %}
 
-{% if state %}
+{% if trait.state %}
 <h2>state</h2>
 <p>
   Daemons with the {{ trait["name"] }} trait will provide the following state information:
 </p>
-{% for k, v in state.items() %}
+{% for k, v in trait.state.items() %}
    <p class="tab30">
    <b>{{ k }}</b> <br>
    type: {{ v["type"] }} <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}
-     <i>from <a href="../{{ v['origin'].split('>')[-1] }}">{{ v["origin"] }}</a></i> <br>
+     <i>{{ trait.format_origin(v["origin"]) }}</i>
    {% endif %}
    </p>
 {% endfor %}
 {% endif %}
 
-{% if method %}
-<h2>method</h2>
+{% if trait.method %}
+<h2>methods</h2>
 <p>
   Daemons with the {{ trait["name"] }} trait expose the following public methods:
 </p>
-{% for k, v in method.items() %}
+{% for k, v in trait.method.items() %}
    <p class="tab30">
    <b>{{ k }}</b>
    {% if "returns" in v.keys() %} → {{ v["returns"] }} {% endif %}
    <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}
-     <i>from <a href="../{{ v['origin'].split('→')[-1] }}">{{ v["origin"] }}</a></i> <br>
+     <i>{{ trait.format_origin(v["origin"]) }}</i> <br>
    {% endif %}
    {% if "args" in v.keys() %}
      Arguments: <br>
@@ -80,6 +83,5 @@
    {% endif %}
 {% endfor %}
 {% endif %}
-
 
 {% include "footer.html" %}

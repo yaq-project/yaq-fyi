@@ -5,7 +5,6 @@ Stepper motor drive hat made by Adafruit
 Uses rpi-gpio-pin daemons for limit switches.
 Allows for control of microstepping.
 """
-family = "continuous-hardware"
 traits = ["is-homeable", "uses-i2c"]
 
 [links]
@@ -17,10 +16,10 @@ product = "https://www.adafruit.com/product/2348"
 language = "python"
 
 [config]
-microsteps = "integer"
-stepper_index = "integer"
-lower_limit_port = "integer"
-upper_limit_port = "integer"
+microsteps.type = "integer"
+stepper_index.type = "integer"
+lower_limit_port.type = "integer"
+upper_limit_port.type = "integer"
 
 
 [method]
