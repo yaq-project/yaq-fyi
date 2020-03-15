@@ -19,7 +19,7 @@
 {% if daemon.installation %}
 <h2>installation</h2>
 <p>
-The {{ daemon.name }} daemon can be installed using the following package managers:
+  The {{ daemon.name }} daemon can be installed using the following package managers:
 </p>
 <p class="tab30">
 {% for k, v in daemon.installation.items() %}
@@ -29,6 +29,9 @@ The {{ daemon.name }} daemon can be installed using the following package manage
 
 {% if daemon.traits %}
 <h2>traits</h2>
+<p>
+  The {{ daemon.name }} daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
 <p class="tab30">
 {% for t in daemon.traits.keys() %}
   <a href=../../traits/{{ t }}>{{ t }}</a>
@@ -44,7 +47,7 @@ The {{ daemon.name }} daemon can be installed using the following package manage
 {% if daemon.config %}
 <h2>configuration</h2>
 <p>
-  Daemons with the {{ daemon["name"] }} trait expect the following configuration:
+  The {{ daemon.name }} daemon expects the following configuration:
 </p>
 {% for k, v in daemon.config.items() %}
    <p class="tab30">
@@ -61,7 +64,7 @@ The {{ daemon.name }} daemon can be installed using the following package manage
 {% if daemon.state %}
 <h2>state</h2>
 <p>
-  Daemons with the {{ daemon["name"] }} trait will provide the following state information:
+  The {{ daemon.name }} daemon will provide the following state information:
 </p>
 {% for k, v in daemon.state.items() %}
    <p class="tab30">

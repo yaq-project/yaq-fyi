@@ -17,7 +17,7 @@ Additional keys MAY be required by traits.
 """
 returns = "dictionary"
 
-[method.config_filepath]
+[method.get_config_filepath]
 description = """
 String representing the absolute filepath of the configuration file on the host machine.
 """
