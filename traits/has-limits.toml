@@ -5,16 +5,24 @@ It's assumed that any position within the limits is valid.
 """
 requires = ["has-position"]
 
+[config]
+limits.type = "[number, number]"
+limits.default = "[-inf, +inf]"
+limits.description = "Configuration limits are strictly optional."
+
 [state]
 limits.type = "[number, number]"
 
 [method]
 
-  [method.get_limits]
-  returns = "[number, number]"
-  description = "Get daemon limits."
+[method.get_limits]
+returns = "[number, number]"
+description = """
+Get daemon limits.
+Limits will be the <a href="https://en.wikipedia.org/wiki/Intersection_(set_theory)">intersection</a> of config limits and driver limits (when appliciable).
+"""
 
-  [method.in_limits]
-  args.position.type = "number"
-  returns = "boolean"
-  description = "Check if a given position is within daemon limits."
+[method.in_limits]
+args.position.type = "number"
+returns = "boolean"
+description = "Check if a given position is within daemon limits."

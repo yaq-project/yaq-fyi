@@ -79,7 +79,6 @@ for daemon in daemons.values():
     # run template
     template = env.get_template('daemon.html')
     with open(p, 'w') as fh:
-        print(daemon)
         fh.write(template.render(daemon=daemon, title=daemon.name, date=date))
 
 # css ---------------------------------------------------------------------------------------------

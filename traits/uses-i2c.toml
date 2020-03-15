@@ -4,3 +4,4 @@ requires = ["uses-serial"]
 
 [config]
 i2c_addr.type = "integer"
+i2c_addr.description = "I2C bus address."

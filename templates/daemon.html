@@ -55,6 +55,10 @@
    {% if "origin" in v.keys() %}
      <i>{{ daemon.format_origin(v["origin"]) }}</i>
    {% endif %}
+   {% if "addendum" in v.keys() %}
+     <br> <i>addendum by {{daemon.name}}:</i><br>
+     {{ v["addendum"] }}
+   {% endif %}
    </p>
 {% endfor %}
 {% endif %}

@@ -116,7 +116,8 @@ for d in daemons.values():
         for c in traits[t].config.keys():
             if c not in d.config.keys():
                 d.config[c] = copy.deepcopy(traits[t].config[c])
-                d.config[c]["origin"] = [t] + d.config[c].get("origin", [])
+            d.config[c].update(copy.deepcopy(traits[t].config[c]))
+            d.config[c]["origin"] = [t] + d.config[c].get("origin", [])
         for s in traits[t].state.keys():
             if s not in d.state.keys():
                 d.state[s] = copy.deepcopy(traits[t].state[s])
