@@ -80,6 +80,7 @@ class Daemon(object):
     def __init__(self, **kwargs):
         self.name = kwargs["name"]
         self.description = kwargs["description"]
+        self.links = kwargs.get("links", dict())
         self.traits = dict()
         for t in kwargs["traits"]:
             self.traits[t] = []

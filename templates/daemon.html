@@ -8,6 +8,13 @@
 
 {{ daemon.description }}
 
+{% if daemon.links %}
+<h2>external links</h2>
+<p class="tab30">
+{% for k, v in daemon.links.items() %}
+  <a href={{ v }}>{{ k }}</a> <br>
+{% endfor %}
+{% endif %}
 
 {% if daemon.traits %}
 <h2>traits</h2>
