@@ -18,17 +18,15 @@ Note that only new or changed config, state, and methods should be documented he
 ```toml
 name = ""  # required
 description = ""  # required
-family = ""  # required (can be base)
-traits = []  # required (can be empty)
+traits = ["is-daemon", "..."]  # required
 
 [links]  # all optional, arbitrary keys supported
 documentation = ""
 source = ""
 bugtracker = ""
 
-[install]
-language = "python"  # required
-# other keys optional, language dependent
+[installation]  # all optional, arbitrary keys supported
+PyPI = "url"
 
 [config]  # optional
 NAME.type = "TYPE"  # required for each parameter
