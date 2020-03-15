@@ -46,13 +46,11 @@
 
 {% if daemon.config %}
 <h2>configuration</h2>
-<p>
-  The {{ daemon.name }} daemon expects the following configuration:
-</p>
 {% for k, v in daemon.config.items() %}
    <p class="tab30">
-   <b>{{ k }}</b> <br>
-   type: {{ v["type"] }} <br>
+   <b>{{ k }}</b> ({{ v["type"] }})
+   {% if "default" in v.keys() %}<i>default: {{ v["default"] }}</i>{% endif %}
+   <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}
      <i>{{ daemon.format_origin(v["origin"]) }}</i>
