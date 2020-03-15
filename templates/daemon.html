@@ -16,6 +16,17 @@
 {% endfor %}
 {% endif %}
 
+{% if daemon.installation %}
+<h2>installation</h2>
+<p>
+The {{ daemon.name }} daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+{% for k, v in daemon.installation.items() %}
+  <a href={{ v }}>{{ k }}</a> <br>
+{% endfor %}
+{% endif %}
+
 {% if daemon.traits %}
 <h2>traits</h2>
 <p class="tab30">
@@ -72,7 +83,7 @@
 {% for k, v in daemon.method.items() %}
    <p class="tab30">
    <b>{{ k }}</b>
-   {% if "returns" in v.keys() %} → {{ v["returns"] }} {% endif %}
+   {% if "returns" in v.keys() %} ➜  {{ v["returns"] }} {% endif %}
    <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}

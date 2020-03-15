@@ -7,9 +7,6 @@ source = "https://gitlab.com/yaq/yaqd-ads1115"
 bugtracker = "https://gitlab.com/yaq/yaqd-ads1115/-/issues"
 reference = "http://www.ti.com/product/ADS1115"
 
-[install]
-language = "python"
-
 [config]
 fsr.type = "number"
 fsr.default = 2.048

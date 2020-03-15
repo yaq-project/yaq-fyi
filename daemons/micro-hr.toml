@@ -6,8 +6,8 @@ traits = ["has-turret", "is-homeable"]
 source = "https://gitlab.com/yaq/yaqd-horiba"
 bugtracker = "https://gitlab.com/yaq/yaqd-horiba/issues"
 
-[install]
-language = "python"
+[installation]
+PyPI = "https://pypi.org/project/yaqd-horiba/"
 
 [config]
 gratings.type = "[{'lines_per_mm': 'number'}, ...]"

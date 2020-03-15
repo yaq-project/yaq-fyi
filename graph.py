@@ -30,7 +30,7 @@ class Trait(object):
         return self.name
 
     def format_origin(self, lis):
-        return "from " + ">".join([f"<a href='../{l}'>{l}</a>" for l in lis])
+        return "from " + " ➜ ".join([f"<a href='../{l}'>{l}</a>" for l in lis])
 
 traits = {}
 
@@ -81,6 +81,7 @@ class Daemon(object):
         self.name = kwargs["name"]
         self.description = kwargs["description"]
         self.links = kwargs.get("links", dict())
+        self.installation = kwargs.get("installation", dict())
         self.traits = dict()
         for t in kwargs["traits"]:
             self.traits[t] = []
@@ -96,7 +97,7 @@ class Daemon(object):
         return self.name
 
     def format_origin(self, lis):
-        return "from " + ">".join([f"<a href='../../traits/{l}'>{l}</a>" for l in lis])
+        return "from " + " ➜ ".join([f"<a href='../../traits/{l}'>{l}</a>" for l in lis])
 
 
 daemons = {}

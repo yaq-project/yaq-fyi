@@ -65,7 +65,7 @@
 {% for k, v in trait.method.items() %}
    <p class="tab30">
    <b>{{ k }}</b>
-   {% if "returns" in v.keys() %} → {{ v["returns"] }} {% endif %}
+   {% if "returns" in v.keys() %} ➜  {{ v["returns"] }} {% endif %}
    <br>
    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
    {% if "origin" in v.keys() %}

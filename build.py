@@ -80,7 +80,7 @@ for daemon in daemons.values():
     template = env.get_template('daemon.html')
     with open(p, 'w') as fh:
         print(daemon)
-        fh.write(template.render(daemon=daemon, title=trait.name, date=date))
+        fh.write(template.render(daemon=daemon, title=daemon.name, date=date))
 
 # css ---------------------------------------------------------------------------------------------
 
