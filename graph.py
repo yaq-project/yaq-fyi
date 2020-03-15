@@ -69,7 +69,7 @@ while todo:
             t.method[name]["origin"] = v + [k] + method.get("origin", [])
     # keep searching
     for r in traits[k].requires.keys():
-        todo.append((t, r, v + [k]))
+        todo.insert((t, r, v + [k]), 0)
 
 
 # daemon ------------------------------------------------------------------------------------------
@@ -85,7 +85,6 @@ class Daemon(object):
         self.traits = dict()
         for t in kwargs["traits"]:
             self.traits[t] = []
-        for t in kwargs["traits"]:
             for tt in traits[t].requires:
                 if tt not in self.traits.keys():
                     self.traits[tt] = [t] + traits[t].requires[tt]
