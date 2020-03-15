@@ -1,0 +1,14 @@
+name = "continuous-hardware"
+description = "Idealized simulated hardware which immediately reports as the requested position upon setting."
+traits = ["has-limits", "is-daemon"]
+
+[links]
+
+documentation = "https://yaqd-core-python.yaq.fyi/#yaqd_core.ContinuousHardware"
+source = "https://gitlab.com/yaq/yaqd-core-python"
+bugtracker = "https://gitlab.com/yaq/yaqd-core-python/issues"
+
+[installation]
+PyPI = "https://pypi.org/projec/yaqd-core"
+
+
