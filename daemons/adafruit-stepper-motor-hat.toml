@@ -28,6 +28,7 @@ upper_limit_port.type = "integer"
 upper_limit_port.default = "NULL"
 upper_limit_port.description = "Port for a rpi-gpio-pin daemon representing the upper limit, running on the same machine. If not given, assume there is no limit detector on the upper bound."
 i2c_addr.default = 0x60
+i2c_addr.addendum = "Default to 0x60, the hardware default without bridging any addressing pads."
 
 
 [method]
