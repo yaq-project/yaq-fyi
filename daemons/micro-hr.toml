@@ -1,6 +1,6 @@
 name = "micro-hr"
-description = " Horiba Jobin-Yvon Micro-Hr monochromator."
-traits = ["has-turret", "is-homeable"]
+description = "Horiba Jobin-Yvon Micro-Hr monochromator."
+traits = ["has-turret", "is-homeable", "has-limits", "is-daemon"]
 
 [links]
 source = "https://gitlab.com/yaq/yaqd-horiba"
