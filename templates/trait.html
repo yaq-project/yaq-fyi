@@ -84,4 +84,20 @@
 {% endfor %}
 {% endif %}
 
+{% if trait.daemons %}
+<h2>daemons</h2>
+<p>
+  The following daemons implement the {{ trait.name }} trait:
+</p>
+<p class="tab30">
+{% for d in trait.daemons.keys() %}
+  <a href=../../daemons/{{ d }}>{{ d }}</a>
+  {% if trait.daemons[d] %}
+     <i>({{ trait.format_origin(trait.daemons[d]) }})</i>
+  {% endif %}
+  <br>
+{% endfor %}
+</p>
+{% endif %}
+
 {% include "footer.html" %}
