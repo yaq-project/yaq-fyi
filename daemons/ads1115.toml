@@ -1,6 +1,6 @@
 name = "ads1115"
 description = "Sensor daemon for ADS1115 4-channel ADC."
-traits = ["is-daemon", "uses-i2c"]
+traits = ["is-daemon", "is-sensor", "uses-i2c"]
 
 [links]
 source = "https://gitlab.com/yaq/yaqd-ads1115"

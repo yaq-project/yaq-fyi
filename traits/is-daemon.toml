@@ -5,10 +5,8 @@ Core trait common to all yaq daemons.
 requires = []
 
 [config]
-blaise.type = "string"
-
-[state]
-kyle.type = "string"
+port.type = "integer"
+port.description = "TCP port for daemon to occupy."
 
 [method]
 
@@ -31,3 +29,25 @@ Full configuration for the individual daemon as defined in the TOML file.
 This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
 """
 returns = "dictionary"
+
+[method.get_traits]
+description = "Get a full list of the daemon traits."
+returns = "[string]"
+
+[method.get_state]
+description = "Get daemon state, as saved in the state.toml file."
+returns = "dictionary"
+
+[method.list_methods]
+description = "Get an array of all known public method names."
+returns = "[string]"
+
+[method.help]
+description = """
+If method not given, return a human-readable string with information about the daemon as a whole.
+If method is given, return a human-readable string with the signature of the method on the first line and a description of the method on subsequent lines.
+The signature is not specified to be in any particular language.
+It is intended for usage by humans ONLY.
+"""
+args.method.type = "string"
+returns = "string"
