@@ -5,28 +5,36 @@ Stepper motor drive hat made by Adafruit
 Uses rpi-gpio-pin daemons for limit switches.
 Allows for control of microstepping.
 """
-traits = ["is-homeable", "uses-i2c"]
+traits = ["has-limits", "is-homeable", "uses-i2c", "is-daemon"]
 
 [links]
 source = "https://gitlab.com/yaq/yaqd-adafruit/"
 bugtracker = "https://gitlab.com/yaq/yaqd-adafruit/issues"
 product = "https://www.adafruit.com/product/2348"
 
-[install]
-language = "python"
+[installation]
+PyPI = "https://pypi.org/project/yaqd-adafruit"
 
 [config]
 microsteps.type = "integer"
+microsteps.default = 16
 stepper_index.type = "integer"
+stepper_index.default = 1
+stepper_index.options = [1, 2]
 lower_limit_port.type = "integer"
+lower_limit_port.default = "NULL"
+lower_limit_port.description = "Port for a rpi-gpio-pin daemon representing the lower limit, running on the same machine. If not given, assume there is no limit detector on the lower bound. This limit is required for the homing procedure."
 upper_limit_port.type = "integer"
+upper_limit_port.default = "NULL"
+upper_limit_port.description = "Port for a rpi-gpio-pin daemon representing the upper limit, running on the same machine. If not given, assume there is no limit detector on the upper bound."
+i2c_addr.default = 0x60
 
 
 [method]
     [method.get_lower_limit_switch]
-    return = "boolean"
+    returns = "boolean"
     description = "Get state of the lower bound limit switch"
 
     [method.get_upper_limit_switch]
-    return = "boolean"
+    returns = "boolean"
     description = "Get state of the upper bound limit switch"
