@@ -1,7 +1,0 @@
-name = "hardware"
-description = """
-The hardware family contains all daemons that have a single unit-aware position.
-Note that units can be none-like.
-"""
-family = "base"
-traits = ["has-units", "has-position"]

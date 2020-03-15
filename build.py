@@ -5,6 +5,7 @@ import pathlib
 import toml
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
+from graph import traits, daemons
 
 __here__ = pathlib.Path(__file__).resolve().parent
 
@@ -41,11 +42,6 @@ for name in names:
 if not os.path.isdir(__here__ / "public" / "traits"):
     os.mkdir(__here__ / "public" / "traits")
 
-traits = {}
-for name in os.listdir(__here__ / "traits"):
-    t = toml.load(__here__ / "traits" / name)
-    traits[t["name"]] = t
-
 # traits landing page
 p = __here__ / "public" / "traits" / "index.html"
 template = env.get_template('traits.html')
@@ -55,66 +51,18 @@ with open(p, 'w') as fh:
 # page for each trait
 for trait in traits.values():
     # ensure directory exists
-    p = __here__ / "public" / "traits" / trait["name"] / "index.html"
+    p = __here__ / "public" / "traits" / trait.name / "index.html"
     if not os.path.isdir(p.parent):
         os.mkdir(p.parent)
-    # generate requires list
-    requires = []
-    todo = trait["requires"][:]  # copy
-    while todo:
-        now = todo.pop(0)
-        for new in traits[now.split("→")[-1]]["requires"]:
-            todo.append(now + "→" + new)
-        requires.append(now)
-    trait["requires"] = requires
-    # generate config dict
-    config = {}
-    if "config" in trait.keys():
-        config.update(trait["config"])
-    for r in requires:
-        t = r.split("→")[-1]
-        if not "config" in traits[t].keys():
-            continue
-        config.update(traits[t]["config"])
-        for key in traits[t]["config"].keys():
-            config[key]["origin"] = r
-    # generate state dict
-    state = {}
-    if "state" in trait.keys():
-        state.update(trait["state"])
-    for r in requires:
-        t = r.split("→")[-1]
-        if not "state" in traits[t].keys():
-            continue
-        state.update(traits[t]["state"])
-        for key in traits[t]["state"].keys():
-            state[key]["origin"] = r
-    # generate method dict
-    method = {}
-    if "method" in trait.keys():
-        method.update(trait["method"])
-    for r in requires:
-        t = r.split("→")[-1]
-        if not "method" in traits[t].keys():
-            continue
-        method.update(traits[t]["method"])
-        for key in traits[t]["method"].keys():
-            method[key]["origin"] = r
     # run template
     template = env.get_template('trait.html')
     with open(p, 'w') as fh:
-        fh.write(template.render(trait=trait, config=config, state=state, method=method,
-                                 title=trait["name"], date=date))
+        fh.write(template.render(trait=trait, title=trait.name, date=date))
 
 # daemons -----------------------------------------------------------------------------------------
 
 if not os.path.isdir(__here__ / "public" / "daemons"):
     os.mkdir(__here__ / "public" / "daemons")
-
-daemons = {}
-for name in os.listdir(__here__ / "daemons"):
-    t = toml.load(__here__ / "daemons" / name)
-    daemons[t["name"]] = t
 
 # daemon landing page
 p = __here__ / "public" / "daemons" / "index.html"
@@ -123,45 +71,16 @@ with open(p, 'w') as fh:
     fh.write(template.render(daemons=daemons.values(), title="daemons", date=date))
 
 # page for each daemon
-for name, daemon in daemons.items():
+for daemon in daemons.values():
     # ensure directory exists
-    p = __here__ / "public" / "daemons" / daemon["name"] / "index.html"
+    p = __here__ / "public" / "daemons" / daemon.name / "index.html"
     if not os.path.isdir(p.parent):
         os.mkdir(p.parent)
-    # generate lineage
-    lineage = []
-    d = daemon
-    while True:
-        if name == "base": break
-        parent = d["family"]
-        lineage.append(parent)
-        if parent == "base": break
-        d = daemons[parent]
-    # generate requires
-    requires = {}
-    requires[name] = daemon["traits"]
-    for l in lineage:
-        requires[l] = daemons[l]["traits"]
-    print(requires)
-    # TODO
-
-    # generate config dict
-
-    # TODO
-
-    # generate state dict
-
-    # TODO
-
-    # generate method dict
-
-    # TODO
-
     # run template
     template = env.get_template('daemon.html')
     with open(p, 'w') as fh:
-        fh.write(template.render(daemon=daemon, lineage=lineage, requires=requires,
-                                 title=daemon["name"], date=date))
+        print(daemon)
+        fh.write(template.render(daemon=daemon, title=trait.name, date=date))
 
 # css ---------------------------------------------------------------------------------------------
 

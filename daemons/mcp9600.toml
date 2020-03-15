@@ -1,4 +1,3 @@
 name = "mcp9600"
-url = "https://gitlab.com/yaq/yaqd-mcp9600"
-family = "sensor"
+description = "none"
 traits = []

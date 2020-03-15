@@ -1,7 +1,5 @@
 name = "wright-wl-motor"
 description = "Single axis stepper motor drive built for the purpose of controlling white light delay in an OPA."
-family = "continuous-hardware"
-
 traits = ["is-homeable", "uses-uart"]
 
 [links]

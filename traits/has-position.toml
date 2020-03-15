@@ -7,7 +7,7 @@ The destination (get_destination) returns exactly the set position, while the po
 These daemons should start motion and become busy when set_daemon is called.
 They should release busy once they arrive as close as possible to the destination, and their position should not change until set_position is called again.
 """
-requires = []
+requires = ["is-daemon"]
 
 [state]
 position.type = "number"

@@ -1,6 +1,5 @@
 name = "mcp3428"
 description = "Daemon to interface with MCP3428 four-channel analog to digital converter."
-family = "sensor"
 traits = []
 
 [links]

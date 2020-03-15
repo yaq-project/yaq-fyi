@@ -3,7 +3,7 @@ description = """
 The has-limits trait extends the has-positions trait with limits.
 It's assumed that any position within the limits is valid.
 """
-requires = ["has-position"]
+requires = ["is-daemon", "has-position"]
 
 [state]
 limits.type = "[number, number]"
