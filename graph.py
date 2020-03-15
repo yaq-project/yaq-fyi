@@ -4,6 +4,7 @@
 import os
 import pathlib
 import copy
+import collections
 import toml
 
 
@@ -33,13 +34,16 @@ class Trait(object):
 
 traits = {}
 
-# initialize all traits
+# initialize
 for name in os.listdir(__here__ / "traits"):
     dic = toml.load(__here__ / "traits" / name)
     t = Trait(**dic)
     traits[t.name] = t
 
-# populate requires
+# sort
+traits = collections.OrderedDict(sorted(traits.items()))
+
+# populate
 todo = []
 for t in traits.values():
     for k, v in t.requires.items():
@@ -102,6 +106,9 @@ for name in os.listdir(__here__ / "daemons"):
     d = Daemon(**dic)
     daemons[d.name] = d
 
+# sort
+daemons = collections.OrderedDict(sorted(daemons.items()))
+
 # populate
 for d in daemons.values():
     for t, v in d.traits.items():
@@ -117,7 +124,3 @@ for d in daemons.values():
             if m not in d.method.keys():
                 d.method[m] = copy.deepcopy(traits[t].method[m])
                 d.method[m]["origin"] = [t] + d.method[m].get("origin", [])
-
-
-for k, v in daemons.items():
-    print(k, v.state)
