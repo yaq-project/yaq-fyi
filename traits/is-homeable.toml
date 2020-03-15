@@ -4,5 +4,9 @@ requires = ["has-position"]
 
 [method]
 
-    [method.home]
-    description = "Initiates the homing procedure. The daemon will report as busy during the homing procedure. After the homing procedure is complete, the daemon will return to the current destination."
+[method.home]
+description = """
+Initiates the homing procedure.
+The daemon will report as busy during the homing procedure.
+ After the homing procedure is complete, the daemon will return to the current destination.
+"""
