@@ -1,0 +1,45 @@
+name = "ne1000"
+description = "Daemon to control NE1000 syringe pump from New Era Pump Systems."
+traits = ["has-limits", "uses-uart", "is-daemon"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-new-era/"
+bugtracker = "https://gitlab.com/yaq/yaqd-new-era/-/issues/"
+manufacturer = "https://www.syringepump.com/NE-1000.php"
+
+[config]
+diameter.type = "float"
+diameter.description = "Syringe pump inside diameter, in mm."
+address.type = "integer"
+address.default = 0
+address.description = "Address of syringe pump in RS232 network."
+units.type = "string"
+units.description = "Volume units."
+units.options = ["UL", "ML"]
+units.default = "ML"
+limits.addendum = "Volume limits, in units. Most negative limit should be zero."
+rate_units.type = "string"
+rate_units.description = "Rate units. First character indicates mL or uL, second character per-minute or per-hour."
+rate_units.options = ["UM", "MM", "UH", "MH"]
+rate_units.default = "MM"
+low_noise.type = "boolean"
+low_noise.default = true
+low_noise.description = "Toggle low noise mode."
+baud_rate.default = 19200
+make.default = "New Era Pump Systems"
+model.default = "NE-1000"
+
+[state]
+rate.type = "number"
+
+[method]
+
+[method.prime]
+description = "Withdraw as quickly as possible until pump stalls."
+
+[method.purge]
+description = "Inject as quickly as possible until pump stalls. Once stalled, the position is set to zero."
+
+[method.set_rate]
+description = "Set rate, in units."
+args.rate.type = "number"
