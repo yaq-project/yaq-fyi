@@ -30,3 +30,8 @@ description = "Get current daemon position."
 [method.set_position]
 args.position.type = "number"
 description = "Give the daemon a new destination, and begin motion towards that destination."
+
+[method.set_relative]
+returns = "number"
+args.distance.type = "number"
+description = "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination."
