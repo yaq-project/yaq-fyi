@@ -9,9 +9,14 @@ requires = ["has-position"]
 limits.type = "[number, number]"
 limits.default = "[-inf, +inf]"
 limits.description = "Configuration limits are strictly optional."
+out_of_limits.type = "string"
+out_of_limits.options = ["closest", "ignore", "error"]
+out_of_limits.default = "closest"
+out_of_limits.description = "Control behavior of daemon when set_position is given a value outside of limits."
+
 
 [state]
-limits.type = "[number, number]"
+hw_limits.type = "[number, number]"
 
 [method]
 
