@@ -15,14 +15,18 @@ destination.type = "number"
 
 [method]
 
-  [method.get_position]
-  returns = "number"
-  description = "Get current daemon position."
+[method.get_destination]
+returns = "number"
+description = "Get current daemon destination."
 
-  [method.get_destination]
-  returns = "number"
-  description = "Get current daemon destination."
+[method.get_units]
+returns = "string"
+description = "Get units of daemon. These units apply to the position and destination fields."
 
-  [method.set_position]
-  args.position.type = "number"
-  description = "Give the daemon a new destination, and begin motion towards that destination."
+[method.get_position]
+returns = "number"
+description = "Get current daemon position."
+
+[method.set_position]
+args.position.type = "number"
+description = "Give the daemon a new destination, and begin motion towards that destination."

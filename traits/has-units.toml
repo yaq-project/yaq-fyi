@@ -1,9 +1,0 @@
-name = "has-units"
-description = "Daemons with this trait have a single 'units' field."
-requires = []
-
-[method]
-
-[method.get_units]
-returns = "string"
-description = "Get daemon units."
