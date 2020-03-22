@@ -5,7 +5,7 @@ traits = ["is-sensor", "uses-i2c", "is-daemon"]
 [links]
 source = "https://gitlab.com/yaq/yaqd-ads1115"
 bugtracker = "https://gitlab.com/yaq/yaqd-ads1115/-/issues"
-reference = "http://www.ti.com/product/ADS1115"
+manufacturer = "http://www.ti.com/product/ADS1115"
 
 [installation]
 PyPI = "https://pypi.org/project/yaqd-ads1115"

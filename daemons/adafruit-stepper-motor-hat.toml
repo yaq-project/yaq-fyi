@@ -10,7 +10,7 @@ traits = ["has-limits", "is-homeable", "uses-i2c", "is-daemon"]
 [links]
 source = "https://gitlab.com/yaq/yaqd-adafruit/"
 bugtracker = "https://gitlab.com/yaq/yaqd-adafruit/issues"
-product = "https://www.adafruit.com/product/2348"
+manufacturer = "https://www.adafruit.com/product/2348"
 
 [installation]
 PyPI = "https://pypi.org/project/yaqd-adafruit"
