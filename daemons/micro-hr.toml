@@ -5,6 +5,7 @@ traits = ["has-turret", "is-homeable", "has-limits", "is-daemon"]
 [links]
 source = "https://gitlab.com/yaq/yaqd-horiba"
 bugtracker = "https://gitlab.com/yaq/yaqd-horiba/issues"
+manufacturer = "https://www.horiba.com/en_en/products/detail/action/show/Product/microhr-series-1591/"
 
 [installation]
 PyPI = "https://pypi.org/project/yaqd-horiba/"
