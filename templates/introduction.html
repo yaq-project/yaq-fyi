@@ -7,37 +7,43 @@
 <h2>the yaq project</h2>
 
 <p>
-<em>
-The question of software correctness ultimately boils down to, “Does it do what we have in our minds, even the things we have not gotten around to thinking about yet?”
-</em>
-<br>
-— Alistair Cockburn
-</p>
-
-<p>
 Instrumentation development is a key part of the scientific enterprise.
 Scientists have always relied on their creativity and wit to assemble new instruments capable of carrying out new experimental procedures.
-As technology has advanced, scientists are increasingly able to directly purchase pieces of their instruments.
+As the scientific industry has advanced, scientists are increasingly able to directly purchase pieces of their instruments.
 A modern instrument might contain a motor from company A, a sensor from company B, a specialty light source from company C, and a totally custom robotic sample stage.
-The brand new scientific instrument, doing a brand new experiment, is cobbled together from a few dozen parts, some new some old.
+The brand new scientific instrument, doing a brand new experiment, is cobbled together from a few dozen pieces of hardware, some brand new and some reused.
 The instrumental novelty arises from the creative way that all of those pieces are assembled and controlled in the context of the experiment.
 </p>
 
 <p>
 Software integration can be a frustrating piece of the modern instrument development process.
 Each individual component has its own drivers and interface.
-A lack of standards means that each scientist must develop her own acquisition software which communicates to all of the relevant components.
+A lack of standards means that each scientist must develop her own instrument control application.
 Weeks can be spent just integrating one new component into an existing project.
-Code reusability is typically poor, and technical debt grows quickly in an academic / educational context.
+Code reusability is typically poor, and technical debt grows quickly in academic and educational contexts.
 Scientists may struggle to rapidly innovate on their experimental design when each hardware addition requires major software development.
 The yaq project aims to reduce this burden.
-In this way, yaq can ensure that your instrument is always racing ahead to "yet another acquisition".
 </p>
 
-<h2>separate, but close</h2>
+<p>
+The yaq project defines a simple framework for communicating with instrumental hardware.
+This framework abstracts away the low-level hardware communication layer (serial commands, interaction with drivers).
+Within this framework, hardware with similar functionality can be communicated with using exactly the same syntax.
+Each hardware interface exists in a separate process, increasing software modularity and resilience.
+As a consequence of this modularity, hardware interfaces are very portable and reusable, leading to less duplication of effort.
+yaq already supports many <a href="../daemons">types of hardware</a>, and it is relatively easy to add support for more.
+It is possible to use the yaq framework to communicate with some of your hardware while simultaneously using other strategies for other hardware.
+</p>
 
 <p>
-The yaq project defines a simple framework for communicating with instrument hardware components.
+Please read on to learn the about core technologies that enable yaq.
+Interested in using yaq in your own projects?
+<a href="../contact/">Please get in touch</a>.
+</p>
+
+<h2>daemons</h2>
+
+<p>
 In yaq, each component of an instrument is supported by a tiny lightweight process that runs in the background of your computer: <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">a daemon</a>.
 Since each component has its own process, each daemon can be developed separately.
 No more troubleshooting all hardware at once using one monolithic acquisition software!
@@ -45,18 +51,105 @@ No more worrying about how to simultaneously use 32 and 64 bit drivers!
 </p>
 
 <p>
-This well-defined separtation between each daemon and client makes the yaq control framework less fragile than monolithic applications.
-At the same time, the language-agnostic and separate distribution channels for each daemon make it trivial to use and reuse pieces from instrument to instrument, as needed.
-No more rewriting basic hardware support just because you're changing your graphics framework!
-The developer-friendly TCP communication standard makes it easy to write flexable clients for any application.
-The communication layer can be routed over IP for communication between machines.
+Using yaq, a typical instrument might have several daemons each supporting a particular component.
+Daemon A might support a motor, daemon B a sensor, and daemon C a light source.
+To do an experiment, a control program (a "client") must send commands to each of these daemons.
+Each of the daemons is a separate application running in its own process, and importantly the client is also a separate application.
+The only thing linking them together is their shared communication language: the yaq protocol (more on that later).
 </p>
 
 <p>
-<a href="./protocol/">read more about the yaq communication protocol</a>
+The separation between each daemon and client makes the yaq framework less fragile than monolithic applications.
+The yaq framework is language agnostic.
+For example, a daemon written in Python might be controlled by a client implemented using LabVIEW.
+No more rewriting basic hardware support just because you're changing your graphics framework!
+In yaq, each component of an instrument can be developed and distributed separately.
+For example, two very different instruments might happen to use the same temperature sensor.
+Because the temperature sensor daemon is its own independent program, both instruments can benefit from the same daemon.
+As yaq grows, the "ecosystem" of <a href="../daemons/">existing daemons</a> means that future instruments become easier and easier to develop.
 </p>
 
-<h2>complexity, corralled</h2>
+<p>
+You might imagine that managing all of these separate tiny programs would be a hassle, but fear not!
+Modern operating systems have built-in functionality for launching and managing daemons in the background.
+Your computer is probably running a bunch of daemons for you, even as you read this!
+yaq daemons are designed to be automatically managed by the operating system.
+Once installed, the daemon will initiate when your computer boots up and run silently in the background waiting for commands: it's that easy!
+</p>
+
+<h2>protocol</h2>
+
+<p>
+The yaq protocol is a simple standard for communicating between clients and daemons.
+This protocol is the true "core" of yaq, and must be implemented by each yaq-compliant client and daemon.
+Luckily, the yaq protocol is based on popular standards which make implementation easy-to-trivial in many different languages.
+The yaq protocol is made up of two components: the transport layer (TCP), and the format (yaq-RPC).
+</p>
+
+<p>
+With yaq, daemons and clients communicate over the <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">Transmission Control Protocol (TCP)</a>.
+TCP is a ubiquitous standard for communication between processes.
+It is implemented on every operating system.
+With <a href="https://en.wikipedia.org/wiki/Internet_Protocol">IP</a>, TCP is the principle communications protocol of the internet.
+yaq can leverage this to enable communication between processes on different computers.
+For example, a set of hardware being driven by a microcomputer in a wetlab can be controlled easily from a separate computer in the comfort of an office.
+The daemon socket transport layer is fully specified in <a href="https://yeps.yaq.fyi/101/">YEP-101</a>.
+</p>
+
+<p>
+The yaq protocol defines a format which daemons and clients must use.
+This format is lightweight and can transmit large amounts of data quickly.
+yaq uses <a href="https://msgpack.org/">msgpack</a> to serialize data for transfer.
+Like TCP, msgpack is ubiquitous, with core functionality already implemented in many different languages.
+The yaq format is fully specified in <a href="https://yeps.yaq.fyi/100/">YEP-100</a>.
+</p>
+
+<h2>configuration & state</h2>
+
+<p>
+Hardware configuration and state-saving are a large piece of the burden in instrumental software development.
+Traditionally, the monolithic control application must handle all of this information.
+yaq takes a different approach.
+</p>
+
+<p>
+Within the yaq framework, all daemons are configured by a simple, human editable text file.
+The configuration options are well documented for each daemon.
+In most cases, users will not need to regularly interact with this text file once written.
+Daemon configuration is fully specified in <a href="https://yeps.yaq.fyi/102">YEP-102</a>.
+</p>
+
+<p>
+Hardware state recall can be a major frustration in instrumental software development.
+Maintaining up-to-date state information, e.g. motor position, can be challenging.
+Many hardware interfaces (serial communication, drivers) do not store this information internally, making it the responsibility of the instrumental software to "keep track".
+yaq daemons record their state to a simple text file, and expose this information transparently through the yaq-RPC interface.
+Daemon state writing is fully specified in <a href="https://yeps.yaq.fyi/103">YEP-103</a>.
+</p>
+
+<p>
+Taken together, these configuration and state files make yaq daemons more portable and interchangeable.
+Clients don't need to worry about the details when driving a given daemon.
+</p>
+
+<h2>timing</h2>
+
+<p>
+Traditionally, the "hard" part of instrumental control software is timing control.
+Software must typically direct the simultaneous motion of many separate instrumental components.
+Monitoring all of these components simultaneously traditionally requires advanced and fragile software development patterns like threading or async behavior.
+yaq clients do not need to invoke these patterns.
+</p>
+
+<p>
+As a rule, methods called using yaq-RPC return quickly.
+Methods do not wait on hardware or anything else, and should return as quickly as communication allows.
+Methods that instruct hardware to move merely initiate motion, and never block client flow.
+This means that it is relatively easy to write entirely synchronous clients.
+In many cases, clients may be small simple scripts.
+</p>
+
+<h2>composition</h2>
 
 <p>
 Each component of a scientific instrument may have many parameters.
@@ -64,29 +157,17 @@ Similar components typically have similar parameters, but there may be incidenta
 For example, consider two different monochromators.
 The driver for monochromator A may expose the function "set wavelength", while the driver for monochromator B exposes "set angle".
 Any experimentalist wishing to switch from monochromator A to B must first go through their entire codebase to fix all of the small differences in the driver implementation.
+yaq is designed using an (optional) compositional system that helps enforce consistency between different kinds of hardware.
 </p>
 
 <p>
-The yaq project defines a family inheritence structure that aims to unify the interface signature for classes of hardware.
-By enforcing this structure, yaq highlights the similarities been different daemon instances, making it easier to create more flexable and generic clients.
-The family inheritence helps ensure that good conventions are known and applied well to each applicable daemon.
-</p>
-
-<p>
-Of course, the yaq communication standard is totally generic.
-yaq daemons are by no means required to have family members.
-</p>
-
-<p>
-<a href="./families/">read more about the yaq family tree</a>
-</p>
-
-<p>
-yaq also implements traits.
-</p>
-
-<p>
-<a href="./traits/">read more about yaq traits</a>
+yaq defines "<a href="https://yaq.fyi/traits/">traits</a>": collections of behaviors which are logically grouped together.
+Each trait specifies a set of configuration options, state entries, and methods that a daemon can implement.
+Daemons, then, can be composed of multiple traits.
+Clients can trust that daemons which implement a given trait will behave in similar ways.
+For example, any daemon that implements the "is-position" trait must expose the methods "get_position" and "set_position".
+It becomes easy to write generic clients that work with any daemon that has certain traits.
+Of course, daemons are always allowed to implement additional configuration, state, and methods in addition to those which are implied by their traits.
 </p>
 
 {% include "footer.html" %}
