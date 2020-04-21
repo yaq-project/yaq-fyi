@@ -25,7 +25,7 @@ with open(p, 'w') as fh:
 
 # pages without arguments -------------------------------------------------------------------------
 
-names = ["protocol", "introduction", "licensing", "glossary", "contact"]
+names = ["introduction", "licensing", "glossary", "contact"]
 
 for name in names:
 
