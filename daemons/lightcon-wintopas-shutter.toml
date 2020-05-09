@@ -1,0 +1,17 @@
+name = "lightcon-topas4-shutter"
+description = """
+Daemon for the LightConversion WinTOPAS4 shutter.
+"""
+traits = ["has-position", "is-daemon"] #TODO: add is-discrete when available
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-lightcon/"
+bugtracker = "https://gitlab.com/yaq/yaqd-lightcon/issues"
+manufacturer = "http://topas4info.lightcon.com/"
+
+[config]
+base_url.type = "String"
+base_url.description = "URL for the TOPAS4 server directly controlling the motor"
+
+[installation]
+PyPI = "https://pypi.org/project/yaqd-lightcon"

@@ -1,0 +1,105 @@
+name = "pmc"
+description = """
+Motor driver for motors from Precision MicroControl Corporation.
+"""
+traits = ["has-limits", "is-homeable", "uses-uart", "is-daemon"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-pmc/"
+bugtracker = "https://gitlab.com/yaq/yaqd-pmc/issues"
+manufacturer = "https://pmccorp.com/products/api.php"
+
+[config]
+counts_per_mm.type = "Integer"
+counts_per_mm.default = 58200
+counts_per_mm.description = "Encoder counts per mm of travel"
+controller.type = "Integer"
+controller.default = 0
+controller.description = "Index of the controller in MCAPI"
+axis.type = "Integer"
+axis.default = 0
+axis.description = "Axis number for the individual motor in the controller"
+tolerance.type = "Integer"
+tolerance.default = 20
+tolerance.description = "Tolerance in motor steps"
+acceleration.type = "Number"
+acceleration.default = 70000
+acceleration.description = "Acceleration for the motor in steps/sec/sec"
+gain.type = "Number"
+gain.default = 2211
+gain.description = "Gain parameter"
+velocity.type = "Number"
+velocity.default = 11000
+velocity.description = "Velocity of motion in steps/sec"
+integral_gain.type = "Number"
+integral_gain.default = 0
+integral_gain.description = "Integral Gain"
+integration_limit.type = "Integer"
+integration_limit.default = 0
+integration_limit.description = "Integration Limit"
+integration_option.type = "Integer"
+integration_option.default = 0
+integration_option.description = "Integration Option"
+derivative_gain.type = "Number"
+derivative_gain.default = 6000
+derivative_gain.description = "Derivative Gain"
+derivative_sample.type = "Number"
+derivative_sample.default = 0.001364
+derivative_sample.description = "Derivative Sample"
+following_error.type = "Number"
+following_error.default = 0
+following_error.description = "Following Error"
+velocity_gain.type = "Number"
+velocity_gain.default = 0
+velocity_gain.description = "Velocity Gain"
+accel_gain.type = "Number"
+accel_gain.default = 0
+accel_gain.description = "Acceleration Gain"
+decel_gain.type = "Number"
+decel_gain.default = 0
+decel_gain.description = "Deceleration Gain"
+encoder_scaling.type = "Number"
+encoder_scaling.default = 0
+encoder_scaling.description = "Encoder Scaling"
+update_rate.type = "Number"
+update_rate.default = 0
+update_rate.description = "Update Rate"
+position_deadband.type = "Number"
+position_deadband.default = 0
+position_deadband.description = "Position Deadband"
+delay_at_target.type = "Number"
+delay_at_target.default = 0
+delay_at_target.description = "Delay At Target"
+output_offset.type = "Number"
+output_offset.default = 0
+output_offset.description = "Output Offset"
+output_deadband.type = "Number"
+output_deadband.default = 0
+output_deadband.description = "Output Deadband"
+units.type = "String"
+units.default = "mm"
+units.description = "Units"
+
+[method]
+  [method.stop]
+  description = "Halt motion of the motor"
+
+  [method.steps_to_mm]
+  args.steps.type = "Integer"
+  args.steps.description = "Number of motor steps"
+  returns = "Number"
+  description = "Convert motor steps to mm travel"
+
+  [method.mm_to_steps]
+  args.mm.type = "Number"
+  args.mm.description = "mm of travel"
+  returns = "Integer"
+  description = "Convert mm travel to motor steps"
+
+  [method.reset_to_known_postion]
+  args.position.type = "Number"
+  args.position.description = "Current actual position in mm"
+  description = "Reset the represented position to a known actual position"
+
+[installation]
+PyPI = "https://pypi.org/project/yaqd-pmc"
