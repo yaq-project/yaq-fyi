@@ -1,0 +1,7 @@
+model = "epu452"
+description = "Four channel multifunction isoPod with USB."
+make = "edaq"
+daemons = ["quadmf"]
+
+[links]
+manufacturer = "https://www.edaq.com/EPU452"

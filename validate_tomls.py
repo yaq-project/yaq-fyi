@@ -9,6 +9,8 @@ tomls = here.glob("**/*.toml")
 
 invalid_count = 0
 for t in tomls:
+    if list(t.parents)[-2] == pathlib.Path(".git"):
+        continue
     print(t)
     try:
         toml.load(t)
