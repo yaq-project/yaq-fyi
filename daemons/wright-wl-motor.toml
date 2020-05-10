@@ -5,7 +5,7 @@ traits = ["is-homeable", "uses-uart", "is-daemon"]
 [links]
 source = "https://github.com/wright-group/wl-motor"
 bugtracker = "https://github.com/wright-group/wl-motor/issues"
-manufacturer = "https://yaq.fyi/daemons/wright-wl-motor/"
+manufacturer = "https://github.com/wright-group/wl-motor/"
 
 [installation]
 PyPI = "https://pypi.org/project/yaqd-wright-wl-motor"
