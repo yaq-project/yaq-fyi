@@ -43,6 +43,17 @@
 </p>
 {% endif %}
 
+{% if daemon.hardwares %}
+<h2>hardware</h2>
+<p>
+  The {{ daemon.name }} daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+{% for h in daemon.hardwares %}
+  <a href="../../hardware/{{ h }}">{{ h }}</a><br>
+{% endfor %}
+</p>
+{% endif %}
 
 {% if daemon.config %}
 <h2>configuration</h2>

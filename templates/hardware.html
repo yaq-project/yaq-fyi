@@ -1,0 +1,29 @@
+{% include "header.html" %}
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>hardware</a>/{{ hardware.model }}
+</h1>
+
+<hr>
+
+{{ hardware.description }}
+
+{% if hardware.links %}
+<h2>external links</h2>
+<p class="tab30">
+{% for k, v in hardware.links.items() %}
+  <a href={{ v }}>{{ k }}</a> <br>
+{% endfor %}
+{% endif %}
+
+<h2>daemons</h2>
+<p>
+The {{ hardware.model }} can be driven using the following daemon(s):
+</p>
+<p class="tab30">
+{% for d in hardware.daemons %}
+  <a href=../../daemons/{{ d }}>{{ d }}</a> <br>
+{% endfor %}
+</p>
+
+{% include "footer.html" %}

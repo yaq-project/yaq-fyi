@@ -1,0 +1,8 @@
+model = "topas-800"
+description = "Optical Parametric Amplifier."
+make = "lightcon"
+daemons = ["lightcon-topas4-motor",
+           "lightcon-topas4-shutter"]
+
+[links]
+manufacturer = "http://lightcon.com/Product/TOPAS-800.html"
