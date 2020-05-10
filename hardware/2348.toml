@@ -1,0 +1,7 @@
+model = "2348"
+description = "Rasperry Pi hat capable of driving up to 4 DC or 2 Stepper motors with full PWM speed control."
+make = "adafruit"
+daemons = ["adafruit-stepper-motor-hat"]
+
+[links]
+manufacturer = "https://www.adafruit.com/product/2348"

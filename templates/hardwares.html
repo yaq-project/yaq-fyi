@@ -1,0 +1,25 @@
+{% include "header.html"  %}
+
+<h1>
+<a href=../>yaq</a>/hardware
+</h1>
+
+<hr>
+
+<p>
+This page notes each model of hardware that can be driven via a yaq daemon. <br>
+Each of these has been explicitly tested using yaq.
+Many yaq daemons implement protocols that are capable of driving a wide variety of hardware,
+so the complete list of working hardware is in-theory much longer than seen here.
+</p>
+
+<p>
+{% for h in hardwares %}
+{% if h.make %}
+{{ h.make }}/
+{%- endif -%}
+<a href="./{{ h.model }}">{{ h.model }}</a> <br>
+{% endfor %}
+</p>
+
+{% include "footer.html" %}

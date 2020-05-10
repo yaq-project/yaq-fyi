@@ -1,0 +1,7 @@
+model = "ads1115"
+description = "16-Bit 860SPS 4-Ch Delta-Sigma ADC With PGA, Oscillator, Vref, Comparator, and I2C."
+make = "ti"
+daemons = ["ads1115"]
+
+[links]
+manufacturer = "http://www.ti.com/product/ADS1115"

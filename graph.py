@@ -15,7 +15,6 @@ __here__ = pathlib.Path(__file__).resolve().parent
 
 
 class Trait(object):
-
     def __init__(self, **kwargs):
         self.name = kwargs["name"]
         self.description = kwargs["description"]
@@ -32,6 +31,7 @@ class Trait(object):
 
     def format_origin(self, lis):
         return "from " + " ➜ ".join([f"<a href='../{l}'>{l}</a>" for l in lis])
+
 
 traits = {}
 
@@ -77,7 +77,6 @@ while todo:
 
 
 class Daemon(object):
-
     def __init__(self, **kwargs):
         self.name = kwargs["name"]
         self.description = kwargs["description"]
@@ -92,12 +91,15 @@ class Daemon(object):
         self.config = kwargs.get("config", dict())
         self.state = kwargs.get("state", dict())
         self.method = kwargs.get("method", dict())
+        self.hardwares = []
 
     def __repr__(self):
         return self.name
 
     def format_origin(self, lis):
-        return "from " + " ➜ ".join([f"<a href='../../traits/{l}'>{l}</a>" for l in lis])
+        return "from " + " ➜ ".join(
+            [f"<a href='../../traits/{l}'>{l}</a>" for l in lis]
+        )
 
 
 daemons = {}
@@ -133,3 +135,35 @@ for d in daemons.values():
             if m not in d.method.keys():
                 d.method[m] = copy.deepcopy(traits[t].method[m])
                 d.method[m]["origin"] = [t] + d.method[m].get("origin", [])
+
+
+# hardware ----------------------------------------------------------------------------------------
+
+
+class Hardware(object):
+    def __init__(self, **kwargs):
+        self.model = kwargs["model"]
+        self.description = kwargs["description"]
+        self.make = kwargs.get("make", None)
+        self.links = kwargs.get("links", dict())
+        self.daemons = kwargs["daemons"]
+
+    def __repr__(self):
+        return self.name
+
+
+hardwares = {}
+
+# initialize
+for name in os.listdir(__here__ / "hardware"):
+    dic = toml.load(__here__ / "hardware" / name)
+    h = Hardware(**dic)
+    hardwares[h.model] = h
+    for d in h.daemons:
+        daemons[d].hardwares.append(h.model)
+
+# sort
+def key(item):
+    k, v = item
+    return "/".join([v.make, v.model])
+hardwares = collections.OrderedDict(sorted(hardwares.items(), key=key))
