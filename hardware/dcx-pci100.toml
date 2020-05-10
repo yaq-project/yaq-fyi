@@ -1,0 +1,7 @@
+model = "dcx-pci100"
+description = "1 to 8 axis PCI-bus motion controller which can control and drive up to eight small DC servo motors without the need for external amplifiers."
+make = "pmc"
+daemons = ["pmc"]
+
+[links]
+manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
