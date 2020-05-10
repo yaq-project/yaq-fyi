@@ -1,0 +1,63 @@
+name = "quadmf"
+description = "Daemon to control edaq isopod quadmf data recorder"
+traits = ["uses-serial", "uses-uart", "is-daemon"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-edaq"
+bugtracker = "https://gitlab.com/yaq/yaqd-edaq/-/issues/"
+manufacturer = "https://www.edaq.com/EPU452"
+
+[config]
+baud_rate.default = 115200
+c_1_mode.type = 'string'
+c_1_mode.description = "assigns function types to each channel input"
+c_1_mode.default = 'pH&ISE'
+c_1_units.type = 'string'
+c_1_units.description = 'assign units to channel 1 input'
+c_1_units.default = 'pH'
+
+c_2_mode.type = 'string'
+c_2_mode.description = "assigns function types to each channel input"
+c_2_mode.default = 'off'
+c_2_units.type = 'string'
+c_2_units.description = 'assign units to channel 2 input'
+
+
+c_3_mode.type = 'string'
+c_3_mode.description = "assigns function types to each channel input"
+c_3_mode.default = 'off'
+c_3_units.type = 'string'
+c_3_units.description = 'assign units to channel 3 input'
+
+
+c_4_mode.type = 'string'
+c_4_mode.description = "assigns function types to each channel input"
+c_4_mode.default = 'off'
+c_4_units.type = 'string'
+c_4_units.description = 'assign units to channel 4 input'
+
+
+[method]
+
+	[method.blink]
+	description = 'LEDs on quadmf front panel blink once'
+	
+	[method.remove_calibration]
+	description = 'wipes calibration information for a given channel'
+	args.chno.type = 'integer'
+	args.chno.description = 'channel number'
+	
+	[method.add_calibration_point]
+	description = 'adds one calibration point with a point index and known value to a given channel'
+	args.chno.description = 'channel number' 
+	args.chno.type = 'integer'
+	args.pointno.description = 'calibration point index'
+	args.pointno.type = 'integer'
+	args.knownval.description = 'known calibration value'
+	args.knownval.type = 'number'
+	
+	[method.raw_write]
+	description = 'formats an input string and passes to the quadmf'
+	args.string.description = 'string in plain text to be sent'
+	args.string.type = 'string'
+
