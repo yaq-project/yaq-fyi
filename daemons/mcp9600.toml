@@ -3,6 +3,9 @@ description = "MCP9600 thermocouple measurement IC."
 traits = ["is-sensor", "uses-i2c", "is-daemon"]
 
 [links]
-repository = "https://gitlab.com/yaq/yaqd-mcp9600"
-bugtracker = "https://gitlab.com/yaq/yaqd-mcp9600/issues"
+repository = "https://gitlab.com/yaq/yaqd-microchip"
+bugtracker = "https://gitlab.com/yaq/yaqd-microchip/issues"
 manufacturer = "https://www.microchip.com/wwwproducts/en/MCP9600"
+
+[installation]
+PyPI = "https://pypi.org/project/yaqd-microchip"
