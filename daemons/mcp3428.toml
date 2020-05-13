@@ -3,12 +3,12 @@ description = "Daemon to interface with MCP3428 four-channel analog to digital c
 traits = ["is-sensor", "uses-i2c", "is-daemon"]
 
 [links]
-repository = "https://gitlab.com/yaq/yaqd-mcp3428"
-bugtracker = "https://gitlab.com/yaq/yaqd-mcp3428/issues"
+repository = "https://gitlab.com/yaq/yaqd-microchip"
+bugtracker = "https://gitlab.com/yaq/yaqd-microchip/issues"
 manufacturer = "https://www.microchip.com/wwwproducts/en/MCP3428"
 
 [installation]
-PyPI = "https://pypi.org/project/yaqd-mcp3428"
+PyPI = "https://pypi.org/project/yaqd-microchip"
 
 [state]
 gain.type = "integer"
