@@ -3,12 +3,12 @@ description = "Sensor daemon for ADS1115 4-channel ADC."
 traits = ["is-sensor", "uses-i2c", "is-daemon"]
 
 [links]
-source = "https://gitlab.com/yaq/yaqd-ads1115"
-bugtracker = "https://gitlab.com/yaq/yaqd-ads1115/-/issues"
+source = "https://gitlab.com/yaq/yaqd-ti"
+bugtracker = "https://gitlab.com/yaq/yaqd-ti/-/issues"
 manufacturer = "http://www.ti.com/product/ADS1115"
 
 [installation]
-PyPI = "https://pypi.org/project/yaqd-ads1115"
+PyPI = "https://pypi.org/project/yaqd-ti"
 
 [config]
 fsr.type = "number"
