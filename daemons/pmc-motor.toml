@@ -2,7 +2,7 @@ name = "pmc"
 description = """
 Motor driver for motors from Precision MicroControl Corporation.
 """
-traits = ["has-limits", "is-homeable", "uses-uart", "is-daemon"]
+traits = ["has-limits", "is-homeable", "is-daemon"]
 
 [links]
 source = "https://gitlab.com/yaq/yaqd-pmc/"
