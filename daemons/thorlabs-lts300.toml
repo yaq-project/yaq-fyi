@@ -1,0 +1,30 @@
+name = "thorlabs-lts300"
+description = """
+Daemon for the Thorlabs LTS-300 stage
+"""
+traits = ["has-limits", "is-homeable", "uses-uart", "is-daemon"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-thorlabs/"
+bugtracker = "https://gitlab.com/yaq/yaqd-thorlabs/issues"
+manufacturer = "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7652&pn=LTS300"
+
+[config]
+source.type = "Integer"
+source.default = 1
+source.description = "Source for apt messages (almost always 0x01)"
+dest.type = "Integer"
+dest.default = 0x50
+dest.description = "Destination for apt messages (0x50 for single bay controllers)"
+chan_ident.type = "Integer"
+chan_ident.default = 1
+chan_ident.description = "Channel identifier for apt messages (almost always 0x01)"
+
+baud_rate.default = 115200
+make.default = "Thorlabs"
+
+steps_per_unit.type = "Number"
+steps_per_unit.default = 25600
+
+[installation]
+PyPI = "https://pypi.org/project/yaqd-thorlabs"
