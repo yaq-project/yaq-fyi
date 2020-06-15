@@ -4,7 +4,7 @@
 
 <hr>
 
-<h2>the yaq project</h2>
+{{ helpers.h2("the yaq project") }}
 
 <p>
 Instrumentation development is a key part of the scientific enterprise.
@@ -42,7 +42,7 @@ Interested in using yaq in your own projects?
 You may be interested in <a href="../alternatives/">alternatives to yaq</a>.
 </p>
 
-<h2>daemons</h2>
+{{ helpers.h2("daemons") }}
 
 <p>
 In yaq, each component of an instrument is supported by a tiny lightweight process that runs in the background of your computer: <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">a daemon</a>.
@@ -78,7 +78,7 @@ yaq daemons are designed to be automatically managed by the operating system.
 Once installed, the daemon will initiate when your computer boots up and run silently in the background waiting for commands: it's that easy!
 </p>
 
-<h2>protocol</h2>
+{{ helpers.h2("protocol") }}
 
 <p>
 The yaq protocol is a simple standard for communicating between clients and daemons.
@@ -105,7 +105,7 @@ Like TCP, msgpack is ubiquitous, with core functionality already implemented in 
 The yaq format is fully specified in <a href="https://yeps.yaq.fyi/100/">YEP-100</a>.
 </p>
 
-<h2>configuration & state</h2>
+{{ helpers.h2("configuration & state") }}
 
 <p>
 Hardware configuration and state-saving are a large piece of the burden in instrumental software development.
@@ -133,7 +133,7 @@ Taken together, these configuration and state files make yaq daemons more portab
 Clients don't need to worry about the details when driving a given daemon.
 </p>
 
-<h2>timing</h2>
+{{ helpers.h2("timing") }}
 
 <p>
 Traditionally, the "hard" part of instrumental control software is timing control.
@@ -150,7 +150,7 @@ This means that it is relatively easy to write entirely synchronous clients.
 In many cases, clients may be small simple scripts.
 </p>
 
-<h2>composition</h2>
+{{ helpers.h2("composition") }}
 
 <p>
 Each component of a scientific instrument may have many parameters.
