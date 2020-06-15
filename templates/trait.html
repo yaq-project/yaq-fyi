@@ -10,7 +10,7 @@
 
 
 {% if trait.requires %}
-<h2>requires</h2>
+{{ helpers.h2("requires") }}
 <p class="tab30">
 {% for r in trait.requires.keys() %}
   <a href=../{{ r }}>{{ r }}</a>
@@ -24,68 +24,37 @@
 
 
 {% if trait.config %}
-<h2>configuration</h2>
+{{ helpers.h2("configuration") }}
 <p>
   Daemons with the {{ trait["name"] }} trait expect the following configuration:
 </p>
 {% for k, v in trait.config.items() %}
-   <p class="tab30">
-   <b>{{ k }}</b> ({{ v["type"] }})
-   {% if "default" in v.keys() %}<i>default: {{ v["default"] }}</i>{% endif %}
-   <br>
-   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
-   {% if "origin" in v.keys() %}
-     <i>{{ trait.format_origin(v["origin"]) }}</i>
-   {% endif %}
-   </p>
+  {{ helpers.config(k, v, trait) }}
 {% endfor %}
 {% endif %}
 
 {% if trait.state %}
-<h2>state</h2>
+{{ helpers.h2("state") }}
 <p>
   Daemons with the {{ trait["name"] }} trait will provide the following state information:
 </p>
 {% for k, v in trait.state.items() %}
-   <p class="tab30">
-   <b>{{ k }}</b> ({{ v["type"] }}) <br>
-   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
-   {% if "origin" in v.keys() %}
-     <i>{{ trait.format_origin(v["origin"]) }}</i>
-   {% endif %}
-   </p>
+  {{ helpers.state(k, v, trait) }}
 {% endfor %}
 {% endif %}
 
 {% if trait.method %}
-<h2>methods</h2>
+{{ helpers.h2("method") }}
 <p>
   Daemons with the {{ trait["name"] }} trait expose the following public methods:
 </p>
 {% for k, v in trait.method.items() %}
-   <p class="tab30">
-   <b>{{ k }}</b>
-   {% if "returns" in v.keys() %} ➜  {{ v["returns"] }} {% endif %}
-   <br>
-   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
-   {% if "origin" in v.keys() %}
-     <i>{{ trait.format_origin(v["origin"]) }}</i> <br>
-   {% endif %}
-   {% if "args" in v.keys() %}
-     Arguments: <br>
-     </p>
-     {% for ak, av in v["args"].items() %}
-        <p class="tab60">
-          {{ ak }}, {{ av }} <br>
-	</p>
-     {% endfor %}
-   {% else %} </p>
-   {% endif %}
+  {{ helpers.method(k, v, trait) }}
 {% endfor %}
 {% endif %}
 
 {% if trait.daemons %}
-<h2>daemons</h2>
+{{ helpers.h2("daemons") }}
 <p>
   The following daemons implement the {{ trait.name }} trait:
 </p>

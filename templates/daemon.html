@@ -9,7 +9,7 @@
 {{ daemon.description }}
 
 {% if daemon.links %}
-<h2>external links</h2>
+{{ helpers.h2("external links") }}
 <p class="tab30">
 {% for k, v in daemon.links.items() %}
   <a href={{ v }}>{{ k }}</a> <br>
@@ -17,7 +17,7 @@
 {% endif %}
 
 {% if daemon.installation %}
-<h2>installation</h2>
+{{ helpers.h2("installation") }}
 <p>
   The {{ daemon.name }} daemon can be installed using the following package managers:
 </p>
@@ -28,7 +28,7 @@
 {% endif %}
 
 {% if daemon.traits %}
-<h2>traits</h2>
+{{ helpers.h2("traits") }}
 <p>
   The {{ daemon.name }} daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
 </p>
@@ -56,65 +56,29 @@
 {% endif %}
 
 {% if daemon.config %}
-<h2>configuration</h2>
+{{ helpers.h2("configuration") }}
 {% for k, v in daemon.config.items() %}
-   <p class="tab30">
-   <b>{{ k }}</b> ({{ v["type"] }})
-   {% if "default" in v.keys() %}<i>default: {{ v["default"] }}</i>{% endif %}
-   <br>
-   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
-   {% if "origin" in v.keys() %}
-     <i>{{ daemon.format_origin(v["origin"]) }}</i>
-   {% endif %}
-   {% if "addendum" in v.keys() %}
-     <br> <i>addendum by {{daemon.name}}:</i><br>
-     {{ v["addendum"] }}
-   {% endif %}
-   </p>
+  {{ helpers.config(k, v, daemon) }}
 {% endfor %}
 {% endif %}
 
 {% if daemon.state %}
-<h2>state</h2>
+{{ helpers.h2("state") }}
 <p>
   The {{ daemon.name }} daemon will provide the following state information:
 </p>
 {% for k, v in daemon.state.items() %}
-   <p class="tab30">
-   <b>{{ k }}</b> <br>
-   type: {{ v["type"] }} <br>
-   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
-   {% if "origin" in v.keys() %}
-     <i>{{ daemon.format_origin(v["origin"]) }}</i>
-   {% endif %}
-   </p>
+  {{ helpers.state(k, v, daemon) }}
 {% endfor %}
 {% endif %}
 
 {% if daemon.method %}
-<h2>methods</h2>
+{{ helpers.h2("methods") }}
 <p>
   Daemons with the {{ daemon["name"] }} trait expose the following public methods:
 </p>
 {% for k, v in daemon.method.items() %}
-   <p class="tab30">
-   <b>{{ k }}</b>
-   {% if "returns" in v.keys() %} ➜  {{ v["returns"] }} {% endif %}
-   <br>
-   {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
-   {% if "origin" in v.keys() %}
-     <i>{{ daemon.format_origin(v["origin"]) }}</i> <br>
-   {% endif %}
-   {% if "args" in v.keys() %}
-     Arguments: <br>
-     </p>
-     {% for ak, av in v["args"].items() %}
-        <p class="tab60">
-          {{ ak }}, {{ av }} <br>
-	</p>
-     {% endfor %}
-   {% else %} </p>
-   {% endif %}
+  {{ helpers.method(k, v, daemon) }}
 {% endfor %}
 {% endif %}
 
