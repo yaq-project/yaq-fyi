@@ -99,14 +99,29 @@ template = env.get_template("hardwares.html")
 with open(p, "w") as fh:
     fh.write(template.render(hardwares=hardwares.values(), title="hardware", ))
 
-# page for each hardware
+# page for each make
 for hardware in hardwares.values():
     # ensure directory exists
-    p = __here__ / "public" / "hardware" / hardware.model / "index.html"
+    p = __here__ / "public" / "hardware" / hardware.make / "index.html"
     if not os.path.isdir(p.parent):
         os.mkdir(p.parent)
     # run template
-    template = env.get_template("hardware.html")
+    template = env.get_template("make.html")
+    d = toml.load(__here__ / "known-hardware.toml")[hardware.make]
+    make = hardware.make
+    doc = d.get("doc", "")
+    links = d.get("links", {})
+    with open(p, "w") as fh:
+        fh.write(template.render(make=make, doc=doc, links=links, title=make, hardwares=hardwares.values()))
+
+# page for each model
+for hardware in hardwares.values():
+    # ensure directory exists
+    p = __here__ / "public" / "hardware" / hardware.make / hardware.model / "index.html"
+    if not os.path.isdir(p.parent):
+        os.mkdir(p.parent)
+    # run template
+    template = env.get_template("model.html")
     with open(p, "w") as fh:
         fh.write(template.render(hardware=hardware, title=hardware.model))
 

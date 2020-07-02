@@ -66,6 +66,9 @@
         }
     },
     "doc": "Daemon for the Newport connex-agp controllers\n\nThis daemon was specifically tested with the CONEX-AG-PR100P.\nIt should, in theory, work (though with other units, potentially) for other CONEX line controllers.\n",
+    "hardware": [
+        "newport:conex-ag-pr100p"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-newport"
     },
@@ -190,8 +193,6 @@
             "response": "null"
         }
     },
-    "name": "uses-serial",
-    "protcol": "has-position",
     "protocol": "newport-connex-agp",
     "requires": [],
     "state": {
@@ -222,12 +223,13 @@
             "type": "string"
         }
     },
+    "trait": "uses-serial",
     "traits": [
+        "is-daemon",
         "has-position",
+        "is-homeable",
         "uses-uart",
         "uses-serial",
-        "is-homeable",
-        "is-daemon",
         "has-limits"
     ]
 }

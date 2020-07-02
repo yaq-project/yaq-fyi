@@ -1,0 +1,27 @@
+{% include "header.html" %}
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>hardware</a>/{{ make }}
+</h1>
+
+<hr>
+
+{{ doc }}
+
+{% if links %}
+{{ helpers.h2("external links") }}
+<p class="tab30">
+{% for k, v in links.items() %}
+  <a href={{ v }}>{{ k }}</a> <br>
+{% endfor %}
+{% endif %}
+
+<p>
+{% for h in hardwares %}
+{% if h.make == make %}
+<a href="./{{ h.model }}">{{ h.model }}</a> <br>
+{% endif %}
+{% endfor %}
+</p>
+
+{% include "footer.html" %}

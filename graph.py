@@ -94,7 +94,7 @@ class Daemon(object):
         self.config = kwargs.get("config", dict())
         self.state = kwargs.get("state", dict())
         self.messages = kwargs.get("messages", dict())
-        self.hardwares = []
+        self.hardwares = kwargs.get("hardware", [])
 
     def __repr__(self):
         return self.name
@@ -122,7 +122,6 @@ for d in daemons.values():
     for t, v in d.traits.items():
         traits[t].daemons[d.name] = v
 
-
 # populate
 for d in daemons.values():
     for t, v in d.traits.items():
@@ -146,25 +145,32 @@ for d in daemons.values():
 
 class Hardware(object):
     def __init__(self, **kwargs):
+        self.make = kwargs["make"]
         self.model = kwargs["model"]
-        self.description = kwargs["description"]
-        self.make = kwargs.get("make", None)
+        self.doc = kwargs.get("doc", "")
         self.links = kwargs.get("links", dict())
         self.daemons = kwargs["daemons"]
 
     def __repr__(self):
-        return self.name
+        return ":".join([self.make, self.model])
 
 
 hardwares = {}
 
 # initialize
-for name in []:#os.listdir(__here__ / "hardware"):
-    dic = toml.load(__here__ / "hardware" / name)
-    h = Hardware(**dic)
-    hardwares[h.model] = h
-    for d in h.daemons:
-        daemons[d].hardwares.append(h.model)
+dic = toml.load(__here__ / "known-hardware.toml")
+for make_name, make in dic.items():
+    for model_name, model in make.items():
+        if model_name in ["doc", "links"]:
+            continue
+        identifier = ":".join([make_name, model_name])
+        daemons_ = []
+        for d in daemons.values():
+            if identifier in d.hardwares:
+                daemons_.append(d.protocol)
+        h = Hardware(make=make_name, model=model_name, **model, daemons=daemons_)
+        hardwares[identifier] = h
+
 
 # sort
 def key(item):

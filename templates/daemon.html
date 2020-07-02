@@ -50,7 +50,8 @@
 </p>
 <p class="tab30">
 {% for h in daemon.hardwares %}
-  <a href="../../hardware/{{ h }}">{{ h }}</a><br>
+  {% set list1 = h.split(':') %}
+  <a href="../../hardware/{{ list1[0] }}">{{ list1[0] }}</a>/<a href="../../hardware/{{ list1[0] }}/{{ list1[1] }}">{{ list1[1] }}</a><br>
 {% endfor %}
 </p>
 {% endif %}

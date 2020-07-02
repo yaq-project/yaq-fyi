@@ -65,6 +65,11 @@
         }
     },
     "doc": "Daemon for the Newport smc100-[CC|PP] controllers\n",
+    "hardware": [
+        "newport:mfa-cc",
+        "newport:smc100cc",
+        "newport:smc100pp"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-newport"
     },
@@ -188,8 +193,6 @@
             "response": "null"
         }
     },
-    "name": "uses-serial",
-    "protcol": "has-position",
     "protocol": "newport-smc100",
     "requires": [],
     "state": {
@@ -220,12 +223,13 @@
             "type": "string"
         }
     },
+    "trait": "uses-serial",
     "traits": [
-        "uses-serial",
-        "has-position",
-        "is-homeable",
-        "uses-uart",
         "has-limits",
-        "is-daemon"
+        "uses-serial",
+        "uses-uart",
+        "is-homeable",
+        "is-daemon",
+        "has-position"
     ]
 }
