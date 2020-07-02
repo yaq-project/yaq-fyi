@@ -25,7 +25,7 @@ class Trait(object):
             self.requires[r] = []
         self.config = kwargs.get("config", dict())
         self.state = kwargs.get("state", dict())
-        self.method = kwargs.get("method", dict())
+        self.messages = kwargs.get("messages", dict())
         self.daemons = dict()
 
     def __repr__(self):
@@ -66,10 +66,10 @@ while todo:
             t.state[name] = copy.deepcopy(state)
             t.state[name]["origin"] = v + [k] + state.get("origin", [])
     # method
-    for name, method in traits[k].method.items():
-        if name not in t.method.keys():
-            t.method[name] = copy.deepcopy(method)
-            t.method[name]["origin"] = v + [k] + method.get("origin", [])
+    for name, message in traits[k].messages.items():
+        if name not in t.messages.keys():
+            t.messages[name] = copy.deepcopy(message)
+            t.messages[name]["origin"] = v + [k] + message.get("origin", [])
     # keep searching
     for r in traits[k].requires.keys():
         todo.insert((t, r, v + [k]), 0)
@@ -93,7 +93,7 @@ class Daemon(object):
                     self.traits[tt] = [t] + traits[t].requires[tt]
         self.config = kwargs.get("config", dict())
         self.state = kwargs.get("state", dict())
-        self.method = kwargs.get("method", dict())
+        self.messages = kwargs.get("messages", dict())
         self.hardwares = []
 
     def __repr__(self):
@@ -135,10 +135,10 @@ for d in daemons.values():
             if s not in d.state.keys():
                 d.state[s] = copy.deepcopy(traits[t].state[s])
                 d.state[s]["origin"] = [t] + d.state[s].get("origin", [])
-        for m in traits[t].method.keys():
-            if m not in d.method.keys():
-                d.method[m] = copy.deepcopy(traits[t].method[m])
-                d.method[m]["origin"] = [t] + d.method[m].get("origin", [])
+        for m in traits[t].messages.keys():
+            if m not in d.messages.keys():
+                d.message[m] = copy.deepcopy(traits[t].message[m])
+                d.message[m]["origin"] = [t] + d.message[m].get("origin", [])
 
 
 # hardware ----------------------------------------------------------------------------------------

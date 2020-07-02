@@ -43,13 +43,13 @@
 {% endfor %}
 {% endif %}
 
-{% if trait.method %}
-{{ helpers.h2("method") }}
+{% if trait.messages %}
+{{ helpers.h2("messages") }}
 <p>
-  Daemons with the {{ trait["name"] }} trait expose the following public methods:
+  Daemons with the {{ trait["name"] }} trait expose the following public messages:
 </p>
-{% for k, v in trait.method.items() %}
-  {{ helpers.method(k, v, trait) }}
+{% for k, v in trait.messages.items() %}
+  {{ helpers.message(k, v, trait) }}
 {% endfor %}
 {% endif %}
 
