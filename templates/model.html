@@ -1,7 +1,7 @@
 {% include "header.html" %}
 
 <h1>
-<a href=../../>yaq</a>/<a href=../>hardware</a>/{{ hardware.model }}
+<a href=../../../>yaq</a>/<a href=../../>hardware</a>/<a href=../>{{ hardware.make }}</a>/{{ hardware.model }}
 </h1>
 
 <hr>
@@ -22,7 +22,7 @@ The {{ hardware.model }} can be driven using the following daemon(s):
 </p>
 <p class="tab30">
 {% for d in hardware.daemons %}
-  <a href=../../daemons/{{ d }}>{{ d }}</a> <br>
+  <a href=../../../daemons/{{ d }}>{{ d }}</a> <br>
 {% endfor %}
 </p>
 
