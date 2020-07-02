@@ -1,5 +1,5 @@
-name = "has-position"
-description = """
+trait = "has-position"
+doc = """
 Daemons with this trait have one specific value that describes their current position.
 This position can be set (using the set_position method).
 In general, these daemons may not be able to reach exactly the set position.
@@ -10,28 +10,38 @@ They should release busy once they arrive as close as possible to the destinatio
 requires = []
 
 [state]
-position.type = "number"
-destination.type = "number"
 
-[method]
+[state.position]
+type = "float"
+default = nan
 
-[method.get_destination]
-returns = "number"
-description = "Get current daemon destination."
+[state.destination]
+type = "float"
+default = nan
 
-[method.get_units]
-returns = "string"
-description = "Get units of daemon. These units apply to the position and destination fields."
+[messages]
 
-[method.get_position]
-returns = "number"
-description = "Get current daemon position."
+[messages.get_destination]
+doc = "Get current daemon destination."
+response = "float"
 
-[method.set_position]
-args.position.type = "number"
-description = "Give the daemon a new destination, and begin motion towards that destination."
+[messages.get_units]
+doc = "Get units of daemon. These units apply to the position and destination fields."
+response = ["null", "string"]
 
-[method.set_relative]
-returns = "number"
-args.distance.type = "number"
-description = "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination."
+[messages.get_position]
+doc = "Get current daemon position."
+response = "float"
+
+[messages.set_position]
+doc = "Give the daemon a new destination, and begin motion towards that destination."
+request = [
+  {"name"="position", "type"="float"}
+]
+
+[messages.set_relative]
+doc = "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination."
+request = [
+  {"name"="distance", "type"="float"}
+]
+response = "float"

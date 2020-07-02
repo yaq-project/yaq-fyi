@@ -1,7 +1,0 @@
-model = "conex-ag-pr100p"
-description = "Piezo motor rotary stage with direct encoder feedback and closed-loop piezo motor controller/driver."
-make = "newport"
-daemons = ["newport-connex-agp"]
-
-[links]
-manufacturer = "https://www.newport.com/p/CONEX-AG-PR100P"

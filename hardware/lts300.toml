@@ -1,7 +1,0 @@
-model = "lts300"
-description = "300 mm Linear Translation Stage with Integrated Controller, Stepper Motor"
-make = "thorlabs"
-daemons = ["thorlabs-lts300"]
-
-[links]
-manufacturer = "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7652&pn=LTS300"

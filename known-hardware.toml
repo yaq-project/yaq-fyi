@@ -1,0 +1,101 @@
+[adafruit]
+
+[adafruit.2348]
+doc = "Rasperry Pi hat capable of driving up to 4 DC or 2 Stepper motors with full PWM speed control."
+links.manufacturer = "https://www.adafruit.com/product/2348"
+
+[ealing]
+
+[ealing.37-1070-000]
+doc = "50 mm Linear Actuator, With Encoder."
+links.manufacturer = "https://www.ealingcatalog.com/50-mm-encoderdrivertm-oem-actuators.html"
+
+[edaq]
+
+[edaq.epu452]
+doc = "Four channel multifunction isoPod with USB."
+links.manufacturer = "https://www.edaq.com/EPU452"
+
+[horiba]
+
+[horiba.microhr]
+doc = "Short Focal Length Imaging Spectrometer."
+links.manufacturer = "https://www.horiba.com/en_en/products/detail/action/show/Product/microhr-series-1591/"
+
+[lightcon]
+
+[lightcon.topas-800]
+doc = "Optical Parametric Amplifier."
+links.manufacturer = "http://lightcon.com/Product/TOPAS-800.html"
+
+[lightcon.topas-c]
+doc = "Optical Parametric Amplifier."
+links.manufacturer = "http://lightcon.com/Products/opa-topas.html"
+
+[microchip]
+
+[microchip.mcp3428]
+doc = "Four channel low-noise, high accuracy delta-sigma A/D converter with differential inputs and up to 16 bits of resolution"
+links.manufacturer = "https://www.microchip.com/wwwproducts/en/MCP3428"
+
+[microchip.mcp9600]
+doc = "Integrated thermocouple Electromotive Force (EMF) to degree Celsius converter with integrated Cold-Junction compensation"
+links.manufacturer = "https://www.microchip.com/wwwproducts/en/MCP9600"
+
+[new-era]
+
+[new-era.ne1000]
+doc = "Programmable Single Syringe Pump."
+links.manufacturer = "https://www.syringepump.com/NE-1000.php"
+
+[newport]
+
+[newport.conex-ag-pr100p]
+doc = "Piezo motor rotary stage with direct encoder feedback and closed-loop piezo motor controller/driver."
+links.manufacturer = "https://www.newport.com/p/CONEX-AG-PR100P"
+
+[newport.mfa-cc]
+description = "Motorized Linear Stage, Miniature, 25 mm Travel, DC Motor, M2 and M3."
+links.manufacturer = "https://www.newport.com/p/MFA-CC"
+
+[newport.smc100cc]
+doc = "Motion Controller, Single-axis DC Motor."
+links.manufacturer = "https://www.newport.com/p/SMC100CC"
+
+[newport.smc100pp]
+doc = "Motion Controller, Single-axis Stepper Motor."
+links.manufacturer = "https://www.newport.com/p/SMC100PP"
+
+[ocean-insight]
+
+[ocean-insight.usb2000]
+doc = "Fiber optic spectrometer."
+links.manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-series/usb-uv-nir/"
+
+[pmc]
+doc = "Precision MicroControl Corporation (PMC) designs and manufactures high-performance multi-axis motion controllers for servo and stepper motor control."
+links.homepage = "https://pmccorp.com/"
+
+[pmc.dcx-pci100]
+doc = "1 to 8 axis PCI-bus motion controller which can control and drive up to eight small DC servo motors without the need for external amplifiers."
+links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
+
+[rasperry-pi]
+
+[raspberry-pi.4b]
+doc = "Rasperry Pi 4 Model B."
+links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-4-model-b/"
+
+[thorlabs]
+
+[thorlabs.lts300]
+doc = "300 mm Linear Translation Stage with Integrated Controller, Stepper Motor."
+links.manufacturer = "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7652&pn=LTS300"
+
+[ti]
+doc = "Texas Instruments Incorporated"
+links.homepage = "https://www.ti.com/"
+
+[ti.ads1115]
+doc = "16-Bit 860SPS 4-Ch Delta-Sigma ADC With PGA, Oscillator, Vref, Comparator, and I2C."description = "16-Bit 860SPS 4-Ch Delta-Sigma ADC With PGA, Oscillator, Vref, Comparator, and I2C."
+links.manufacturer = "http://www.ti.com/product/ADS1115"

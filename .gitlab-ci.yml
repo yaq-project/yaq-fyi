@@ -7,13 +7,11 @@ stages:
 before_script:
   - python -V
   - pip install jinja2 -U
-  - pip install toml -U
-  
+  - pip install -U toml
 
-tomls:
-  stage: test
+test-build:
   script:
-  - python validate_tomls.py
+  - python build.py
 
 pages:
   stage: deploy

@@ -1,33 +1,41 @@
-name = "has-limits"
-description = """
+trait = "has-limits"
+doc = """
 The has-limits trait extends the has-positions trait with limits.
 It's assumed that any position within the limits is valid.
 """
 requires = ["has-position"]
 
 [config]
-limits.type = "[number, number]"
-limits.default = "[-inf, +inf]"
-limits.description = "Configuration limits are strictly optional."
-out_of_limits.type = "string"
-out_of_limits.options = ["closest", "ignore", "error"]
-out_of_limits.default = "closest"
-out_of_limits.description = "Control behavior of daemon when set_position is given a value outside of limits."
 
+[config.limits]
+type = "array"
+items = "float"
+default = [-inf, +inf]
+doc = "Configuration limits are strictly optional."
+
+[config.out_of_limits]
+type = "enum"
+name = "out_of_limits"
+symbols = ["closest", "ignore", "error"]
+default = "closest"
+doc = "Control behavior of daemon when set_position is given a value outside of limits."
 
 [state]
-hw_limits.type = "[number, number]"
 
-[method]
+[state.hw_limits]
+type = "array"
+items = "float"
+default = [-inf, +inf]
 
-[method.get_limits]
-returns = "[number, number]"
-description = """
-Get daemon limits.
-Limits will be the <a href="https://en.wikipedia.org/wiki/Intersection_(set_theory)">intersection</a> of config limits and driver limits (when appliciable).
-"""
+[messages]
 
-[method.in_limits]
-args.position.type = "number"
-returns = "boolean"
-description = "Check if a given position is within daemon limits."
+[messages.get_limits]
+doc = "Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable)."
+response = {"type"="array", "items"="float"}
+
+[messages.in_limits]
+doc = "Check if a given position is within daemon limits."
+request = [
+  {"name"="position", "type"="float"}
+]
+response = "boolean"

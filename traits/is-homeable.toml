@@ -1,11 +1,11 @@
-name = "is-homeable"
-description = "Exposes a homing procedure"
+trait = "is-homeable"
+doc = "Exposes a homing procedure"
 requires = ["has-position"]
 
-[method]
+[messages]
 
-[method.home]
-description = """
+[messages.home]
+doc = """
 Initiates the homing procedure.
 The daemon will report as busy during the homing procedure.
  After the homing procedure is complete, the daemon will return to the current destination.
