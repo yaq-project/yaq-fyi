@@ -1,7 +1,0 @@
-model = "usb2000"
-description = "Fiber optic spectrometer."
-make = "ocean-insight"
-daemons = ["seabreeze"]
-
-[links]
-manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-series/usb-uv-nir/"

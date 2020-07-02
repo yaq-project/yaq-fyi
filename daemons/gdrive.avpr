@@ -1,0 +1,321 @@
+{
+    "config": {
+        "authorization_url": {
+            "default": "https://accounts.google.com/o/oauth2/v2/auth",
+            "type": "string"
+        },
+        "client_id": {
+            "type": "string"
+        },
+        "client_secret": {
+            "type": "string"
+        },
+        "create_file_url": {
+            "default": "https://www.googleapis.com/upload/drive/v3/files",
+            "type": "string"
+        },
+        "download_url": {
+            "default": "https://drive.google.com/uc?id={file_id}",
+            "type": "string"
+        },
+        "generate_ids_url": {
+            "default": "https://www.googleapis.com/drive/v3/files/generateIds",
+            "type": "string"
+        },
+        "make": {
+            "default": null,
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "model": {
+            "default": null,
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "open_url": {
+            "default": "https://drive.google.com/open?id={file_id}",
+            "type": "string"
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "type": "int"
+        },
+        "root_folder_id": {
+            "type": "string"
+        },
+        "scopes": {
+            "default": [
+                "https://www.googleapis.com/auth/drive.file"
+            ],
+            "items": "string",
+            "type": "array"
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "token_url": {
+            "default": "https://www.googleapis.com/oauth2/v4/token",
+            "type": "string"
+        },
+        "update_file_url": {
+            "default": "https://www.googleapis.com/upload/drive/v3/files/{file_id}",
+            "type": "string"
+        }
+    },
+    "doc": "Upload files to a specified google drive folder",
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-gdrive"
+    },
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-gdrive/issues",
+        "source": "https://gitlab.com/yaq/yaqd-gdrive"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "request": [],
+            "response": "boolean"
+        },
+        "create_file": {
+            "doc": "Create a new file on the remote drive",
+            "request": [
+                {
+                    "name": "path",
+                    "type": "string"
+                },
+                {
+                    "default": null,
+                    "name": "parent_id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                {
+                    "default": null,
+                    "name": "id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            ],
+            "response": "null"
+        },
+        "create_folder": {
+            "doc": "Create a new folder in the remote drive",
+            "request": [
+                {
+                    "name": "path",
+                    "type": "string"
+                },
+                {
+                    "default": null,
+                    "name": "parent_id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                {
+                    "default": null,
+                    "name": "id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            ],
+            "response": "null"
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "request": [],
+            "response": "string"
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "request": [],
+            "response": "string"
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "id_to_download_url": {
+            "doc": "Format an id in a url suitable to download the file.",
+            "request": [
+                {
+                    "name": "id",
+                    "type": "string"
+                }
+            ],
+            "response": "string"
+        },
+        "id_to_open_url": {
+            "doc": "Format an id in a url suitable to open the file.",
+            "request": [
+                {
+                    "name": "id",
+                    "type": "string"
+                }
+            ],
+            "response": "string"
+        },
+        "is_uploaded": {
+            "doc": "Check if a particular file has been procesed and uploaded",
+            "request": [
+                {
+                    "name": "id",
+                    "type": "string"
+                }
+            ],
+            "response": "boolean"
+        },
+        "reserve_id": {
+            "doc": "Insert an id mapping into the state",
+            "request": [
+                {
+                    "name": "client_id",
+                    "type": "string"
+                },
+                {
+                    "default": null,
+                    "doc": "If not given use an existing id if possible or retrieve a new one.",
+                    "name": "drive_id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            ],
+            "response": "string"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        },
+        "update_file": {
+            "doc": "Update the contents of an existing file",
+            "request": [
+                {
+                    "name": "path",
+                    "type": "string"
+                },
+                {
+                    "default": null,
+                    "name": "parent_id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                {
+                    "default": null,
+                    "name": "id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            ],
+            "response": "null"
+        },
+        "upload_folder": {
+            "doc": "Upload a folder and its contents, recursively, to the remote drive",
+            "request": [
+                {
+                    "name": "path",
+                    "type": "string"
+                },
+                {
+                    "default": null,
+                    "name": "parent_id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                },
+                {
+                    "default": null,
+                    "name": "id",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            ],
+            "response": "null"
+        }
+    },
+    "protocol": "gdrive",
+    "requires": [],
+    "state": {
+        "access_token": {
+            "default": null,
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "copy_queue": {
+            "default": [],
+            "items": {
+                "items": "string",
+                "type": "array"
+            },
+            "type": "array"
+        },
+        "id_mapping": {
+            "default": {},
+            "type": "map",
+            "values": "string"
+        },
+        "refresh_token": {
+            "default": null,
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "upload_queue": {
+            "default": [],
+            "items": {
+                "items": "string",
+                "type": "array"
+            },
+            "type": "array"
+        }
+    },
+    "traits": [
+        "is-daemon"
+    ]
+}

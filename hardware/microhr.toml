@@ -1,7 +1,0 @@
-model = "microhr"
-description = "Short Focal Length Imaging Spectrometer."
-make = "horiba"
-daemons = ["micro-hr"]
-
-[links]
-manufacturer = "https://www.horiba.com/en_en/products/detail/action/show/Product/microhr-series-1591/"

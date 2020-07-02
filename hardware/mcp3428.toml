@@ -1,7 +1,0 @@
-model = "mcp3428"
-description = "Four channel low-noise, high accuracy delta-sigma A/D converter with differential inputs and up to 16 bits of resolution"
-make = "microchip"
-daemons = ["mcp3428"]
-
-[links]
-manufacturer = "https://www.microchip.com/wwwproducts/en/MCP3428"

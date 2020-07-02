@@ -1,7 +1,0 @@
-model = "ne1000"
-description = "Programmable Single Syringe Pump."
-make = "new-era"
-daemons = ["ne1000"]
-
-[links]
-manufacturer = "https://www.syringepump.com/NE-1000.php"

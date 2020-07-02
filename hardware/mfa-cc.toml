@@ -1,7 +1,0 @@
-model = "mfa-cc"
-description = "Motorized Linear Stage, Miniature, 25 mm Travel, DC Motor, M2 and M3."
-make = "newport"
-daemons = ["newport-smc100"]
-
-[links]
-manufacturer = "https://www.newport.com/p/MFA-CC"

@@ -1,7 +1,0 @@
-model = "37-1070-000"
-description = "50 mm Linear Actuator, With Encoder."
-make = "ealing"
-daemons = ["pmc"]
-
-[links]
-manufacturer = "https://www.ealingcatalog.com/50-mm-encoderdrivertm-oem-actuators.html"

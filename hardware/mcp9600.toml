@@ -1,7 +1,0 @@
-model = "mcp9600"
-description = "Integrated thermocouple Electromotive Force (EMF) to degree Celsius converter with integrated Cold-Junction compensation"
-make = "microchip"
-daemons = ["mcp9600"]
-
-[links]
-manufacturer = "https://www.microchip.com/wwwproducts/en/MCP9600"

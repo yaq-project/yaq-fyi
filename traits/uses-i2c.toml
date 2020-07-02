@@ -1,7 +1,9 @@
-name = "uses-i2c"
-description = "Device which communicates over an I2C bus with a given address"
+trait = "uses-i2c"
+doc = "Device which communicates over an I2C bus with a given address"
 requires = ["uses-serial"]
 
 [config]
-i2c_addr.type = "integer"
-i2c_addr.description = "I2C bus address."
+
+[config.i2c_addr]
+doc = "I2C bus address."
+type = "int"

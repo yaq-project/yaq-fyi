@@ -1,7 +1,0 @@
-model = "4B"
-description = "Rasperry Pi 4 Model B."
-make = "rasperry-pi"
-daemons = ["gpio-digital-output"]
-
-[links]
-manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-4-model-b/"

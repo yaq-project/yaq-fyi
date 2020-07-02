@@ -1,71 +1,57 @@
-name = "is-daemon"
-description = """
-Core trait common to all yaq daemons.
-"""
+trait = "is-daemon"
+doc = "Core trait common to all yaq daemons."
 requires = []
 
 [config]
-port.type = "integer"
-port.description = "TCP port for daemon to occupy."
-serial.type = "string"
-serial.default = "NULL"
-serial.description = "Serial number for the particular device represented by the daemon"
-make.type = "String"
-make.default = "NULL"
-model.type = "String"
-model.default = "NULL"
 
-[method]
+[config.port]
+doc = "TCP port for daemon to occupy."
+type = "int"
 
-[method.busy]
-description = "Returns true if daemon is currently busy."
-returns = "boolean"
+[config.serial]
+doc = "Serial number for the particular device represented by the daemon"
+type = ["null", "string"]
+default = "__null__"
 
-[method.id]
-description = """
+[config.make]
+type = ["null", "string"]
+default = "__null__"
+
+[config.model]
+type = ["null", "string"]
+default = "__null__"
+
+[messages]
+
+[messages.busy]
+doc = "Returns true if daemon is currently busy."
+response = "boolean"
+
+[messages.id]
+doc = """
 JSON object with information to identify the daemon, including name, kind, make, model, serial.
 """
-returns = "dictionary"
+response = {type="map", "values"=["null", "string"]}
 
-[method.get_config_filepath]
-description = """
+[messages.get_config_filepath]
+doc = """
 String representing the absolute filepath of the configuration file on the host machine.
 """
-returns = "string"
+response = "string"
 
-[method.get_config]
-description = """
+[messages.get_config]
+doc = """
 Full configuration for the individual daemon as defined in the TOML file.
 This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
 """
-returns = "dictionary"
+response = "string"
 
-[method.get_traits]
-description = "Get a full list of the daemon traits."
-returns = "[string]"
+[messages.shutdown]
+doc = "Cleanly shutdown (or restart) daemon."
+request = [
+  {"name"="restart", "type"="boolean", "default"=false},
+]
 
-[method.get_state]
-description = "Get daemon state, as saved in the state.toml file."
-returns = "dictionary"
-
-[method.set_state]
-description = "Set daemon state. Accepts any subset of the state dictionary, dynamically."
-
-[method.list_methods]
-description = "Get an array of all known public method names."
-returns = "[string]"
-
-[method.shutdown]
-description = "Cleanly shutdown (or restart) daemon."
-args.restart.type = "boolean"
-args.restart.default = false
-
-[method.help]
-description = """
-If method not given, return a human-readable string with information about the daemon as a whole.
-If method is given, return a human-readable string with the signature of the method on the first line and a description of the method on subsequent lines.
-The signature is not specified to be in any particular language.
-It is intended for usage by humans ONLY.
-"""
-args.method.type = "string"
-returns = "string"
+[messages.get_state]
+doc = "Get version of the running daemon"
+response = "string"

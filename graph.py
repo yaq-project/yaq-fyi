@@ -6,6 +6,7 @@ import pathlib
 import copy
 import collections
 import toml
+import json
 
 
 __here__ = pathlib.Path(__file__).resolve().parent
@@ -16,8 +17,9 @@ __here__ = pathlib.Path(__file__).resolve().parent
 
 class Trait(object):
     def __init__(self, **kwargs):
-        self.name = kwargs["name"]
-        self.description = kwargs["description"]
+        self.trait = kwargs["trait"]
+        self.name = self.trait
+        self.doc = kwargs["doc"]
         self.requires = dict()
         for r in kwargs["requires"]:
             self.requires[r] = []
@@ -39,7 +41,7 @@ traits = {}
 for name in os.listdir(__here__ / "traits"):
     dic = toml.load(__here__ / "traits" / name)
     t = Trait(**dic)
-    traits[t.name] = t
+    traits[t.trait] = t
 
 # sort
 traits = collections.OrderedDict(sorted(traits.items()))
@@ -78,8 +80,9 @@ while todo:
 
 class Daemon(object):
     def __init__(self, **kwargs):
-        self.name = kwargs["name"]
-        self.description = kwargs["description"]
+        self.protocol = kwargs["protocol"]
+        self.name = self.protocol
+        self.doc = kwargs["doc"]
         self.links = kwargs.get("links", dict())
         self.installation = kwargs.get("installation", dict())
         self.traits = dict()
@@ -106,7 +109,8 @@ daemons = {}
 
 # initialize
 for name in os.listdir(__here__ / "daemons"):
-    dic = toml.load(__here__ / "daemons" / name)
+    with open(__here__ / "daemons" / name, "r") as f:
+        dic = json.load(f)
     d = Daemon(**dic)
     daemons[d.name] = d
 
@@ -155,7 +159,7 @@ class Hardware(object):
 hardwares = {}
 
 # initialize
-for name in os.listdir(__here__ / "hardware"):
+for name in []:#os.listdir(__here__ / "hardware"):
     dic = toml.load(__here__ / "hardware" / name)
     h = Hardware(**dic)
     hardwares[h.model] = h
