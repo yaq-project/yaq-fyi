@@ -44,6 +44,17 @@ for name in names:
     with open(p, "w") as fh:
         fh.write(template.render(title=name))
 
+# packages ----------------------------------------------------------------------------------------
+
+if not os.path.isdir(__here__ / "public" / "packages"):
+    os.mkdir(__here__ / "public" / "packages")
+
+p = __here__ / "public" / "packages" / "index.html"
+template = env.get_template("packages.html")
+with open(p, "w") as fh:
+    pkgs = toml.load(__here__ / "known-packages.toml")
+    fh.write(template.render(title="packages", packages=pkgs))
+
 # traits ------------------------------------------------------------------------------------------
 
 if not os.path.isdir(__here__ / "public" / "traits"):
