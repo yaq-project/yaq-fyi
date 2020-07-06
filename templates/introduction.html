@@ -84,7 +84,7 @@ Once installed, the daemon will initiate when your computer boots up and run sil
 The yaq protocol is a simple standard for communicating between clients and daemons.
 This protocol is the true "core" of yaq, and must be implemented by each yaq-compliant client and daemon.
 Luckily, the yaq protocol is based on popular standards which make implementation easy-to-trivial in many different languages.
-The yaq protocol is made up of two components: the transport layer (TCP), and the format (yaq-RPC).
+The yaq protocol is made up of two components: the transport layer (TCP), and the format (Avro RPC).
 </p>
 
 <p>
@@ -100,9 +100,11 @@ The daemon socket transport layer is fully specified in <a href="https://yeps.ya
 <p>
 The yaq protocol defines a format which daemons and clients must use.
 This format is lightweight and can transmit large amounts of data quickly.
-yaq uses <a href="https://msgpack.org/">msgpack</a> to serialize data for transfer.
-Like TCP, msgpack is ubiquitous, with core functionality already implemented in many different languages.
-The yaq format is fully specified in <a href="https://yeps.yaq.fyi/100/">YEP-100</a>.
+yaq uses <a href="https://avro.apache.org/">Apache Avro</a> to serialize data for transfer.
+Avro is implemented in many languages already and is standardized with the full specification <a href="https://avro.apache.org/docs/current/spec.html">on their website</a>
+Avro provides a flexible and well defined type system for yaq, as well as a standardized RPC protocol specification.
+We reuse the protocol file and type system so define configuration and state variables and their default values in a consistent manor.
+The usage of Avro and yaq specific protocol entries ard fully specified in <a href="https://yeps.yaq.fyi/107/">YEP-107</a>.
 </p>
 
 {{ helpers.h2("configuration & state") }}
@@ -124,7 +126,7 @@ Daemon configuration is fully specified in <a href="https://yeps.yaq.fyi/102">YE
 Hardware state recall can be a major frustration in instrumental software development.
 Maintaining up-to-date state information, e.g. motor position, can be challenging.
 Many hardware interfaces (serial communication, drivers) do not store this information internally, making it the responsibility of the instrumental software to "keep track".
-yaq daemons record their state to a simple text file, and expose this information transparently through the yaq-RPC interface.
+yaq daemons record their state to a simple text file, and expose this information transparently through the Avro RPC interface.
 Daemon state writing is fully specified in <a href="https://yeps.yaq.fyi/103">YEP-103</a>.
 </p>
 
@@ -143,7 +145,7 @@ yaq clients do not need to invoke these patterns.
 </p>
 
 <p>
-As a rule, methods called using yaq-RPC return quickly.
+As a rule, methods called using the RPC return quickly in the yaq ecosystem.
 Methods do not wait on hardware or anything else, and should return as quickly as communication allows.
 Methods that instruct hardware to move merely initiate motion, and never block client flow.
 This means that it is relatively easy to write entirely synchronous clients.
