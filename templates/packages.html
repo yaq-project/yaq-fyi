@@ -1,0 +1,39 @@
+{% include "header.html" %}
+
+<h1>
+<a href=../>yaq</a>/packages
+</h1>
+
+<hr>
+
+{% for type_name, type in packages.items() %}
+
+{{ helpers.h2(type_name) }}
+
+<table style="width:100%">
+
+<tr>
+<th> </th>
+{% for badge_name in type["badges"] %}
+    <th>{{ badge_name }}</th>
+{% endfor %}
+</tr>
+
+{% for package_name, package in type.items() %}
+{% if package_name not in ["badges"] %}
+<tr>
+<th> {{ package_name }} </th>
+{% for badge_name in type["badges"] %}
+    <th>{{ package.get(badge_name, "") }}</th>
+{% endfor %}
+</tr>
+{% endif %}
+{% endfor %}
+
+</table>
+
+{% endfor %}
+
+
+
+{% include "footer.html" %}

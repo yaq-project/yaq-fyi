@@ -48,3 +48,12 @@ code {
 .tab60 {
   margin-left: 8ch;
 }
+
+table, th, td {
+  border: 1px solid #969896;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
