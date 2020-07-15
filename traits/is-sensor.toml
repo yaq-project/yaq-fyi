@@ -7,45 +7,12 @@ requires = []
 
 [messages]
 
-[messages.measure]
-doc = "Initiate a measurement. Returns integer, measurement ID."
-request = [
-  {"name"="loop", "type"="boolean", "default"=false}
-]
-response = "int"
-
 [messages.get_measured]
-doc = "Get most recent measured value. Additional key of measurement ID."
+doc = "Get most recent measured value."
 
 [messages.get_measured.response]
 type = "map"
-[[messages.get_measured.response.values]]
-type = "float"
-
-[[messages.get_measured.response.values]]
-type = "record"
-name = "ndarray"
-logicalType = "ndarray"
-[[messages.get_measured.response.values.fields]]
-name = "shape"
-
-[messages.get_measured.response.values.fields.type]
-type = "array"
-items = "int"
-[[messages.get_measured.response.values.fields]]
-name = "typestr"
-type = "string"
-
-[[messages.get_measured.response.values.fields]]
-name = "data"
-type = "bytes"
-
-[[messages.get_measured.response.values.fields]]
-name = "version"
-type = "int"
-
-[messages.stop_looping]
-doc = "Stop looping measurement."
+values = ["float", "ndarray"]
 
 [messages.get_channel_names]
 doc = "Get current channel names."
