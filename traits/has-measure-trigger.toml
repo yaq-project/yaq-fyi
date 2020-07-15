@@ -1,0 +1,23 @@
+trait = "has-measure-trigger"
+doc = """
+Daemons with the has-measure-trigger allow measurement to be software triggered over the RPC.
+"""
+requires = ["is-sensor"]
+
+[config]
+
+[config.loop_at_startup]
+doc = "If set to true, the daemon will begin to loop measure as soon as it starts."
+type = "boolean"
+
+[messages]
+
+[messages.measure]
+doc = "Initiate a measurement. Returns integer, measurement ID."
+request = [
+  {"name"="loop", "type"="boolean", "default"=false}
+]
+response = "int"
+
+[messages.stop_looping]
+doc = "Stop looping measurement."

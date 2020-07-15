@@ -167,8 +167,6 @@
             "response": "null"
         }
     },
-    "name": "is-discrete",
-    "protcol": "has-position",
     "protocol": "fake-discrete-hardware",
     "requires": [],
     "state": {
@@ -189,10 +187,10 @@
             ]
         }
     },
+    "trait": "has-position",
     "traits": [
-        "is-discrete",
         "is-daemon",
+        "is-discrete",
         "has-position"
-    ],
-    "version": "2.0.0"
+    ]
 }

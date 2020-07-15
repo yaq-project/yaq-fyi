@@ -183,9 +183,8 @@
     },
     "trait": "has-position",
     "traits": [
-        "is-daemon",
         "has-position",
-        "has-limits"
-    ],
-    "version": "2.0.0"
+        "has-limits",
+        "is-daemon"
+    ]
 }
