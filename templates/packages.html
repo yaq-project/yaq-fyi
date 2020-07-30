@@ -11,23 +11,17 @@
 {{ helpers.h2(type_name) }}
 
 <table style="width:100%">
-
-<tr>
-<th> </th>
-{% for badge_name in type["badges"] %}
-    <th>{{ badge_name }}</th>
-{% endfor %}
-</tr>
+<col style="width:30%">
 
 {% for package_name, package in type.items() %}
-{% if package_name not in ["badges"] %}
 <tr>
 <th> {{ package_name }} </th>
-{% for badge_name in type["badges"] %}
-    <th>{{ package.get(badge_name, "") }}</th>
+<th>
+{% for badge in package["badges"] %}
+    {{ badge }}
 {% endfor %}
+</th>
 </tr>
-{% endif %}
 {% endfor %}
 
 </table>
