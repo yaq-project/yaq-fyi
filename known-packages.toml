@@ -48,7 +48,7 @@ badges = [
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-horiba/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-horiba'></a>",
   "<a href='https://pypi.org/project/yaqd-horiba'><img src='https://img.shields.io/pypi/v/yaqd-horiba'></a>",
-  "<a href='https://anaconda.org/conda-forge/yaqd-horiba'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-horba'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-horiba'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-horiba'></a>",
 ]
 
 [daemons.yaqd-lightcon]
