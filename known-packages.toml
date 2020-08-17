@@ -85,6 +85,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-system-monitor'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-system-monitor'></a>",
 ]
 
+[daemons.yaqd-ti]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-ti/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-ti'></a>",
+  "<a href='https://pypi.org/project/yaqd-ti'><img src='https://img.shields.io/pypi/v/yaqd-ti'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-ti'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ti'></a>",
+]
+
 [daemons.yaqd-newport]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-newport/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-newport'></a>",
