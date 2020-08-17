@@ -1,0 +1,236 @@
+{
+    "config": {
+        "channels": {
+            "name": "channels",
+            "symbols": [
+                "01",
+                "03",
+                "13",
+                "23",
+                "0",
+                "1",
+                "2",
+                "3"
+            ],
+            "type": "enum"
+        },
+        "fsr": {
+            "name": "fsr",
+            "symbols": [
+                "6.144",
+                "4.096",
+                "2.048",
+                "1.024",
+                "0.512"
+            ],
+            "type": "enum"
+        },
+        "i2c_addr": {
+            "default": 72,
+            "doc": "I2C bus address.",
+            "type": "int"
+        },
+        "loop_at_startup": {
+            "doc": "If set to true, the daemon will begin to loop measure as soon as it starts.",
+            "type": "boolean"
+        },
+        "make": {
+            "default": null,
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "model": {
+            "default": null,
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "type": "int"
+        },
+        "rate": {
+            "name": "rate",
+            "symbols": [
+                "8",
+                "16",
+                "32",
+                "64",
+                "128",
+                "250",
+                "475",
+                "860"
+            ],
+            "type": "enum"
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        }
+    },
+    "doc": "Daemon to interface with ADS1115 four-channel ADC.\n",
+    "hardware": [
+        "ti:ads1115"
+    ],
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-ti/-/issues/",
+        "manufacturer": "https://www.ti.com/product/ADS1115",
+        "source": "https://gitlab.com/yaq/yaqd-ti/"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "request": [],
+            "response": "boolean"
+        },
+        "direct_serial_write": {
+            "doc": "Expose direct access to the serial port to clients.\n\nThis should not be encouraged for normal use, but may be very important for debugging.\nIf a device is expected to return data, it should be logged at the INFO level, not returned to the client.\nThis is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.\nSetting `busy` to true is encouraged, but individual daemon writers should consider their own use case.\n",
+            "request": [
+                {
+                    "name": "message",
+                    "type": "bytes"
+                }
+            ],
+            "response": "null"
+        },
+        "get_channel_names": {
+            "doc": "Get current channel names.",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_channel_shapes": {
+            "doc": "Get current channel shapes. If list is empty, channel is scalar.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": {
+                    "items": "int",
+                    "type": "array"
+                }
+            }
+        },
+        "get_channel_units": {
+            "doc": "Get current channel units.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "request": [],
+            "response": "string"
+        },
+        "get_measured": {
+            "doc": "Get most recent measured value.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "float",
+                    "ndarray"
+                ]
+            }
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "request": [],
+            "response": "string"
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "measure": {
+            "doc": "Initiate a measurement. Returns integer, measurement ID.",
+            "request": [
+                {
+                    "default": false,
+                    "name": "loop",
+                    "type": "boolean"
+                }
+            ],
+            "response": "int"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        },
+        "stop_looping": {
+            "doc": "Stop looping measurement.",
+            "request": [],
+            "response": "null"
+        }
+    },
+    "protocol": "ads1115",
+    "requires": [],
+    "trait": "is-sensor",
+    "traits": [
+        "uses-serial",
+        "is-sensor",
+        "is-daemon",
+        "has-measure-trigger",
+        "uses-i2c"
+    ],
+    "types": [
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
+    ]
+}
