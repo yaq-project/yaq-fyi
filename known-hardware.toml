@@ -82,6 +82,10 @@ links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
 
 [rasperry-pi]
 
+[raspberry-pi."3b+"]
+doc = "Rasperry Pi 3 Model B+."
+links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/"
+
 [raspberry-pi.4b]
 doc = "Rasperry Pi 4 Model B."
 links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-4-model-b/"

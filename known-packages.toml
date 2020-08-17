@@ -69,7 +69,6 @@ badges = [
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-rpi-gpio/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-rpi-gpio'></a>",
   "<a href='https://pypi.org/project/yaqd-rpi-gpio'><img src='https://img.shields.io/pypi/v/yaqd-rpi-gpio'></a>",
-  "<a href='https://anaconda.org/conda-forge/yaqd-rpi-gpio'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-rpi-gpio'></a>",
 ]
 
 [daemons.yaqd-seabreeze]
