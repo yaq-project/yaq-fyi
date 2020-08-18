@@ -58,6 +58,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-lightcon'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-lightcon'></a>",
 ]
 
+[daemons.yaqd-microchip]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-microchip/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-microchip'></a>",
+  "<a href='https://pypi.org/project/yaqd-microchip'><img src='https://img.shields.io/pypi/v/yaqd-microchip'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-microchip'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-microchip'></a>",
+]
+
 [daemons.yaqd-pmc]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-pmc/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-pmc'></a>",
