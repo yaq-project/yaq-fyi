@@ -9,7 +9,7 @@ badges = [
 
 [clients.yaqc-python]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqc/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqc-python'></a>",
+  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
   "<a href='https://pypi.org/project/yaqc'><img src='https://img.shields.io/pypi/v/yaqc'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqc'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc'></a>",
 ]
@@ -25,14 +25,14 @@ badges = [
 
 [daemons.yaqd-core-python]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-core-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-core-python'></a>",
+  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
   "<a href='https://pypi.org/project/yaqd-core'><img src='https://img.shields.io/pypi/v/yaqd-core'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-core'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-core'></a>",
 ]
 
 [daemons.yaqd-fakes]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-fakes/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-fakes'></a>",
+  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
   "<a href='https://pypi.org/project/yaqd-fakes'><img src='https://img.shields.io/pypi/v/yaqd-fakes'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-fakes'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-fakes'></a>",
 ]
