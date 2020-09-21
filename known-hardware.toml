@@ -55,7 +55,7 @@ doc = "Piezo motor rotary stage with direct encoder feedback and closed-loop pie
 links.manufacturer = "https://www.newport.com/p/CONEX-AG-PR100P"
 
 [newport.mfa-cc]
-description = "Motorized Linear Stage, Miniature, 25 mm Travel, DC Motor, M2 and M3."
+doc = "Motorized Linear Stage, Miniature, 25 mm Travel, DC Motor, M2 and M3."
 links.manufacturer = "https://www.newport.com/p/MFA-CC"
 
 [newport.smc100cc]

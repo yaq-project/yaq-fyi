@@ -60,7 +60,7 @@ def state(k, v, container):
     s = """
     <p class="tab30">
     <b>{{ k }}</b> ({{ v["type"] }}) <br>
-    {% if "description" in v.keys() %} {{ v["description"] }} <br> {% endif %}
+    {% if "doc" in v.keys() %} {{ v["doc"] }} <br> {% endif %}
     {% if "origin" in v.keys() %}
         <i>{{ container.format_origin(v["origin"]) }}</i>
     {% endif %}

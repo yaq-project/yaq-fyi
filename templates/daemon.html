@@ -6,7 +6,7 @@
 
 <hr>
 
-{{ daemon.description }}
+{{ daemon.doc }}
 
 {% if daemon.links %}
 {{ helpers.h2("external links") }}
@@ -76,7 +76,7 @@
 {% if daemon.messages %}
 {{ helpers.h2("messages") }}
 <p>
-  Daemons with the {{ daemon["name"] }} trait expose the following public messages:
+  The {{ daemon["name"] }} daemon will expose the following public messages:
 </p>
 {% for k, v in daemon.messages.items() %}
   {{ helpers.message(k, v, daemon) }}
