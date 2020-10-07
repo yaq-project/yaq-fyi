@@ -139,6 +139,13 @@ badges = [
 
 [tooling]
 
+[tooling.qtypes]
+badges = [
+  "<a href='https://gitlab.com/yaq/qtypes/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/qtypes'></a>",
+  "<a href='https://pypi.org/project/qtypes'><img src='https://img.shields.io/pypi/v/qtypes'></a>",
+  "<a href='https://anaconda.org/conda-forge/qtypes'><img src='https://img.shields.io/conda/vn/conda-forge/qtypes'></a>",
+]
+
 [tooling.thorlabs-apt-protocol]
 badges = [
   "<a href='https://gitlab.com/yaq/thorlabs-apt-protocol/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/thorlabs-apt-protocol'></a>",
