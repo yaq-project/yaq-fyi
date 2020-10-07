@@ -139,6 +139,13 @@ badges = [
 
 [tooling]
 
+[tooling.thorlabs-apt-protocol]
+badges = [
+  "<a href='https://gitlab.com/yaq/thorlabs-apt-protocol/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/thorlabs-apt-protocol'></a>",
+  "<a href='https://pypi.org/project/thorlabs-apt-protocol'><img src='https://img.shields.io/pypi/v/thorlabs-apt-protocol'></a>",
+  "<a href='https://anaconda.org/conda-forge/thorlabs-apt-protocol'><img src='https://img.shields.io/conda/vn/conda-forge/thorlabs-apt-protocol'></a>",
+]
+
 [tooling.yaq-traits]
 badges = [
   "<a href='https://gitlab.com/yaq/yaq-traits/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-traits'></a>",
