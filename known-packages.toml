@@ -106,6 +106,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-newport'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-newport'></a>",
 ]
 
+[daemons.yaqd-ni]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-ni/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-ni'></a>",
+  "<a href='https://pypi.org/project/yaqd-ni'><img src='https://img.shields.io/pypi/v/yaqd-ni'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-ni'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ni'></a>",
+]
+
 [daemons.yaqd-thorlabs]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-thorlabs/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-thorlabs'></a>",

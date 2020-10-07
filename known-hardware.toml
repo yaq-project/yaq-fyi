@@ -66,6 +66,12 @@ links.manufacturer = "https://www.newport.com/p/SMC100CC"
 doc = "Motion Controller, Single-axis Stepper Motor."
 links.manufacturer = "https://www.newport.com/p/SMC100PP"
 
+[ni]
+
+[ni.pci-6251]
+doc = "PCI Multifunction I/O Device 'DAQ'."
+links.manufacturer = "https://www.ni.com/en-us/support/model.pci-6251.html"
+
 [ocean-insight]
 
 [ocean-insight.usb2000]
