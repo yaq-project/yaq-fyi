@@ -7,6 +7,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqc-bluesky'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc-bluesky'></a>",
 ]
 
+[clients.yaqc-cmds]
+badges = [
+  "<a href='https://travis-ci.com/github/wright-group/yaqc-cmds/builds'><img src='https://img.shields.io/travis/com/wright-group/yaqc-cmds'></a>",
+  "<a href='https://pypi.org/project/yaqc-cmds'><img src='https://img.shields.io/pypi/v/yaqc-cmds'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqc-cmds'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc-cmds'></a>",
+]
+
 [clients.yaqc-python]
 badges = [
   "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
@@ -65,6 +72,20 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-microchip'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-microchip'></a>",
 ]
 
+[daemons.yaqd-newport]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-newport/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-newport'></a>",
+  "<a href='https://pypi.org/project/yaqd-newport'><img src='https://img.shields.io/pypi/v/yaqd-newport'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-newport'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-newport'></a>",
+]
+
+[daemons.yaqd-ni]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-ni/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-ni'></a>",
+  "<a href='https://pypi.org/project/yaqd-ni'><img src='https://img.shields.io/pypi/v/yaqd-ni'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-ni'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ni'></a>",
+]
+
 [daemons.yaqd-pmc]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-pmc/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-pmc'></a>",
@@ -99,25 +120,18 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-ti'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ti'></a>",
 ]
 
-[daemons.yaqd-newport]
-badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-newport/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-newport'></a>",
-  "<a href='https://pypi.org/project/yaqd-newport'><img src='https://img.shields.io/pypi/v/yaqd-newport'></a>",
-  "<a href='https://anaconda.org/conda-forge/yaqd-newport'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-newport'></a>",
-]
-
-[daemons.yaqd-ni]
-badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-ni/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-ni'></a>",
-  "<a href='https://pypi.org/project/yaqd-ni'><img src='https://img.shields.io/pypi/v/yaqd-ni'></a>",
-  "<a href='https://anaconda.org/conda-forge/yaqd-ni'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ni'></a>",
-]
-
 [daemons.yaqd-thorlabs]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-thorlabs/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-thorlabs'></a>",
   "<a href='https://pypi.org/project/yaqd-thorlabs'><img src='https://img.shields.io/pypi/v/yaqd-thorlabs'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-thorlabs'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-thorlabs'></a>",
+]
+
+[daemons.yaqd-wright]
+badges = [
+  "<a href='https://travis-ci.com/github/wright-group/yaqd-wright/builds'><img src='https://img.shields.io/travis/com/wright-group/yaqd-wright'></a>",
+  "<a href='https://pypi.org/project/yaqd-wright'><img src='https://img.shields.io/pypi/v/yaqd-wright'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-wright'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-wright'></a>",
 ]
 
 [daemons.yaqd-zaber]
