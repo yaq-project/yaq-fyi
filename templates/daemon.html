@@ -33,11 +33,8 @@
   The {{ daemon.name }} daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
 </p>
 <p class="tab30">
-{% for t in daemon.traits.keys() %}
+{% for t in daemon.traits %}
   <a href=../../traits/{{ t }}>{{ t }}</a>
-  {% if daemon.traits[t] %}
-    <i>({{ daemon.format_origin(daemon.traits[t]) }})</i>
-  {% endif %}
   <br>
 {% endfor %}
 </p>

@@ -1,0 +1,71 @@
+{
+    "config": {
+        "loop_at_startup": {
+            "default": false,
+            "doc": "If set to true, the daemon will begin to loop measure as soon as it starts.",
+            "type": "boolean"
+        }
+    },
+    "doc": "Daemons with the has-measure-trigger allow measurement to be software triggered over the RPC.\n",
+    "messages": {
+        "get_channel_names": {
+            "doc": "Get current channel names.",
+            "origin": "is-sensor",
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_channel_shapes": {
+            "doc": "Get current channel shapes. If list is empty, channel is scalar.",
+            "origin": "is-sensor",
+            "response": {
+                "type": "map",
+                "values": {
+                    "items": "int",
+                    "type": "array"
+                }
+            }
+        },
+        "get_channel_units": {
+            "doc": "Get current channel units.",
+            "origin": "is-sensor",
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "get_measured": {
+            "doc": "Get most recent measured value.",
+            "origin": "is-sensor",
+            "response": {
+                "type": "map",
+                "values": [
+                    "double",
+                    "ndarray"
+                ]
+            }
+        },
+        "measure": {
+            "doc": "Initiate a measurement. Returns integer, measurement ID.",
+            "request": [
+                {
+                    "default": false,
+                    "name": "loop",
+                    "type": "boolean"
+                }
+            ],
+            "response": "int"
+        },
+        "stop_looping": {
+            "doc": "Stop looping measurement."
+        }
+    },
+    "requires": [
+        "is-sensor"
+    ],
+    "trait": "has-measure-trigger"
+}

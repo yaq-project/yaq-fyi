@@ -12,11 +12,8 @@
 {% if trait.requires %}
 {{ helpers.h2("requires") }}
 <p class="tab30">
-{% for r in trait.requires.keys() %}
+{% for r in trait.requires %}
   <a href=../{{ r }}>{{ r }}</a>
-  {% if trait.requires[r] %}
-     <i>{{ trait.format_origin(trait.requires[r]) }}</i>
-  {% endif %}
   <br>
 {% endfor %}
 </p>
@@ -59,11 +56,8 @@
   The following daemons implement the {{ trait.name }} trait:
 </p>
 <p class="tab30">
-{% for d in trait.daemons.keys() %}
+{% for d in trait.daemons %}
   <a href=../../daemons/{{ d }}>{{ d }}</a>
-  {% if trait.daemons[d] %}
-     <i>({{ trait.format_origin(trait.daemons[d]) }})</i>
-  {% endif %}
   <br>
 {% endfor %}
 </p>
