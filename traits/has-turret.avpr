@@ -1,0 +1,30 @@
+{
+    "doc": "Represents a device with an indexed turret that has a set of discrete positions, separate from the device's setpoint\n",
+    "messages": {
+        "get_turret": {
+            "doc": "Get current turret index.",
+            "response": "int"
+        },
+        "set_turret": {
+            "doc": "Set the turret to a given index.",
+            "request": [
+                {
+                    "name": "turret",
+                    "type": "int"
+                }
+            ]
+        }
+    },
+    "requires": [],
+    "state": {
+        "turret": {
+            "default": "__null__",
+            "doc": "Current turret index",
+            "type": [
+                "null",
+                "int"
+            ]
+        }
+    },
+    "trait": "has-turret"
+}
