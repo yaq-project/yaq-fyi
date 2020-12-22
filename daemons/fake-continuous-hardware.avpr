@@ -6,7 +6,7 @@
                 1
             ],
             "doc": "Configuration limits are strictly optional.",
-            "items": "float",
+            "items": "double",
             "origin": "has-limits",
             "type": "array"
         },
@@ -97,14 +97,14 @@
             "doc": "Get current daemon destination.",
             "origin": "has-position",
             "request": [],
-            "response": "float"
+            "response": "double"
         },
         "get_limits": {
             "doc": "Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable).",
             "origin": "has-limits",
             "request": [],
             "response": {
-                "items": "float",
+                "items": "double",
                 "type": "array"
             }
         },
@@ -112,7 +112,7 @@
             "doc": "Get current daemon position.",
             "origin": "has-position",
             "request": [],
-            "response": "float"
+            "response": "double"
         },
         "get_state": {
             "doc": "Get version of the running daemon",
@@ -147,7 +147,7 @@
             "request": [
                 {
                     "name": "position",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
             "response": "boolean"
@@ -158,7 +158,7 @@
             "request": [
                 {
                     "name": "position",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
             "response": "null"
@@ -169,10 +169,10 @@
             "request": [
                 {
                     "name": "distance",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
-            "response": "float"
+            "response": "double"
         },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
@@ -193,24 +193,23 @@
         "destination": {
             "default": NaN,
             "origin": "has-position",
-            "type": "float"
+            "type": "double"
         },
         "hw_limits": {
             "default": [
                 -Infinity,
                 Infinity
             ],
-            "items": "float",
+            "items": "double",
             "origin": "has-limits",
             "type": "array"
         },
         "position": {
             "default": NaN,
             "origin": "has-position",
-            "type": "float"
+            "type": "double"
         }
     },
-    "trait": "has-position",
     "traits": [
         "has-limits",
         "has-position",
