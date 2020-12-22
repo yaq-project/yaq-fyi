@@ -2,6 +2,7 @@
     "config": {
         "baud_rate": {
             "default": 115200,
+            "origin": "uses-uart",
             "type": "int"
         },
         "chan_ident": {
@@ -20,11 +21,13 @@
                 Infinity
             ],
             "doc": "Configuration limits are strictly optional.",
-            "items": "float",
+            "items": "double",
+            "origin": "has-limits",
             "type": "array"
         },
         "make": {
             "default": "Thorlabs",
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -32,6 +35,7 @@
         },
         "model": {
             "default": "KST101",
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -41,6 +45,7 @@
             "default": "closest",
             "doc": "Control behavior of daemon when set_position is given a value outside of limits.",
             "name": "out_of_limits",
+            "origin": "has-limits",
             "symbols": [
                 "closest",
                 "ignore",
@@ -50,17 +55,20 @@
         },
         "port": {
             "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
             "type": "int"
         },
         "serial": {
             "default": null,
             "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
             ]
         },
         "serial_port": {
+            "origin": "uses-uart",
             "type": "string"
         },
         "source": {
@@ -88,11 +96,13 @@
     "messages": {
         "busy": {
             "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
             "request": [],
             "response": "boolean"
         },
         "direct_serial_write": {
             "doc": "Expose direct access to the serial port to clients.\n\nThis should not be encouraged for normal use, but may be very important for debugging.\nIf a device is expected to return data, it should be logged at the INFO level, not returned to the client.\nThis is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.\nSetting `busy` to true is encouraged, but individual daemon writers should consider their own use case.\n",
+            "origin": "uses-serial",
             "request": [
                 {
                     "name": "message",
@@ -103,39 +113,46 @@
         },
         "get_config": {
             "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_config_filepath": {
             "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_destination": {
             "doc": "Get current daemon destination.",
+            "origin": "has-position",
             "request": [],
-            "response": "float"
+            "response": "double"
         },
         "get_limits": {
             "doc": "Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable).",
+            "origin": "has-limits",
             "request": [],
             "response": {
-                "items": "float",
+                "items": "double",
                 "type": "array"
             }
         },
         "get_position": {
             "doc": "Get current daemon position.",
+            "origin": "has-position",
             "request": [],
-            "response": "float"
+            "response": "double"
         },
         "get_state": {
             "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_units": {
             "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "origin": "has-position",
             "request": [],
             "response": [
                 "null",
@@ -144,11 +161,13 @@
         },
         "home": {
             "doc": "Initiates the homing procedure.\nThe daemon will report as busy during the homing procedure.\n After the homing procedure is complete, the daemon will return to the current destination.\n",
+            "origin": "is-homeable",
             "request": [],
             "response": "null"
         },
         "id": {
             "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": {
                 "type": "map",
@@ -160,36 +179,40 @@
         },
         "in_limits": {
             "doc": "Check if a given position is within daemon limits.",
+            "origin": "has-limits",
             "request": [
                 {
                     "name": "position",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
             "response": "boolean"
         },
         "set_position": {
             "doc": "Give the daemon a new destination, and begin motion towards that destination.",
+            "origin": "has-position",
             "request": [
                 {
                     "name": "position",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
             "response": "null"
         },
         "set_relative": {
             "doc": "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination.",
+            "origin": "has-position",
             "request": [
                 {
                     "name": "distance",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
-            "response": "float"
+            "response": "double"
         },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
             "request": [
                 {
                     "default": false,
@@ -200,34 +223,63 @@
             "response": "null"
         }
     },
-    "name": "uses-serial",
-    "protcol": "has-position",
     "protocol": "thorlabs-kst101",
     "requires": [],
     "state": {
         "destination": {
             "default": NaN,
-            "type": "float"
+            "origin": "has-position",
+            "type": "double"
         },
         "hw_limits": {
             "default": [
                 -Infinity,
                 Infinity
             ],
-            "items": "float",
+            "items": "double",
+            "origin": "has-limits",
             "type": "array"
         },
         "position": {
             "default": NaN,
-            "type": "float"
+            "origin": "has-position",
+            "type": "double"
         }
     },
     "traits": [
-        "has-limits",
-        "is-daemon",
         "has-position",
-        "uses-uart",
+        "has-limits",
         "is-homeable",
-        "uses-serial"
+        "is-daemon",
+        "uses-serial",
+        "uses-uart"
+    ],
+    "types": [
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
     ]
 }
