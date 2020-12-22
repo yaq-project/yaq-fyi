@@ -22,7 +22,7 @@ def open_mr(kind, version):
         return
     # update avpr
     new_avpr = json.loads(subprocess.check_output([f"yaqd-{kind}", "--protocol"]).decode())
-    with open(__here__.parent / "daemons" / f"{kind}.avpr", "w") as f:
+    with open(__here__ / "yaq-fyi" / "daemons" / f"{kind}.avpr", "w") as f:
         json.dump(new_avpr, f, indent=4, sort_keys=True)
     try:
         # commit
