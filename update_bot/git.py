@@ -16,8 +16,9 @@ def open_mr(kind, version):
     subprocess.check_call(["git", "checkout", "master"])
     subprocess.check_call(["git", "fetch", "--all"])  # pull all remote branches
     # create branch
+    branch = f"bullocky-{kind}-{version}"
     try:
-        subprocess.check_call(["git", "checkout", "-b", f"bullocky-{kind}-{version}"])
+        subprocess.check_call(["git", "checkout", "-b", branch])
     except subprocess.CalledProcessError:  # branch probably already exists
         return
     # update avpr
@@ -28,7 +29,7 @@ def open_mr(kind, version):
         # commit
         subprocess.check_call(["git", "commit", "-am", f"[BOT] update {kind} to version {version}"])
         # push and open merge request
-        subprocess.check_call(["git", "push", "--push-option=merge_request.create"])
+        subprocess.check_call(["git", "push", "--set-upstream", "origin", branch, "--push-option=merge_request.create"])
     except:
         pass
     # return to master
