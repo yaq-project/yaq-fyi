@@ -3,9 +3,10 @@
         "identifiers": {
             "default": {},
             "doc": "Position identifiers",
+            "origin": "is-discrete",
             "type": {
                 "type": "map",
-                "values": "float"
+                "values": "double"
             }
         },
         "index": {
@@ -14,6 +15,7 @@
         },
         "make": {
             "default": null,
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -21,6 +23,7 @@
         },
         "model": {
             "default": null,
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -28,11 +31,13 @@
         },
         "port": {
             "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
             "type": "int"
         },
         "serial": {
             "default": null,
             "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -44,6 +49,9 @@
         "raspberry-pi:4b",
         "raspberry-pi:3b+"
     ],
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-rpi-gpio/"
+    },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-rpi-gpio/-/issues/",
         "manufacturer": "https://www.raspberrypi.org/",
@@ -52,26 +60,31 @@
     "messages": {
         "busy": {
             "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
             "request": [],
             "response": "boolean"
         },
         "get_config": {
             "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_config_filepath": {
             "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_destination": {
             "doc": "Get current daemon destination.",
+            "origin": "has-position",
             "request": [],
-            "response": "float"
+            "response": "double"
         },
         "get_identifier": {
             "doc": "Get current identifier string. Current identifier may be None.",
+            "origin": "is-discrete",
             "request": [],
             "response": [
                 "null",
@@ -80,24 +93,28 @@
         },
         "get_position": {
             "doc": "Get current daemon position.",
+            "origin": "has-position",
             "request": [],
-            "response": "float"
+            "response": "double"
         },
         "get_position_identifiers": {
             "doc": "Get position identifiers. Identifiers may not change at runtime.",
+            "origin": "is-discrete",
             "request": [],
             "response": {
                 "type": "map",
-                "values": "float"
+                "values": "double"
             }
         },
         "get_state": {
             "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_units": {
             "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "origin": "has-position",
             "request": [],
             "response": [
                 "null",
@@ -106,6 +123,7 @@
         },
         "id": {
             "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": {
                 "type": "map",
@@ -117,36 +135,40 @@
         },
         "set_identifier": {
             "doc": "Set using an identifier. Returns new destination.",
+            "origin": "is-discrete",
             "request": [
                 {
                     "name": "identifier",
                     "type": "string"
                 }
             ],
-            "response": "float"
+            "response": "double"
         },
         "set_position": {
             "doc": "Give the daemon a new destination, and begin motion towards that destination.",
+            "origin": "has-position",
             "request": [
                 {
                     "name": "position",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
             "response": "null"
         },
         "set_relative": {
             "doc": "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination.",
+            "origin": "has-position",
             "request": [
                 {
                     "name": "distance",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
-            "response": "float"
+            "response": "double"
         },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
             "request": [
                 {
                     "default": false,
@@ -162,22 +184,24 @@
     "state": {
         "destination": {
             "default": NaN,
-            "type": "float"
+            "origin": "has-position",
+            "type": "double"
         },
         "position": {
             "default": NaN,
-            "type": "float"
+            "origin": "has-position",
+            "type": "double"
         },
         "position_identifier": {
             "default": null,
             "doc": "Current position identifier.",
+            "origin": "is-discrete",
             "type": [
                 "null",
                 "string"
             ]
         }
     },
-    "trait": "has-position",
     "traits": [
         "is-discrete",
         "is-daemon",
