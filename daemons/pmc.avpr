@@ -142,6 +142,18 @@
                 "string"
             ]
         },
+        "startup_behavior": {
+            "default": "trust_driver",
+            "doc": "Where to get the current position. If trust state, then it will use the position stored to state (if present)",
+            "type": {
+                "name": "startup",
+                "symbols": [
+                    "trust_driver",
+                    "trust_state"
+                ],
+                "type": "enum"
+            }
+        },
         "tolerance": {
             "default": 20,
             "doc": "Tolerance in motor steps",
@@ -355,9 +367,9 @@
         }
     },
     "traits": [
+        "has-position",
         "is-daemon",
-        "has-limits",
-        "has-position"
+        "has-limits"
     ],
     "types": [
         {
