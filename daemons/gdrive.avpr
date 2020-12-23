@@ -232,14 +232,6 @@
                 },
                 {
                     "default": null,
-                    "name": "parent_id",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
-                },
-                {
-                    "default": null,
                     "name": "id",
                     "type": [
                         "null",
@@ -315,7 +307,36 @@
             "type": "array"
         }
     },
+    "trait": "is-daemon",
     "traits": [
         "is-daemon"
+    ],
+    "types": [
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
     ]
 }
