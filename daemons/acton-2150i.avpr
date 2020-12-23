@@ -55,9 +55,6 @@
         }
     },
     "doc": "Acton 2150i dual grating imaging monochromator.",
-    "hardware": [
-        "acton:2150i"
-    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-acton/"
     },
@@ -191,6 +188,8 @@
             "response": "null"
         }
     },
+    "name": "uses-serial",
+    "protcol": "has-position",
     "protocol": "acton-2150i",
     "requires": [],
     "state": {
@@ -211,49 +210,17 @@
             "type": "float"
         },
         "turret": {
-            "default": null,
-            "doc": "Current turret index",
-            "type": [
-                "null",
-                "int"
-            ]
+            "default": NaN,
+            "type": "int"
         }
     },
-    "trait": "has-position",
     "traits": [
-        "has-turret",
-        "has-limits",
-        "uses-uart",
         "uses-serial",
         "has-position",
-        "is-daemon"
+        "has-turret",
+        "is-daemon",
+        "uses-uart",
+        "has-limits"
     ],
-    "types": [
-        {
-            "fields": [
-                {
-                    "name": "shape",
-                    "type": {
-                        "items": "int",
-                        "type": "array"
-                    }
-                },
-                {
-                    "name": "typestr",
-                    "type": "string"
-                },
-                {
-                    "name": "data",
-                    "type": "bytes"
-                },
-                {
-                    "name": "version",
-                    "type": "int"
-                }
-            ],
-            "logicalType": "ndarray",
-            "name": "ndarray",
-            "type": "record"
-        }
-    ]
+    "version": "0"
 }
