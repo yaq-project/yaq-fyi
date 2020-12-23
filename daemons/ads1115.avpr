@@ -28,14 +28,18 @@
         "i2c_addr": {
             "default": 72,
             "doc": "I2C bus address.",
+            "origin": "uses-i2c",
             "type": "int"
         },
         "loop_at_startup": {
+            "default": false,
             "doc": "If set to true, the daemon will begin to loop measure as soon as it starts.",
+            "origin": "has-measure-trigger",
             "type": "boolean"
         },
         "make": {
             "default": null,
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -43,6 +47,7 @@
         },
         "model": {
             "default": null,
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -50,6 +55,7 @@
         },
         "port": {
             "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
             "type": "int"
         },
         "rate": {
@@ -69,6 +75,7 @@
         "serial": {
             "default": null,
             "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -79,6 +86,10 @@
     "hardware": [
         "ti:ads1115"
     ],
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-ti/",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-ti"
+    },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-ti/-/issues/",
         "manufacturer": "https://www.ti.com/product/ADS1115",
@@ -87,11 +98,13 @@
     "messages": {
         "busy": {
             "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
             "request": [],
             "response": "boolean"
         },
         "direct_serial_write": {
             "doc": "Expose direct access to the serial port to clients.\n\nThis should not be encouraged for normal use, but may be very important for debugging.\nIf a device is expected to return data, it should be logged at the INFO level, not returned to the client.\nThis is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.\nSetting `busy` to true is encouraged, but individual daemon writers should consider their own use case.\n",
+            "origin": "uses-serial",
             "request": [
                 {
                     "name": "message",
@@ -102,6 +115,7 @@
         },
         "get_channel_names": {
             "doc": "Get current channel names.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "items": "string",
@@ -110,6 +124,7 @@
         },
         "get_channel_shapes": {
             "doc": "Get current channel shapes. If list is empty, channel is scalar.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
@@ -121,6 +136,7 @@
         },
         "get_channel_units": {
             "doc": "Get current channel units.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
@@ -132,32 +148,37 @@
         },
         "get_config": {
             "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_config_filepath": {
             "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_measured": {
             "doc": "Get most recent measured value.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
                 "values": [
-                    "float",
+                    "double",
                     "ndarray"
                 ]
             }
         },
         "get_state": {
             "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "id": {
             "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": {
                 "type": "map",
@@ -169,6 +190,7 @@
         },
         "measure": {
             "doc": "Initiate a measurement. Returns integer, measurement ID.",
+            "origin": "has-measure-trigger",
             "request": [
                 {
                     "default": false,
@@ -180,6 +202,7 @@
         },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
             "request": [
                 {
                     "default": false,
@@ -191,17 +214,17 @@
         },
         "stop_looping": {
             "doc": "Stop looping measurement.",
+            "origin": "has-measure-trigger",
             "request": [],
             "response": "null"
         }
     },
     "protocol": "ads1115",
     "requires": [],
-    "trait": "is-sensor",
     "traits": [
-        "uses-serial",
-        "is-sensor",
         "is-daemon",
+        "is-sensor",
+        "uses-serial",
         "has-measure-trigger",
         "uses-i2c"
     ],
