@@ -9,11 +9,14 @@
             "type": "boolean"
         },
         "loop_at_startup": {
+            "default": false,
             "doc": "If set to true, the daemon will begin to loop measure as soon as it starts.",
+            "origin": "has-measure-trigger",
             "type": "boolean"
         },
         "make": {
             "default": null,
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -21,6 +24,7 @@
         },
         "model": {
             "default": null,
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -28,11 +32,13 @@
         },
         "port": {
             "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
             "type": "int"
         },
         "serial": {
             "default": null,
             "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
@@ -40,8 +46,12 @@
         }
     },
     "doc": "Sensor daemon for Ocean Optics SeaBreeze spectrometers.",
+    "hardware": [
+        "ocean-insight:usb2000"
+    ],
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-seabreeze"
+        "PyPI": "https://pypi.org/project/yaqd-seabreeze",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-seabreeze"
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-seabreeze/-/issues",
@@ -51,11 +61,13 @@
     "messages": {
         "busy": {
             "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
             "request": [],
             "response": "boolean"
         },
         "get_channel_names": {
             "doc": "Get current channel names.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "items": "string",
@@ -64,6 +76,7 @@
         },
         "get_channel_shapes": {
             "doc": "Get current channel shapes. If list is empty, channel is scalar.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
@@ -75,6 +88,7 @@
         },
         "get_channel_units": {
             "doc": "Get current channel units.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
@@ -86,11 +100,13 @@
         },
         "get_config": {
             "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "get_config_filepath": {
             "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
@@ -101,22 +117,25 @@
         },
         "get_measured": {
             "doc": "Get most recent measured value.",
+            "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
                 "values": [
-                    "float",
+                    "double",
                     "ndarray"
                 ]
             }
         },
         "get_state": {
             "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
             "request": [],
             "response": "string"
         },
         "id": {
             "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
             "request": [],
             "response": {
                 "type": "map",
@@ -128,6 +147,7 @@
         },
         "measure": {
             "doc": "Initiate a measurement. Returns integer, measurement ID.",
+            "origin": "has-measure-trigger",
             "request": [
                 {
                     "default": false,
@@ -149,6 +169,7 @@
         },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
             "request": [
                 {
                     "default": false,
@@ -160,6 +181,7 @@
         },
         "stop_looping": {
             "doc": "Stop looping measurement.",
+            "origin": "has-measure-trigger",
             "request": [],
             "response": "null"
         }
@@ -173,11 +195,10 @@
             "type": "int"
         }
     },
-    "trait": "is-sensor",
     "traits": [
+        "has-measure-trigger",
         "is-daemon",
-        "is-sensor",
-        "has-measure-trigger"
+        "is-sensor"
     ],
     "types": [
         {
