@@ -87,7 +87,8 @@
     },
     "doc": "Daemon for the Thorlabs LTS-300 stage\n",
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-thorlabs"
+        "PyPI": "https://pypi.org/project/yaqd-thorlabs",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-thorlabs"
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-thorlabs/issues",
@@ -248,11 +249,11 @@
         }
     },
     "traits": [
-        "has-position",
-        "uses-serial",
-        "uses-uart",
-        "is-homeable",
         "has-limits",
+        "has-position",
+        "uses-uart",
+        "uses-serial",
+        "is-homeable",
         "is-daemon"
     ],
     "types": [
