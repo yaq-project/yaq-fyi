@@ -18,7 +18,6 @@ update-bot:
   stage: test
   only:
     refs:
-    - master
     - schedules
   script:
   # ssh

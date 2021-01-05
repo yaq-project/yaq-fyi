@@ -29,7 +29,7 @@ def open_mr(kind, version):
         # commit
         subprocess.check_call(["git", "commit", "-am", f"[BOT] update {kind} to version {version}"])
         # push and open merge request
-        subprocess.check_call(["git", "push", "--set-upstream", "origin", branch, "--push-option=merge_request.create"])
+        subprocess.check_call(["git", "push", "--set-upstream", "origin", branch, "--push-option=merge_request.create", "--push-option=merge_request.remove_source_branch"])
     except:
         pass
     # return to master
