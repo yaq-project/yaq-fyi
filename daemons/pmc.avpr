@@ -185,7 +185,8 @@
         "pmc:dcx-pci100"
     ],
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-pmc"
+        "PyPI": "https://pypi.org/project/yaqd-pmc",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-pmc"
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-pmc/issues",
@@ -367,9 +368,9 @@
         }
     },
     "traits": [
-        "has-position",
+        "has-limits",
         "is-daemon",
-        "has-limits"
+        "has-position"
     ],
     "types": [
         {
