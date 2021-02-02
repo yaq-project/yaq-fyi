@@ -1,0 +1,443 @@
+{
+    "config": {
+        "limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "doc": "Configuration limits are strictly optional.",
+            "items": "double",
+            "origin": "has-limits",
+            "type": "array"
+        },
+        "make": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "model": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "out_of_limits": {
+            "default": "closest",
+            "doc": "Control behavior of daemon when set_position is given a value outside of limits.",
+            "name": "out_of_limits",
+            "origin": "has-limits",
+            "symbols": [
+                "closest",
+                "ignore",
+                "error"
+            ],
+            "type": "enum"
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
+            "type": "int"
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "setables": {
+            "doc": "mapping of setable names (must be a superset of those in the instrument) to yaq ports",
+            "type": "map",
+            "values": "int"
+        }
+    },
+    "doc": "yaq daemon representing an attune instrument",
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-attune"
+    },
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-attune/-/issues",
+        "source": "https://gitlab.com/yaq/yaqd-attune"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "boolean"
+        },
+        "get_all_arrangements": {
+            "doc": "Get all currently valid arrangement names",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_arrangement": {
+            "doc": "Get the currently in use arrangement name",
+            "request": [],
+            "response": "string"
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_destination": {
+            "doc": "Get current daemon destination.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_instrument": {
+            "doc": "Get the currently in use instrument object",
+            "request": [],
+            "response": "Instrument"
+        },
+        "get_limits": {
+            "doc": "Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable).",
+            "origin": "has-limits",
+            "request": [],
+            "response": {
+                "items": "double",
+                "type": "array"
+            }
+        },
+        "get_position": {
+            "doc": "Get current daemon position.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_setable_names": {
+            "doc": "Get list of setables",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_setable_positions": {
+            "doc": "Get underlying setables, provides a mapping of names to positions, in native units.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "float"
+            }
+        },
+        "get_setable_yaq_params": {
+            "doc": "Get the ports for setables.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "int"
+            }
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_units": {
+            "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "origin": "has-position",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
+        "home": {
+            "doc": "Initiates the homing procedure.\nThe daemon will report as busy during the homing procedure.\n After the homing procedure is complete, the daemon will return to the current destination.\n",
+            "origin": "is-homeable",
+            "request": [],
+            "response": "null"
+        },
+        "home_setables": {
+            "doc": "Home underlying setables, accepts a list of names to home.",
+            "request": [
+                {
+                    "name": "setables",
+                    "type": {
+                        "items": "string",
+                        "type": "array"
+                    }
+                }
+            ],
+            "response": "null"
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "in_limits": {
+            "doc": "Check if a given position is within daemon limits.",
+            "origin": "has-limits",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "double"
+                }
+            ],
+            "response": "boolean"
+        },
+        "set_arrangement": {
+            "doc": "Get the currently in use arrangement name",
+            "request": [
+                {
+                    "name": "arrangement",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
+        "set_instrument": {
+            "doc": "Set the currently in use instrument object. Also triggers a restart",
+            "request": [
+                {
+                    "name": "instrument",
+                    "type": "Instrument"
+                }
+            ],
+            "response": "null"
+        },
+        "set_position": {
+            "doc": "Give the daemon a new destination, and begin motion towards that destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_position_except": {
+            "doc": "Set the position, but ignore some setables",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "float"
+                },
+                {
+                    "name": "exceptions",
+                    "type": {
+                        "items": "string",
+                        "type": "array"
+                    }
+                }
+            ],
+            "response": "null"
+        },
+        "set_relative": {
+            "doc": "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "distance",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
+        },
+        "set_setable_positions": {
+            "doc": "Set underlying setables, accepts a mapping of names to positions, in native units.",
+            "request": [
+                {
+                    "name": "setables",
+                    "type": {
+                        "type": "map",
+                        "values": "float"
+                    }
+                }
+            ],
+            "response": "null"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        }
+    },
+    "protocol": "attune",
+    "requires": [],
+    "state": {
+        "arrangement": {
+            "default": null,
+            "doc": "Currently selected arrangement. If null, use whichever arrangment fits the requested position, and error if there are multiple",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "destination": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        },
+        "hw_limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "items": "double",
+            "origin": "has-limits",
+            "type": "array"
+        },
+        "position": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        }
+    },
+    "traits": [
+        "is-daemon",
+        "has-position",
+        "has-limits",
+        "is-homeable"
+    ],
+    "types": [
+        {
+            "fields": [
+                {
+                    "name": "type",
+                    "type": "string"
+                }
+            ],
+            "name": "Transition",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "string"
+                }
+            ],
+            "name": "Setable",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "independent",
+                    "type": {
+                        "items": "float",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "dependent",
+                    "type": {
+                        "items": "float",
+                        "type": "array"
+                    }
+                }
+            ],
+            "name": "Tune",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "name": "tunes",
+                    "type": {
+                        "type": "map",
+                        "values": "Tune"
+                    }
+                }
+            ],
+            "name": "Arrangement",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "name": "arrangements",
+                    "type": {
+                        "type": "map",
+                        "values": "Arrangement"
+                    }
+                },
+                {
+                    "name": "setables",
+                    "type": {
+                        "type": "map",
+                        "values": "Setable"
+                    }
+                },
+                {
+                    "name": "transition",
+                    "type": "Transition"
+                }
+            ],
+            "name": "Instrument",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
+    ]
+}
