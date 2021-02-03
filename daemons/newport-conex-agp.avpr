@@ -78,7 +78,8 @@
         "newport:conex-ag-pr100p"
     ],
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-newport"
+        "PyPI": "https://pypi.org/project/yaqd-newport",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-newport"
     },
     "links": {
         "PR100P": "https://www.newport.com/p/CONEX-AG-PR100P",
@@ -250,12 +251,12 @@
         }
     },
     "traits": [
-        "uses-serial",
         "is-daemon",
-        "uses-uart",
-        "is-homeable",
         "has-position",
-        "has-limits"
+        "has-limits",
+        "uses-uart",
+        "uses-serial",
+        "is-homeable"
     ],
     "types": [
         {
