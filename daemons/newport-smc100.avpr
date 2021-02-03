@@ -79,7 +79,8 @@
         "newport:smc100pp"
     ],
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-newport"
+        "PyPI": "https://pypi.org/project/yaqd-newport",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-newport"
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-newport/issues",
@@ -250,12 +251,12 @@
         }
     },
     "traits": [
-        "uses-serial",
-        "is-daemon",
-        "uses-uart",
         "has-limits",
-        "has-position",
-        "is-homeable"
+        "is-daemon",
+        "uses-serial",
+        "is-homeable",
+        "uses-uart",
+        "has-position"
     ],
     "types": [
         {
