@@ -46,6 +46,19 @@
         }
     },
     "doc": "Sensor daemon for Ocean Optics SeaBreeze spectrometers.",
+    "fields": {
+        "integration_time_micros": {
+            "fields": {
+                "dyanmic": true,
+                "getter": "get_integration_time_micros",
+                "kind": "normal",
+                "setter": "set_integration_time_micros",
+                "type": "int"
+            },
+            "name": "field",
+            "type": "record"
+        }
+    },
     "hardware": [
         "ocean-insight:usb2000"
     ],
@@ -64,6 +77,18 @@
             "origin": "is-daemon",
             "request": [],
             "response": "boolean"
+        },
+        "get_channel_mappings": {
+            "doc": "Defines which mapping keys apply to which channel keys. Each channel may have zero or many mappings. Mappings must broadcast into corresponding channels.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": {
+                    "items": "string",
+                    "type": "array"
+                }
+            }
         },
         "get_channel_names": {
             "doc": "Get current channel names.",
@@ -114,6 +139,37 @@
             "doc": "Get the integration time in microseconds.",
             "request": [],
             "response": "int"
+        },
+        "get_mapping_id": {
+            "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": "int"
+        },
+        "get_mapping_units": {
+            "doc": "Must return units for every mapping. Units can be null.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "get_mappings": {
+            "doc": "Mappings themselves.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "ndarray",
+                    "double"
+                ]
+            }
         },
         "get_measured": {
             "doc": "Get most recent measured value.",
@@ -197,6 +253,7 @@
     },
     "traits": [
         "has-measure-trigger",
+        "has-mapping",
         "is-daemon",
         "is-sensor"
     ],
