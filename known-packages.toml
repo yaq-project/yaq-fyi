@@ -2,14 +2,14 @@
 
 [clients.yaqc-bluesky]
 badges = [
-  "<a href='https://travis-ci.com/bluesky/yaqc-bluesky'><img src='https://img.shields.io/travis/com/bluesky/yaqc-bluesky'></a>",
+  "<a href='https://github.com/bluesky/yaqc-bluesky/actions?query=workflow%3Apython-test'><img src='https://github.com/bluesky/yaqc-bluesky/actions?query=workflow%3Apython-test' alt='CI'></a>",
   "<a href='https://pypi.org/project/yaqc-bluesky'><img src='https://img.shields.io/pypi/v/yaqc-bluesky'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqc-bluesky'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc-bluesky'></a>",
 ]
 
 [clients.yaqc-cmds]
 badges = [
-  "<a href='https://travis-ci.com/github/wright-group/yaqc-cmds/builds'><img src='https://img.shields.io/travis/com/wright-group/yaqc-cmds'></a>",
+  "<a href='https://github.com/wright-group/yaqc-cmds'><img alt='CI' src='https://img.shields.io/github/checks-status/wright-group/yaqc-cmds/master?label=build'></a>",
   "<a href='https://pypi.org/project/yaqc-cmds'><img src='https://img.shields.io/pypi/v/yaqc-cmds'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqc-cmds'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc-cmds'></a>",
 ]
@@ -136,7 +136,7 @@ badges = [
 
 [daemons.yaqd-wright]
 badges = [
-  "<a href='https://travis-ci.com/github/wright-group/yaqd-wright/builds'><img src='https://img.shields.io/travis/com/wright-group/yaqd-wright'></a>",
+  "<a href='https://github.com/wright-group/yaqd-wright'><img alt='CI' src='https://img.shields.io/github/checks-status/wright-group/yaqd-wright/master?label=build'></a>",
   "<a href='https://pypi.org/project/yaqd-wright'><img src='https://img.shields.io/pypi/v/yaqd-wright'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-wright'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-wright'></a>",
 ]
