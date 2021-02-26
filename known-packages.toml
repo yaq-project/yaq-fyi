@@ -134,6 +134,14 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-thorlabs'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-thorlabs'></a>",
 ]
 
+[daemons.yaqd-vici]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-vici/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-vici'></a>",
+  "<a href='https://pypi.org/project/yaqd-vici'><img src='https://img.shields.io/pypi/v/yaqd-vici'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-vici'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-vici'></a>",
+]
+
+
 [daemons.yaqd-wright]
 badges = [
   "<a href='https://github.com/wright-group/yaqd-wright'><img alt='CI' src='https://img.shields.io/github/checks-status/wright-group/yaqd-wright/master?label=build'></a>",
