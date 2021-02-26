@@ -1,0 +1,344 @@
+{
+    "config": {
+        "baud_rate": {
+            "origin": "uses-uart",
+            "type": "int"
+        },
+        "device_id": {
+            "default": null,
+            "doc": "VICI device ID, an integer from 0 to 9. If unspecified, will assume no ID. You must manually program your control modules with IDs, yaq will not attempt to apply IDs.",
+            "type": [
+                "int",
+                "null"
+            ]
+        },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "identifiers": {
+            "default": {
+                "A": 0,
+                "B": 1
+            },
+            "doc": "Position identifiers",
+            "origin": "is-discrete",
+            "type": {
+                "type": "map",
+                "values": "double"
+            }
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "make": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "model": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
+            "type": "int"
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "serial_port": {
+            "origin": "uses-uart",
+            "type": "string"
+        }
+    },
+    "doc": "",
+    "fields": {
+        "destination": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_destination",
+                "kind": "normal",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "origin": "has-position",
+        "position": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_position",
+                "kind": "hinted",
+                "setter": "set_position",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "position_identifier": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_identifier",
+                "kind": "hinted",
+                "setter": "set_identifier",
+                "type": "string"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "position_identifiers": {
+            "fields": {
+                "dynamic": false,
+                "getter": "get_position_identifiers",
+                "kind": "normal",
+                "type": {
+                    "type": "map",
+                    "values": "double"
+                }
+            },
+            "name": "field",
+            "type": "record"
+        }
+    },
+    "hardware": [
+        "vici:e2ca",
+        "vici:edma"
+    ],
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-vici"
+    },
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-vici/-/issues",
+        "source": "https://gitlab.com/yaq/yaqd-vici"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "boolean"
+        },
+        "direct_serial_write": {
+            "doc": "Expose direct access to the serial port to clients.\n\nThis should not be encouraged for normal use, but may be very important for debugging.\nIf a device is expected to return data, it should be logged at the INFO level, not returned to the client.\nThis is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.\nSetting `busy` to true is encouraged, but individual daemon writers should consider their own use case.\n",
+            "origin": "uses-serial",
+            "request": [
+                {
+                    "name": "message",
+                    "type": "bytes"
+                }
+            ],
+            "response": "null"
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_destination": {
+            "doc": "Get current daemon destination.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_identifier": {
+            "doc": "Get current identifier string. Current identifier may be None.",
+            "origin": "is-discrete",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
+        "get_position": {
+            "doc": "Get current daemon position.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_position_identifiers": {
+            "doc": "Get position identifiers. Identifiers may not change at runtime.",
+            "origin": "is-discrete",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "double"
+            }
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_units": {
+            "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "origin": "has-position",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "set_identifier": {
+            "doc": "Set using an identifier. Returns new destination.",
+            "origin": "is-discrete",
+            "request": [
+                {
+                    "name": "identifier",
+                    "type": "string"
+                }
+            ],
+            "response": "double"
+        },
+        "set_position": {
+            "doc": "Give the daemon a new destination, and begin motion towards that destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_relative": {
+            "doc": "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "distance",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        }
+    },
+    "protocol": "vici-two-position",
+    "requires": [],
+    "state": {
+        "destination": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        },
+        "position": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        },
+        "position_identifier": {
+            "default": null,
+            "doc": "Current position identifier.",
+            "origin": "is-discrete",
+            "type": [
+                "null",
+                "string"
+            ]
+        }
+    },
+    "traits": [
+        "uses-uart",
+        "has-position",
+        "uses-serial",
+        "is-discrete",
+        "is-daemon"
+    ],
+    "types": [
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
+    ]
+}

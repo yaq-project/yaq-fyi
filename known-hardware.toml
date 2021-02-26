@@ -114,3 +114,14 @@ links.homepage = "https://www.ti.com/"
 [ti.ads1115]
 doc = "16-Bit 860SPS 4-Ch Delta-Sigma ADC With PGA, Oscillator, Vref, Comparator, and I2C."
 links.manufacturer = "http://www.ti.com/product/ADS1115"
+
+[vici]
+
+[vici.e2ca]
+doc = "Two-position microelectric valve actuator."
+links.manufacturer = "https://www.vici.com/act/mic.php"
+
+[vici.edma]
+doc = "Two-position injectors / switching valves."
+links.manufacturer = "https://www.vici.com/vval/hplc_semi_16-75.php"
+
