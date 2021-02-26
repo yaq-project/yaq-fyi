@@ -103,6 +103,34 @@ links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-4-model-
 
 [thorlabs]
 
+[thorlabs.bsc201]
+doc = "One-channel benchtop stepper motor controller."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=BSC201"
+
+[thorlabs.bsc203]
+doc = "Three-channel benchtop stepper motor controller."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=BSC203"
+
+[thorlabs.kdc101]
+doc = "K-Cube brushed DC servo motor controller."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=KDC101"
+
+[thorlabs.kst101]
+doc = "K-Cube stepper motor controller."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=KST101"
+
+[thorlabs.k10cr1]
+doc = "Motorized rotation mount, stepper motor."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=K10CR1"
+
+[thorlabs.lnr502]
+doc = "TravelMax translation stage."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=LNR502"
+
+[thorlabs.lts150]
+doc = "150 mm Linear Translation Stage with Integrated Controller, Stepper Motor."
+links.manufacturer = "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7652&pn=LTS150"
+
 [thorlabs.lts300]
 doc = "300 mm Linear Translation Stage with Integrated Controller, Stepper Motor."
 links.manufacturer = "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7652&pn=LTS300"
