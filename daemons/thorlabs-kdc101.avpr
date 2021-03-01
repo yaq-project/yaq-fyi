@@ -1,5 +1,10 @@
 {
     "config": {
+        "automatic_status_updates": {
+            "default": true,
+            "doc": "Use the thorlabs apt firmware automatic status updates, otherwise poll",
+            "type": "boolean"
+        },
         "baud_rate": {
             "default": 115200,
             "origin": "uses-uart",
@@ -15,6 +20,12 @@
             "doc": "Destination for apt messages (0x50 for single bay controllers)",
             "type": "int"
         },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
         "limits": {
             "default": [
                 -Infinity,
@@ -24,6 +35,31 @@
             "items": "double",
             "origin": "has-limits",
             "type": "array"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "make": {
             "default": "Thorlabs",
@@ -85,6 +121,46 @@
         }
     },
     "doc": "Daemon for the Thorlabs KDC-101 stage\n",
+    "fields": {
+        "destination": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_destination",
+                "kind": "normal",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "limits": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_limits",
+                "kind": "normal",
+                "type": {
+                    "items": "double",
+                    "type": "array"
+                }
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "origin": "has-position",
+        "position": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_position",
+                "kind": "hinted",
+                "setter": "set_position",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        }
+    },
+    "hardware": [
+        "thorlabs:kdc101"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-thorlabs",
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-thorlabs"
@@ -248,12 +324,12 @@
         }
     },
     "traits": [
-        "has-limits",
         "has-position",
-        "uses-uart",
+        "is-daemon",
+        "has-limits",
         "uses-serial",
         "is-homeable",
-        "is-daemon"
+        "uses-uart"
     ],
     "types": [
         {
