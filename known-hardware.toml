@@ -83,6 +83,10 @@ links.manufacturer = "https://www.ni.com/en-us/support/model.pci-6251.html"
 doc = "Fiber optic spectrometer."
 links.manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-series/usb-uv-nir/"
 
+[ocean-insight.usb4000]
+doc = "Fiber optic spectrometer."
+links.manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-series/usb-uv-nir/"
+
 [pmc]
 doc = "Precision MicroControl Corporation (PMC) designs and manufactures high-performance multi-axis motion controllers for servo and stepper motor control."
 links.homepage = "https://pmccorp.com/"
