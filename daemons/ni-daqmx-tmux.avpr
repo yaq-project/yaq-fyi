@@ -14,6 +14,37 @@
             "doc": "DAQmx name of device to address.",
             "type": "string"
         },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
         "loop_at_startup": {
             "default": false,
             "doc": "If set to true, the daemon will begin to loop measure as soon as it starts.",
@@ -54,6 +85,14 @@
             "default": null,
             "doc": "Serial number for the particular device represented by the daemon",
             "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "shots_processing_script": {
+            "default": null,
+            "doc": "Path to script for shots processing.",
             "type": [
                 "null",
                 "string"
@@ -164,11 +203,6 @@
             "request": [],
             "response": "ndarray"
         },
-        "get_shots_processing_script": {
-            "doc": "Get the path to the currently applied shots processing script.",
-            "request": [],
-            "response": "string"
-        },
         "get_state": {
             "doc": "Get version of the running daemon",
             "origin": "is-daemon",
@@ -209,16 +243,6 @@
             ],
             "response": "null"
         },
-        "set_shots_processing_script": {
-            "doc": "Give the path to a shots processing script.",
-            "request": [
-                {
-                    "name": "path",
-                    "type": "string"
-                }
-            ],
-            "response": "null"
-        },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
             "origin": "is-daemon",
@@ -244,20 +268,12 @@
         "nshots": {
             "default": 100,
             "type": "int"
-        },
-        "shots_processing_script": {
-            "default": null,
-            "doc": "Path to script for shots processing.",
-            "type": [
-                "null",
-                "string"
-            ]
         }
     },
     "traits": [
         "has-measure-trigger",
-        "is-daemon",
-        "is-sensor"
+        "is-sensor",
+        "is-daemon"
     ],
     "types": [
         {
