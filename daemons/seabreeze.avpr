@@ -91,7 +91,8 @@
         }
     },
     "hardware": [
-        "ocean-insight:usb2000"
+        "ocean-insight:usb2000",
+        "ocean-insight:usb4000"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-seabreeze",
@@ -283,9 +284,9 @@
         }
     },
     "traits": [
+        "is-daemon",
         "has-measure-trigger",
         "has-mapping",
-        "is-daemon",
         "is-sensor"
     ],
     "types": [
