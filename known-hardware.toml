@@ -105,6 +105,12 @@ links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-3-model-
 doc = "Rasperry Pi 4 Model B."
 links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-4-model-b/"
 
+[rigol]
+
+[rigol.mso1104]
+doc = "Rigol oscilloscope with built-in function generator."
+links.manufacturer = "https://www.rigolna.com/products/digital-oscilloscopes/1000z/"
+
 [thorlabs]
 
 [thorlabs.bsc201]
