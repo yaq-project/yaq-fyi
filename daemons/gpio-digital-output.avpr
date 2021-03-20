@@ -1,5 +1,11 @@
 {
     "config": {
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
         "identifiers": {
             "default": {},
             "doc": "Position identifiers",
@@ -12,6 +18,31 @@
         "index": {
             "doc": "Pin to control. Use Broadcom SOC channel index, NOT board pins.",
             "type": "int"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "make": {
             "default": null,
@@ -45,6 +76,54 @@
         }
     },
     "doc": "Daemon to control one gpio pin as a digital output.\n",
+    "fields": {
+        "destination": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_destination",
+                "kind": "normal",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "origin": "has-position",
+        "position": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_position",
+                "kind": "hinted",
+                "setter": "set_position",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "position_identifier": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_identifier",
+                "kind": "hinted",
+                "setter": "set_identifier",
+                "type": "string"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "position_identifiers": {
+            "fields": {
+                "dynamic": false,
+                "getter": "get_position_identifiers",
+                "kind": "normal",
+                "type": {
+                    "type": "map",
+                    "values": "double"
+                }
+            },
+            "name": "field",
+            "type": "record"
+        }
+    },
     "hardware": [
         "raspberry-pi:4b",
         "raspberry-pi:3b+"
@@ -203,9 +282,9 @@
         }
     },
     "traits": [
-        "is-discrete",
+        "has-position",
         "is-daemon",
-        "has-position"
+        "is-discrete"
     ],
     "types": [
         {
