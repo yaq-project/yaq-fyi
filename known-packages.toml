@@ -113,13 +113,6 @@ badges = [
   "<a href='https://pypi.org/project/yaqd-rpi-gpio'><img src='https://img.shields.io/pypi/v/yaqd-rpi-gpio'></a>",
 ]
 
-[daemons.yaqd-scpi]
-badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-scpi/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-scpi'></a>",
-  "<a href='https://pypi.org/project/yaqd-scpi'><img src='https://img.shields.io/pypi/v/yaqd-scpi'></a>",
-  "<a href='https://anaconda.org/conda-forge/yaqd-scpi'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-scpi'></a>",
-]
-
 [daemons.yaqd-seabreeze]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-seabreeze/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-seabreeze'></a>",
