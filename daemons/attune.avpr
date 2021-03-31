@@ -1,5 +1,11 @@
 {
     "config": {
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
         "limits": {
             "default": [
                 -Infinity,
@@ -9,6 +15,31 @@
             "items": "double",
             "origin": "has-limits",
             "type": "array"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "make": {
             "default": null,
@@ -59,6 +90,43 @@
         }
     },
     "doc": "yaq daemon representing an attune instrument",
+    "fields": {
+        "destination": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_destination",
+                "kind": "normal",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "limits": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_limits",
+                "kind": "normal",
+                "type": {
+                    "items": "double",
+                    "type": "array"
+                }
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "origin": "has-position",
+        "position": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_position",
+                "kind": "hinted",
+                "setter": "set_position",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        }
+    },
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-attune"
     },
@@ -137,7 +205,10 @@
             "request": [],
             "response": {
                 "type": "map",
-                "values": "float"
+                "values": [
+                    "float",
+                    "string"
+                ]
             }
         },
         "get_setable_yaq_params": {
@@ -241,7 +312,10 @@
             "request": [
                 {
                     "name": "position",
-                    "type": "float"
+                    "type": [
+                        "float",
+                        "string"
+                    ]
                 },
                 {
                     "name": "exceptions",
@@ -271,7 +345,10 @@
                     "name": "setables",
                     "type": {
                         "type": "map",
-                        "values": "float"
+                        "values": [
+                            "float",
+                            "string"
+                        ]
                     }
                 }
             ],
@@ -322,9 +399,9 @@
         }
     },
     "traits": [
-        "is-daemon",
-        "has-position",
         "has-limits",
+        "has-position",
+        "is-daemon",
         "is-homeable"
     ],
     "types": [
@@ -371,6 +448,29 @@
         {
             "fields": [
                 {
+                    "name": "ranges",
+                    "type": {
+                        "type": "map",
+                        "values": {
+                            "items": "float",
+                            "type": "array"
+                        }
+                    }
+                },
+                {
+                    "name": "default",
+                    "type": [
+                        "null",
+                        "string"
+                    ]
+                }
+            ],
+            "name": "DiscreteTune",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
                     "name": "name",
                     "type": "string"
                 },
@@ -378,7 +478,10 @@
                     "name": "tunes",
                     "type": {
                         "type": "map",
-                        "values": "Tune"
+                        "values": [
+                            "Tune",
+                            "DiscreteTune"
+                        ]
                     }
                 }
             ],
