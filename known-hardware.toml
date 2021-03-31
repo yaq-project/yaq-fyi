@@ -21,6 +21,12 @@ links.manufacturer = "https://www.ealingcatalog.com/50-mm-encoderdrivertm-oem-ac
 doc = "Four channel multifunction isoPod with USB."
 links.manufacturer = "https://www.edaq.com/EPU452"
 
+[gage]
+
+[gage.cse8442]
+doc = "Four channel PCIe digitizer card."
+links.manufacturer = "http://www.gage-applied.com/digitizers/16-bit/pcie/digitizer-compuscope-octave-express-84xx.htm"
+
 [horiba]
 
 [horiba.microhr]
