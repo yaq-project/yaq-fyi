@@ -6,13 +6,44 @@
             "type": "array"
         },
         "depth": {
-            "default": 4096,
+            "default": 240,
             "doc": "Post-trigger depth, in samples.",
             "type": "int"
+        },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "ext_clk": {
             "default": false,
             "doc": "Enable or disable external clocking functionality. If external clocking is activated, the sample rate must be set to the external clocking frequency. Not all CompuScope hardware supports external clocking.",
+            "type": "boolean"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
             "type": "boolean"
         },
         "loop_at_startup": {
@@ -30,7 +61,8 @@
             ]
         },
         "mode": {
-            "doc": "Sets the operating mode of the CompuScope system. Refer to the CompuScope documentation for valid values.",
+            "default": 1073741828,
+            "doc": "Sets the operating mode of the CompuScope system. Refer to the CompuScope documentation for valid values. Default is 1073741825 for FirmWare Averaging",
             "type": "int"
         },
         "model": {
@@ -46,6 +78,11 @@
             "origin": "is-daemon",
             "type": "int"
         },
+        "record_count": {
+            "default": 1024,
+            "doc": "Number of records to collect. Can be thought of as nshots in firmware averaging mode.",
+            "type": "int"
+        },
         "sample_rate": {
             "default": null,
             "doc": "Sampling rate in Hertz. If not provided, model-dependent default is used.",
@@ -54,13 +91,8 @@
                 "int"
             ]
         },
-        "segment_count": {
-            "default": 1,
-            "doc": "Number of segments to acquire. Segments are basically shots.",
-            "type": "int"
-        },
         "segment_size": {
-            "default": 8192,
+            "default": 240,
             "doc": "Size of the segment to capture. A segment is the sum of the pre- and post-trigger samples that are to be acquired.",
             "type": "int"
         },
@@ -100,11 +132,11 @@
         },
         "trigger_hold_off": {
             "default": 0,
-            "doc": "Number of samples during which trigger events will be ignored after the system begins caputuring. This is useful for ensuring the accumulation of a specified amount of pre-trigger data.",
+            "doc": "Number of samples during which trigger events will be ignored after the system begins capturing. This is useful for ensuring the accumulation of a specified amount of pre-trigger data.",
             "type": "int"
         },
         "trigger_time_out": {
-            "default": -1,
+            "default": 1000000,
             "doc": "Trigger timeout of the CompuScope system. The value is in 100 nanosecond units of time (e.g. a value of 10,000,000 gives a trigger timeout of 1 second). A value of -1 will cause the driver to wait indefinitely for a trigger.",
             "type": "int"
         },
@@ -115,6 +147,13 @@
         }
     },
     "doc": "yaq daemon supporting GaGe CompuScope Digitizer Models.\nThis daemon essentially exposes GaGe's CompuScope configuration options directly.\nThis daemon aims to support any configuration possible in GaGe's C/C# SDK.\n",
+    "fields": {
+        "segment_count": {
+            "getter": "get_nchunks",
+            "setter": "set_nchunks",
+            "type": "int"
+        }
+    },
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-gage"
     },
@@ -175,16 +214,38 @@
             "response": "string"
         },
         "get_measured": {
-            "doc": "Get most recent measured value.",
+            "doc": "Returns map of channel_name to measured_value. Always returns additional key measurement_id.",
             "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
                 "values": [
                     "double",
-                    "ndarray"
+                    "ndarray",
+                    "int"
                 ]
             }
+        },
+        "get_measured_samples": {
+            "doc": "Get a dictionary of 1D arrays of measured samples.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "ndarray"
+            }
+        },
+        "get_measurement_id": {
+            "doc": "Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "int"
+            }
+        },
+        "get_segment_count": {
+            "doc": "Get the currently planned number of chunks.",
+            "request": [],
+            "response": "int"
         },
         "get_state": {
             "doc": "Get version of the running daemon",
@@ -216,6 +277,16 @@
             ],
             "response": "int"
         },
+        "set_segment_count": {
+            "doc": "Set the chunk count.",
+            "request": [
+                {
+                    "name": "count",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
             "origin": "is-daemon",
@@ -237,11 +308,17 @@
     },
     "protocol": "gage-compuscope",
     "requires": [],
-    "state": {},
+    "state": {
+        "segment_count": {
+            "default": 1000,
+            "doc": "Number of times to acquire nshots.",
+            "type": "int"
+        }
+    },
     "traits": [
-        "is-sensor",
         "has-measure-trigger",
-        "is-daemon"
+        "is-daemon",
+        "is-sensor"
     ],
     "types": [
         {
@@ -254,7 +331,7 @@
             "type": "enum"
         },
         {
-            "default": "1000000",
+            "default": "50",
             "name": "impedance_mode",
             "symbols": [
                 "50",
@@ -300,6 +377,48 @@
                     "doc": "DC offset for this channel in millivolts. Can be negative or positive.",
                     "name": "dc_offset",
                     "type": "int"
+                },
+                {
+                    "default": 0,
+                    "doc": "Start index for signal region in post-processing. NumPy style indexing.",
+                    "name": "signal_start_index",
+                    "type": "int"
+                },
+                {
+                    "default": -1,
+                    "doc": "Stop index for signal region in post-processing. Numpy style indexing.",
+                    "name": "signal_stop_index",
+                    "type": "int"
+                },
+                {
+                    "default": "__null__",
+                    "doc": "Start index for baseline region in post-processing. NumPy style indexing.",
+                    "name": "baseline_start_index",
+                    "type": [
+                        "null",
+                        "int"
+                    ]
+                },
+                {
+                    "default": "__null__",
+                    "doc": "Stop index for baseline region in post-processing. Numpy style indexing.",
+                    "name": "baseline_stop_index",
+                    "type": [
+                        "null",
+                        "int"
+                    ]
+                },
+                {
+                    "default": false,
+                    "doc": "Enable baseline subtraction for post-processing.",
+                    "name": "use_baseline",
+                    "type": "boolean"
+                },
+                {
+                    "default": false,
+                    "doc": "If true, post-processed signal is inverted.",
+                    "name": "invert",
+                    "type": "boolean"
                 }
             ],
             "name": "channel",
@@ -322,6 +441,11 @@
                     "doc": "Trigger level as a perentage of the input range of the trigger source (half the full scale input range). For example, in the 2000 mV range at 0 DC offset, 50 would be positive 50% of 1 Volt, or 500 millivolts.",
                     "name": "level",
                     "type": "float"
+                },
+                {
+                    "doc": "Trigger source. Refer to the CompuScope documentation for valid values.",
+                    "name": "source",
+                    "type": "int"
                 },
                 {
                     "name": "coupling",
