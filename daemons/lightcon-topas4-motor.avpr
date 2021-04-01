@@ -1,5 +1,21 @@
 {
     "config": {
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "identifiers": {
+            "addendum": "Topas4 motor daemons ignore identifiers config. Native 'named positions' are used instead",
+            "default": {},
+            "doc": "Position identifiers",
+            "origin": "is-discrete",
+            "type": {
+                "type": "map",
+                "values": "double"
+            }
+        },
         "limits": {
             "default": [
                 -Infinity,
@@ -9,6 +25,31 @@
             "items": "double",
             "origin": "has-limits",
             "type": "array"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "make": {
             "default": null,
@@ -70,12 +111,74 @@
         }
     },
     "doc": "Expose a single light conversion motor as a yaq daemon.\n",
+    "fields": {
+        "destination": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_destination",
+                "kind": "normal",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "limits": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_limits",
+                "kind": "normal",
+                "type": {
+                    "items": "double",
+                    "type": "array"
+                }
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "origin": "has-position",
+        "position": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_position",
+                "kind": "hinted",
+                "setter": "set_position",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "position_identifier": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_identifier",
+                "kind": "hinted",
+                "setter": "set_identifier",
+                "type": "string"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "position_identifiers": {
+            "fields": {
+                "dynamic": false,
+                "getter": "get_position_identifiers",
+                "kind": "normal",
+                "type": {
+                    "type": "map",
+                    "values": "double"
+                }
+            },
+            "name": "field",
+            "type": "record"
+        }
+    },
     "hardware": [
         "lightcon:topas-800",
         "lightcon.topas-c"
     ],
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-lightcon"
+        "PyPI": "https://pypi.org/project/yaqd-lightcon",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-lightcon"
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-lightcon/issues",
@@ -107,6 +210,15 @@
             "request": [],
             "response": "double"
         },
+        "get_identifier": {
+            "doc": "Get current identifier string. Current identifier may be None.",
+            "origin": "is-discrete",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
         "get_limits": {
             "doc": "Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable).",
             "origin": "has-limits",
@@ -121,6 +233,15 @@
             "origin": "has-position",
             "request": [],
             "response": "double"
+        },
+        "get_position_identifiers": {
+            "doc": "Get position identifiers. Identifiers may not change at runtime.",
+            "origin": "is-discrete",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "double"
+            }
         },
         "get_state": {
             "doc": "Get version of the running daemon",
@@ -165,6 +286,17 @@
                 }
             ],
             "response": "boolean"
+        },
+        "set_identifier": {
+            "doc": "Set using an identifier. Returns new destination.",
+            "origin": "is-discrete",
+            "request": [
+                {
+                    "name": "identifier",
+                    "type": "string"
+                }
+            ],
+            "response": "double"
         },
         "set_position": {
             "doc": "Give the daemon a new destination, and begin motion towards that destination.",
@@ -222,13 +354,23 @@
             "default": NaN,
             "origin": "has-position",
             "type": "double"
+        },
+        "position_identifier": {
+            "default": null,
+            "doc": "Current position identifier.",
+            "origin": "is-discrete",
+            "type": [
+                "null",
+                "string"
+            ]
         }
     },
     "traits": [
-        "is-daemon",
+        "has-limits",
         "has-position",
-        "is-homeable",
-        "has-limits"
+        "is-daemon",
+        "is-discrete",
+        "is-homeable"
     ],
     "types": [
         {
