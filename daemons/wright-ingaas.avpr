@@ -9,6 +9,12 @@
             "doc": "Pixel that spectrometer setpoint appears at.",
             "type": "int"
         },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
         "focal_length": {
             "default": 140.0,
             "doc": "Spectrometer focal length (mm).",
@@ -28,6 +34,31 @@
             "default": 24.0,
             "doc": "Spectrometer inclusion angle (degrees).",
             "type": "float"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "loop_at_startup": {
             "default": false,
@@ -53,7 +84,7 @@
         },
         "order": {
             "default": 1,
-            "doc": "Spectrometer order of defraction.",
+            "doc": "Spectrometer order of diffraction.",
             "type": "int"
         },
         "port": {
@@ -77,6 +108,13 @@
         "spectra_averaged": {
             "doc": "Number of spectra to average.",
             "type": "int"
+        },
+        "spectrometer_position": {
+            "doc": "Spectrometer central wavelength (in nm).  Can also poll `has-position` daemon for position by providing string of format 'host:port'.",
+            "type": [
+                "float",
+                "string"
+            ]
         }
     },
     "doc": "",
@@ -105,6 +143,18 @@
                 }
             ],
             "response": "null"
+        },
+        "get_channel_mappings": {
+            "doc": "Defines which mapping keys apply to which channel keys. Each channel may have zero or many mappings. Mappings must broadcast into corresponding channels.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": {
+                    "items": "string",
+                    "type": "array"
+                }
+            }
         },
         "get_channel_names": {
             "doc": "Get current channel names.",
@@ -152,25 +202,60 @@
             "response": "string"
         },
         "get_map": {
-            "doc": "Get color at each pixel, in nanometers. Must give mono setpoint in nanometers.",
-            "request": [
-                {
-                    "name": "mono_setpoint",
-                    "type": "float"
-                }
-            ],
+            "doc": "Get color at each pixel, in nanometers.",
+            "request": [],
             "response": "ndarray"
         },
+        "get_mapping_id": {
+            "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": "int"
+        },
+        "get_mapping_units": {
+            "doc": "Must return units for every mapping. Units can be null.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "get_mappings": {
+            "doc": "Mappings themselves.",
+            "origin": "has-mapping",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "ndarray",
+                    "double"
+                ]
+            }
+        },
         "get_measured": {
-            "doc": "Get most recent measured value.",
+            "doc": "Returns map of channel_name to measured_value. Always returns additional key measurement_id.",
             "origin": "is-sensor",
             "request": [],
             "response": {
                 "type": "map",
                 "values": [
                     "double",
-                    "ndarray"
+                    "ndarray",
+                    "int"
                 ]
+            }
+        },
+        "get_measurement_id": {
+            "doc": "Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "int"
             }
         },
         "get_state": {
@@ -226,10 +311,11 @@
     "requires": [],
     "state": {},
     "traits": [
-        "is-sensor",
+        "has-mapping",
         "has-measure-trigger",
-        "uses-serial",
         "is-daemon",
+        "is-sensor",
+        "uses-serial",
         "uses-uart"
     ],
     "types": [
