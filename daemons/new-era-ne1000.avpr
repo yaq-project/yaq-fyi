@@ -1,0 +1,395 @@
+{
+    "config": {
+        "address": {
+            "doc": "New era address within RS232 network. Integer from 0 to 99.",
+            "type": "int"
+        },
+        "baud_rate": {
+            "origin": "uses-uart",
+            "type": "int"
+        },
+        "diameter": {
+            "doc": "Inside diameter of syringe.",
+            "type": "double"
+        },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "doc": "Configuration limits are strictly optional.",
+            "items": "double",
+            "origin": "has-limits",
+            "type": "array"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "low_noise_mode": {
+            "default": true,
+            "doc": "Low noise motor mode. Increases motor stepping resolution.",
+            "type": "boolean"
+        },
+        "make": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "model": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "out_of_limits": {
+            "default": "closest",
+            "doc": "Control behavior of daemon when set_position is given a value outside of limits.",
+            "name": "out_of_limits",
+            "origin": "has-limits",
+            "symbols": [
+                "closest",
+                "ignore",
+                "error"
+            ],
+            "type": "enum"
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
+            "type": "int"
+        },
+        "rate_units": {
+            "default": "milliliter/minute",
+            "doc": "Rate units.",
+            "type": {
+                "name": "rate_unit",
+                "symbols": [
+                    "microliter/minute",
+                    "milliliter/minute",
+                    "microliter/hour",
+                    "milliliter/hour"
+                ],
+                "type": "enum"
+            }
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "serial_port": {
+            "origin": "uses-uart",
+            "type": "string"
+        },
+        "volume_units": {
+            "default": "milliliter",
+            "doc": "Volume units.",
+            "type": {
+                "name": "volume_unit",
+                "symbols": [
+                    "microliter",
+                    "milliliter"
+                ],
+                "type": "enum"
+            }
+        }
+    },
+    "doc": "Simple daemon for controlling popular NE1000 syringe pump from New Era Pump Systems.",
+    "fields": {
+        "destination": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_destination",
+                "kind": "normal",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "limits": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_limits",
+                "kind": "normal",
+                "type": {
+                    "items": "double",
+                    "type": "array"
+                }
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "origin": "has-position",
+        "position": {
+            "fields": {
+                "dynamic": true,
+                "getter": "get_position",
+                "kind": "hinted",
+                "setter": "set_position",
+                "type": "double"
+            },
+            "name": "field",
+            "type": "record"
+        },
+        "rate": {
+            "getter": "get_rate",
+            "kind": "normal",
+            "setter": "set_rate",
+            "type": "double"
+        }
+    },
+    "hardware": [
+        "new-era:ne1000"
+    ],
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-new-era"
+    },
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-new-era/-/issues",
+        "source": "https://gitlab.com/yaq/yaqd-new-era"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "boolean"
+        },
+        "direct_serial_write": {
+            "doc": "Expose direct access to the serial port to clients.\n\nThis should not be encouraged for normal use, but may be very important for debugging.\nIf a device is expected to return data, it should be logged at the INFO level, not returned to the client.\nThis is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.\nSetting `busy` to true is encouraged, but individual daemon writers should consider their own use case.\n",
+            "origin": "uses-serial",
+            "request": [
+                {
+                    "name": "message",
+                    "type": "bytes"
+                }
+            ],
+            "response": "null"
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_destination": {
+            "doc": "Get current daemon destination.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_limits": {
+            "doc": "Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable).",
+            "origin": "has-limits",
+            "request": [],
+            "response": {
+                "items": "double",
+                "type": "array"
+            }
+        },
+        "get_position": {
+            "doc": "Get current daemon position.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_rate": {
+            "doc": "Get current rate, in units specified within config.",
+            "request": [],
+            "response": "double"
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_units": {
+            "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "origin": "has-position",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "in_limits": {
+            "doc": "Check if a given position is within daemon limits.",
+            "origin": "has-limits",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "double"
+                }
+            ],
+            "response": "boolean"
+        },
+        "prime": {
+            "doc": "Fully withdraw the pump.",
+            "request": [],
+            "response": "null"
+        },
+        "purge": {
+            "doc": "Fully inject the pump.",
+            "request": [],
+            "response": "null"
+        },
+        "set_position": {
+            "doc": "Give the daemon a new destination, and begin motion towards that destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_rate": {
+            "doc": "Set current rate, in units specified within config.",
+            "request": [
+                {
+                    "name": "rate",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_relative": {
+            "doc": "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "distance",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        }
+    },
+    "protocol": "new-era-ne1000",
+    "requires": [],
+    "state": {
+        "destination": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        },
+        "hw_limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "items": "double",
+            "origin": "has-limits",
+            "type": "array"
+        },
+        "position": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        }
+    },
+    "traits": [
+        "has-limits",
+        "has-position",
+        "is-daemon",
+        "uses-serial",
+        "uses-uart"
+    ],
+    "types": [
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
+    ]
+}
