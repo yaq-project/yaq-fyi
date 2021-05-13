@@ -44,6 +44,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-core'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-core'></a>",
 ]
 
+[daemons.yaqd-edaq]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
+  "<a href='https://pypi.org/project/yaqd-edaq'><img src='https://img.shields.io/pypi/v/yaqd-edaq'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-edaq'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-edaq'></a>",
+]
+
 [daemons.yaqd-fakes]
 badges = [
   "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
