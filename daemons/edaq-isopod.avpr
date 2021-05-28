@@ -87,7 +87,8 @@
         "edaq:epu452"
     ],
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-edaq"
+        "PyPI": "https://pypi.org/project/yaqd-edaq",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-edaq"
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-edaq/-/issues",
