@@ -127,6 +127,14 @@ badges = [
   "<a href='https://pypi.org/project/yaqd-rpi-gpio'><img src='https://img.shields.io/pypi/v/yaqd-rpi-gpio'></a>",
 ]
 
+[daemons.yaqd-rgb]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-rgb/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-rgb'></a>",
+  "<a href='https://pypi.org/project/yaqd-rgb'><img src='https://img.shields.io/pypi/v/yaqd-rgb'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-rgb'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-rgb'></a>",
+]
+
+
 [daemons.yaqd-scpi]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-scpi/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-scpi'></a>",

@@ -111,6 +111,12 @@ links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-3-model-
 doc = "Rasperry Pi 4 Model B."
 links.manufacturer = "https://www.raspberrypi.org/products/raspberry-pi-4-model-b/"
 
+[rgb-photonics]
+
+[rgb-photonics.qmini]
+doc = "Minature USB spectrometer for UV-VIS-NIR measurments"
+links.manufacturer = "https://www.broadcom.com/products/optical-sensors/spectrometers/spectrometers-qmini"
+
 [rigol]
 
 [rigol.mso1104]
