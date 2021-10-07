@@ -2,7 +2,7 @@
 
 [clients.yaqc-bluesky]
 badges = [
-  "<a href='https://github.com/bluesky/yaqc-bluesky/actions?query=workflow%3Apython-test'><img src='https://github.com/bluesky/yaqc-bluesky/actions?query=workflow%3Apython-test' alt='CI'></a>",
+  "<a href='https://github.com/bluesky/yaqc-bluesky'><img alt='CI' src='https://img.shields.io/github/workflow/status/bluesky/yaqc-bluesky/python-test'></a>",
   "<a href='https://pypi.org/project/yaqc-bluesky'><img src='https://img.shields.io/pypi/v/yaqc-bluesky'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqc-bluesky'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc-bluesky'></a>",
 ]
