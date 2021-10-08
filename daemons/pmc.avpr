@@ -45,6 +45,12 @@
             "doc": "Derivative Sample",
             "type": "float"
         },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
         "encoder_scaling": {
             "default": 0,
             "doc": "Encoder Scaling",
@@ -84,6 +90,31 @@
             "items": "double",
             "origin": "has-limits",
             "type": "array"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "make": {
             "default": null,
@@ -240,7 +271,7 @@
             "response": "string"
         },
         "get_units": {
-            "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "doc": "Get units of daemon. These units apply to the position and destination properties.",
             "origin": "has-position",
             "request": [],
             "response": [
@@ -344,6 +375,30 @@
             "response": "null"
         }
     },
+    "properties": {
+        "destination": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_destination",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": null,
+            "type": "double",
+            "units_getter": "get_units"
+        },
+        "position": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_position",
+            "limits_getter": "get_limits",
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": "set_position",
+            "type": "double",
+            "units_getter": "get_units"
+        }
+    },
     "protocol": "pmc",
     "requires": [],
     "state": {
@@ -369,8 +424,8 @@
     },
     "traits": [
         "has-limits",
-        "is-daemon",
-        "has-position"
+        "has-position",
+        "is-daemon"
     ],
     "types": [
         {
