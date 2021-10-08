@@ -10,6 +10,12 @@
             "origin": "uses-uart",
             "type": "int"
         },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
         "limits": {
             "default": [
                 -Infinity,
@@ -19,6 +25,31 @@
             "items": "double",
             "origin": "has-limits",
             "type": "array"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
         },
         "make": {
             "default": null,
@@ -73,7 +104,7 @@
             "type": "string"
         }
     },
-    "doc": "Daemon for the Newport connex-agp controllers\n\nThis daemon was specifically tested with the CONEX-AG-PR100P.\nIt should, in theory, work (though with other units, potentially) for other CONEX line controllers.\n",
+    "doc": "Daemon for the Newport conex-agp controllers\n\nThis daemon was specifically tested with the CONEX-AG-PR100P.\nIt should, in theory, work (though with other units, potentially) for other CONEX line controllers.\n",
     "hardware": [
         "newport:conex-ag-pr100p"
     ],
@@ -145,7 +176,7 @@
             "response": "string"
         },
         "get_units": {
-            "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "doc": "Get units of daemon. These units apply to the position and destination properties.",
             "origin": "has-position",
             "request": [],
             "response": [
@@ -217,7 +248,31 @@
             "response": "null"
         }
     },
-    "protocol": "newport-connex-agp",
+    "properties": {
+        "destination": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_destination",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": null,
+            "type": "double",
+            "units_getter": "get_units"
+        },
+        "position": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_position",
+            "limits_getter": "get_limits",
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": "set_position",
+            "type": "double",
+            "units_getter": "get_units"
+        }
+    },
+    "protocol": "newport-conex-agp",
     "requires": [],
     "state": {
         "destination": {
@@ -251,12 +306,12 @@
         }
     },
     "traits": [
-        "is-daemon",
-        "has-position",
         "has-limits",
-        "uses-uart",
+        "has-position",
+        "is-daemon",
+        "is-homeable",
         "uses-serial",
-        "is-homeable"
+        "uses-uart"
     ],
     "types": [
         {
