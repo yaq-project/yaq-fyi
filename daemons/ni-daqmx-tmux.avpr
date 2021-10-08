@@ -339,7 +339,7 @@
                     "type": "boolean"
                 },
                 {
-                    "default": "__null__",
+                    "default": null,
                     "name": "baseline_start",
                     "type": [
                         "null",
@@ -347,7 +347,7 @@
                     ]
                 },
                 {
-                    "default": "__null__",
+                    "default": null,
                     "name": "baseline_stop",
                     "type": [
                         "null",
