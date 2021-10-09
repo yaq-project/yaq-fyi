@@ -69,13 +69,6 @@
         }
     },
     "doc": "Sensor daemon for RGB Photonics QMini spectrometer",
-    "fields": {
-        "exposure_time": {
-            "getter": "get_exposure_time",
-            "setter": "set_exposure_time",
-            "type": "float"
-        }
-    },
     "hardware": [
         "rgb-photonics:qmini"
     ],
@@ -156,6 +149,19 @@
             "doc": "Get exposure time in seconds",
             "request": [],
             "response": "float"
+        },
+        "get_exposure_time_limits": {
+            "doc": "Get exposure time limits in seconds",
+            "request": [],
+            "response": {
+                "items": "float",
+                "type": "array"
+            }
+        },
+        "get_exposure_time_units": {
+            "doc": "Get exposure time units (seconds)",
+            "request": [],
+            "response": "string"
         },
         "get_mapping_id": {
             "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
@@ -266,6 +272,19 @@
             "origin": "has-measure-trigger",
             "request": [],
             "response": "null"
+        }
+    },
+    "properties": {
+        "exposure_time": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_exposure_time",
+            "limits_getter": "get_exposure_time_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_exposure_time",
+            "type": "float",
+            "units_getter": "get_exposure_time_units"
         }
     },
     "protocol": "rgb-qmini",
