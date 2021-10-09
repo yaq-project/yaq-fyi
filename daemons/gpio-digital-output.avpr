@@ -76,54 +76,6 @@
         }
     },
     "doc": "Daemon to control one gpio pin as a digital output.\n",
-    "fields": {
-        "destination": {
-            "fields": {
-                "dynamic": true,
-                "getter": "get_destination",
-                "kind": "normal",
-                "type": "double"
-            },
-            "name": "field",
-            "type": "record"
-        },
-        "origin": "has-position",
-        "position": {
-            "fields": {
-                "dynamic": true,
-                "getter": "get_position",
-                "kind": "hinted",
-                "setter": "set_position",
-                "type": "double"
-            },
-            "name": "field",
-            "type": "record"
-        },
-        "position_identifier": {
-            "fields": {
-                "dynamic": true,
-                "getter": "get_identifier",
-                "kind": "hinted",
-                "setter": "set_identifier",
-                "type": "string"
-            },
-            "name": "field",
-            "type": "record"
-        },
-        "position_identifiers": {
-            "fields": {
-                "dynamic": false,
-                "getter": "get_position_identifiers",
-                "kind": "normal",
-                "type": {
-                    "type": "map",
-                    "values": "double"
-                }
-            },
-            "name": "field",
-            "type": "record"
-        }
-    },
     "hardware": [
         "raspberry-pi:4b",
         "raspberry-pi:3b+"
@@ -176,6 +128,15 @@
             "request": [],
             "response": "double"
         },
+        "get_position_identifier_options": {
+            "doc": "Get position identifier names. Identifiers may not change at runtime.",
+            "origin": "is-discrete",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
         "get_position_identifiers": {
             "doc": "Get position identifiers. Identifiers may not change at runtime.",
             "origin": "is-discrete",
@@ -192,7 +153,7 @@
             "response": "string"
         },
         "get_units": {
-            "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "doc": "Get units of daemon. These units apply to the position and destination properties.",
             "origin": "has-position",
             "request": [],
             "response": [
@@ -256,6 +217,41 @@
                 }
             ],
             "response": "null"
+        }
+    },
+    "properties": {
+        "destination": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_destination",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": null,
+            "type": "double",
+            "units_getter": "get_units"
+        },
+        "position": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_position",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": "set_position",
+            "type": "double",
+            "units_getter": "get_units"
+        },
+        "position_identifier": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_identifier",
+            "limits_getter": null,
+            "options_getter": "get_position_identifier_options",
+            "record_kind": "data",
+            "setter": "set_identifier",
+            "type": "string",
+            "units_getter": null
         }
     },
     "protocol": "gpio-digital-output",
