@@ -188,7 +188,7 @@ badges = [
 
 [daemons.yaqd-wright]
 badges = [
-  "<a href='https://github.com/wright-group/yaqd-wright'><img alt='CI' src='https://img.shields.io/github/checks-status/wright-group/yaqd-wright/master?label=build'></a>",
+  "<a href='https://github.com/wright-group/yaqd-wright'><img alt='CI' src='https://img.shields.io/github/checks-status/wright-group/yaqd-wright/main?label=build'></a>",
   "<a href='https://pypi.org/project/yaqd-wright'><img src='https://img.shields.io/pypi/v/yaqd-wright'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-wright'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-wright'></a>",
 ]

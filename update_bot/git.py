@@ -12,8 +12,8 @@ __here__ = pathlib.Path(__file__).parent
 
 def open_mr(kind, version):
     os.chdir(__here__ / "yaq-fyi")
-    # ensure starting on master
-    subprocess.check_call(["git", "checkout", "master"])
+    # ensure starting on main
+    subprocess.check_call(["git", "checkout", "main"])
     subprocess.check_call(["git", "fetch", "--all"])  # pull all remote branches
     # create branch
     branch = f"bullocky-{kind}-{version}"
@@ -32,8 +32,8 @@ def open_mr(kind, version):
         subprocess.check_call(["git", "push", "--set-upstream", "origin", branch, "--push-option=merge_request.create", "--push-option=merge_request.remove_source_branch"])
     except:
         pass
-    # return to master
-    subprocess.check_call(["git", "checkout", "master"])
+    # return to main
+    subprocess.check_call(["git", "checkout", "main"])
 
 
 def setup():
