@@ -21,6 +21,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqc'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc'></a>",
 ]
 
+[clients.yaqc-qtpy]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqc-qtpy/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqc-qtpy'></a>",
+  "<a href='https://pypi.org/project/yaqc-qtpy'><img src='https://img.shields.io/pypi/v/yaqc-qtpy'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqc-qtpy'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc-qtpy'></a>",
+]
+
 [daemons]
 
 [daemons.yaqd-acton]
