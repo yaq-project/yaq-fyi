@@ -1,5 +1,14 @@
 {
     "config": {
+        "delays": {
+            "default": {},
+            "doc": "mapping of delay names to yaq ports. Delays will be informed when position or arrangement changes",
+            "type": "map",
+            "values": [
+                "int",
+                "string"
+            ]
+        },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
@@ -93,43 +102,6 @@
         }
     },
     "doc": "yaq daemon representing an attune instrument",
-    "fields": {
-        "destination": {
-            "fields": {
-                "dynamic": true,
-                "getter": "get_destination",
-                "kind": "normal",
-                "type": "double"
-            },
-            "name": "field",
-            "type": "record"
-        },
-        "limits": {
-            "fields": {
-                "dynamic": true,
-                "getter": "get_limits",
-                "kind": "normal",
-                "type": {
-                    "items": "double",
-                    "type": "array"
-                }
-            },
-            "name": "field",
-            "type": "record"
-        },
-        "origin": "has-position",
-        "position": {
-            "fields": {
-                "dynamic": true,
-                "getter": "get_position",
-                "kind": "hinted",
-                "setter": "set_position",
-                "type": "double"
-            },
-            "name": "field",
-            "type": "record"
-        }
-    },
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-attune"
     },
@@ -155,7 +127,10 @@
         "get_arrangement": {
             "doc": "Get the currently in use arrangement name",
             "request": [],
-            "response": "string"
+            "response": [
+                "null",
+                "string"
+            ]
         },
         "get_config": {
             "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
@@ -168,6 +143,25 @@
             "origin": "is-daemon",
             "request": [],
             "response": "string"
+        },
+        "get_delay_names": {
+            "doc": "Get list of delays",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_delay_yaq_params": {
+            "doc": "Get the ports for delays.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "int",
+                    "string"
+                ]
+            }
         },
         "get_destination": {
             "doc": "Get current daemon destination.",
@@ -219,7 +213,10 @@
             "request": [],
             "response": {
                 "type": "map",
-                "values": "int"
+                "values": [
+                    "int",
+                    "string"
+                ]
             }
         },
         "get_state": {
@@ -229,7 +226,7 @@
             "response": "string"
         },
         "get_units": {
-            "doc": "Get units of daemon. These units apply to the position and destination fields.",
+            "doc": "Get units of daemon. These units apply to the position and destination properties.",
             "origin": "has-position",
             "request": [],
             "response": [
@@ -284,7 +281,10 @@
             "request": [
                 {
                     "name": "arrangement",
-                    "type": "string"
+                    "type": [
+                        "null",
+                        "string"
+                    ]
                 }
             ],
             "response": "null"
@@ -365,6 +365,41 @@
                 }
             ],
             "response": "null"
+        }
+    },
+    "properties": {
+        "arrangement": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_arrangement",
+            "limits_getter": null,
+            "options_getter": "get_all_arrangements",
+            "record_kind": "metadata",
+            "setter": "set_arrangement",
+            "type": "string",
+            "units_getter": null
+        },
+        "destination": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_destination",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": null,
+            "type": "double",
+            "units_getter": "get_units"
+        },
+        "position": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_position",
+            "limits_getter": "get_limits",
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": "set_position",
+            "type": "double",
+            "units_getter": "get_units"
         }
     },
     "protocol": "attune",
