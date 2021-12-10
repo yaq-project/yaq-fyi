@@ -77,19 +77,6 @@
         }
     },
     "doc": "Sensor daemon for Ocean Optics SeaBreeze spectrometers.",
-    "fields": {
-        "integration_time_micros": {
-            "fields": {
-                "dyanmic": true,
-                "getter": "get_integration_time_micros",
-                "kind": "normal",
-                "setter": "set_integration_time_micros",
-                "type": "int"
-            },
-            "name": "field",
-            "type": "record"
-        }
-    },
     "hardware": [
         "ocean-insight:usb2000",
         "ocean-insight:usb4000"
@@ -167,10 +154,23 @@
             "request": [],
             "response": "string"
         },
+        "get_integration_time_limits": {
+            "doc": "Get the integration time limits in microseconds.",
+            "request": [],
+            "response": {
+                "items": "int",
+                "type": "array"
+            }
+        },
         "get_integration_time_micros": {
             "doc": "Get the integration time in microseconds.",
             "request": [],
             "response": "int"
+        },
+        "get_integration_time_units": {
+            "doc": "Get units of integration time (us)",
+            "request": [],
+            "response": "string"
         },
         "get_mapping_id": {
             "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
@@ -281,6 +281,19 @@
             "origin": "has-measure-trigger",
             "request": [],
             "response": "null"
+        }
+    },
+    "properties": {
+        "integration_time": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_integration_time_micros",
+            "limits_getter": "get_integration_time_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_integration_time_micros",
+            "type": "int",
+            "units_getter": "get_integration_time_units"
         }
     },
     "protocol": "seabreeze",
