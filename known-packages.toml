@@ -16,7 +16,7 @@ badges = [
 
 [clients.yaqc-python]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
+  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaq-python'></a>",
   "<a href='https://pypi.org/project/yaqc'><img src='https://img.shields.io/pypi/v/yaqc'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqc'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc'></a>",
 ]
@@ -32,42 +32,42 @@ badges = [
 
 [daemons.yaqd-acton]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-acton/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-acton'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-acton/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-acton'></a>",
   "<a href='https://pypi.org/project/yaqd-acton'><img src='https://img.shields.io/pypi/v/yaqd-acton'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-acton'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-acton'></a>",
 ]
 
 [daemons.yaqd-attune]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-attune/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-attune'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-attune/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-attune'></a>",
   "<a href='https://pypi.org/project/yaqd-attune'><img src='https://img.shields.io/pypi/v/yaqd-attune'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-attune'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-attune'></a>",
 ]
 
 [daemons.yaqd-core-python]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
+  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaq-python'></a>",
   "<a href='https://pypi.org/project/yaqd-core'><img src='https://img.shields.io/pypi/v/yaqd-core'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-core'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-core'></a>",
 ]
 
 [daemons.yaqd-edaq]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-edaq/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-edaq'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-edaq/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-edaq'></a>",
   "<a href='https://pypi.org/project/yaqd-edaq'><img src='https://img.shields.io/pypi/v/yaqd-edaq'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-edaq'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-edaq'></a>",
 ]
 
 [daemons.yaqd-fakes]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-python'></a>",
+  "<a href='https://gitlab.com/yaq/yaq-python/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaq-python'></a>",
   "<a href='https://pypi.org/project/yaqd-fakes'><img src='https://img.shields.io/pypi/v/yaqd-fakes'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-fakes'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-fakes'></a>",
 ]
 
 [daemons.yaqd-gage]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-gage/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-gage'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-gage/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-gage'></a>",
   "<a href='https://pypi.org/project/yaqd-gage'><img src='https://img.shields.io/pypi/v/yaqd-gage'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-gage'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-gage'></a>",
 ]
@@ -75,76 +75,76 @@ badges = [
 
 [daemons.yaqd-gdrive]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-gdrive/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-gdrive'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-gdrive/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-gdrive'></a>",
   "<a href='https://pypi.org/project/yaqd-gdrive'><img src='https://img.shields.io/pypi/v/yaqd-gdrive'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-gdrive'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-gdrive'></a>",
 ]
 
 [daemons.yaqd-horiba]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-horiba/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-horiba'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-horiba/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-horiba'></a>",
   "<a href='https://pypi.org/project/yaqd-horiba'><img src='https://img.shields.io/pypi/v/yaqd-horiba'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-horiba'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-horiba'></a>",
 ]
 
 [daemons.yaqd-lightcon]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-lightcon/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-lightcon'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-lightcon/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-lightcon'></a>",
   "<a href='https://pypi.org/project/yaqd-lightcon'><img src='https://img.shields.io/pypi/v/yaqd-lightcon'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-lightcon'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-lightcon'></a>",
 ]
 
 [daemons.yaqd-microchip]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-microchip/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-microchip'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-microchip/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-microchip'></a>",
   "<a href='https://pypi.org/project/yaqd-microchip'><img src='https://img.shields.io/pypi/v/yaqd-microchip'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-microchip'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-microchip'></a>",
 ]
 
 [daemons.yaqd-mqtt]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-mqtt/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-mqtt'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-mqtt/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-mqtt'></a>",
   "<a href='https://pypi.org/project/yaqd-mqtt'><img src='https://img.shields.io/pypi/v/yaqd-mqtt'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-mqtt'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-mqtt'></a>",
 ]
 
 [daemons.yaqd-new-era]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-new-era/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-new-era'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-new-era/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-new-era'></a>",
   "<a href='https://pypi.org/project/yaqd-new-era'><img src='https://img.shields.io/pypi/v/yaqd-new-era'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-new-era'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-new-era'></a>",
 ]
 
 [daemons.yaqd-newport]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-newport/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-newport'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-newport/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-newport'></a>",
   "<a href='https://pypi.org/project/yaqd-newport'><img src='https://img.shields.io/pypi/v/yaqd-newport'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-newport'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-newport'></a>",
 ]
 
 [daemons.yaqd-ni]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-ni/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-ni'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-ni/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-ni'></a>",
   "<a href='https://pypi.org/project/yaqd-ni'><img src='https://img.shields.io/pypi/v/yaqd-ni'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-ni'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ni'></a>",
 ]
 
 [daemons.yaqd-pmc]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-pmc/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-pmc'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-pmc/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-pmc'></a>",
   "<a href='https://pypi.org/project/yaqd-pmc'><img src='https://img.shields.io/pypi/v/yaqd-pmc'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-pmc'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-pmc'></a>",
 ]
 
 [daemons.yaqd-rpi-gpio]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-rpi-gpio/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-rpi-gpio'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-rpi-gpio/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-rpi-gpio'></a>",
   "<a href='https://pypi.org/project/yaqd-rpi-gpio'><img src='https://img.shields.io/pypi/v/yaqd-rpi-gpio'></a>",
 ]
 
 [daemons.yaqd-rgb]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-rgb/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-rgb'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-rgb/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-rgb'></a>",
   "<a href='https://pypi.org/project/yaqd-rgb'><img src='https://img.shields.io/pypi/v/yaqd-rgb'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-rgb'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-rgb'></a>",
 ]
@@ -152,42 +152,42 @@ badges = [
 
 [daemons.yaqd-scpi]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-scpi/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-scpi'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-scpi/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-scpi'></a>",
   "<a href='https://pypi.org/project/yaqd-scpi'><img src='https://img.shields.io/pypi/v/yaqd-scpi'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-scpi'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-scpi'></a>",
 ]
 
 [daemons.yaqd-seabreeze]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-seabreeze/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-seabreeze'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-seabreeze/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-seabreeze'></a>",
   "<a href='https://pypi.org/project/yaqd-seabreeze'><img src='https://img.shields.io/pypi/v/yaqd-seabreeze'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-seabreeze'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-seabreeze'></a>",
 ]
 
 [daemons.yaqd-system-monitor]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-system-monitor/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-system-monitor'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-system-monitor/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-system-monitor'></a>",
   "<a href='https://pypi.org/project/yaqd-system-monitor'><img src='https://img.shields.io/pypi/v/yaqd-system-monitor'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-system-monitor'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-system-monitor'></a>",
 ]
 
 [daemons.yaqd-ti]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-ti/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-ti'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-ti/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-ti'></a>",
   "<a href='https://pypi.org/project/yaqd-ti'><img src='https://img.shields.io/pypi/v/yaqd-ti'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-ti'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ti'></a>",
 ]
 
 [daemons.yaqd-thorlabs]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-thorlabs/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-thorlabs'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-thorlabs/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-thorlabs'></a>",
   "<a href='https://pypi.org/project/yaqd-thorlabs'><img src='https://img.shields.io/pypi/v/yaqd-thorlabs'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-thorlabs'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-thorlabs'></a>",
 ]
 
 [daemons.yaqd-vici]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-vici/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-vici'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-vici/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-vici'></a>",
   "<a href='https://pypi.org/project/yaqd-vici'><img src='https://img.shields.io/pypi/v/yaqd-vici'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-vici'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-vici'></a>",
 ]
@@ -202,7 +202,7 @@ badges = [
 
 [daemons.yaqd-zaber]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-zaber/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-zaber'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-zaber/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-zaber'></a>",
   "<a href='https://pypi.org/project/yaqd-zaber'><img src='https://img.shields.io/pypi/v/yaqd-zaber'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-zaber'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-zaber'></a>",
 ]
@@ -211,45 +211,45 @@ badges = [
 
 [documentation.python-yaq-fyi]
 badges = [
-  "<a href='https://gitlab.com/yaq/python-yaq-fyi/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/python-yaq-fyi'></a>"
+  "<a href='https://gitlab.com/yaq/python-yaq-fyi/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/python-yaq-fyi'></a>"
 ]
 
 [documentation.yeps]
 badges = [
-  "<a href='https://gitlab.com/yaq/yeps/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yeps'></a>"
+  "<a href='https://gitlab.com/yaq/yeps/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yeps'></a>"
 ]
 
 [documentation.yaq-fyi]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaq-fyi/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-fyi'></a>"
+  "<a href='https://gitlab.com/yaq/yaq-fyi/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaq-fyi'></a>"
 ]
 
 [tooling]
 
 [tooling.qtypes]
 badges = [
-  "<a href='https://gitlab.com/yaq/qtypes/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/qtypes'></a>",
+  "<a href='https://gitlab.com/yaq/qtypes/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/qtypes'></a>",
   "<a href='https://pypi.org/project/qtypes'><img src='https://img.shields.io/pypi/v/qtypes'></a>",
   "<a href='https://anaconda.org/conda-forge/qtypes'><img src='https://img.shields.io/conda/vn/conda-forge/qtypes'></a>",
 ]
 
 [tooling.thorlabs-apt-protocol]
 badges = [
-  "<a href='https://gitlab.com/yaq/thorlabs-apt-protocol/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/thorlabs-apt-protocol'></a>",
+  "<a href='https://gitlab.com/yaq/thorlabs-apt-protocol/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/thorlabs-apt-protocol'></a>",
   "<a href='https://pypi.org/project/thorlabs-apt-protocol'><img src='https://img.shields.io/pypi/v/thorlabs-apt-protocol'></a>",
   "<a href='https://anaconda.org/conda-forge/thorlabs-apt-protocol'><img src='https://img.shields.io/conda/vn/conda-forge/thorlabs-apt-protocol'></a>",
 ]
 
 [tooling.yaq-traits]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaq-traits/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaq-traits'></a>",
+  "<a href='https://gitlab.com/yaq/yaq-traits/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaq-traits'></a>",
   "<a href='https://pypi.org/project/yaq-traits'><img src='https://img.shields.io/pypi/v/yaq-traits'></a>",
   "<a href='https://anaconda.org/conda-forge/yaq-traits'><img src='https://img.shields.io/conda/vn/conda-forge/yaq-traits'></a>",
 ]
 
 [tooling.yaqd-control]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-control/builds'><img src='https://img.shields.io/gitlab/pipeline/yaq/yaqd-control'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-control/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-control'></a>",
   "<a href='https://pypi.org/project/yaqd-control'><img src='https://img.shields.io/pypi/v/yaqd-control'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-control'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-control'></a>",
 ]
