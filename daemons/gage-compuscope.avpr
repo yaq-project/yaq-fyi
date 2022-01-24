@@ -154,6 +154,9 @@
             "type": "int"
         }
     },
+    "hardware": [
+        "gage:cse8442"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-gage"
     },
@@ -331,11 +334,11 @@
             "type": "enum"
         },
         {
-            "default": "50",
+            "default": "fifty",
             "name": "impedance_mode",
             "symbols": [
-                "50",
-                "1000000"
+                "fifty",
+                "onemeg"
             ],
             "type": "enum"
         },
@@ -391,7 +394,7 @@
                     "type": "int"
                 },
                 {
-                    "default": "__null__",
+                    "default": null,
                     "doc": "Start index for baseline region in post-processing. NumPy style indexing.",
                     "name": "baseline_start_index",
                     "type": [
@@ -400,7 +403,7 @@
                     ]
                 },
                 {
-                    "default": "__null__",
+                    "default": null,
                     "doc": "Stop index for baseline region in post-processing. Numpy style indexing.",
                     "name": "baseline_stop_index",
                     "type": [
