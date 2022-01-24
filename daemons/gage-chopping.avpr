@@ -1,0 +1,582 @@
+{
+    "config": {
+        "channels": {
+            "default": [],
+            "items": "channel",
+            "type": "array"
+        },
+        "depth": {
+            "default": 240,
+            "doc": "Post-trigger depth, in samples.",
+            "type": "int"
+        },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "ext_clk": {
+            "default": false,
+            "doc": "Enable or disable external clocking functionality. If external clocking is activated, the sample rate must be set to the external clocking frequency. Not all CompuScope hardware supports external clocking.",
+            "type": "boolean"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "loop_at_startup": {
+            "default": false,
+            "doc": "If set to true, the daemon will begin to loop measure as soon as it starts.",
+            "origin": "has-measure-trigger",
+            "type": "boolean"
+        },
+        "make": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "mode": {
+            "default": 1073741828,
+            "doc": "Sets the operating mode of the CompuScope system. Refer to the CompuScope documentation for valid values. Default is 1073741825 for FirmWare Averaging",
+            "type": "int"
+        },
+        "model": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
+            "type": "int"
+        },
+        "sample_rate": {
+            "default": null,
+            "doc": "Sampling rate in Hertz. If not provided, model-dependent default is used.",
+            "type": [
+                "null",
+                "int"
+            ]
+        },
+        "segment_bins": {
+            "default": {},
+            "type": "map",
+            "values": "voltage_range"
+        },
+        "segment_size": {
+            "default": 240,
+            "doc": "Size of the segment to capture. A segment is the sum of the pre- and post-trigger samples that are to be acquired.",
+            "type": "int"
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "time_stamp_clock": {
+            "default": "Fixed",
+            "doc": "The time-stamping clock may operate in one of two modes. In fixed mode, the on-board oscillator will be used as the counter source. In sample mode, a frequency derived from the sampling clock will be used as the counter source.",
+            "name": "time_stamp_clock_mode",
+            "symbols": [
+                "Fixed",
+                "Sample"
+            ],
+            "type": "enum"
+        },
+        "time_stamp_mode": {
+            "default": "Free",
+            "doc": "The time-stamping counter may be reset upon the start of each acquisition or left free-running.",
+            "name": "time_stampmode",
+            "symbols": [
+                "Free",
+                "Reset"
+            ],
+            "type": "enum"
+        },
+        "trigger_delay": {
+            "default": 0,
+            "doc": "Number of samples to acquire between the occurance of the trigger event and the actual logging of the trigger event. By using this you can more easily capture signals far away from the trigger. Not all CompuScope models support TriggerDelay.",
+            "type": "int"
+        },
+        "trigger_hold_off": {
+            "default": 0,
+            "doc": "Number of samples during which trigger events will be ignored after the system begins capturing. This is useful for ensuring the accumulation of a specified amount of pre-trigger data.",
+            "type": "int"
+        },
+        "trigger_time_out": {
+            "default": 1000000,
+            "doc": "Trigger timeout of the CompuScope system. The value is in 100 nanosecond units of time (e.g. a value of 10,000,000 gives a trigger timeout of 1 second). A value of -1 will cause the driver to wait indefinitely for a trigger.",
+            "type": "int"
+        },
+        "triggers": {
+            "default": [],
+            "items": "trigger",
+            "type": "array"
+        }
+    },
+    "doc": "yaq daemon supporting GaGe CompuScope Digitizer Models.\nFor chopping.\n",
+    "hardware": [
+        "gage:cse8442"
+    ],
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-gage"
+    },
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-gage/-/issues",
+        "source": "https://gitlab.com/yaq/yaqd-gage"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "boolean"
+        },
+        "get_channel_names": {
+            "doc": "Get current channel names.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_channel_shapes": {
+            "doc": "Get current channel shapes. If list is empty, channel is scalar.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": {
+                    "items": "int",
+                    "type": "array"
+                }
+            }
+        },
+        "get_channel_units": {
+            "doc": "Get current channel units.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_edge_width_count": {
+            "doc": "Get edge width count.",
+            "request": [],
+            "response": "int"
+        },
+        "get_measured": {
+            "doc": "Returns map of channel_name to measured_value. Always returns additional key measurement_id.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "double",
+                    "ndarray",
+                    "int"
+                ]
+            }
+        },
+        "get_measured_samples": {
+            "doc": "Get a dictionary of 1D arrays of measured samples.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "ndarray"
+            }
+        },
+        "get_measured_segments": {
+            "doc": "Get a dictionary of 1D arrays of measured segments.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "ndarray"
+            }
+        },
+        "get_measurement_id": {
+            "doc": "Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "int"
+            }
+        },
+        "get_record_count": {
+            "doc": "Get record count.",
+            "request": [],
+            "response": "int"
+        },
+        "get_segment_count": {
+            "doc": "Get the currently planned number of chunks.",
+            "request": [],
+            "response": "int"
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "measure": {
+            "doc": "Initiate a measurement. Returns integer, measurement ID.",
+            "origin": "has-measure-trigger",
+            "request": [
+                {
+                    "default": false,
+                    "name": "loop",
+                    "type": "boolean"
+                }
+            ],
+            "response": "int"
+        },
+        "set_edge_width_count": {
+            "doc": "Set edge width count. Setting of zero turns off edge detection.",
+            "request": [
+                {
+                    "name": "count",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "set_record_count": {
+            "doc": "Set record count.",
+            "request": [
+                {
+                    "name": "count",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "set_segment_count": {
+            "doc": "Set the chunk count.",
+            "request": [
+                {
+                    "name": "count",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        },
+        "stop_looping": {
+            "doc": "Stop looping measurement.",
+            "origin": "has-measure-trigger",
+            "request": [],
+            "response": "null"
+        }
+    },
+    "properties": {
+        "edge_width_count": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_edge_width_count",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_edge_width_count",
+            "type": "int",
+            "units_getter": null
+        },
+        "record_count": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_record_count",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_record_count",
+            "type": "int",
+            "units_getter": null
+        },
+        "segment_count": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_segment_count",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_segment_count",
+            "type": "int",
+            "units_getter": null
+        }
+    },
+    "protocol": "gage-chopping",
+    "requires": [],
+    "state": {
+        "edge_width_count": {
+            "default": 1,
+            "doc": "Width of edges in segment count.",
+            "type": "int"
+        },
+        "record_count": {
+            "default": 32,
+            "doc": "Number of shots to collect and firmware-average.",
+            "type": "int"
+        },
+        "segment_count": {
+            "default": 1000,
+            "doc": "Number of times to acquire record_count.",
+            "type": "int"
+        }
+    },
+    "traits": [
+        "has-measure-trigger",
+        "is-daemon",
+        "is-sensor"
+    ],
+    "types": [
+        {
+            "default": "DC",
+            "name": "coupling_mode",
+            "symbols": [
+                "AC",
+                "DC"
+            ],
+            "type": "enum"
+        },
+        {
+            "default": "fifty",
+            "name": "impedance_mode",
+            "symbols": [
+                "fifty",
+                "onemeg"
+            ],
+            "type": "enum"
+        },
+        {
+            "fields": [
+                {
+                    "doc": "Full input range in millivolts.",
+                    "name": "range",
+                    "type": "int"
+                },
+                {
+                    "name": "coupling",
+                    "type": "coupling_mode"
+                },
+                {
+                    "name": "impedance",
+                    "type": "impedance_mode"
+                },
+                {
+                    "default": false,
+                    "doc": "Enable differential input coupling. Not all CompuScope models support differential input coupling.",
+                    "name": "diff_input",
+                    "type": "boolean"
+                },
+                {
+                    "default": false,
+                    "doc": "Enable direct-to-ADC input coupling. Not all CompuScope models support direct-to-ADC input coupling.",
+                    "name": "direct_adc",
+                    "type": "boolean"
+                },
+                {
+                    "default": false,
+                    "doc": "Enable low-pass filtering. Not all CopuScope models support low-pass filtering.",
+                    "name": "filter",
+                    "type": "boolean"
+                },
+                {
+                    "default": 0,
+                    "doc": "DC offset for this channel in millivolts. Can be negative or positive.",
+                    "name": "dc_offset",
+                    "type": "int"
+                },
+                {
+                    "default": 0,
+                    "doc": "Start index for signal region in post-processing. NumPy style indexing.",
+                    "name": "signal_start_index",
+                    "type": "int"
+                },
+                {
+                    "default": -1,
+                    "doc": "Stop index for signal region in post-processing. Numpy style indexing.",
+                    "name": "signal_stop_index",
+                    "type": "int"
+                },
+                {
+                    "default": null,
+                    "doc": "Start index for baseline region in post-processing. NumPy style indexing.",
+                    "name": "baseline_start_index",
+                    "type": [
+                        "null",
+                        "int"
+                    ]
+                },
+                {
+                    "default": null,
+                    "doc": "Stop index for baseline region in post-processing. Numpy style indexing.",
+                    "name": "baseline_stop_index",
+                    "type": [
+                        "null",
+                        "int"
+                    ]
+                },
+                {
+                    "default": false,
+                    "doc": "Enable baseline subtraction for post-processing.",
+                    "name": "use_baseline",
+                    "type": "boolean"
+                },
+                {
+                    "default": false,
+                    "doc": "If true, post-processed signal is inverted.",
+                    "name": "invert",
+                    "type": "boolean"
+                }
+            ],
+            "name": "channel",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "doc": "Full input range in millivolts.",
+                    "name": "range",
+                    "type": "int"
+                },
+                {
+                    "doc": "Trigger condition. Refer to the CompuScope documentation for valid values.",
+                    "name": "condition",
+                    "type": "int"
+                },
+                {
+                    "default": 0.0,
+                    "doc": "Trigger level as a perentage of the input range of the trigger source (half the full scale input range). For example, in the 2000 mV range at 0 DC offset, 50 would be positive 50% of 1 Volt, or 500 millivolts.",
+                    "name": "level",
+                    "type": "float"
+                },
+                {
+                    "doc": "Trigger source. Refer to the CompuScope documentation for valid values.",
+                    "name": "source",
+                    "type": "int"
+                },
+                {
+                    "name": "coupling",
+                    "type": "coupling_mode"
+                },
+                {
+                    "name": "impedance",
+                    "type": "impedance_mode"
+                }
+            ],
+            "name": "trigger",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "min",
+                    "type": "double"
+                },
+                {
+                    "name": "max",
+                    "type": "double"
+                }
+            ],
+            "name": "voltage_range",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
+    ]
+}
