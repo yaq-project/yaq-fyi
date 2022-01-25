@@ -150,6 +150,14 @@
                 ]
             }
         },
+        "get_dependent_hardware": {
+            "doc": "Get mapping of name to host:port string. 'localhost' should be replaced on the client side with the host for this daemon.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "string"
+            }
+        },
         "get_destination": {
             "doc": "Get current daemon destination.",
             "origin": "has-position",
