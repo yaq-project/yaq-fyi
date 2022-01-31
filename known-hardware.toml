@@ -59,6 +59,10 @@ links.manufacturer = "https://www.microchip.com/wwwproducts/en/MCP9600"
 doc = "Programmable Single Syringe Pump."
 links.manufacturer = "https://www.syringepump.com/NE-1000.php"
 
+[new-era.dualne1000]
+doc = "Continuous infusion syringe pump system."
+links.manufacturer = "https://www.syringepump.com/continuous.php"
+
 [newport]
 
 [newport.conex-ag-pr100p]
