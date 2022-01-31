@@ -70,8 +70,40 @@ def state(k, v, container):
     return template.render(k=k, v=v, container=container)
 
 
+def type_(ty, container):
+    s = """
+    <p class="tab30">
+    <b>{{ ty.name }}</b> ({{ ty["type"] }}) <br>
+    {% if "default" in ty.keys() %} default: {{ ty["default"] }} <br> {% endif %}
+    {% if "doc" in ty.keys() %} {{ ty["doc"] }} <br> {% endif %}
+    {% if "symbols" in ty.keys() %} symbols: {{ ty["symbols"] }} <br> {% endif %}
+    {% if "fields" in ty.keys() %}
+    fields: <br>
+        {% for f in ty["fields"] %}
+        <p class="tab60">
+        <b>{{ f["name"] }}</b> ({{ f["type"] }})
+        {% if "default" in f.keys() %}<i>default: {{ f["default"] }}</i>{% endif %}
+        <br>
+        {% if "doc" in f.keys() %} {{ f["doc"] }} <br> {% endif %}
+        </p>
+        {% endfor %}
+    {% endif %}
+    {% if "origin" in ty.keys() %}
+        <i>{{ container.format_origin(ty["origin"]) }}</i>
+    {% endif %}
+    </p>
+    """
+    if ty["type"] not in ("enum", "record"):
+        warnings.warn(f"Unhandled type: {ty['type']}")
+    template = Environment(loader=BaseLoader).from_string(s)
+    return template.render(ty=ty, container=container)
+
+
+
+
 helpers = dict()
 helpers["config"] = config
 helpers["h2"] = h2
 helpers["message"] = message
 helpers["state"] = state
+helpers["type"] = type_

@@ -25,6 +25,8 @@ class Trait(object):
         self.state = kwargs.get("state", dict())
         self.messages = kwargs.get("messages", dict())
         self.daemons = []
+        self.types = kwargs.get("types", [])
+        self.types = [ty for ty in self.types if ty["name"] != "ndarray"]
 
     def __repr__(self):
         return self.name
@@ -61,6 +63,8 @@ class Daemon(object):
         self.state = kwargs.get("state", dict())
         self.messages = kwargs.get("messages", dict())
         self.hardwares = kwargs.get("hardware", [])
+        self.types = kwargs.get("types", [])
+        self.types = [ty for ty in self.types if ty["name"] != "ndarray"]
 
     def __repr__(self):
         return self.name
