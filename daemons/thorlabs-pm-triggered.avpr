@@ -1,0 +1,287 @@
+{
+    "config": {
+        "averaging": {
+            "default": 1,
+            "doc": "Apply a digital filter to readout. One sample takes ~0.3ms. ",
+            "type": "int"
+        },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "loop_at_startup": {
+            "default": false,
+            "doc": "If set to true, the daemon will begin to loop measure as soon as it starts.",
+            "origin": "has-measure-trigger",
+            "type": "boolean"
+        },
+        "make": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "model": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
+            "type": "int"
+        },
+        "readout": {
+            "default": "POW",
+            "type": "readout_type"
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        }
+    },
+    "doc": "Daemon for the Thorlabs PS series power meters\n",
+    "hardware": [
+        "thorlabs:pm"
+    ],
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-thorlabs",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-thorlabs"
+    },
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-thorlabs/issues",
+        "manufacturer": "https://www.thorlabs.com/",
+        "source": "https://gitlab.com/yaq/yaqd-thorlabs/"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "boolean"
+        },
+        "direct_serial_write": {
+            "doc": "Expose direct access to the serial port to clients.\n\nThis should not be encouraged for normal use, but may be very important for debugging.\nIf a device is expected to return data, it should be logged at the INFO level, not returned to the client.\nThis is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.\nSetting `busy` to true is encouraged, but individual daemon writers should consider their own use case.\n",
+            "origin": "uses-serial",
+            "request": [
+                {
+                    "name": "message",
+                    "type": "bytes"
+                }
+            ],
+            "response": "null"
+        },
+        "get_channel_names": {
+            "doc": "Get current channel names.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_channel_shapes": {
+            "doc": "Get current channel shapes. If list is empty, channel is scalar.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": {
+                    "items": "int",
+                    "type": "array"
+                }
+            }
+        },
+        "get_channel_units": {
+            "doc": "Get current channel units.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_measured": {
+            "doc": "Returns map of channel_name to measured_value. Always returns additional key measurement_id.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "double",
+                    "ndarray",
+                    "int"
+                ]
+            }
+        },
+        "get_measurement_id": {
+            "doc": "Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement.",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "int"
+            }
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "measure": {
+            "doc": "Initiate a measurement. Returns integer, measurement ID.",
+            "origin": "has-measure-trigger",
+            "request": [
+                {
+                    "default": false,
+                    "name": "loop",
+                    "type": "boolean"
+                }
+            ],
+            "response": "int"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        },
+        "stop_looping": {
+            "doc": "Stop looping measurement.",
+            "origin": "has-measure-trigger",
+            "request": [],
+            "response": "null"
+        }
+    },
+    "protocol": "thorlabs-pm-triggered",
+    "requires": [],
+    "state": {
+        "wavelength": {
+            "default": null,
+            "doc": "Correction wavelength (applies to photodiodes only)",
+            "type": [
+                "null",
+                "float"
+            ]
+        }
+    },
+    "traits": [
+        "has-measure-trigger",
+        "is-daemon",
+        "is-sensor",
+        "uses-serial"
+    ],
+    "types": [
+        {
+            "name": "readout_type",
+            "symbols": [
+                "POW",
+                "CURR",
+                "VOLT",
+                "ENER",
+                "FREQ",
+                "PDEN",
+                "EDEN",
+                "RES",
+                "TEMP"
+            ],
+            "type": "enum"
+        },
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
+    ]
+}
