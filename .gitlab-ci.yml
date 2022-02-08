@@ -8,6 +8,7 @@ before_script:
   - python -V
   - pip install jinja2 -U
   - pip install -U toml
+  - pip install -U yaq-traits
 
 test-build:
   stage: test
