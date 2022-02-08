@@ -8,6 +8,8 @@ import collections
 import toml
 import json
 
+from yaq_traits.__traits__ import traits
+
 
 __here__ = pathlib.Path(__file__).resolve().parent
 
@@ -33,14 +35,10 @@ class Trait(object):
         return f"from <a href='../{origin}'>{origin}</a>"
 
 
-traits = {}
-
 # initialize
-for name in os.listdir(__here__ / "traits"):
-    with open(__here__ / "traits" / name) as f:
-        dic = json.load(f)
-    t = Trait(**dic)
-    traits[t.trait] = t
+for k in traits:
+    t = Trait(**traits[k])
+    traits[k] = t
 
 # sort
 traits = collections.OrderedDict(sorted(traits.items()))
