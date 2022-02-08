@@ -137,6 +137,14 @@ links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=BSC201
 doc = "Three-channel benchtop stepper motor controller."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=BSC203"
 
+[thorlabs.ell18]
+doc = "Rotation stage."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=ELL18"
+
+[thorlabs.ell18m]
+doc = "Rotation stage."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=ELL18/M"
+
 [thorlabs.kdc101]
 doc = "K-Cube brushed DC servo motor controller."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=KDC101"
@@ -164,6 +172,10 @@ links.manufacturer = "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=
 [thorlabs.mpc320]
 doc = "Motorized Fiber Polarization Controller."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=MPC320"
+
+[thorlabs.pm100d]
+doc = "Digital optical power and energy meter."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=PM100D"
 
 [ti]
 doc = "Texas Instruments Incorporated"
