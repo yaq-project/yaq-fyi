@@ -37,6 +37,12 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-acton'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-acton'></a>",
 ]
 
+[daemons.yaqd-adafruit]
+badges = [
+  "<a href='https://gitlab.com/yaq/yaqd-adafruit/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-adafruit'></a>",
+  "<a href='https://pypi.org/project/yaqd-adafruit'><img src='https://img.shields.io/pypi/v/yaqd-adafruit'></a>",
+]
+
 [daemons.yaqd-attune]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-attune/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-attune'></a>",
