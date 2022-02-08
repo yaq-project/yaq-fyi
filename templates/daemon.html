@@ -80,4 +80,14 @@
 {% endfor %}
 {% endif %}
 
+{% if daemon.types %}
+{{ helpers.h2("types") }}
+<p>
+  The {{ daemon["name"] }} daemon uses the following avro types:
+</p>
+{% for ty in daemon.types %}
+  {{ helpers.type(ty, daemon) }}
+{% endfor %}
+{% endif %}
+
 {% include "footer.html" %}

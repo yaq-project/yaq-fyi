@@ -50,6 +50,17 @@
 {% endfor %}
 {% endif %}
 
+
+{% if trait.types %}
+{{ helpers.h2("types") }}
+<p>
+  The {{ trait["name"] }} trait uses the following avro types:
+</p>
+{% for ty in trait.types %}
+  {{ helpers.type(ty, trait) }}
+{% endfor %}
+{% endif %}
+
 {% if trait.daemons %}
 {{ helpers.h2("daemons") }}
 <p>
