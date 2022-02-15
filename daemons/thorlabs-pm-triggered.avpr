@@ -79,7 +79,7 @@
     },
     "doc": "Daemon for the Thorlabs PS series power meters\n",
     "hardware": [
-        "thorlabs:pm"
+        "thorlabs:pm100d"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-thorlabs",
