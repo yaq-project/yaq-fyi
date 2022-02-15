@@ -108,6 +108,10 @@
         }
     },
     "doc": "",
+    "hardware": [
+        "thorlabs:ell18",
+        "thorlabs:ell18m"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-thorlabs"
     },
