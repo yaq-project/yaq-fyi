@@ -173,6 +173,10 @@ links.manufacturer = "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=
 doc = "Motorized Fiber Polarization Controller."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=MPC320"
 
+[thorlabs.pax1000ir1]
+doc = "Infrared polarimeter."
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=PAX1000IR1"
+
 [thorlabs.pm100d]
 doc = "Digital optical power and energy meter."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=PM100D"
