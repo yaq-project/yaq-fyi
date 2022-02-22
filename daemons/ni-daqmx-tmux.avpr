@@ -271,6 +271,19 @@
             "response": "null"
         }
     },
+    "properties": {
+        "nshots": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_nshots",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_nshots",
+            "type": "int",
+            "units_getter": null
+        }
+    },
     "protocol": "ni-daqmx-tmux",
     "requires": [],
     "state": {
