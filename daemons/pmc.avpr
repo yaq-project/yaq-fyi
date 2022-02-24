@@ -15,6 +15,11 @@
             "doc": "Axis number for the individual motor in the controller",
             "type": "int"
         },
+        "backlash": {
+            "default": 1000,
+            "doc": "Number of steps to exceed the destination when backlash correcting. Must be a positive integer as backlash correction only applies in one direction.",
+            "type": "int"
+        },
         "controller": {
             "default": 0,
             "doc": "Index of the controller in MCAPI",
@@ -49,6 +54,11 @@
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
             "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "enable_backlash_correction": {
+            "default": false,
+            "doc": "Enable correction which sends the motor past its destination when travelling to higher mm values (lower step values)",
             "type": "boolean"
         },
         "encoder_scaling": {
