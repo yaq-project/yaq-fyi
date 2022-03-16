@@ -261,6 +261,14 @@
             "request": [],
             "response": "int"
         },
+        "get_segment_count_limits": {
+            "doc": "Get current segment count limits as defined by on-board memory.",
+            "request": [],
+            "response": {
+                "items": "int",
+                "type": "array"
+            }
+        },
         "get_state": {
             "doc": "Get version of the running daemon",
             "origin": "is-daemon",
@@ -367,7 +375,7 @@
             "control_kind": "normal",
             "dynamic": true,
             "getter": "get_segment_count",
-            "limits_getter": null,
+            "limits_getter": "get_segment_count_limits",
             "options_getter": null,
             "record_kind": "metadata",
             "setter": "set_segment_count",
