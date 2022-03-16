@@ -147,13 +147,6 @@
         }
     },
     "doc": "yaq daemon supporting GaGe CompuScope Digitizer Models.\nThis daemon essentially exposes GaGe's CompuScope configuration options directly.\nThis daemon aims to support any configuration possible in GaGe's C/C# SDK.\n",
-    "fields": {
-        "segment_count": {
-            "getter": "get_nchunks",
-            "setter": "set_nchunks",
-            "type": "int"
-        }
-    },
     "hardware": [
         "gage:cse8442"
     ],
@@ -250,6 +243,14 @@
             "request": [],
             "response": "int"
         },
+        "get_segment_count_limits": {
+            "doc": "Get current segment count limits as defined by on-board memory.",
+            "request": [],
+            "response": {
+                "items": "int",
+                "type": "array"
+            }
+        },
         "get_state": {
             "doc": "Get version of the running daemon",
             "origin": "is-daemon",
@@ -307,6 +308,19 @@
             "origin": "has-measure-trigger",
             "request": [],
             "response": "null"
+        }
+    },
+    "properties": {
+        "segment_count": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_segment_count",
+            "limits_getter": "get_segment_count_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_segment_count",
+            "type": "int",
+            "units_getter": null
         }
     },
     "protocol": "gage-compuscope",
