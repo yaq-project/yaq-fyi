@@ -1,18 +1,14 @@
 {
     "config": {
-        "correct_dark_counts": {
-            "default": false,
-            "type": "boolean"
-        },
-        "correct_nonlinearity": {
-            "default": false,
-            "type": "boolean"
-        },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
             "origin": "is-daemon",
             "type": "boolean"
+        },
+        "ini_file_path": {
+            "doc": "Path to the ini file for the SPC_init call",
+            "type": "string"
         },
         "log_level": {
             "default": "info",
@@ -46,7 +42,7 @@
             "type": "boolean"
         },
         "make": {
-            "default": "Ocean Optics",
+            "default": null,
             "origin": "is-daemon",
             "type": [
                 "null",
@@ -76,19 +72,13 @@
             ]
         }
     },
-    "doc": "Sensor daemon for Ocean Optics SeaBreeze spectrometers.",
-    "hardware": [
-        "ocean-insight:usb2000",
-        "ocean-insight:usb4000"
-    ],
+    "doc": "",
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-seabreeze",
-        "conda-forge": "https://anaconda.org/conda-forge/yaqd-seabreeze"
+        "PyPI": "https://pypi.org/project/yaqd-becker-hickl"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-seabreeze/-/issues",
-        "manufacturer": "https://www.oceaninsight.com/products/spectrometers/",
-        "source": "https://gitlab.com/yaq/yaqd-seabreeze"
+        "bugtracker": "https://gitlab.com/yaq/yaqd-becker-hickl/-/issues",
+        "source": "https://gitlab.com/yaq/yaqd-becker-hickl"
     },
     "messages": {
         "busy": {
@@ -142,6 +132,24 @@
                 ]
             }
         },
+        "get_collect_time": {
+            "doc": "Collection time in seconds",
+            "request": [],
+            "response": "float"
+        },
+        "get_collect_time_limits": {
+            "doc": "Returns [0.0001, 100000.0] in seconds",
+            "request": [],
+            "response": {
+                "items": "float",
+                "type": "array"
+            }
+        },
+        "get_collect_time_units": {
+            "doc": "Returns 's' for seconds",
+            "request": [],
+            "response": "string"
+        },
         "get_config": {
             "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
             "origin": "is-daemon",
@@ -154,23 +162,18 @@
             "request": [],
             "response": "string"
         },
-        "get_integration_time_limits": {
-            "doc": "Get the integration time limits in microseconds.",
-            "request": [],
-            "response": {
-                "items": "int",
-                "type": "array"
-            }
-        },
-        "get_integration_time_micros": {
-            "doc": "Get the integration time in microseconds.",
-            "request": [],
-            "response": "int"
-        },
-        "get_integration_time_units": {
-            "doc": "Get units of integration time (us)",
+        "get_freq_div": {
+            "doc": "Frequency divider, represented as a string",
             "request": [],
             "response": "string"
+        },
+        "get_freq_div_options": {
+            "doc": "Returns [1, 2, 4]",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
         },
         "get_mapping_id": {
             "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
@@ -224,9 +227,53 @@
                 "type": "int"
             }
         },
+        "get_rate_count_time": {
+            "doc": "rate counter time in seconds, represented as a string",
+            "request": [],
+            "response": "string"
+        },
+        "get_rate_count_time_options": {
+            "doc": "Returns [0.05, 0.1, 0.25, 1.0]",
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
         "get_state": {
             "doc": "Get version of the running daemon",
             "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_tac_gain": {
+            "doc": "TAC gain multiplier",
+            "request": [],
+            "response": "int"
+        },
+        "get_tac_gain_limits": {
+            "doc": "Returns [1, 15]",
+            "request": [],
+            "response": {
+                "items": "int",
+                "type": "array"
+            }
+        },
+        "get_tac_range": {
+            "doc": "TAC range in nanoseconds",
+            "request": [],
+            "response": "float"
+        },
+        "get_tac_range_limits": {
+            "doc": "Returns [50.0, 5000.0] in nanoseconds",
+            "request": [],
+            "response": {
+                "items": "float",
+                "type": "array"
+            }
+        },
+        "get_tac_range_units": {
+            "doc": "Returns 'ns' for nanoseconds",
             "request": [],
             "response": "string"
         },
@@ -254,12 +301,52 @@
             ],
             "response": "int"
         },
-        "set_integration_time_micros": {
-            "doc": "Set the integration time in microseconds.",
+        "set_collect_time": {
             "request": [
                 {
-                    "name": "set_integration_time_micros",
+                    "doc": "time in sec",
+                    "name": "time",
+                    "type": "float"
+                }
+            ],
+            "response": "null"
+        },
+        "set_freq_div": {
+            "request": [
+                {
+                    "doc": "Frequency divider",
+                    "name": "divisor",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
+        "set_rate_count_time": {
+            "request": [
+                {
+                    "doc": "rate counter time in seconds",
+                    "name": "time",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
+        "set_tac_gain": {
+            "request": [
+                {
+                    "doc": "TAC gain multiplier",
+                    "name": "gain",
                     "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "set_tac_range": {
+            "request": [
+                {
+                    "doc": "time in ns",
+                    "name": "time",
+                    "type": "float"
                 }
             ],
             "response": "null"
@@ -284,25 +371,89 @@
         }
     },
     "properties": {
-        "integration_time": {
-            "control_kind": "normal",
+        "collect_time": {
+            "control_kind": "hinted",
             "dynamic": true,
-            "getter": "get_integration_time_micros",
-            "limits_getter": "get_integration_time_limits",
+            "getter": "get_collect_time",
+            "limits_getter": "get_collect_time_limits",
             "options_getter": null,
             "record_kind": "metadata",
-            "setter": "set_integration_time_micros",
+            "setter": "set_collect_time",
+            "type": "float",
+            "units_getter": "get_collect_time_units"
+        },
+        "freq_div": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_freq_div",
+            "limits_getter": null,
+            "options_getter": "get_freq_div_options",
+            "record_kind": "metadata",
+            "setter": "set_freq_div",
+            "type": "string",
+            "units_getter": null
+        },
+        "rate_count_time": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_rate_count_time",
+            "limits_getter": null,
+            "options_getter": "get_rate_count_time_options",
+            "record_kind": "metadata",
+            "setter": "set_rate_count_time",
+            "type": "string",
+            "units_getter": null
+        },
+        "tac_gain": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_tac_gain",
+            "limits_getter": "get_tac_gain_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_tac_gain",
             "type": "int",
-            "units_getter": "get_integration_time_units"
+            "units_getter": null
+        },
+        "tac_range": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_tac_range",
+            "limits_getter": "get_tac_range_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_tac_range",
+            "type": "float",
+            "units_getter": "get_tac_range_units"
         }
     },
-    "protocol": "seabreeze",
+    "protocol": "becker-hickl-spc130",
     "requires": [],
     "state": {
-        "integration_time_micros": {
-            "default": 3000,
-            "doc": "Integration time for collecting pixels",
+        "collect_time": {
+            "default": 0.01,
+            "doc": "Collection time in seconds",
+            "type": "float"
+        },
+        "freq_div": {
+            "default": "4",
+            "doc": "TAC gain multiplier",
+            "type": "string"
+        },
+        "rate_count_time": {
+            "default": "1.0",
+            "doc": "Rate counting time in sec",
+            "type": "string"
+        },
+        "tac_gain": {
+            "default": 1,
+            "doc": "TAC gain multiplier",
             "type": "int"
+        },
+        "tac_range": {
+            "default": 50.0,
+            "doc": "TAC range in nanoseconds",
+            "type": "float"
         }
     },
     "traits": [

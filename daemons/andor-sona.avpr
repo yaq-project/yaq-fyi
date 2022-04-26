@@ -1,13 +1,5 @@
 {
     "config": {
-        "correct_dark_counts": {
-            "default": false,
-            "type": "boolean"
-        },
-        "correct_nonlinearity": {
-            "default": false,
-            "type": "boolean"
-        },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
@@ -46,7 +38,7 @@
             "type": "boolean"
         },
         "make": {
-            "default": "Ocean Optics",
+            "default": null,
             "origin": "is-daemon",
             "type": [
                 "null",
@@ -76,19 +68,13 @@
             ]
         }
     },
-    "doc": "Sensor daemon for Ocean Optics SeaBreeze spectrometers.",
-    "hardware": [
-        "ocean-insight:usb2000",
-        "ocean-insight:usb4000"
-    ],
+    "doc": "",
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-seabreeze",
-        "conda-forge": "https://anaconda.org/conda-forge/yaqd-seabreeze"
+        "PyPI": "https://pypi.org/project/yaqd-andor"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-seabreeze/-/issues",
-        "manufacturer": "https://www.oceaninsight.com/products/spectrometers/",
-        "source": "https://gitlab.com/yaq/yaqd-seabreeze"
+        "bugtracker": "https://gitlab.com/yaq/yaqd-andor/-/issues",
+        "source": "https://gitlab.com/yaq/yaqd-andor"
     },
     "messages": {
         "busy": {
@@ -154,23 +140,9 @@
             "request": [],
             "response": "string"
         },
-        "get_integration_time_limits": {
-            "doc": "Get the integration time limits in microseconds.",
+        "get_heatsink_temperature": {
             "request": [],
-            "response": {
-                "items": "int",
-                "type": "array"
-            }
-        },
-        "get_integration_time_micros": {
-            "doc": "Get the integration time in microseconds.",
-            "request": [],
-            "response": "int"
-        },
-        "get_integration_time_units": {
-            "doc": "Get units of integration time (us)",
-            "request": [],
-            "response": "string"
+            "response": "float"
         },
         "get_mapping_id": {
             "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
@@ -210,9 +182,9 @@
             "response": {
                 "type": "map",
                 "values": [
-                    "int",
                     "double",
-                    "ndarray"
+                    "ndarray",
+                    "int"
                 ]
             }
         },
@@ -223,6 +195,26 @@
             "response": {
                 "type": "int"
             }
+        },
+        "get_pixel_height": {
+            "request": [],
+            "response": "null"
+        },
+        "get_pixel_width": {
+            "request": [],
+            "response": "null"
+        },
+        "get_sensor_info": {
+            "doc": "Return a dictionary containing key information about the sensor.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "string"
+            }
+        },
+        "get_sensor_temperature": {
+            "request": [],
+            "response": "null"
         },
         "get_state": {
             "doc": "Get version of the running daemon",
@@ -254,16 +246,6 @@
             ],
             "response": "int"
         },
-        "set_integration_time_micros": {
-            "doc": "Set the integration time in microseconds.",
-            "request": [
-                {
-                    "name": "set_integration_time_micros",
-                    "type": "int"
-                }
-            ],
-            "response": "null"
-        },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
             "origin": "is-daemon",
@@ -283,26 +265,18 @@
             "response": "null"
         }
     },
-    "properties": {
-        "integration_time": {
-            "control_kind": "normal",
-            "dynamic": true,
-            "getter": "get_integration_time_micros",
-            "limits_getter": "get_integration_time_limits",
-            "options_getter": null,
-            "record_kind": "metadata",
-            "setter": "set_integration_time_micros",
-            "type": "int",
-            "units_getter": "get_integration_time_units"
-        }
-    },
-    "protocol": "seabreeze",
+    "protocol": "andor-sona",
     "requires": [],
     "state": {
-        "integration_time_micros": {
-            "default": 3000,
-            "doc": "Integration time for collecting pixels",
+        "accumulate_count": {
+            "default": 1,
+            "doc": "Number of images that should be summed to obtain each image.",
             "type": "int"
+        },
+        "exposure_time": {
+            "default": 1,
+            "doc": "Requested Exposure time, in seconds.",
+            "type": "float"
         }
     },
     "traits": [
@@ -312,6 +286,15 @@
         "is-sensor"
     ],
     "types": [
+        {
+            "name": "preamp_gain_options",
+            "symbols": [
+                "12-bit (high well capacity)",
+                "12-bit (low noise)",
+                "16-bit (low noise and high well capacity)"
+            ],
+            "type": "enum"
+        },
         {
             "fields": [
                 {

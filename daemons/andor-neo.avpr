@@ -1,18 +1,57 @@
 {
     "config": {
-        "correct_dark_counts": {
-            "default": false,
-            "type": "boolean"
+        "aoi_binning": {
+            "default": "1x1",
+            "doc": "Option to bin pixels both horizontally and vertically. \\\n    Default is no binning (1x1).",
+            "type": "binning_modes"
         },
-        "correct_nonlinearity": {
-            "default": false,
-            "type": "boolean"
+        "aoi_height": {
+            "default": null,
+            "doc": "Specify the number of pixel rows to acquire. \\\n    Can be no larger than `sensor_height` - (`aoi_top` - 1). \\\n    Defaults to use all rows starting from `aoi_top`. \\\n    ",
+            "type": [
+                "null",
+                "int"
+            ]
+        },
+        "aoi_left": {
+            "default": null,
+            "doc": "Specify left-most pixel column of the AOI. \\\n    Defaults to the full left of the camera sensor (column 1). \\\n    ",
+            "type": [
+                "null",
+                "int"
+            ]
+        },
+        "aoi_top": {
+            "default": null,
+            "doc": "Specify the top-most pixel row of the AOI. \\\n    Defaults to the top of the camera sensor (1). \\\n    ",
+            "type": [
+                "null",
+                "int"
+            ]
+        },
+        "aoi_width": {
+            "default": null,
+            "doc": "Specify the number of pixel columns to acquire. \\\n    Can be no larger than `sensor_width` - (`aoi_left` - 1). \\\n    Defaults to use all columns starting from `aoi_left`. \\\n    ",
+            "type": [
+                "null",
+                "int"
+            ]
+        },
+        "electronic_shuttering_mode": {
+            "default": "Rolling",
+            "doc": "'Rolling' or 'Global'",
+            "type": "shuttering_modes"
         },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
             "origin": "is-daemon",
             "type": "boolean"
+        },
+        "exposure_time": {
+            "default": 1,
+            "doc": "Camera exposure time (seconds).",
+            "type": "float"
         },
         "log_level": {
             "default": "info",
@@ -46,7 +85,7 @@
             "type": "boolean"
         },
         "make": {
-            "default": "Ocean Optics",
+            "default": "andor",
             "origin": "is-daemon",
             "type": [
                 "null",
@@ -54,7 +93,7 @@
             ]
         },
         "model": {
-            "default": null,
+            "default": "neo",
             "origin": "is-daemon",
             "type": [
                 "null",
@@ -66,6 +105,11 @@
             "origin": "is-daemon",
             "type": "int"
         },
+        "sensor_cooling": {
+            "default": false,
+            "doc": "Set whether or not sensor will be cooled.",
+            "type": "boolean"
+        },
         "serial": {
             "default": null,
             "doc": "Serial number for the particular device represented by the daemon",
@@ -74,21 +118,28 @@
                 "null",
                 "string"
             ]
+        },
+        "simple_preamp_gain_control": {
+            "default": "16-bit (low noise & high well capacity)",
+            "type": "preamp_gain_options"
+        },
+        "spurious_noise_filter": {
+            "default": false,
+            "doc": "Corrects high value pixels using mean of surrounding pixels.",
+            "type": "boolean"
+        },
+        "static_blemish_correction": {
+            "default": false,
+            "type": "boolean"
         }
     },
-    "doc": "Sensor daemon for Ocean Optics SeaBreeze spectrometers.",
-    "hardware": [
-        "ocean-insight:usb2000",
-        "ocean-insight:usb4000"
-    ],
+    "doc": "",
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-seabreeze",
-        "conda-forge": "https://anaconda.org/conda-forge/yaqd-seabreeze"
+        "PyPI": "https://pypi.org/project/yaqd-andor"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-seabreeze/-/issues",
-        "manufacturer": "https://www.oceaninsight.com/products/spectrometers/",
-        "source": "https://gitlab.com/yaq/yaqd-seabreeze"
+        "bugtracker": "https://gitlab.com/yaq/yaqd-andor/-/issues",
+        "source": "https://gitlab.com/yaq/yaqd-andor"
     },
     "messages": {
         "busy": {
@@ -154,23 +205,41 @@
             "request": [],
             "response": "string"
         },
-        "get_integration_time_limits": {
-            "doc": "Get the integration time limits in microseconds.",
+        "get_feature_names": {
+            "doc": "Return a list of available SDK features. \\\n    Different camera types have different available features. \\\n    All features names are snake case (e.g. `sensor_temperature`), \\\n    distinct from Pascal case (e.g. SensorTemperature) of the direct SDK. \\\n    ",
             "request": [],
             "response": {
-                "items": "int",
+                "items": "string",
                 "type": "array"
             }
         },
-        "get_integration_time_micros": {
-            "doc": "Get the integration time in microseconds.",
-            "request": [],
-            "response": "int"
+        "get_feature_options": {
+            "doc": "Return enumerated options for specified feature name (snake case). \\\n    If specified feature is not type `enum`, raises error.",
+            "request": [
+                {
+                    "name": "feature_name",
+                    "type": "string"
+                }
+            ],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
         },
-        "get_integration_time_units": {
-            "doc": "Get units of integration time (us)",
-            "request": [],
-            "response": "string"
+        "get_feature_value": {
+            "doc": "Reads the current value for the specified (snake case) feature name.",
+            "request": [
+                {
+                    "name": "feature_name",
+                    "type": "string"
+                }
+            ],
+            "response": [
+                "string",
+                "int",
+                "float",
+                "boolean"
+            ]
         },
         "get_mapping_id": {
             "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
@@ -210,9 +279,9 @@
             "response": {
                 "type": "map",
                 "values": [
-                    "int",
                     "double",
-                    "ndarray"
+                    "ndarray",
+                    "int"
                 ]
             }
         },
@@ -222,6 +291,17 @@
             "request": [],
             "response": {
                 "type": "int"
+            }
+        },
+        "get_sensor_info": {
+            "doc": "Return a dictionary containing information about the sensor.",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "int",
+                    "float"
+                ]
             }
         },
         "get_state": {
@@ -254,16 +334,6 @@
             ],
             "response": "int"
         },
-        "set_integration_time_micros": {
-            "doc": "Set the integration time in microseconds.",
-            "request": [
-                {
-                    "name": "set_integration_time_micros",
-                    "type": "int"
-                }
-            ],
-            "response": "null"
-        },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
             "origin": "is-daemon",
@@ -283,28 +353,8 @@
             "response": "null"
         }
     },
-    "properties": {
-        "integration_time": {
-            "control_kind": "normal",
-            "dynamic": true,
-            "getter": "get_integration_time_micros",
-            "limits_getter": "get_integration_time_limits",
-            "options_getter": null,
-            "record_kind": "metadata",
-            "setter": "set_integration_time_micros",
-            "type": "int",
-            "units_getter": "get_integration_time_units"
-        }
-    },
-    "protocol": "seabreeze",
+    "protocol": "andor-neo",
     "requires": [],
-    "state": {
-        "integration_time_micros": {
-            "default": 3000,
-            "doc": "Integration time for collecting pixels",
-            "type": "int"
-        }
-    },
     "traits": [
         "has-mapping",
         "has-measure-trigger",
@@ -312,6 +362,34 @@
         "is-sensor"
     ],
     "types": [
+        {
+            "name": "preamp_gain_options",
+            "symbols": [
+                "12-bit (high well capacity)",
+                "12-bit (low noise)",
+                "16-bit (low noise & high well capacity)"
+            ],
+            "type": "enum"
+        },
+        {
+            "name": "shuttering_modes",
+            "symbols": [
+                "Rolling",
+                "Global"
+            ],
+            "type": "enum"
+        },
+        {
+            "name": "binning_modes",
+            "symbols": [
+                "1x1",
+                "2x2",
+                "3x3",
+                "4x4",
+                "8x8"
+            ],
+            "type": "enum"
+        },
         {
             "fields": [
                 {
