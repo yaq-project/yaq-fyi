@@ -1,0 +1,572 @@
+{
+    "config": {
+        "baud_rate": {
+            "default": 9600,
+            "origin": "uses-uart",
+            "type": "int"
+        },
+        "enable": {
+            "default": true,
+            "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "doc": "Configuration limits are strictly optional.",
+            "items": "double",
+            "origin": "has-limits",
+            "type": "array"
+        },
+        "log_level": {
+            "default": "info",
+            "doc": "Set daemon log-level.",
+            "origin": "is-daemon",
+            "type": {
+                "name": "level",
+                "symbols": [
+                    "debug",
+                    "info",
+                    "notice",
+                    "warning",
+                    "error",
+                    "critical",
+                    "alert",
+                    "emergency"
+                ],
+                "type": "enum"
+            }
+        },
+        "log_to_file": {
+            "default": false,
+            "doc": "Optionally force logging to a file.",
+            "origin": "is-daemon",
+            "type": "boolean"
+        },
+        "make": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "model": {
+            "default": null,
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "out_of_limits": {
+            "default": "closest",
+            "doc": "Control behavior of daemon when set_position is given a value outside of limits.",
+            "name": "out_of_limits",
+            "origin": "has-limits",
+            "symbols": [
+                "closest",
+                "ignore",
+                "error"
+            ],
+            "type": "enum"
+        },
+        "port": {
+            "doc": "TCP port for daemon to occupy.",
+            "origin": "is-daemon",
+            "type": "int"
+        },
+        "serial": {
+            "default": null,
+            "doc": "Serial number for the particular device represented by the daemon",
+            "origin": "is-daemon",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "serial_port": {
+            "origin": "uses-uart",
+            "type": "string"
+        }
+    },
+    "doc": "Acton SP-2300i line of imaging spectromators.",
+    "hardware": [
+        "acton:sp2300i"
+    ],
+    "installation": {
+        "PyPI": "https://pypi.org/project/yaqd-acton/",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-acton"
+    },
+    "links": {
+        "bugtracker": "https://gitlab.com/yaq/yaqd-acton/-/issues",
+        "documentation": "https://yaq.fyi/daemons/acton-sp2300i",
+        "source": "https://gitlab.com/yaq/yaqd-acton"
+    },
+    "messages": {
+        "busy": {
+            "doc": "Returns true if daemon is currently busy.",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "boolean"
+        },
+        "direct_serial_write": {
+            "doc": "Expose direct access to the serial port to clients.\n\nThis should not be encouraged for normal use, but may be very important for debugging.\nIf a device is expected to return data, it should be logged at the INFO level, not returned to the client.\nThis is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.\nSetting `busy` to true is encouraged, but individual daemon writers should consider their own use case.\n",
+            "origin": "uses-serial",
+            "request": [
+                {
+                    "name": "message",
+                    "type": "bytes"
+                }
+            ],
+            "response": "null"
+        },
+        "get_config": {
+            "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_config_filepath": {
+            "doc": "String representing the absolute filepath of the configuration file on the host machine.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_destination": {
+            "doc": "Get current daemon destination.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_entrance_mirror": {
+            "request": [],
+            "response": [
+                "null",
+                "diverter"
+            ]
+        },
+        "get_exit_mirror": {
+            "request": [],
+            "response": [
+                "null",
+                "diverter"
+            ]
+        },
+        "get_front_entrance_slit": {
+            "request": [],
+            "response": [
+                "int",
+                "string"
+            ]
+        },
+        "get_front_exit_slit": {
+            "request": [],
+            "response": [
+                "int",
+                "string"
+            ]
+        },
+        "get_limits": {
+            "doc": "Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable).",
+            "origin": "has-limits",
+            "request": [],
+            "response": {
+                "items": "double",
+                "type": "array"
+            }
+        },
+        "get_position": {
+            "doc": "Get current daemon position.",
+            "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_side_entrance_slit": {
+            "request": [],
+            "response": [
+                "int",
+                "string"
+            ]
+        },
+        "get_side_exit_slit": {
+            "request": [],
+            "response": [
+                "int",
+                "string"
+            ]
+        },
+        "get_slit_limits": {
+            "request": [],
+            "response": [
+                {
+                    "items": "int",
+                    "type": "array"
+                }
+            ]
+        },
+        "get_slit_units": {
+            "request": [],
+            "response": "string"
+        },
+        "get_state": {
+            "doc": "Get version of the running daemon",
+            "origin": "is-daemon",
+            "request": [],
+            "response": "string"
+        },
+        "get_turret": {
+            "doc": "Get current turret identifier.",
+            "origin": "has-turret",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
+        "get_turret_options": {
+            "doc": "Get current turret identifier.",
+            "origin": "has-turret",
+            "request": [],
+            "response": {
+                "items": [
+                    "null",
+                    "string"
+                ],
+                "type": "array"
+            }
+        },
+        "get_units": {
+            "doc": "Get units of daemon. These units apply to the position and destination properties.",
+            "origin": "has-position",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
+        "id": {
+            "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
+            "origin": "is-daemon",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": [
+                    "null",
+                    "string"
+                ]
+            }
+        },
+        "in_limits": {
+            "doc": "Check if a given position is within daemon limits.",
+            "origin": "has-limits",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "double"
+                }
+            ],
+            "response": "boolean"
+        },
+        "set_entrance_mirror": {
+            "request": [
+                {
+                    "name": "facing",
+                    "type": "diverter"
+                }
+            ],
+            "response": "null"
+        },
+        "set_exit_mirror": {
+            "request": [
+                {
+                    "name": "facing",
+                    "type": "diverter"
+                }
+            ],
+            "response": "null"
+        },
+        "set_front_entrance_slit": {
+            "request": [
+                {
+                    "name": "width",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "set_front_exit_slit": {
+            "request": [
+                {
+                    "name": "width",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "set_position": {
+            "doc": "Give the daemon a new destination, and begin motion towards that destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "position",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_relative": {
+            "doc": "Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination.",
+            "origin": "has-position",
+            "request": [
+                {
+                    "name": "distance",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
+        },
+        "set_side_entrance_slit": {
+            "request": [
+                {
+                    "name": "width",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "set_side_exit_slit": {
+            "request": [
+                {
+                    "name": "width",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
+        "set_turret": {
+            "doc": "Set the turret to a given identifier.",
+            "origin": "has-turret",
+            "request": [
+                {
+                    "name": "turret",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
+        "shutdown": {
+            "doc": "Cleanly shutdown (or restart) daemon.",
+            "origin": "is-daemon",
+            "request": [
+                {
+                    "default": false,
+                    "name": "restart",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        }
+    },
+    "properties": {
+        "destination": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_destination",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": null,
+            "type": "double",
+            "units_getter": "get_units"
+        },
+        "entrance_mirror": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_entrance_mirror",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_entrance_mirror",
+            "type": "diverter",
+            "units_getter": null
+        },
+        "exit_mirror": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_exit_mirror",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_exit_mirror",
+            "type": "diverter",
+            "units_getter": null
+        },
+        "front_entrance_slit": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_front_entrance_slit",
+            "limits_getter": "get_slit_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_front_entrance_slit",
+            "type": "double",
+            "units_getter": "get_slit_units"
+        },
+        "position": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_position",
+            "limits_getter": "get_limits",
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": "set_position",
+            "type": "double",
+            "units_getter": "get_units"
+        },
+        "side_entrance_slit": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_side_entrance_slit",
+            "limits_getter": "get_slit_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_side_entrance_slit",
+            "type": "double",
+            "units_getter": "get_slit_units"
+        },
+        "turret": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_turret",
+            "limits_getter": null,
+            "options_getter": "get_turret_options",
+            "record_kind": "metadata",
+            "setter": "set_turret",
+            "type": "string",
+            "units_getter": null
+        }
+    },
+    "protocol": "acton-sp2300i",
+    "requires": [],
+    "state": {
+        "destination": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        },
+        "gratings": {
+            "default": [
+                ""
+            ],
+            "doc": "List of gratings as registered in spectrometer non-volatile memory.",
+            "type": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "hw_limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "items": "double",
+            "origin": "has-limits",
+            "type": "array"
+        },
+        "mirrors": {
+            "default": [
+                "SIDE"
+            ],
+            "doc": "diverting position of switchable entrance and exit mirrors",
+            "type": {
+                "items": "diverter",
+                "type": "array"
+            }
+        },
+        "position": {
+            "default": NaN,
+            "origin": "has-position",
+            "type": "double"
+        },
+        "slits": {
+            "default": [
+                ""
+            ],
+            "doc": "slit widths for all entrance and exit ports.  If slit is not motorized, null-valued",
+            "items": [
+                "string",
+                "int"
+            ],
+            "type": "array"
+        },
+        "turret": {
+            "default": null,
+            "doc": "Current turret index",
+            "origin": "has-turret",
+            "type": [
+                "null",
+                "string"
+            ]
+        }
+    },
+    "traits": [
+        "has-limits",
+        "has-position",
+        "has-turret",
+        "is-daemon",
+        "uses-serial",
+        "uses-uart"
+    ],
+    "types": [
+        {
+            "name": "valid_models",
+            "symbols": [
+                "SP-2355",
+                "SP-2356",
+                "SP-2357",
+                "SP-2358",
+                "SP-2360"
+            ],
+            "type": "enum"
+        },
+        {
+            "name": "diverter",
+            "symbols": [
+                "SIDE",
+                "FRONT",
+                "None"
+            ],
+            "type": "enum"
+        },
+        {
+            "fields": [
+                {
+                    "name": "shape",
+                    "type": {
+                        "items": "int",
+                        "type": "array"
+                    }
+                },
+                {
+                    "name": "typestr",
+                    "type": "string"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes"
+                },
+                {
+                    "name": "version",
+                    "type": "int"
+                }
+            ],
+            "logicalType": "ndarray",
+            "name": "ndarray",
+            "type": "record"
+        }
+    ]
+}

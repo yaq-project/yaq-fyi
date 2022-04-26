@@ -1,12 +1,10 @@
 {
     "config": {
-        "correct_dark_counts": {
-            "default": false,
-            "type": "boolean"
-        },
-        "correct_nonlinearity": {
-            "default": false,
-            "type": "boolean"
+        "channels": {
+            "A": {},
+            "B": {},
+            "type": "map",
+            "values": "channel"
         },
         "enable": {
             "default": true,
@@ -46,20 +44,30 @@
             "type": "boolean"
         },
         "make": {
-            "default": "Ocean Optics",
+            "default": "picotech",
             "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
             ]
         },
+        "max_samples": {
+            "default": 200,
+            "doc": "Number of samples per trigger (per channel).",
+            "type": "int"
+        },
         "model": {
-            "default": null,
+            "default": "ps2000",
             "origin": "is-daemon",
             "type": [
                 "null",
                 "string"
             ]
+        },
+        "oversample": {
+            "default": 16,
+            "doc": "Average on board to increase vertical resolution. Int between 1 and 256. Reduces output readings per trigger and increases time_interval in proportion.",
+            "type": "int"
         },
         "port": {
             "doc": "TCP port for daemon to occupy.",
@@ -74,21 +82,53 @@
                 "null",
                 "string"
             ]
+        },
+        "shots_processing_path": {
+            "doc": "Path to a .py module that processes raw scope traces into output channels. Example module is included in examples directory (`processing_module.py`). Path can be absolute or relative to the config file. ",
+            "type": "string"
+        },
+        "timebase": {
+            "default": 5,
+            "doc": "Time step between measurements is `10 ns * 2^(time_base)`.",
+            "type": "int"
+        },
+        "trigger_channel": {
+            "doc": "trigger channel id (A, B, C, or D)",
+            "type": "string"
+        },
+        "trigger_delay": {
+            "default": -15,
+            "doc": "Delay, as a percentage of sampled data points, between trigger and start block (delay in [-100, 100]). 0 means trigger event is first data point, -50 means trigger event is in the middle of block.",
+            "type": "int"
+        },
+        "trigger_rising": {
+            "default": true,
+            "doc": "Trigger on rising (true) or falling (false) edge",
+            "type": "boolean"
+        },
+        "trigger_self": {
+            "default": false,
+            "doc": "Sets whether (True) or not (False) ADC is triggered by its own AWG. AWG generates 0-1 V square wave at 1 kHz. Connect AWG to trigger.physical_channel.",
+            "type": "boolean"
+        },
+        "trigger_threshold": {
+            "default": 500000,
+            "doc": "Voltage value (in uV) that triggers sampling.",
+            "type": "int"
         }
     },
-    "doc": "Sensor daemon for Ocean Optics SeaBreeze spectrometers.",
+    "doc": "Triggered Picotech Oscilloscope",
     "hardware": [
-        "ocean-insight:usb2000",
-        "ocean-insight:usb4000"
+        "picotech:ps2000"
     ],
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-seabreeze",
-        "conda-forge": "https://anaconda.org/conda-forge/yaqd-seabreeze"
+        "PyPI": "https://pypi.org/project/yaqd-picotech"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-seabreeze/-/issues",
-        "manufacturer": "https://www.oceaninsight.com/products/spectrometers/",
-        "source": "https://gitlab.com/yaq/yaqd-seabreeze"
+        "bugtracker": "https://gitlab.com/yaq/yaqd-picotech/-/issues",
+        "linux_c_libraries": "https://www.picotech.com/downloads/linux",
+        "source": "https://gitlab.com/yaq/yaqd-picotech",
+        "windows_c_libraries": "https://www.picotech.com/downloads"
     },
     "messages": {
         "busy": {
@@ -154,24 +194,6 @@
             "request": [],
             "response": "string"
         },
-        "get_integration_time_limits": {
-            "doc": "Get the integration time limits in microseconds.",
-            "request": [],
-            "response": {
-                "items": "int",
-                "type": "array"
-            }
-        },
-        "get_integration_time_micros": {
-            "doc": "Get the integration time in microseconds.",
-            "request": [],
-            "response": "int"
-        },
-        "get_integration_time_units": {
-            "doc": "Get units of integration time (us)",
-            "request": [],
-            "response": "string"
-        },
         "get_mapping_id": {
             "doc": "Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired.",
             "origin": "has-mapping",
@@ -216,6 +238,11 @@
                 ]
             }
         },
+        "get_measured_samples": {
+            "doc": "Get full raw channel data. Returns array of shape (channel, sample, shot).",
+            "request": [],
+            "response": "ndarray"
+        },
         "get_measurement_id": {
             "doc": "Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement.",
             "origin": "is-sensor",
@@ -223,6 +250,11 @@
             "response": {
                 "type": "int"
             }
+        },
+        "get_nshots": {
+            "doc": "Get the currently planned number of shots.",
+            "request": [],
+            "response": "int"
         },
         "get_state": {
             "doc": "Get version of the running daemon",
@@ -254,11 +286,11 @@
             ],
             "response": "int"
         },
-        "set_integration_time_micros": {
-            "doc": "Set the integration time in microseconds.",
+        "set_nshots": {
+            "doc": "Set the number of shots to acquire.",
             "request": [
                 {
-                    "name": "set_integration_time_micros",
+                    "name": "nshots",
                     "type": "int"
                 }
             ],
@@ -283,25 +315,11 @@
             "response": "null"
         }
     },
-    "properties": {
-        "integration_time": {
-            "control_kind": "normal",
-            "dynamic": true,
-            "getter": "get_integration_time_micros",
-            "limits_getter": "get_integration_time_limits",
-            "options_getter": null,
-            "record_kind": "metadata",
-            "setter": "set_integration_time_micros",
-            "type": "int",
-            "units_getter": "get_integration_time_units"
-        }
-    },
-    "protocol": "seabreeze",
+    "protocol": "picotech-adc-triggered",
     "requires": [],
     "state": {
-        "integration_time_micros": {
-            "default": 3000,
-            "doc": "Integration time for collecting pixels",
+        "nshots": {
+            "default": 50,
             "type": "int"
         }
     },
@@ -312,6 +330,66 @@
         "is-sensor"
     ],
     "types": [
+        {
+            "name": "processing_method",
+            "symbols": [
+                "average",
+                "sum",
+                "min",
+                "max"
+            ],
+            "type": "enum"
+        },
+        {
+            "name": "adc_range",
+            "symbols": [
+                "_20_mV",
+                "_50_mV",
+                "_100_mV",
+                "_200_mV",
+                "_500_mV",
+                "_1_V",
+                "_2_V",
+                "_5_V",
+                "_10_V",
+                "_20_V"
+            ],
+            "type": "enum"
+        },
+        {
+            "name": "adc_coupling",
+            "symbols": [
+                "DC",
+                "AC"
+            ],
+            "type": "enum"
+        },
+        {
+            "fields": [
+                {
+                    "default": false,
+                    "name": "enabled",
+                    "type": "boolean"
+                },
+                {
+                    "default": "DC",
+                    "name": "coupling",
+                    "type": "adc_coupling"
+                },
+                {
+                    "default": "5 V",
+                    "name": "range",
+                    "type": "adc_range"
+                },
+                {
+                    "default": false,
+                    "name": "invert",
+                    "type": "boolean"
+                }
+            ],
+            "name": "channel",
+            "type": "record"
+        },
         {
             "fields": [
                 {
