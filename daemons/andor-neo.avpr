@@ -2,8 +2,8 @@
     "config": {
         "aoi_binning": {
             "default": "1x1",
-            "doc": "Option to bin pixels both horizontally and vertically. \\\n    Default is no binning (1x1).",
-            "type": "binning_modes"
+            "doc": "Option to bin pixels both horizontally and vertically. \\\n    '1x1', '2x2', '4x4', or '8x8'.  Default is no binning ('1x1').  ",
+            "type": "string"
         },
         "aoi_height": {
             "default": null,
@@ -37,21 +37,11 @@
                 "int"
             ]
         },
-        "electronic_shuttering_mode": {
-            "default": "Rolling",
-            "doc": "'Rolling' or 'Global'",
-            "type": "shuttering_modes"
-        },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
             "origin": "is-daemon",
             "type": "boolean"
-        },
-        "exposure_time": {
-            "default": 1,
-            "doc": "Camera exposure time (seconds).",
-            "type": "float"
         },
         "log_level": {
             "default": "info",
@@ -118,19 +108,6 @@
                 "null",
                 "string"
             ]
-        },
-        "simple_preamp_gain_control": {
-            "default": "16-bit (low noise & high well capacity)",
-            "type": "preamp_gain_options"
-        },
-        "spurious_noise_filter": {
-            "default": false,
-            "doc": "Corrects high value pixels using mean of surrounding pixels.",
-            "type": "boolean"
-        },
-        "static_blemish_correction": {
-            "default": false,
-            "type": "boolean"
         }
     },
     "doc": "",
@@ -205,8 +182,42 @@
             "request": [],
             "response": "string"
         },
+        "get_electronic_shuttering_mode": {
+            "request": [],
+            "response": "string"
+        },
+        "get_electronic_shuttering_mode_options": {
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_exposure_time": {
+            "request": [],
+            "response": "float"
+        },
+        "get_exposure_time_limits": {
+            "request": [],
+            "response": {
+                "items": "float",
+                "type": "array"
+            }
+        },
+        "get_feature_limits": {
+            "request": [
+                {
+                    "name": "feature_name",
+                    "type": "string"
+                }
+            ],
+            "response": {
+                "items": "float",
+                "type": "array"
+            }
+        },
         "get_feature_names": {
-            "doc": "Return a list of available SDK features. \\\n    Different camera types have different available features. \\\n    All features names are snake case (e.g. `sensor_temperature`), \\\n    distinct from Pascal case (e.g. SensorTemperature) of the direct SDK. \\\n    ",
+            "doc": "Return a list of available SDK features. All features names are snake case (e.g. `sensor_temperature`), distinct from Pascal case (e.g. SensorTemperature) of the direct SDK.",
             "request": [],
             "response": {
                 "items": "string",
@@ -214,7 +225,7 @@
             }
         },
         "get_feature_options": {
-            "doc": "Return enumerated options for specified feature name (snake case). \\\n    If specified feature is not type `enum`, raises error.",
+            "doc": "Return enumerated options for specified feature name (snake case). If specified feature is not type `enum`, raises error.",
             "request": [
                 {
                     "name": "feature_name",
@@ -279,9 +290,9 @@
             "response": {
                 "type": "map",
                 "values": [
+                    "int",
                     "double",
-                    "ndarray",
-                    "int"
+                    "ndarray"
                 ]
             }
         },
@@ -291,6 +302,17 @@
             "request": [],
             "response": {
                 "type": "int"
+            }
+        },
+        "get_pixel_readout_rate": {
+            "request": [],
+            "response": "string"
+        },
+        "get_pixel_readout_rate_options": {
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
             }
         },
         "get_sensor_info": {
@@ -304,11 +326,30 @@
                 ]
             }
         },
+        "get_simple_preamp_gain_control": {
+            "request": [],
+            "response": "string"
+        },
+        "get_simple_preamp_gain_control_options": {
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
+        },
+        "get_spurious_noise_filter": {
+            "request": [],
+            "response": "boolean"
+        },
         "get_state": {
             "doc": "Get version of the running daemon",
             "origin": "is-daemon",
             "request": [],
             "response": "string"
+        },
+        "get_static_blemish_correction": {
+            "request": [],
+            "response": "boolean"
         },
         "id": {
             "doc": "JSON object with information to identify the daemon, including name, kind, make, model, serial.\n",
@@ -334,6 +375,60 @@
             ],
             "response": "int"
         },
+        "set_electronic_shuttering_mode": {
+            "request": [
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
+        "set_exposure_time": {
+            "request": [
+                {
+                    "name": "value",
+                    "type": "float"
+                }
+            ],
+            "response": "null"
+        },
+        "set_pixel_readout_rate": {
+            "request": [
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
+        "set_simple_preamp_gain_control": {
+            "request": [
+                {
+                    "name": "value",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
+        "set_spurious_noise_filter": {
+            "request": [
+                {
+                    "name": "value",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        },
+        "set_static_blemish_correction": {
+            "request": [
+                {
+                    "name": "value",
+                    "type": "boolean"
+                }
+            ],
+            "response": "null"
+        },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
             "origin": "is-daemon",
@@ -353,8 +448,102 @@
             "response": "null"
         }
     },
+    "properties": {
+        "blemish_correction": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_static_blemish_correction",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_static_blemish_correction",
+            "type": "boolean",
+            "units_getter": null
+        },
+        "exposure_time": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_exposure_time",
+            "limits_getter": "get_exposure_time_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_exposure_time",
+            "type": "double",
+            "units_getter": null
+        },
+        "preamp_gain": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_simple_preamp_gain_control",
+            "limits_getter": null,
+            "options_getter": "get_simple_preamp_gain_control_options",
+            "record_kind": "metadata",
+            "setter": "set_simple_preamp_gain_control",
+            "type": "string",
+            "units_getter": null
+        },
+        "readout_rate": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_pixel_readout_rate",
+            "limits_getter": null,
+            "options_getter": "get_pixel_readout_rate_options",
+            "record_kind": "metadata",
+            "setter": "set_pixel_readout_rate",
+            "type": "string",
+            "units_getter": null
+        },
+        "shuttering": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_electronic_shuttering_mode",
+            "limits_getter": null,
+            "options_getter": "get_electronic_shuttering_mode_options",
+            "record_kind": "metadata",
+            "setter": "set_electronic_shuttering_mode",
+            "type": "string",
+            "units_getter": null
+        },
+        "spurious_noise_filter": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_spurious_noise_filter",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_spurious_noise_filter",
+            "type": "boolean",
+            "units_getter": null
+        }
+    },
     "protocol": "andor-neo",
     "requires": [],
+    "state": {
+        "electronic_shuttering_mode": {
+            "default": "Rolling",
+            "type": "string"
+        },
+        "exposure_time": {
+            "default": -1,
+            "type": "float"
+        },
+        "pixel_readout_rate": {
+            "default": "",
+            "type": "string"
+        },
+        "simple_preamp_gain_control": {
+            "default": "16-bit (low noise & high well capacity)",
+            "type": "string"
+        },
+        "spurious_noise_filter": {
+            "default": true,
+            "type": "boolean"
+        },
+        "static_blemish_correction": {
+            "default": true,
+            "type": "boolean"
+        }
+    },
     "traits": [
         "has-mapping",
         "has-measure-trigger",
@@ -362,34 +551,6 @@
         "is-sensor"
     ],
     "types": [
-        {
-            "name": "preamp_gain_options",
-            "symbols": [
-                "12-bit (high well capacity)",
-                "12-bit (low noise)",
-                "16-bit (low noise & high well capacity)"
-            ],
-            "type": "enum"
-        },
-        {
-            "name": "shuttering_modes",
-            "symbols": [
-                "Rolling",
-                "Global"
-            ],
-            "type": "enum"
-        },
-        {
-            "name": "binning_modes",
-            "symbols": [
-                "1x1",
-                "2x2",
-                "3x3",
-                "4x4",
-                "8x8"
-            ],
-            "type": "enum"
-        },
         {
             "fields": [
                 {
