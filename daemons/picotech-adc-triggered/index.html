@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>picotech-adc-triggered</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>daemons</a>/picotech-adc-triggered
+</h1>
+
+<hr>
+
+Triggered Picotech Oscilloscope
+
+
+<h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=https://gitlab.com/yaq/yaqd-picotech/-/issues>bugtracker</a> <br>
+
+  <a href=https://www.picotech.com/downloads/linux>linux_c_libraries</a> <br>
+
+  <a href=https://gitlab.com/yaq/yaqd-picotech>source</a> <br>
+
+  <a href=https://www.picotech.com/downloads>windows_c_libraries</a> <br>
+
+
+
+
+<h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
+<p>
+  The picotech-adc-triggered daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+
+  <a href=https://pypi.org/project/yaqd-picotech>PyPI</a> <br>
+
+
+
+
+<h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
+<p>
+  The picotech-adc-triggered daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
+<p class="tab30">
+
+  <a href=../../traits/has-mapping>has-mapping</a>
+  <br>
+
+  <a href=../../traits/has-measure-trigger>has-measure-trigger</a>
+  <br>
+
+  <a href=../../traits/is-daemon>is-daemon</a>
+  <br>
+
+  <a href=../../traits/is-sensor>is-sensor</a>
+  <br>
+
+</p>
+
+
+
+<h2>hardware</h2>
+<p>
+  The picotech-adc-triggered daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+
+  
+  <a href="../../hardware/picotech">picotech</a>/<a href="../../hardware/picotech/ps2000">ps2000</a><br>
+
+</p>
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+
+  
+    <p class="tab30">
+    <b>channels</b> (map)
+    
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>enable</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Disable this daemon. The kind entry-point will not attempt to start this daemon. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_level</b> ({'name': 'level', 'symbols': ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'], 'type': 'enum'})
+    <i>default: info</i>
+    <br>
+     Set daemon log-level. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_to_file</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Optionally force logging to a file. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>loop_at_startup</b> (boolean)
+    <i>default: False</i>
+    <br>
+     If set to true, the daemon will begin to loop measure as soon as it starts. <br> 
+    
+      <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>make</b> (['null', 'string'])
+    <i>default: picotech</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>max_samples</b> (int)
+    <i>default: 200</i>
+    <br>
+     Number of samples per trigger (per channel). <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>model</b> (['null', 'string'])
+    <i>default: ps2000</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>oversample</b> (int)
+    <i>default: 16</i>
+    <br>
+     Average on board to increase vertical resolution. Int between 1 and 256. Reduces output readings per trigger and increases time_interval in proportion. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>port</b> (int)
+    
+    <br>
+     TCP port for daemon to occupy. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+     Serial number for the particular device represented by the daemon <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>shots_processing_path</b> (string)
+    
+    <br>
+     Path to a .py module that processes raw scope traces into output channels. Example module is included in examples directory (`processing_module.py`). Path can be absolute or relative to the config file.  <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>timebase</b> (int)
+    <i>default: 5</i>
+    <br>
+     Time step between measurements is `10 ns * 2^(time_base)`. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>trigger_channel</b> (string)
+    
+    <br>
+     trigger channel id (A, B, C, or D) <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>trigger_delay</b> (int)
+    <i>default: -15</i>
+    <br>
+     Delay, as a percentage of sampled data points, between trigger and start block (delay in [-100, 100]). 0 means trigger event is first data point, -50 means trigger event is in the middle of block. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>trigger_rising</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Trigger on rising (true) or falling (false) edge <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>trigger_self</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Sets whether (True) or not (False) ADC is triggered by its own AWG. AWG generates 0-1 V square wave at 1 kHz. Connect AWG to trigger.physical_channel. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>trigger_threshold</b> (int)
+    <i>default: 500000</i>
+    <br>
+     Voltage value (in uV) that triggers sampling. <br> 
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  The picotech-adc-triggered daemon will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>nshots</b> (int) <br>
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  The picotech-adc-triggered daemon will expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>busy</b>
+     ➜  boolean 
+    <br>
+     Returns true if daemon is currently busy. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_mappings</b>
+     ➜  {'type': 'map', 'values': {'items': 'string', 'type': 'array'}} 
+    <br>
+     Defines which mapping keys apply to which channel keys. Each channel may have zero or many mappings. Mappings must broadcast into corresponding channels. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_names</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+     Get current channel names. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_shapes</b>
+     ➜  {'type': 'map', 'values': {'items': 'int', 'type': 'array'}} 
+    <br>
+     Get current channel shapes. If list is empty, channel is scalar. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_units</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     Get current channel units. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config</b>
+     ➜  string 
+    <br>
+     Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config_filepath</b>
+     ➜  string 
+    <br>
+     String representing the absolute filepath of the configuration file on the host machine.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_mapping_id</b>
+     ➜  int 
+    <br>
+     Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_mapping_units</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     Must return units for every mapping. Units can be null. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_mappings</b>
+     ➜  {'type': 'map', 'values': ['null', 'ndarray', 'double']} 
+    <br>
+     Mappings themselves. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measured</b>
+     ➜  {'type': 'map', 'values': ['int', 'double', 'ndarray']} 
+    <br>
+     Returns map of channel_name to measured_value. Always returns additional key measurement_id. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measured_samples</b>
+     ➜  ndarray 
+    <br>
+     Get full raw channel data. Returns array of shape (channel, sample, shot). <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measurement_id</b>
+     ➜  {'type': 'int'} 
+    <br>
+     Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_nshots</b>
+     ➜  int 
+    <br>
+     Get the currently planned number of shots. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_state</b>
+     ➜  string 
+    <br>
+     Get version of the running daemon <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     JSON object with information to identify the daemon, including name, kind, make, model, serial.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>measure</b>
+     ➜  int 
+    <br>
+     Initiate a measurement. Returns integer, measurement ID. <br> 
+    
+    <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>loop</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_nshots</b>
+     ➜  null 
+    <br>
+     Set the number of shots to acquire. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>nshots</b> (int)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>shutdown</b>
+     ➜  null 
+    <br>
+     Cleanly shutdown (or restart) daemon. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>restart</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>stop_looping</b>
+     ➜  null 
+    <br>
+     Stop looping measurement. <br> 
+    
+    <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i> <br>
+    
+     </p>
+    
+    
+
+
+
+
+<h2 id='types'>types<a href='#types'> ¶</a></h2>
+<p>
+  The picotech-adc-triggered daemon uses the following avro types:
+</p>
+
+  
+    <p class="tab30">
+    <b>processing_method</b> (enum) <br>
+    
+    
+     symbols: ['average', 'sum', 'min', 'max'] <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>adc_range</b> (enum) <br>
+    
+    
+     symbols: ['_20_mV', '_50_mV', '_100_mV', '_200_mV', '_500_mV', '_1_V', '_2_V', '_5_V', '_10_V', '_20_V'] <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>adc_coupling</b> (enum) <br>
+    
+    
+     symbols: ['DC', 'AC'] <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>channel</b> (record) <br>
+    
+    
+    
+    
+    fields: <br>
+        
+        <p class="tab60">
+        <b>enabled</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>coupling</b> (adc_coupling)
+        <i>default: DC</i>
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>range</b> (adc_range)
+        <i>default: 5 V</i>
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>invert</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+        </p>
+        
+    
+    
+    </p>
+    
+
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

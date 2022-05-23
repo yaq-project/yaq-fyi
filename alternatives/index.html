@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>alternatives</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1><a href="../">yaq</a>/alternatives</h1>
+
+<hr>
+
+<h2>alternatives</h2>
+
+<p>
+yaq is by no means the first project to attempt to simplify scientific instrumental software design.
+The very name yaq (yet another acquisition) acknowledges this.
+The further sections of this page attempt to highlight similar projects that we are aware of.
+We attempt to briefly compare each project to yaq.
+</p>
+
+<p>
+We choose to continue yaq development because we believe that yaq provides a uniquely elegant and flexible solution to instrumental software development.
+Our <a href=../introduction/>introduction to yaq</a> page does a good job highlighting yaq's core design principles.
+Briefly, these principles include:
+</p>
+
+<ul>
+  <li>modular client/daemon design</li>
+  <li>specification driven</li>
+  <li>compositional</li>
+  <li>minimal</li>
+</ul>
+
+<h2><a href="https://nsls-ii.github.io/bluesky/">Bluesky</a></h2>
+
+<p>
+Bluesky is a data collection framework which aims to abstract away the task of collecting scientific data and metadata.
+The Bluesky Framework itself is purely focused on experimental control and data streaming, so it's truly orthogonal to yaq.
+Bluesky is part of a larger set of projects which include <a href="https://nsls-ii.github.io/ophyd/">Ophyd</a>, an object oriented hardware abstraction layer in Python.
+Ophyd has similar goals to yaq, although without the modular client/daemon design.
+</p>
+
+<p>
+The project <a href="https://github.com/bluesky/ophyd-yaq">ophyd-yaq</a> aims to provide a bridge to consume yaq daemons within Ophyd and Bluesky.
+</p>
+
+<h2><a href="https://epics-controls.org/">EPICS</a></h2>
+
+<p>
+EPICS is a set of software tools and applications which provide a software infrastructure for use in building distributed control systems to operate devices such as Particle Accelerators, Large Experiments and major Telescopes.
+EPICS is in many ways very similar to yaq.
+The complex interface that EPICS defines, while impressive, is likely too challenging for implementation by the "everyday scientist".
+yaq tries to differentiate itself with it's much simpler interface.
+</p>
+
+<h2><a href="https://exopy.readthedocs.io/en/latest/">Exopy</a></h2>
+
+<p>
+Exopy is a all-in-one data acquisition software solution.
+It attempts to provide a graphical interface to a variety of hardware.
+In contrast, yaq attempts only to provide a unified interface to a set of daemons.
+Exopy has built in support for a variety of existing hardware.
+</p>
+
+<h2><a href="https://lucask07.github.io/instrbuilder/build/html/">Instrbuilder</a></h2>
+
+<p>
+Instrbuilder is a unified interface for the control of electrical instruments in Python.
+It attempts to support any instrument that uses ASCII textual string communication (such as SCPI).
+In contrast, yaq is completely agnostic to the hardware interface.
+Instrbuilder is meant to be run locally within a singular Python process.
+Instrbuilder does plug in to Bluesky.
+</p>
+
+<h2><a href="https://instrumental-lib.readthedocs.io/en/stable/">Instrumental</a></h2>
+
+<p>
+Instrumental provides high level Python drivers for a variety of lab hardware.
+It's meant to be run locally within a singular Python process.
+</p>
+
+<h2><a href="https://lantz.readthedocs.io/en/0.3/">Lantz</a></h2>
+
+<p>
+Latnz provides a consistent hardware interface within Python.
+It's meant to be run locally within a singular Python process.
+From what we can tell, Lantz may be abandoned.
+</p>
+
+<h2><a href="">Micro-Manager</a></h2>
+
+<p>
+Micro-Manager is a really cool project which focuses on being a comprehensive solution for driving microscopes.
+Like yaq, they focus on consistent hardware interfaces: they define <a href="https://valelab4.ucsf.edu/~MM/doc/MMCore/html/class_c_m_m_core.html">classes of hardware</a> which have the same C++ interface.
+The <a href="https://github.com/nicost/uScopeControl/blob/master/Software%20for%20Microscopy%20Workshop%20WhitePaper.pdf">Software for Microscopy Workshop White Paper</a> is a good read for anyone interested in the future of the project.
+</p>
+
+<h2><a href="https://pymeasure.readthedocs.io/">PyMeasure</a></h2>
+
+<p>
+PyMeasure makes scientific measurements easy to set up and run.
+The package contains a repository of instrument classes and a system for running experiment procedures, which provides graphical interfaces for graphing live data and managing queues of experiments.
+Both parts of the package are independent, and when combined provide all the necessary requirements for advanced measurements with only limited coding.
+</p>
+
+<h2><a href="https://python-microscopy.org/">python-microscopy</a></h2>
+
+<p>
+The Python Microscopy Environment is an open-source package providing image acquisition and data analysis functionality for a number of microscopy applications, but with a particular emphasis on single molecule localisation microscopy.```suggestion:-0+0
+The PYthon Microscopy Environment is an open-source package providing image acquisition and data analysis functionality for a number of microscopy applications, but with a particular emphasis on single molecule localisation microscopy.
+It has a much narrower focus than yaq.
+</p>
+
+<h2><a href="http://qcodes.github.io/Qcodes/index.html">Qcodes</a></h2>
+
+<p>
+Qcodes is a Python-based data acquisition framework developed by the Copenhagen / Delft / Sydney / Microsoft quantum computing consortium.
+They have an impressive list of <a href="http://qcodes.github.io/Qcodes/api/generated/qcodes.instrument_drivers.html">supported hardware</a>.
+</p>
+
+<h2><a href="https://doi.org/10.1016/j.softx.2017.02.001">Qudi</a></h2>
+
+<p>
+Qudi is a general, modular, multi-operating system suite written in Python 3 for controlling laboratory experiments. It provides a structured environment by separating functionality into hardware abstraction, experiment logic and user interface layers.
+</p>
+
+<h2><a href="http://www.scopefoundry.org/">ScopeFoundry</a></h2>
+
+<p>
+A Python platform for controlling custom laboratory experiments and visualizing scientific data.
+</p>
+
+<h2><a href="https://github.com/ZhuangLab/storm-control">storm-control</a></h2>
+
+<p>
+This is a repository of code developed in the Zhuang lab and the Babcock lab for the acquisition of STORM movies.
+It is an all-in-one Python3 / PyQt5 application.
+</p>
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

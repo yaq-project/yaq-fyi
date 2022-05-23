@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>uses-serial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>traits</a>/uses-serial
+</h1>
+
+<hr>
+
+Daemons with this trait use some kind of serial communication.
+
+
+
+
+
+
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  Daemons with the uses-serial trait expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>direct_serial_write</b>
+    
+    <br>
+     Expose direct access to the serial port to clients.
+
+This should not be encouraged for normal use, but may be very important for debugging.
+If a device is expected to return data, it should be logged at the INFO level, not returned to the client.
+This is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.
+Setting `busy` to true is encouraged, but individual daemon writers should consider their own use case.
+ <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>message</b> (bytes)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+
+
+
+<h2 id='daemons'>daemons<a href='#daemons'> ¶</a></h2>
+<p>
+  The following daemons implement the uses-serial trait:
+</p>
+<p class="tab30">
+
+  <a href=../../daemons/acton-2150i>acton-2150i</a>
+  <br>
+
+  <a href=../../daemons/acton-sp2300i>acton-sp2300i</a>
+  <br>
+
+  <a href=../../daemons/adafruit-stepper-motor-hat>adafruit-stepper-motor-hat</a>
+  <br>
+
+  <a href=../../daemons/ads1115>ads1115</a>
+  <br>
+
+  <a href=../../daemons/edaq-isopod>edaq-isopod</a>
+  <br>
+
+  <a href=../../daemons/ekspla-nt340>ekspla-nt340</a>
+  <br>
+
+  <a href=../../daemons/mcp3428>mcp3428</a>
+  <br>
+
+  <a href=../../daemons/mcp9600>mcp9600</a>
+  <br>
+
+  <a href=../../daemons/new-era-continuous-nextgen>new-era-continuous-nextgen</a>
+  <br>
+
+  <a href=../../daemons/new-era-ne1000>new-era-ne1000</a>
+  <br>
+
+  <a href=../../daemons/newport-conex-agp>newport-conex-agp</a>
+  <br>
+
+  <a href=../../daemons/newport-smc100>newport-smc100</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-bsc201>thorlabs-bsc201</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-bsc203>thorlabs-bsc203</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-ell18>thorlabs-ell18</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-k10cr1>thorlabs-k10cr1</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-kdc101>thorlabs-kdc101</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-kst101>thorlabs-kst101</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-lts150>thorlabs-lts150</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-lts300>thorlabs-lts300</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-mpc320>thorlabs-mpc320</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-pax1000>thorlabs-pax1000</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-pm-triggered>thorlabs-pm-triggered</a>
+  <br>
+
+  <a href=../../daemons/vici-two-position>vici-two-position</a>
+  <br>
+
+  <a href=../../daemons/wright-aerotech>wright-aerotech</a>
+  <br>
+
+  <a href=../../daemons/wright-filter-wheel>wright-filter-wheel</a>
+  <br>
+
+  <a href=../../daemons/wright-ingaas>wright-ingaas</a>
+  <br>
+
+  <a href=../../daemons/wright-stepper-box>wright-stepper-box</a>
+  <br>
+
+  <a href=../../daemons/wright-wl-motor>wright-wl-motor</a>
+  <br>
+
+  <a href=../../daemons/zaber-binary>zaber-binary</a>
+  <br>
+
+</p>
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

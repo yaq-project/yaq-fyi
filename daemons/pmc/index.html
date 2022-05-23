@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>pmc</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>daemons</a>/pmc
+</h1>
+
+<hr>
+
+Motor driver for motors from Precision MicroControl Corporation.
+
+
+
+<h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=https://gitlab.com/yaq/yaqd-pmc/issues>bugtracker</a> <br>
+
+  <a href=https://pmccorp.com/products/api.php>manufacturer</a> <br>
+
+  <a href=https://gitlab.com/yaq/yaqd-pmc/>source</a> <br>
+
+
+
+
+<h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
+<p>
+  The pmc daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+
+  <a href=https://pypi.org/project/yaqd-pmc>PyPI</a> <br>
+
+  <a href=https://anaconda.org/conda-forge/yaqd-pmc>conda-forge</a> <br>
+
+
+
+
+<h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
+<p>
+  The pmc daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
+<p class="tab30">
+
+  <a href=../../traits/has-limits>has-limits</a>
+  <br>
+
+  <a href=../../traits/has-position>has-position</a>
+  <br>
+
+  <a href=../../traits/is-daemon>is-daemon</a>
+  <br>
+
+</p>
+
+
+
+<h2>hardware</h2>
+<p>
+  The pmc daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+
+  
+  <a href="../../hardware/pmc">pmc</a>/<a href="../../hardware/pmc/dcx-pci100">dcx-pci100</a><br>
+
+</p>
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+
+  
+    <p class="tab30">
+    <b>accel_gain</b> (float)
+    <i>default: 0</i>
+    <br>
+     Acceleration Gain <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>acceleration</b> (float)
+    <i>default: 70000</i>
+    <br>
+     Acceleration for the motor in steps/sec/sec <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>axis</b> (int)
+    <i>default: 0</i>
+    <br>
+     Axis number for the individual motor in the controller <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>backlash</b> (int)
+    <i>default: 1000</i>
+    <br>
+     Number of steps to exceed the destination when backlash correcting. Must be a positive integer as backlash correction only applies in one direction. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>controller</b> (int)
+    <i>default: 0</i>
+    <br>
+     Index of the controller in MCAPI <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>counts_per_mm</b> (int)
+    <i>default: 58200</i>
+    <br>
+     Encoder counts per mm of travel <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>decel_gain</b> (float)
+    <i>default: 0</i>
+    <br>
+     Deceleration Gain <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>delay_at_target</b> (float)
+    <i>default: 0</i>
+    <br>
+     Delay At Target <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>derivative_gain</b> (float)
+    <i>default: 6000</i>
+    <br>
+     Derivative Gain <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>derivative_sample</b> (float)
+    <i>default: 0.001364</i>
+    <br>
+     Derivative Sample <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>enable</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Disable this daemon. The kind entry-point will not attempt to start this daemon. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>enable_backlash_correction</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Enable correction which sends the motor past its destination when travelling to higher mm values (lower step values) <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>encoder_scaling</b> (float)
+    <i>default: 0</i>
+    <br>
+     Encoder Scaling <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>following_error</b> (float)
+    <i>default: 0</i>
+    <br>
+     Following Error <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>gain</b> (float)
+    <i>default: 2211</i>
+    <br>
+     Gain parameter <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>integral_gain</b> (float)
+    <i>default: 0</i>
+    <br>
+     Integral Gain <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>integration_limit</b> (int)
+    <i>default: 0</i>
+    <br>
+     Integration Limit <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>integration_option</b> (int)
+    <i>default: 0</i>
+    <br>
+     Integration Option <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>limits</b> (array)
+    <i>default: [-inf, inf]</i>
+    <br>
+     Configuration limits are strictly optional. <br> 
+    
+      <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_level</b> ({'name': 'level', 'symbols': ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'], 'type': 'enum'})
+    <i>default: info</i>
+    <br>
+     Set daemon log-level. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_to_file</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Optionally force logging to a file. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>make</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>model</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>out_of_limits</b> (enum)
+    <i>default: closest</i>
+    <br>
+     Control behavior of daemon when set_position is given a value outside of limits. <br> 
+    
+      <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>output_deadband</b> (float)
+    <i>default: 0</i>
+    <br>
+     Output Deadband <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>output_offset</b> (float)
+    <i>default: 0</i>
+    <br>
+     Output Offset <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>port</b> (int)
+    
+    <br>
+     TCP port for daemon to occupy. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>position_deadband</b> (float)
+    <i>default: 0</i>
+    <br>
+     Position Deadband <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+     Serial number for the particular device represented by the daemon <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>startup_behavior</b> ({'name': 'startup', 'symbols': ['trust_driver', 'trust_state'], 'type': 'enum'})
+    <i>default: trust_driver</i>
+    <br>
+     Where to get the current position. If trust state, then it will use the position stored to state (if present) <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>tolerance</b> (int)
+    <i>default: 20</i>
+    <br>
+     Tolerance in motor steps <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>units</b> (string)
+    <i>default: mm</i>
+    <br>
+     Units <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>update_rate</b> (int)
+    <i>default: 0</i>
+    <br>
+     Update Rate <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>velocity</b> (float)
+    <i>default: 11000</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>velocity_gain</b> (float)
+    <i>default: 0</i>
+    <br>
+     Velocity Gain <br> 
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  The pmc daemon will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>destination</b> (double) <br>
+    
+    
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>hw_limits</b> (array) <br>
+    
+    
+        <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>position</b> (double) <br>
+    
+    
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  The pmc daemon will expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>busy</b>
+     ➜  boolean 
+    <br>
+     Returns true if daemon is currently busy. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config</b>
+     ➜  string 
+    <br>
+     Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config_filepath</b>
+     ➜  string 
+    <br>
+     String representing the absolute filepath of the configuration file on the host machine.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_destination</b>
+     ➜  double 
+    <br>
+     Get current daemon destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_limits</b>
+     ➜  {'items': 'double', 'type': 'array'} 
+    <br>
+     Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable). <br> 
+    
+    <i>from <a href='../../traits/has-limits'>has-limits</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position</b>
+     ➜  double 
+    <br>
+     Get current daemon position. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_state</b>
+     ➜  string 
+    <br>
+     Get version of the running daemon <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_units</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get units of daemon. These units apply to the position and destination properties. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     JSON object with information to identify the daemon, including name, kind, make, model, serial.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>in_limits</b>
+     ➜  boolean 
+    <br>
+     Check if a given position is within daemon limits. <br> 
+    
+    <i>from <a href='../../traits/has-limits'>has-limits</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>mm_to_steps</b>
+     ➜  int 
+    <br>
+     Convert mm travel to motor steps <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>mm</b> (float)
+        
+        <br>
+         mm of travel <br> 
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>reset_to_known_position</b>
+     ➜  null 
+    <br>
+     Reset the represented position to a known actual position <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (float)
+        
+        <br>
+         Current actual position in mm <br> 
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_position</b>
+     ➜  null 
+    <br>
+     Give the daemon a new destination, and begin motion towards that destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_relative</b>
+     ➜  double 
+    <br>
+     Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>distance</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>shutdown</b>
+     ➜  null 
+    <br>
+     Cleanly shutdown (or restart) daemon. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>restart</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>steps_to_mm</b>
+     ➜  float 
+    <br>
+     Convert motor steps to mm travel <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>steps</b> (int)
+        
+        <br>
+         Number of motor steps <br> 
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>stop</b>
+     ➜  null 
+    <br>
+     Halt motion of the motor <br> 
+    
+     </p>
+    
+    
+
+
+
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

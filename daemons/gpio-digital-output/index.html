@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>gpio-digital-output</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>daemons</a>/gpio-digital-output
+</h1>
+
+<hr>
+
+Daemon to control one gpio pin as a digital output.
+
+
+
+<h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=https://gitlab.com/yaq/yaqd-rpi-gpio/-/issues/>bugtracker</a> <br>
+
+  <a href=https://www.raspberrypi.org/>manufacturer</a> <br>
+
+  <a href=https://gitlab.com/yaq/yaqd-rpi-gpio/>source</a> <br>
+
+
+
+
+<h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
+<p>
+  The gpio-digital-output daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+
+  <a href=https://pypi.org/project/yaqd-rpi-gpio/>PyPI</a> <br>
+
+
+
+
+<h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
+<p>
+  The gpio-digital-output daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
+<p class="tab30">
+
+  <a href=../../traits/has-position>has-position</a>
+  <br>
+
+  <a href=../../traits/is-daemon>is-daemon</a>
+  <br>
+
+  <a href=../../traits/is-discrete>is-discrete</a>
+  <br>
+
+</p>
+
+
+
+<h2>hardware</h2>
+<p>
+  The gpio-digital-output daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+
+  
+  <a href="../../hardware/raspberry-pi">raspberry-pi</a>/<a href="../../hardware/raspberry-pi/4b">4b</a><br>
+
+  
+  <a href="../../hardware/raspberry-pi">raspberry-pi</a>/<a href="../../hardware/raspberry-pi/3b+">3b+</a><br>
+
+</p>
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+
+  
+    <p class="tab30">
+    <b>enable</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Disable this daemon. The kind entry-point will not attempt to start this daemon. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>identifiers</b> ({'type': 'map', 'values': 'double'})
+    <i>default: {}</i>
+    <br>
+     Position identifiers <br> 
+    
+      <i>from <a href='../../traits/is-discrete'>is-discrete</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>index</b> (int)
+    
+    <br>
+     Pin to control. Use Broadcom SOC channel index, NOT board pins. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_level</b> ({'name': 'level', 'symbols': ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'], 'type': 'enum'})
+    <i>default: info</i>
+    <br>
+     Set daemon log-level. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_to_file</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Optionally force logging to a file. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>make</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>model</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>port</b> (int)
+    
+    <br>
+     TCP port for daemon to occupy. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+     Serial number for the particular device represented by the daemon <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  The gpio-digital-output daemon will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>destination</b> (double) <br>
+    
+    
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>position</b> (double) <br>
+    
+    
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>position_identifier</b> (['null', 'string']) <br>
+     Current position identifier. <br> 
+    
+        <i>from <a href='../../traits/is-discrete'>is-discrete</a></i>
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  The gpio-digital-output daemon will expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>busy</b>
+     ➜  boolean 
+    <br>
+     Returns true if daemon is currently busy. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config</b>
+     ➜  string 
+    <br>
+     Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config_filepath</b>
+     ➜  string 
+    <br>
+     String representing the absolute filepath of the configuration file on the host machine.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_destination</b>
+     ➜  double 
+    <br>
+     Get current daemon destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_identifier</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get current identifier string. Current identifier may be None. <br> 
+    
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position</b>
+     ➜  double 
+    <br>
+     Get current daemon position. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position_identifier_options</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+     Get position identifier names. Identifiers may not change at runtime. <br> 
+    
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position_identifiers</b>
+     ➜  {'type': 'map', 'values': 'double'} 
+    <br>
+     Get position identifiers. Identifiers may not change at runtime. <br> 
+    
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_state</b>
+     ➜  string 
+    <br>
+     Get version of the running daemon <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_units</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get units of daemon. These units apply to the position and destination properties. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     JSON object with information to identify the daemon, including name, kind, make, model, serial.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_identifier</b>
+     ➜  double 
+    <br>
+     Set using an identifier. Returns new destination. <br> 
+    
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>identifier</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_position</b>
+     ➜  null 
+    <br>
+     Give the daemon a new destination, and begin motion towards that destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_relative</b>
+     ➜  double 
+    <br>
+     Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>distance</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>shutdown</b>
+     ➜  null 
+    <br>
+     Cleanly shutdown (or restart) daemon. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>restart</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>thorlabs-k10cr1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>daemons</a>/thorlabs-k10cr1
+</h1>
+
+<hr>
+
+Daemon for the Thorlabs K10CR1 rotational stage
+
+
+
+<h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=https://gitlab.com/yaq/yaqd-thorlabs/issues>bugtracker</a> <br>
+
+  <a href=https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=8750&pn=K10CR1>manufacturer</a> <br>
+
+  <a href=https://gitlab.com/yaq/yaqd-thorlabs/>source</a> <br>
+
+
+
+
+<h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
+<p>
+  The thorlabs-k10cr1 daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+
+  <a href=https://pypi.org/project/yaqd-thorlabs>PyPI</a> <br>
+
+  <a href=https://anaconda.org/conda-forge/yaqd-thorlabs>conda-forge</a> <br>
+
+
+
+
+<h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
+<p>
+  The thorlabs-k10cr1 daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
+<p class="tab30">
+
+  <a href=../../traits/has-limits>has-limits</a>
+  <br>
+
+  <a href=../../traits/has-position>has-position</a>
+  <br>
+
+  <a href=../../traits/is-daemon>is-daemon</a>
+  <br>
+
+  <a href=../../traits/is-homeable>is-homeable</a>
+  <br>
+
+  <a href=../../traits/uses-serial>uses-serial</a>
+  <br>
+
+  <a href=../../traits/uses-uart>uses-uart</a>
+  <br>
+
+</p>
+
+
+
+<h2>hardware</h2>
+<p>
+  The thorlabs-k10cr1 daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+
+  
+  <a href="../../hardware/thorlabs">thorlabs</a>/<a href="../../hardware/thorlabs/k10cr1">k10cr1</a><br>
+
+</p>
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+
+  
+    <p class="tab30">
+    <b>automatic_status_updates</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Use the thorlabs apt firmware automatic status updates, otherwise poll <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>baud_rate</b> (int)
+    <i>default: 115200</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>chan_ident</b> (int)
+    <i>default: 1</i>
+    <br>
+     Channel identifier for apt messages (almost always 0x01) <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>dest</b> (int)
+    <i>default: 80</i>
+    <br>
+     Destination for apt messages (0x50 for single bay controllers) <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>enable</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Disable this daemon. The kind entry-point will not attempt to start this daemon. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>limits</b> (array)
+    <i>default: [-inf, inf]</i>
+    <br>
+     Configuration limits are strictly optional. <br> 
+    
+      <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_level</b> ({'name': 'level', 'symbols': ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'], 'type': 'enum'})
+    <i>default: info</i>
+    <br>
+     Set daemon log-level. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_to_file</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Optionally force logging to a file. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>make</b> (['null', 'string'])
+    <i>default: Thorlabs</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>model</b> (['null', 'string'])
+    <i>default: K10CR1</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>out_of_limits</b> (enum)
+    <i>default: closest</i>
+    <br>
+     Control behavior of daemon when set_position is given a value outside of limits. <br> 
+    
+      <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>port</b> (int)
+    
+    <br>
+     TCP port for daemon to occupy. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+     Serial number for the particular device represented by the daemon <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial_port</b> (string)
+    
+    <br>
+    
+    
+      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>source</b> (int)
+    <i>default: 1</i>
+    <br>
+     Source for apt messages (almost always 0x01) <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>steps_per_unit</b> (float)
+    <i>default: 136533.33333333334</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>units</b> (string)
+    <i>default: deg</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  The thorlabs-k10cr1 daemon will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>destination</b> (double) <br>
+    
+    
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>hw_limits</b> (array) <br>
+    
+    
+        <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>position</b> (double) <br>
+    
+    
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  The thorlabs-k10cr1 daemon will expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>busy</b>
+     ➜  boolean 
+    <br>
+     Returns true if daemon is currently busy. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>direct_serial_write</b>
+     ➜  null 
+    <br>
+     Expose direct access to the serial port to clients.
+
+This should not be encouraged for normal use, but may be very important for debugging.
+If a device is expected to return data, it should be logged at the INFO level, not returned to the client.
+This is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.
+Setting `busy` to true is encouraged, but individual daemon writers should consider their own use case.
+ <br> 
+    
+    <i>from <a href='../../traits/uses-serial'>uses-serial</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>message</b> (bytes)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config</b>
+     ➜  string 
+    <br>
+     Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config_filepath</b>
+     ➜  string 
+    <br>
+     String representing the absolute filepath of the configuration file on the host machine.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_destination</b>
+     ➜  double 
+    <br>
+     Get current daemon destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_limits</b>
+     ➜  {'items': 'double', 'type': 'array'} 
+    <br>
+     Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable). <br> 
+    
+    <i>from <a href='../../traits/has-limits'>has-limits</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position</b>
+     ➜  double 
+    <br>
+     Get current daemon position. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_state</b>
+     ➜  string 
+    <br>
+     Get version of the running daemon <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_units</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get units of daemon. These units apply to the position and destination properties. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>home</b>
+     ➜  null 
+    <br>
+     Initiates the homing procedure.
+The daemon will report as busy during the homing procedure.
+ After the homing procedure is complete, the daemon will return to the current destination.
+ <br> 
+    
+    <i>from <a href='../../traits/is-homeable'>is-homeable</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     JSON object with information to identify the daemon, including name, kind, make, model, serial.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>in_limits</b>
+     ➜  boolean 
+    <br>
+     Check if a given position is within daemon limits. <br> 
+    
+    <i>from <a href='../../traits/has-limits'>has-limits</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_position</b>
+     ➜  null 
+    <br>
+     Give the daemon a new destination, and begin motion towards that destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_relative</b>
+     ➜  double 
+    <br>
+     Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination. <br> 
+    
+    <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>distance</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>shutdown</b>
+     ➜  null 
+    <br>
+     Cleanly shutdown (or restart) daemon. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>restart</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

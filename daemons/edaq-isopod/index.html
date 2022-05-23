@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>edaq-isopod</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>daemons</a>/edaq-isopod
+</h1>
+
+<hr>
+
+Daemon representing isoPod data recorders as yaq sensors.
+
+
+<h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=https://gitlab.com/yaq/yaqd-edaq/-/issues>bugtracker</a> <br>
+
+  <a href=https://gitlab.com/yaq/yaqd-edaq>source</a> <br>
+
+
+
+
+<h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
+<p>
+  The edaq-isopod daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+
+  <a href=https://pypi.org/project/yaqd-edaq>PyPI</a> <br>
+
+  <a href=https://anaconda.org/conda-forge/yaqd-edaq>conda-forge</a> <br>
+
+
+
+
+<h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
+<p>
+  The edaq-isopod daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
+<p class="tab30">
+
+  <a href=../../traits/has-measure-trigger>has-measure-trigger</a>
+  <br>
+
+  <a href=../../traits/is-daemon>is-daemon</a>
+  <br>
+
+  <a href=../../traits/is-sensor>is-sensor</a>
+  <br>
+
+  <a href=../../traits/uses-serial>uses-serial</a>
+  <br>
+
+  <a href=../../traits/uses-uart>uses-uart</a>
+  <br>
+
+</p>
+
+
+
+<h2>hardware</h2>
+<p>
+  The edaq-isopod daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+
+  
+  <a href="../../hardware/edaq">edaq</a>/<a href="../../hardware/edaq/epu452">epu452</a><br>
+
+</p>
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+
+  
+    <p class="tab30">
+    <b>baud_rate</b> (int)
+    <i>default: 115200</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>channels</b> (map)
+    
+    <br>
+     Mapping of channel names to channel configs. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>enable</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Disable this daemon. The kind entry-point will not attempt to start this daemon. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_level</b> ({'name': 'level', 'symbols': ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'], 'type': 'enum'})
+    <i>default: info</i>
+    <br>
+     Set daemon log-level. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_to_file</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Optionally force logging to a file. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>loop_at_startup</b> (boolean)
+    <i>default: False</i>
+    <br>
+     If set to true, the daemon will begin to loop measure as soon as it starts. <br> 
+    
+      <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>make</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>model</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>port</b> (int)
+    
+    <br>
+     TCP port for daemon to occupy. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+     Serial number for the particular device represented by the daemon <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial_port</b> (string)
+    
+    <br>
+    
+    
+      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+    
+    
+    </p>
+    
+
+
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  The edaq-isopod daemon will expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>add_calibration_point</b>
+     ➜  null 
+    <br>
+     Add calibration point. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>blink</b>
+     ➜  null 
+    <br>
+     Blink the front panel power indicator LED once. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>busy</b>
+     ➜  boolean 
+    <br>
+     Returns true if daemon is currently busy. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>direct_serial_write</b>
+     ➜  null 
+    <br>
+     Expose direct access to the serial port to clients.
+
+This should not be encouraged for normal use, but may be very important for debugging.
+If a device is expected to return data, it should be logged at the INFO level, not returned to the client.
+This is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.
+Setting `busy` to true is encouraged, but individual daemon writers should consider their own use case.
+ <br> 
+    
+    <i>from <a href='../../traits/uses-serial'>uses-serial</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>message</b> (bytes)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_names</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+     Get current channel names. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_shapes</b>
+     ➜  {'type': 'map', 'values': {'items': 'int', 'type': 'array'}} 
+    <br>
+     Get current channel shapes. If list is empty, channel is scalar. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_units</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     Get current channel units. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config</b>
+     ➜  string 
+    <br>
+     Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config_filepath</b>
+     ➜  string 
+    <br>
+     String representing the absolute filepath of the configuration file on the host machine.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measured</b>
+     ➜  {'type': 'map', 'values': ['double', 'ndarray', 'int']} 
+    <br>
+     Returns map of channel_name to measured_value. Always returns additional key measurement_id. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measurement_id</b>
+     ➜  {'type': 'int'} 
+    <br>
+     Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_state</b>
+     ➜  string 
+    <br>
+     Get version of the running daemon <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     JSON object with information to identify the daemon, including name, kind, make, model, serial.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>measure</b>
+     ➜  int 
+    <br>
+     Initiate a measurement. Returns integer, measurement ID. <br> 
+    
+    <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>loop</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>remove_calibration</b>
+     ➜  null 
+    <br>
+     Remove calibration. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>shutdown</b>
+     ➜  null 
+    <br>
+     Cleanly shutdown (or restart) daemon. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>restart</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>stop_looping</b>
+     ➜  null 
+    <br>
+     Stop looping measurement. <br> 
+    
+    <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i> <br>
+    
+     </p>
+    
+    
+
+
+
+
+<h2 id='types'>types<a href='#types'> ¶</a></h2>
+<p>
+  The edaq-isopod daemon uses the following avro types:
+</p>
+
+  
+    <p class="tab30">
+    <b>channel</b> (record) <br>
+    
+    
+    
+    
+    fields: <br>
+        
+        <p class="tab60">
+        <b>mode</b> (string)
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>index</b> (int)
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>units</b> (string)
+        
+        <br>
+        
+        </p>
+        
+    
+    
+    </p>
+    
+
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

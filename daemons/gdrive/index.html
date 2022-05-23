@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>gdrive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>daemons</a>/gdrive
+</h1>
+
+<hr>
+
+Upload files to a specified google drive folder
+
+
+<h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=https://gitlab.com/yaq/yaqd-gdrive/issues>bugtracker</a> <br>
+
+  <a href=https://gitlab.com/yaq/yaqd-gdrive>source</a> <br>
+
+
+
+
+<h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
+<p>
+  The gdrive daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+
+  <a href=https://pypi.org/project/yaqd-gdrive>PyPI</a> <br>
+
+  <a href=https://anaconda.org/conda-forge/yaqd-gdrive>conda-forge</a> <br>
+
+
+
+
+<h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
+<p>
+  The gdrive daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
+<p class="tab30">
+
+  <a href=../../traits/is-daemon>is-daemon</a>
+  <br>
+
+</p>
+
+
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+
+  
+    <p class="tab30">
+    <b>authorization_url</b> (string)
+    <i>default: https://accounts.google.com/o/oauth2/v2/auth</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>client_id</b> (string)
+    
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>client_secret</b> (string)
+    
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>create_file_url</b> (string)
+    <i>default: https://www.googleapis.com/upload/drive/v3/files</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>download_url</b> (string)
+    <i>default: https://drive.google.com/uc?id={file_id}</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>enable</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Disable this daemon. The kind entry-point will not attempt to start this daemon. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>generate_ids_url</b> (string)
+    <i>default: https://www.googleapis.com/drive/v3/files/generateIds</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_level</b> ({'name': 'level', 'symbols': ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'], 'type': 'enum'})
+    <i>default: info</i>
+    <br>
+     Set daemon log-level. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_to_file</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Optionally force logging to a file. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>make</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>model</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>open_url</b> (string)
+    <i>default: https://drive.google.com/open?id={file_id}</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>port</b> (int)
+    
+    <br>
+     TCP port for daemon to occupy. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>root_folder_id</b> (string)
+    
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>scopes</b> (array)
+    <i>default: ['https://www.googleapis.com/auth/drive.file']</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+     Serial number for the particular device represented by the daemon <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>token_url</b> (string)
+    <i>default: https://www.googleapis.com/oauth2/v4/token</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>update_file_url</b> (string)
+    <i>default: https://www.googleapis.com/upload/drive/v3/files/{file_id}</i>
+    <br>
+    
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  The gdrive daemon will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>access_token</b> (['null', 'string']) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>copy_queue</b> (array) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>id_mapping</b> (map) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>refresh_token</b> (['null', 'string']) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>upload_queue</b> (array) <br>
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  The gdrive daemon will expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>busy</b>
+     ➜  boolean 
+    <br>
+     Returns true if daemon is currently busy. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>create_file</b>
+     ➜  null 
+    <br>
+     Create a new file on the remote drive <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>path</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>parent_id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>create_folder</b>
+     ➜  null 
+    <br>
+     Create a new folder in the remote drive <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>path</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>parent_id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config</b>
+     ➜  string 
+    <br>
+     Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config_filepath</b>
+     ➜  string 
+    <br>
+     String representing the absolute filepath of the configuration file on the host machine.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_state</b>
+     ➜  string 
+    <br>
+     Get version of the running daemon <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     JSON object with information to identify the daemon, including name, kind, make, model, serial.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id_to_download_url</b>
+     ➜  string 
+    <br>
+     Format an id in a url suitable to download the file. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>id</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>id_to_open_url</b>
+     ➜  string 
+    <br>
+     Format an id in a url suitable to open the file. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>id</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>is_uploaded</b>
+     ➜  boolean 
+    <br>
+     Check if a particular file has been procesed and uploaded <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>id</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>reserve_id</b>
+     ➜  string 
+    <br>
+     Insert an id mapping into the state <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>client_id</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>drive_id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+         If not given use an existing id if possible or retrieve a new one. <br> 
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>shutdown</b>
+     ➜  null 
+    <br>
+     Cleanly shutdown (or restart) daemon. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>restart</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>update_file</b>
+     ➜  null 
+    <br>
+     Update the contents of an existing file <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>path</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>upload_folder</b>
+     ➜  null 
+    <br>
+     Upload a folder and its contents, recursively, to the remote drive <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>path</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>parent_id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+        
+    </p>
+    
+    <p class="tab60">
+        <b>id</b> (['null', 'string'])
+        <i>default: None</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

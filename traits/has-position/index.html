@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>has-position</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>traits</a>/has-position
+</h1>
+
+<hr>
+
+Daemons with this trait have one specific value that describes their current position.
+This position can be set (using the set_position method).
+In general, these daemons may not be able to reach exactly the set position.
+The destination (get_destination) returns exactly the set position, while the position (get_position) returns the current actual position of the daemon.
+These daemons should start motion and become busy when set_daemon is called.
+They should release busy once they arrive as close as possible to the destination, and their position should not change until set_position is called again.
+
+
+
+
+
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  Daemons with the has-position trait will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>position</b> (double) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>destination</b> (double) <br>
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  Daemons with the has-position trait expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>get_destination</b>
+     ➜  double 
+    <br>
+     Get current daemon destination. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_units</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get units of daemon. These units apply to the position and destination properties. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position</b>
+     ➜  double 
+    <br>
+     Get current daemon position. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_position</b>
+    
+    <br>
+     Give the daemon a new destination, and begin motion towards that destination. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_relative</b>
+     ➜  double 
+    <br>
+     Give the daemon a new destination relative to its current position. Daemon will immediately begin motion towards new destination. Returns new destination. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>distance</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+
+
+
+<h2 id='daemons'>daemons<a href='#daemons'> ¶</a></h2>
+<p>
+  The following daemons implement the has-position trait:
+</p>
+<p class="tab30">
+
+  <a href=../../daemons/acton-2150i>acton-2150i</a>
+  <br>
+
+  <a href=../../daemons/acton-sp2300i>acton-sp2300i</a>
+  <br>
+
+  <a href=../../daemons/adafruit-stepper-motor-hat>adafruit-stepper-motor-hat</a>
+  <br>
+
+  <a href=../../daemons/attune>attune</a>
+  <br>
+
+  <a href=../../daemons/attune-delay>attune-delay</a>
+  <br>
+
+  <a href=../../daemons/ekspla-nt340>ekspla-nt340</a>
+  <br>
+
+  <a href=../../daemons/fake-continuous-hardware>fake-continuous-hardware</a>
+  <br>
+
+  <a href=../../daemons/fake-discrete-hardware>fake-discrete-hardware</a>
+  <br>
+
+  <a href=../../daemons/fake-has-turret>fake-has-turret</a>
+  <br>
+
+  <a href=../../daemons/gpio-digital-output>gpio-digital-output</a>
+  <br>
+
+  <a href=../../daemons/horiba-ihr320>horiba-ihr320</a>
+  <br>
+
+  <a href=../../daemons/horiba-micro-hr>horiba-micro-hr</a>
+  <br>
+
+  <a href=../../daemons/lightcon-topas4-motor>lightcon-topas4-motor</a>
+  <br>
+
+  <a href=../../daemons/lightcon-topas4-shutter>lightcon-topas4-shutter</a>
+  <br>
+
+  <a href=../../daemons/ndinterp>ndinterp</a>
+  <br>
+
+  <a href=../../daemons/new-era-continuous-nextgen>new-era-continuous-nextgen</a>
+  <br>
+
+  <a href=../../daemons/new-era-ne1000>new-era-ne1000</a>
+  <br>
+
+  <a href=../../daemons/newport-conex-agp>newport-conex-agp</a>
+  <br>
+
+  <a href=../../daemons/newport-smc100>newport-smc100</a>
+  <br>
+
+  <a href=../../daemons/pmc>pmc</a>
+  <br>
+
+  <a href=../../daemons/scpi-set-continuous>scpi-set-continuous</a>
+  <br>
+
+  <a href=../../daemons/scpi-set-discrete>scpi-set-discrete</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-bsc201>thorlabs-bsc201</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-bsc203>thorlabs-bsc203</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-ell18>thorlabs-ell18</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-k10cr1>thorlabs-k10cr1</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-kdc101>thorlabs-kdc101</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-kst101>thorlabs-kst101</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-lts150>thorlabs-lts150</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-lts300>thorlabs-lts300</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-mpc320>thorlabs-mpc320</a>
+  <br>
+
+  <a href=../../daemons/vici-two-position>vici-two-position</a>
+  <br>
+
+  <a href=../../daemons/wright-aerotech>wright-aerotech</a>
+  <br>
+
+  <a href=../../daemons/wright-filter-wheel>wright-filter-wheel</a>
+  <br>
+
+  <a href=../../daemons/wright-stepper-box>wright-stepper-box</a>
+  <br>
+
+  <a href=../../daemons/wright-wl-motor>wright-wl-motor</a>
+  <br>
+
+  <a href=../../daemons/zaber-binary>zaber-binary</a>
+  <br>
+
+</p>
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

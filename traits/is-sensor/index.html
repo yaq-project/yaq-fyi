@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>is-sensor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>traits</a>/is-sensor
+</h1>
+
+<hr>
+
+Daemons with the is-sensor trait are capable of measuring some unknown quantities.
+Sensor daemons may have multiple channels if a single measurement returns multiple values.
+
+
+
+
+
+
+
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  Daemons with the is-sensor trait expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>get_measured</b>
+     ➜  {'type': 'map', 'values': ['int', 'double', 'ndarray']} 
+    <br>
+     Returns map of channel_name to measured_value. Always returns additional key measurement_id. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measurement_id</b>
+     ➜  {'type': 'int'} 
+    <br>
+     Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_names</b>
+     ➜  {'type': 'array', 'items': 'string'} 
+    <br>
+     Get current channel names. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_shapes</b>
+     ➜  {'type': 'map', 'values': {'type': 'array', 'items': 'int'}} 
+    <br>
+     Get current channel shapes. If list is empty, channel is scalar. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_units</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     Get current channel units. <br> 
+    
+     </p>
+    
+    
+
+
+
+
+
+
+
+<h2 id='daemons'>daemons<a href='#daemons'> ¶</a></h2>
+<p>
+  The following daemons implement the is-sensor trait:
+</p>
+<p class="tab30">
+
+  <a href=../../daemons/ads1115>ads1115</a>
+  <br>
+
+  <a href=../../daemons/andor-neo>andor-neo</a>
+  <br>
+
+  <a href=../../daemons/andor-simcam>andor-simcam</a>
+  <br>
+
+  <a href=../../daemons/becker-hickl-spc130>becker-hickl-spc130</a>
+  <br>
+
+  <a href=../../daemons/edaq-isopod>edaq-isopod</a>
+  <br>
+
+  <a href=../../daemons/fake-camera>fake-camera</a>
+  <br>
+
+  <a href=../../daemons/fake-sensor>fake-sensor</a>
+  <br>
+
+  <a href=../../daemons/fake-spectrometer>fake-spectrometer</a>
+  <br>
+
+  <a href=../../daemons/fake-triggered-sensor>fake-triggered-sensor</a>
+  <br>
+
+  <a href=../../daemons/gage-chopping>gage-chopping</a>
+  <br>
+
+  <a href=../../daemons/gage-compuscope>gage-compuscope</a>
+  <br>
+
+  <a href=../../daemons/gpio-digital-sensor>gpio-digital-sensor</a>
+  <br>
+
+  <a href=../../daemons/mcp3428>mcp3428</a>
+  <br>
+
+  <a href=../../daemons/mcp9600>mcp9600</a>
+  <br>
+
+  <a href=../../daemons/mqtt-homie-sensor>mqtt-homie-sensor</a>
+  <br>
+
+  <a href=../../daemons/ni-daqmx-tmux>ni-daqmx-tmux</a>
+  <br>
+
+  <a href=../../daemons/picotech-adc-triggered>picotech-adc-triggered</a>
+  <br>
+
+  <a href=../../daemons/rgb-qmini>rgb-qmini</a>
+  <br>
+
+  <a href=../../daemons/scpi-sensor>scpi-sensor</a>
+  <br>
+
+  <a href=../../daemons/seabreeze>seabreeze</a>
+  <br>
+
+  <a href=../../daemons/system-monitor>system-monitor</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-pax1000>thorlabs-pax1000</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-pm-triggered>thorlabs-pm-triggered</a>
+  <br>
+
+  <a href=../../daemons/wright-ingaas>wright-ingaas</a>
+  <br>
+
+</p>
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

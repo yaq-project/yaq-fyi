@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>andor-neo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>daemons</a>/andor-neo
+</h1>
+
+<hr>
+
+
+
+
+<h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=https://gitlab.com/yaq/yaqd-andor/-/issues>bugtracker</a> <br>
+
+  <a href=https://gitlab.com/yaq/yaqd-andor>source</a> <br>
+
+
+
+
+<h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
+<p>
+  The andor-neo daemon can be installed using the following package managers:
+</p>
+<p class="tab30">
+
+  <a href=https://pypi.org/project/yaqd-andor>PyPI</a> <br>
+
+
+
+
+<h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
+<p>
+  The andor-neo daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+</p>
+<p class="tab30">
+
+  <a href=../../traits/has-mapping>has-mapping</a>
+  <br>
+
+  <a href=../../traits/has-measure-trigger>has-measure-trigger</a>
+  <br>
+
+  <a href=../../traits/is-daemon>is-daemon</a>
+  <br>
+
+  <a href=../../traits/is-sensor>is-sensor</a>
+  <br>
+
+</p>
+
+
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+
+  
+    <p class="tab30">
+    <b>aoi_binning</b> (string)
+    <i>default: 1x1</i>
+    <br>
+     Option to bin pixels both horizontally and vertically. \
+    '1x1', '2x2', '4x4', or '8x8'.  Default is no binning ('1x1').   <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>aoi_height</b> (['null', 'int'])
+    <i>default: None</i>
+    <br>
+     Specify the number of pixel rows to acquire. \
+    Can be no larger than `sensor_height` - (`aoi_top` - 1). \
+    Defaults to use all rows starting from `aoi_top`. \
+     <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>aoi_left</b> (['null', 'int'])
+    <i>default: None</i>
+    <br>
+     Specify left-most pixel column of the AOI. \
+    Defaults to the full left of the camera sensor (column 1). \
+     <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>aoi_top</b> (['null', 'int'])
+    <i>default: None</i>
+    <br>
+     Specify the top-most pixel row of the AOI. \
+    Defaults to the top of the camera sensor (1). \
+     <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>aoi_width</b> (['null', 'int'])
+    <i>default: None</i>
+    <br>
+     Specify the number of pixel columns to acquire. \
+    Can be no larger than `sensor_width` - (`aoi_left` - 1). \
+    Defaults to use all columns starting from `aoi_left`. \
+     <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>enable</b> (boolean)
+    <i>default: True</i>
+    <br>
+     Disable this daemon. The kind entry-point will not attempt to start this daemon. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_level</b> ({'name': 'level', 'symbols': ['debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'], 'type': 'enum'})
+    <i>default: info</i>
+    <br>
+     Set daemon log-level. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>log_to_file</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Optionally force logging to a file. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>loop_at_startup</b> (boolean)
+    <i>default: False</i>
+    <br>
+     If set to true, the daemon will begin to loop measure as soon as it starts. <br> 
+    
+      <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>make</b> (['null', 'string'])
+    <i>default: andor</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>model</b> (['null', 'string'])
+    <i>default: neo</i>
+    <br>
+    
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>port</b> (int)
+    
+    <br>
+     TCP port for daemon to occupy. <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>sensor_cooling</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Set whether or not sensor will be cooled. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>serial</b> (['null', 'string'])
+    <i>default: None</i>
+    <br>
+     Serial number for the particular device represented by the daemon <br> 
+    
+      <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  The andor-neo daemon will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>electronic_shuttering_mode</b> (string) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>exposure_time</b> (float) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>pixel_readout_rate</b> (string) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>simple_preamp_gain_control</b> (string) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>spurious_noise_filter</b> (boolean) <br>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>static_blemish_correction</b> (boolean) <br>
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  The andor-neo daemon will expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>busy</b>
+     ➜  boolean 
+    <br>
+     Returns true if daemon is currently busy. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_mappings</b>
+     ➜  {'type': 'map', 'values': {'items': 'string', 'type': 'array'}} 
+    <br>
+     Defines which mapping keys apply to which channel keys. Each channel may have zero or many mappings. Mappings must broadcast into corresponding channels. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_names</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+     Get current channel names. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_shapes</b>
+     ➜  {'type': 'map', 'values': {'items': 'int', 'type': 'array'}} 
+    <br>
+     Get current channel shapes. If list is empty, channel is scalar. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_channel_units</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     Get current channel units. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config</b>
+     ➜  string 
+    <br>
+     Full configuration for the individual daemon as defined in the TOML file.
+This includes defaults and shared settings not directly specified in the daemon-specific TOML table.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_config_filepath</b>
+     ➜  string 
+    <br>
+     String representing the absolute filepath of the configuration file on the host machine.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_electronic_shuttering_mode</b>
+     ➜  string 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_electronic_shuttering_mode_options</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_exposure_time</b>
+     ➜  float 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_exposure_time_limits</b>
+     ➜  {'items': 'float', 'type': 'array'} 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_feature_limits</b>
+     ➜  {'items': 'float', 'type': 'array'} 
+    <br>
+    
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>feature_name</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_feature_names</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+     Return a list of available SDK features. All features names are snake case (e.g. `sensor_temperature`), distinct from Pascal case (e.g. SensorTemperature) of the direct SDK. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_feature_options</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+     Return enumerated options for specified feature name (snake case). If specified feature is not type `enum`, raises error. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>feature_name</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_feature_value</b>
+     ➜  ['string', 'int', 'float', 'boolean'] 
+    <br>
+     Reads the current value for the specified (snake case) feature name. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>feature_name</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_mapping_id</b>
+     ➜  int 
+    <br>
+     Mapping ID. This integer increments every time the mapping is updated. Clients can safely check this id to verify that their cached mappings are correct, if desired. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_mapping_units</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     Must return units for every mapping. Units can be null. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_mappings</b>
+     ➜  {'type': 'map', 'values': ['null', 'ndarray', 'double']} 
+    <br>
+     Mappings themselves. <br> 
+    
+    <i>from <a href='../../traits/has-mapping'>has-mapping</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measured</b>
+     ➜  {'type': 'map', 'values': ['int', 'double', 'ndarray']} 
+    <br>
+     Returns map of channel_name to measured_value. Always returns additional key measurement_id. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_measurement_id</b>
+     ➜  {'type': 'int'} 
+    <br>
+     Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement. <br> 
+    
+    <i>from <a href='../../traits/is-sensor'>is-sensor</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_pixel_readout_rate</b>
+     ➜  string 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_pixel_readout_rate_options</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_sensor_info</b>
+     ➜  {'type': 'map', 'values': ['int', 'float']} 
+    <br>
+     Return a dictionary containing information about the sensor. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_simple_preamp_gain_control</b>
+     ➜  string 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_simple_preamp_gain_control_options</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_spurious_noise_filter</b>
+     ➜  boolean 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_state</b>
+     ➜  string 
+    <br>
+     Get version of the running daemon <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_static_blemish_correction</b>
+     ➜  boolean 
+    <br>
+    
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>id</b>
+     ➜  {'type': 'map', 'values': ['null', 'string']} 
+    <br>
+     JSON object with information to identify the daemon, including name, kind, make, model, serial.
+ <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>measure</b>
+     ➜  int 
+    <br>
+     Initiate a measurement. Returns integer, measurement ID. <br> 
+    
+    <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>loop</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_electronic_shuttering_mode</b>
+     ➜  null 
+    <br>
+    
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>value</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_exposure_time</b>
+     ➜  null 
+    <br>
+    
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>value</b> (float)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_pixel_readout_rate</b>
+     ➜  null 
+    <br>
+    
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>value</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_simple_preamp_gain_control</b>
+     ➜  null 
+    <br>
+    
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>value</b> (string)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_spurious_noise_filter</b>
+     ➜  null 
+    <br>
+    
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>value</b> (boolean)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_static_blemish_correction</b>
+     ➜  null 
+    <br>
+    
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>value</b> (boolean)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>shutdown</b>
+     ➜  null 
+    <br>
+     Cleanly shutdown (or restart) daemon. <br> 
+    
+    <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>restart</b> (boolean)
+        <i>default: False</i>
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>stop_looping</b>
+     ➜  null 
+    <br>
+     Stop looping measurement. <br> 
+    
+    <i>from <a href='../../traits/has-measure-trigger'>has-measure-trigger</a></i> <br>
+    
+     </p>
+    
+    
+
+
+
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>has-limits</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>traits</a>/has-limits
+</h1>
+
+<hr>
+
+The has-limits trait extends the has-positions trait with limits.
+It's assumed that any position within the limits is valid.
+
+
+
+
+<h2 id='requires'>requires<a href='#requires'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=../has-position>has-position</a>
+  <br>
+
+</p>
+
+
+
+
+<h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
+<p>
+  Daemons with the has-limits trait expect the following configuration:
+</p>
+
+  
+    <p class="tab30">
+    <b>limits</b> (array)
+    <i>default: [-inf, inf]</i>
+    <br>
+     Configuration limits are strictly optional. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>out_of_limits</b> (enum)
+    <i>default: closest</i>
+    <br>
+     Control behavior of daemon when set_position is given a value outside of limits. <br> 
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  Daemons with the has-limits trait will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>hw_limits</b> (array) <br>
+    
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  Daemons with the has-limits trait expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>get_limits</b>
+     ➜  {'type': 'array', 'items': 'double'} 
+    <br>
+     Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable). <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>in_limits</b>
+     ➜  boolean 
+    <br>
+     Check if a given position is within daemon limits. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+
+
+
+<h2 id='daemons'>daemons<a href='#daemons'> ¶</a></h2>
+<p>
+  The following daemons implement the has-limits trait:
+</p>
+<p class="tab30">
+
+  <a href=../../daemons/acton-2150i>acton-2150i</a>
+  <br>
+
+  <a href=../../daemons/acton-sp2300i>acton-sp2300i</a>
+  <br>
+
+  <a href=../../daemons/adafruit-stepper-motor-hat>adafruit-stepper-motor-hat</a>
+  <br>
+
+  <a href=../../daemons/attune>attune</a>
+  <br>
+
+  <a href=../../daemons/attune-delay>attune-delay</a>
+  <br>
+
+  <a href=../../daemons/fake-continuous-hardware>fake-continuous-hardware</a>
+  <br>
+
+  <a href=../../daemons/fake-has-turret>fake-has-turret</a>
+  <br>
+
+  <a href=../../daemons/horiba-ihr320>horiba-ihr320</a>
+  <br>
+
+  <a href=../../daemons/horiba-micro-hr>horiba-micro-hr</a>
+  <br>
+
+  <a href=../../daemons/lightcon-topas4-motor>lightcon-topas4-motor</a>
+  <br>
+
+  <a href=../../daemons/ndinterp>ndinterp</a>
+  <br>
+
+  <a href=../../daemons/new-era-ne1000>new-era-ne1000</a>
+  <br>
+
+  <a href=../../daemons/newport-conex-agp>newport-conex-agp</a>
+  <br>
+
+  <a href=../../daemons/newport-smc100>newport-smc100</a>
+  <br>
+
+  <a href=../../daemons/pmc>pmc</a>
+  <br>
+
+  <a href=../../daemons/scpi-set-continuous>scpi-set-continuous</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-bsc201>thorlabs-bsc201</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-bsc203>thorlabs-bsc203</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-ell18>thorlabs-ell18</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-k10cr1>thorlabs-k10cr1</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-kdc101>thorlabs-kdc101</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-kst101>thorlabs-kst101</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-lts150>thorlabs-lts150</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-lts300>thorlabs-lts300</a>
+  <br>
+
+  <a href=../../daemons/thorlabs-mpc320>thorlabs-mpc320</a>
+  <br>
+
+  <a href=../../daemons/wright-aerotech>wright-aerotech</a>
+  <br>
+
+  <a href=../../daemons/wright-filter-wheel>wright-filter-wheel</a>
+  <br>
+
+  <a href=../../daemons/wright-stepper-box>wright-stepper-box</a>
+  <br>
+
+  <a href=../../daemons/wright-wl-motor>wright-wl-motor</a>
+  <br>
+
+  <a href=../../daemons/zaber-binary>zaber-binary</a>
+  <br>
+
+</p>
+
+
+<hr>
+
+<p>
+built 2022-05-23 02:21:18
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>
