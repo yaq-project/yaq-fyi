@@ -114,9 +114,16 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-horiba'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-horiba'></a>",
 ]
 
+[daemons.yaqd-labjack]
+badges = [
+  "<a href='https://github.com/yaq-project/yaqd-labjack/actions'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-labjack/main'></a>",
+  "<a href='https://pypi.org/project/yaqd-labjack'><img src='https://img.shields.io/pypi/v/yaqd-labjack'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-labjack'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-labjack'></a>",
+]
+
 [daemons.yaqd-lightcon]
 badges = [
-  "<a href='https://gitlab.com/yaq/yaqd-lightcon/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-lightcon'></a>",
+  "<a href='https://gitlab.com/yaq/yaqd-lightcon/builds'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-labjack/main'></a>",
   "<a href='https://pypi.org/project/yaqd-lightcon'><img src='https://img.shields.io/pypi/v/yaqd-lightcon'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-lightcon'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-lightcon'></a>",
 ]
