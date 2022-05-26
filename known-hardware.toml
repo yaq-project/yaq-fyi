@@ -33,6 +33,12 @@ links.manufacturer = "http://www.gage-applied.com/digitizers/16-bit/pcie/digitiz
 doc = "Short Focal Length Imaging Spectrometer."
 links.manufacturer = "https://www.horiba.com/en_en/products/detail/action/show/Product/microhr-series-1591/"
 
+[labjack]
+
+[labjack.t7-pro]
+doc = "Multifunction data acquisition device."
+links.manufacturer = "https://labjack.com/products/t7"
+
 [lightcon]
 
 [lightcon.topas-800]

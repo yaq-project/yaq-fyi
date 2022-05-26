@@ -114,6 +114,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-horiba'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-horiba'></a>",
 ]
 
+[daemons.yaqd-labjack]
+badges = [
+  "<a href='https://github.com/yaq-project/yaqd-labjack/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-labjack'></a>",
+  "<a href='https://pypi.org/project/yaqd-labjack'><img src='https://img.shields.io/pypi/v/yaqd-labjack'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-labjack'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-labjack'></a>",
+]
+
 [daemons.yaqd-lightcon]
 badges = [
   "<a href='https://gitlab.com/yaq/yaqd-lightcon/builds'><img src='https://img.shields.io/gitlab/pipeline-status/yaq/yaqd-lightcon'></a>",
