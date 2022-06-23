@@ -29,7 +29,7 @@ jobs:
           yaqd-$(echo $protocol | sed "s/^.//;s/.$//") --protocol > $d
           done
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v4
         with:
           title: [bot] update avpr files
           body: my-body
