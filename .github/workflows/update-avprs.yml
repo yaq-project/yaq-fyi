@@ -30,6 +30,6 @@ jobs:
           done
       - uses: peter-evans/create-pull-request@v4
         with:
-          title: [bot] update avpr files
-          body: my-body
-          branch: bullocky-$(date +"%s")
+          title: "[bot] update avpr files"
+          body: "my-body"
+          branch: bullocky
