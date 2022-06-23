@@ -1,0 +1,35 @@
+name: Update avprs
+on:
+  push:
+  schedule:
+    - cron:  '0 0 * * *'
+jobs:
+  Bullocky:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install Dependencies
+        run: |
+          python3 -m pip install -U pip
+          sudo apt install jq
+      - name: Update Each Daemon
+        run: |
+          set +e
+          for d in "./daemons/"*
+          do
+          protocol=$(cat $d | jq .protocol)
+          pypi_url=$(cat $d | jq .installation.PyPI)
+          [ "$pypi_url" = "null" ] && continue
+          pypi_package=$(python -c "import os; print(list(filter(None, $pypi_url.split(os.sep)))[-1])")
+          echo $pypi_package $protocol
+          python3 -m pip install -U $pypi_package || continue
+          yaqd-$(echo $protocol | sed "s/^.//;s/.$//") --protocol > $d
+          done
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          title: "[bot] update avpr files"
+          body: "my-body"
+          branch: bullocky
