@@ -77,9 +77,9 @@
         "conda-forge": "https://anaconda.org/project/yaqd-rgb"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-rgb/-/issues",
+        "bugtracker": "https://github.com/yaq-project/yaqd-rgb/issues",
         "manufacturer": "https://broadcom.com/products/optical-sensors/spectrometers/spectrometers-qmini",
-        "source": "https://gitlab.com/yaq/yaqd-rgb"
+        "source": "https://github.com/yaq-project/yaqd-rgb"
     },
     "messages": {
         "busy": {
@@ -201,9 +201,9 @@
             "response": {
                 "type": "map",
                 "values": [
+                    "int",
                     "double",
-                    "ndarray",
-                    "int"
+                    "ndarray"
                 ]
             }
         },

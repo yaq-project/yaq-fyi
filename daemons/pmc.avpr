@@ -230,9 +230,9 @@
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-pmc"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-pmc/issues",
+        "bugtracker": "https://github.com/yaq-project/yaqd-pmc/issues",
         "manufacturer": "https://pmccorp.com/products/api.php",
-        "source": "https://gitlab.com/yaq/yaqd-pmc/"
+        "source": "https://github.com/yaq-project/yaqd-pmc/"
     },
     "messages": {
         "busy": {

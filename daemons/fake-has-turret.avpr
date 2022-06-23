@@ -107,13 +107,13 @@
     },
     "doc": "Idealized simulated hardware which immediately reports as the requested position upon setting.",
     "installation": {
-        "PyPI": "https://pypi.org/projec/yaqd-core",
-        "conda-forge": "https://anaconda.org/conda-forge/yaqd-core"
+        "PyPI": "https://pypi.org/project/yaqd-fakes",
+        "conda-forge": "https://anaconda.org/conda-forge/yaqd-fakes"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-core-python/issues",
-        "documentation": "https://yaqd-core-python.yaq.fyi/#yaqd_core.FakeHasTurret",
-        "source": "https://gitlab.com/yaq/yaqd-core-python"
+        "bugtracker": "https://github.com/yaq-project/yaq-python/-/issues",
+        "documentation": "https://yaq.fyi/daemons/fake-has-turret/",
+        "source": "https://github.com/yaq-project/yaq-python"
     },
     "messages": {
         "busy": {
@@ -262,13 +262,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -279,7 +279,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         },
