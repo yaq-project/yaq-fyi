@@ -66,7 +66,7 @@
             ]
         },
         "serial_name": {
-            "doc": "The name of the device in serial protocol",
+            "doc": "The name of the device in serial protocol.  Hint: check the controller for naming info.",
             "type": "string"
         },
         "serial_port": {
@@ -79,8 +79,8 @@
         "PyPI": "https://pypi.org/project/yaqd-ekspla"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-ekspla/-/issues",
-        "source": "https://gitlab.com/yaq/yaqd-ekspla"
+        "bugtracker": "https://github.com/yaq-project/yaqd-ekspla/issues",
+        "source": "https://github.com/yaq-project/yaqd-ekspla"
     },
     "messages": {
         "busy": {
@@ -188,13 +188,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -205,7 +205,7 @@
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         }

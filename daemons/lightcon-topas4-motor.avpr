@@ -120,9 +120,9 @@
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-lightcon"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-lightcon/issues",
+        "bugtracker": "https://github.com/yaq-project/yaqd-lightcon/issues",
         "manufacturer": "http://topas4info.lightcon.com/",
-        "source": "https://gitlab.com/yaq/yaqd-lightcon"
+        "source": "https://github.com/yaq-project/yaqd-lightcon"
     },
     "messages": {
         "busy": {

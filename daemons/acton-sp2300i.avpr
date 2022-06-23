@@ -102,9 +102,9 @@
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-acton"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-acton/-/issues",
+        "bugtracker": "https://github.com/yaq-project/yaqd-acton/-/issues",
         "documentation": "https://yaq.fyi/daemons/acton-sp2300i",
-        "source": "https://gitlab.com/yaq/yaqd-acton"
+        "source": "https://github.com/yaq-project/yaqd-acton"
     },
     "messages": {
         "busy": {

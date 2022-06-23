@@ -116,12 +116,16 @@
         }
     },
     "doc": "",
+    "hardware": [
+        "adafruit:2348",
+        "raspberry-pi:4b"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-adafruit/"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-adafruit/-/issues",
-        "source": "https://gitlab.com/yaq/yaqd-adafruit"
+        "bugtracker": "https://github.com/yaq-project/yaqd-adafruit/-/issues",
+        "source": "https://github.com/yaq-project/yaqd-adafruit"
     },
     "messages": {
         "busy": {

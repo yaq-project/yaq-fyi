@@ -113,8 +113,8 @@
         "PyPI": "https://pypi.org/project/yaqd-andor"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-andor/-/issues",
-        "source": "https://gitlab.com/yaq/yaqd-andor"
+        "bugtracker": "https://github.com/yaq-project/yaqd-andor/issues",
+        "source": "https://github.com/yaq-project/yaqd-andor"
     },
     "messages": {
         "busy": {

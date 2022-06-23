@@ -106,8 +106,8 @@
         "PyPI": "https://pypi.org/project/yaqd-attune"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-attune/-/issues",
-        "source": "https://gitlab.com/yaq/yaqd-attune"
+        "bugtracker": "https://github.com/yaq-project/yaqd-attune/issues",
+        "source": "https://github.com/yaq-project/yaqd-attune"
     },
     "messages": {
         "busy": {
@@ -388,13 +388,13 @@
             "units_getter": null
         },
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -405,7 +405,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         }
