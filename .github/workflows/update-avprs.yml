@@ -20,7 +20,7 @@ jobs:
           set +e
           for d in "./daemons/"*
           do
-          protocol=$(cat $d | jq .protocol)
+          protocol=$(cat $d | jq -r .protocol)
           pypi_url=$(cat $d | jq .installation.PyPI)
           [ "$pypi_url" = "null" ] && continue
           pypi_package=$(python -c "import os; print(list(filter(None, $pypi_url.split(os.sep)))[-1])")
