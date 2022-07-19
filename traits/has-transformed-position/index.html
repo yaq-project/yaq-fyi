@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>has-transformed-position</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>traits</a>/has-transformed-position
+</h1>
+
+<hr>
+
+This trait expands the `has-limits` trait by controlling motor positions using
+two coordinate systems. One frame (the "transformed" frame) is for common
+client control. The other frame (the "native" frame) reports position in terms
+of low-level motor control.
+
+
+
+
+<h2 id='requires'>requires<a href='#requires'> ¶</a></h2>
+<p class="tab30">
+
+  <a href=../has-limits>has-limits</a>
+  <br>
+
+</p>
+
+
+
+
+
+
+<h2 id='state'>state<a href='#state'> ¶</a></h2>
+<p>
+  Daemons with the has-transformed-position trait will provide the following state information:
+</p>
+
+  
+    <p class="tab30">
+    <b>native_reference_position</b> (double) <br>
+     The reference position, expressed in native coordinates.
+Default is `0.0` <br> 
+    
+    </p>
+    
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  Daemons with the has-transformed-position trait expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>to_transformed</b>
+     ➜  double 
+    <br>
+     Convert a native coordinate to transformed.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>to_native</b>
+     ➜  double 
+    <br>
+     Convert a transformed coordinate to native.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>transformed_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_native_reference</b>
+    
+    <br>
+     Set the reference position in native coordinates.
+Reference position need not be within hardware limits. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_reference</b>
+     ➜  double 
+    <br>
+     Get the reference position in native coordinates. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_native_position</b>
+    
+    <br>
+     Set the current position in native coordinates. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_position</b>
+     ➜  double 
+    <br>
+     Get the current position in native coordinates. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_limits</b>
+     ➜  {'type': 'array', 'items': 'double'} 
+    <br>
+     Returns limits in the relative coordinate system. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_units</b>
+     ➜  string 
+    <br>
+     Get the units of native coordinates. <br> 
+    
+     </p>
+    
+    
+
+
+
+
+
+
+
+
+<hr>
+
+<p>
+built 2022-07-19 02:51:21
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

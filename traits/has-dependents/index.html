@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>has-dependents</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>traits</a>/has-dependents
+</h1>
+
+<hr>
+
+Daemons with this trait control or otherwise depend on the existence of other running yaq daemons
+
+
+
+
+
+
+
+
+
+
+<h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
+<p>
+  Daemons with the has-dependents trait expose the following public messages:
+</p>
+
+  
+    <p class="tab30">
+    <b>get_dependent_hardware</b>
+     ➜  {'type': 'map', 'values': 'string'} 
+    <br>
+     Return a map of names to host:port strings for dependent yaq daemons
+
+Clients are expected to translate localhost/127.0.0.1 to the host on which they contact the parent.
+Clients are not guaranteed to be able to communicate with dependent hardware, even if the parent can.
+ <br> 
+    
+     </p>
+    
+    
+
+
+
+
+
+
+
+
+<hr>
+
+<p>
+built 2022-07-19 02:51:21
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>
