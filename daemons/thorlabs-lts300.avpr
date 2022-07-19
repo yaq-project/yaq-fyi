@@ -130,9 +130,9 @@
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-thorlabs"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-thorlabs/issues",
+        "bugtracker": "https://github.com/yaq-project/yaqd-thorlabs/issues",
         "manufacturer": "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=7652&pn=LTS300",
-        "source": "https://gitlab.com/yaq/yaqd-thorlabs/"
+        "source": "https://github.com/yaq-project/yaqd-thorlabs/"
     },
     "messages": {
         "busy": {
@@ -266,13 +266,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
-            "limits_getter": null,
+            "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -283,7 +283,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         }

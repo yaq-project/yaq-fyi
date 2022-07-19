@@ -86,9 +86,9 @@
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-thorlabs"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-thorlabs/issues",
+        "bugtracker": "https://github.com/yaq-project/yaqd-thorlabs/issues",
         "manufacturer": "https://www.thorlabs.com/",
-        "source": "https://gitlab.com/yaq/yaqd-thorlabs/"
+        "source": "https://github.com/yaq-project/yaqd-thorlabs/"
     },
     "messages": {
         "busy": {
