@@ -73,7 +73,7 @@ badges = [
 
 [daemons.yaqd-dwyer]
 badges = [
-  "<a href='https://github.com/yaq-project/yaqd-dwyer'><img alt='CI' src='https://img.shields.io/github/checks-status/yaq-project/yaqd-wright/main?label=build'></a>",
+  "<a href='https://github.com/yaq-project/yaqd-dwyer'><img alt='CI' src='https://img.shields.io/github/checks-status/yaq-project/yaqd-dwyer/main?label=build'></a>",
   "<a href='https://pypi.org/project/yaqd-dwyer'><img src='https://img.shields.io/pypi/v/yaqd-dwyer'></a>",
   "<a href='https://anaconda.org/conda-forge/yaqd-dwyer'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-dwyer'></a>",
 ]
