@@ -9,6 +9,16 @@ doc = "Monochromator from Princeton Instruments."
 doc = "Rasperry Pi hat capable of driving up to 4 DC or 2 Stepper motors with full PWM speed control."
 links.manufacturer = "https://www.adafruit.com/product/2348"
 
+[dwyer]
+
+[dwyer.16b]
+doc = "Temperature controller."
+links.manufacturer = "https://www.dwyer-inst.com/Product/Temperature/ProcessControllers/Series16B"
+
+[dwyer.16c]
+doc = "Temperature controller."
+links.manufacturer = "https://www.dwyer-inst.com/Product/Temperature/ProcessControllers/Series16C"
+
 [ealing]
 
 [ealing.37-1070-000]
