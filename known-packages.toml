@@ -274,6 +274,13 @@ badges = [
 
 [tooling]
 
+[tooling.hart-protocol]
+badges = [
+  "<a href='https://github.com/yaq-project/hart-protocol'><img src='https://img.shields.io/github/checks-status/yaq-project/hart-protocol/main'></a>",
+  "<a href='https://pypi.org/project/hart-protocol'><img src='https://img.shields.io/pypi/v/hart-protocol'></a>",
+  "<a href='https://anaconda.org/conda-forge/hart-protocol'><img src='https://img.shields.io/conda/vn/conda-forge/hart-protocol'></a>",
+]
+
 [tooling.qtypes]
 badges = [
   "<a href='https://github.com/yaq-project/qtypes'><img src='https://img.shields.io/github/checks-status/yaq-project/qtypes/main'></a>",
