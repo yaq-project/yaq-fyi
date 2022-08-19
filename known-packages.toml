@@ -135,6 +135,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-lightcon'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-lightcon'></a>",
 ]
 
+[daemons.yaqd-mcc]
+badges = [
+  "<a href='https://github.com/yaq-project/yaqd-mcc'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-mcc/main'></a>",
+  "<a href='https://pypi.org/project/yaqd-mcc'><img src='https://img.shields.io/pypi/v/yaqd-mcc'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-mcc'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-mcc'></a>",
+]
+
 [daemons.yaqd-microchip]
 badges = [
   "<a href='https://github.com/yaq-project/yaqd-microchip'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-microchip/main'></a>",
