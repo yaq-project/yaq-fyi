@@ -30,6 +30,18 @@
                 "values": "double"
             }
         },
+        "interface": {
+            "default": "RS232",
+            "doc": "VICI uses slightly different commands for RS232 vs RS485. You must tell yaq if you require RS485 style commands.",
+            "type": {
+                "name": "interface",
+                "symbols": [
+                    "RS232",
+                    "RS485"
+                ],
+                "type": "enum"
+            }
+        },
         "log_level": {
             "default": "info",
             "doc": "Set daemon log-level.",
@@ -93,15 +105,16 @@
     "doc": "",
     "hardware": [
         "vici:e2ca",
-        "vici:edma"
+        "vici:edma",
+        "vici:eudf"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-vici",
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-vici"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-vici/-/issues",
-        "source": "https://gitlab.com/yaq/yaqd-vici"
+        "bugtracker": "https://github.com/yaq-project/yaqd-vici/issues",
+        "source": "https://github.com/yaq-project/yaqd-vici/"
     },
     "messages": {
         "busy": {
@@ -247,13 +260,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -264,7 +277,7 @@
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         },
