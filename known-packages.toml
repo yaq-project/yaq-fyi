@@ -11,7 +11,6 @@ badges = [
 badges = [
   "<a href='https://github.com/wright-group/yaqc-cmds'><img alt='CI' src='https://img.shields.io/github/checks-status/wright-group/yaqc-cmds/master'></a>",
   "<a href='https://pypi.org/project/yaqc-cmds'><img src='https://img.shields.io/pypi/v/yaqc-cmds'></a>",
-  "<a href='https://anaconda.org/conda-forge/yaqc-cmds'><img src='https://img.shields.io/conda/vn/conda-forge/yaqc-cmds'></a>",
 ]
 
 [clients.yaqc-python]
