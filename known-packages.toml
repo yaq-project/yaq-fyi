@@ -64,6 +64,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-becker-hickl'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-becker-hickl'></a>",
 ]
 
+[daemons.yaqd-brooks]
+badges = [
+  "<a href='https://github.com/yaq-project/yaqd-brooks'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-brooks/main'></a>",
+  "<a href='https://pypi.org/project/yaqd-brooks'><img src='https://img.shields.io/pypi/v/yaqd-brooks'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-brooks'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-brooks'></a>",
+]
+
 [daemons.yaqd-core-python]
 badges = [
   "<a href='https://github.com/yaq-project/yaq-python'><img src='https://img.shields.io/github/checks-status/yaq-project/yaq-python/main'></a>",
