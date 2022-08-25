@@ -69,8 +69,6 @@ links.manufacturer = "https://www.mccdaq.com/DAQ-HAT/MCC-118.aspx"
 doc = "Voltage Output and DIO HAT for Raspberry Pi"
 links.manufaturer = "https://www.mccdaq.com/DAQ-HAT/MCC-152.aspx"
 
-[mccdaq.mcc152]
-
 [microchip]
 
 [microchip.mcp3428]
