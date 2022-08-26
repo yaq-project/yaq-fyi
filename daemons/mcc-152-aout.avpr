@@ -95,7 +95,8 @@
     },
     "doc": "",
     "hardware": [
-        "mccdaq:mcc152"
+        "mccdaq:mcc152",
+        "raspberry-pi:4b"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-mcc"
@@ -224,13 +225,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "hinted",
+            "control_kind": "normal",
             "dynamic": true,
             "getter": "get_destination",
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         },
@@ -241,7 +242,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         }

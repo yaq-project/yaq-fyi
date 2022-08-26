@@ -70,7 +70,8 @@
     },
     "doc": "",
     "hardware": [
-        "mccdaq:mcc118"
+        "mccdaq:mcc118",
+        "raspberry-pi:4b"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-mcc"
