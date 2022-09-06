@@ -231,3 +231,11 @@ links.manufacturer = "https://www.vici.com/act/mic.php"
 doc = "Two-position injectors / switching valves."
 links.manufacturer = "https://www.vici.com/vval/hplc_semi_16-75.php"
 
+[vici.edma]
+doc = "Two-position injectors / switching valves."
+links.manufacturer = "https://www.vici.com/vval/hplc_semi_16-75.php"
+
+[vici.eudf]
+doc = "Universal Electric Actuators"
+links.manufacturer = "https://www.vici.com/act/ua.php"
+
