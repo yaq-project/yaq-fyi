@@ -231,3 +231,7 @@ links.manufacturer = "https://www.vici.com/act/mic.php"
 doc = "Two-position injectors / switching valves."
 links.manufacturer = "https://www.vici.com/vval/hplc_semi_16-75.php"
 
+[vici.eudf]
+doc = "Two-position medium torque valve."
+links.manufacturer = "https://www.vici.com//act/ua.php"
+
