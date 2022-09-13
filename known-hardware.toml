@@ -137,6 +137,20 @@ links.homepage = "https://pmccorp.com/"
 doc = "1 to 8 axis PCI-bus motion controller which can control and drive up to eight small DC servo motors without the need for external amplifiers."
 links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
 
+[omega]
+
+[omega.dp16pt]
+doc = "Universal Input Digital Panel Meters"
+links.manufacturer = "https://www.omega.com/en-us/control-monitoring/meters/universal-input-meters/p/DPPT-Series"
+
+[omega.dp32pt]
+doc = "Universal Input Digital Panel Meters"
+links.manufacturer = "https://www.omega.com/en-us/control-monitoring/meters/universal-input-meters/p/DPPT-Series"
+
+[omega.dp8pt]
+doc = "Universal Input Digital Panel Meters"
+links.manufacturer = "https://www.omega.com/en-us/control-monitoring/meters/universal-input-meters/p/DPPT-Series"
+
 [rasperry-pi]
 
 [raspberry-pi."3b+"]
