@@ -182,6 +182,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-ni'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-ni'></a>",
 ]
 
+[daemons.yaqd-omega]
+badges = [
+  "<a href='https://github.com/yaq-project/yaqd-omega'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-omega/main'></a>",
+  "<a href='https://pypi.org/project/yaqd-omega'><img src='https://img.shields.io/pypi/v/yaqd-omega'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-omega'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-omega'></a>",
+]
+
 [daemons.yaqd-picotech]
 badges = [
   "<a href='https://github.com/yaq-project/yaqd-picotech'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-picotech/main'></a>",
