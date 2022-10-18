@@ -51,6 +51,10 @@ links.manufacturer = "https://www.horiba.com/en_en/products/detail/action/show/P
 
 [labjack]
 
+[labjack.t4]
+doc = "Multifunction data acquisition device."
+links.manufacturer = "https://labjack.com/products/t4"
+
 [labjack.t7-pro]
 doc = "Multifunction data acquisition device."
 links.manufacturer = "https://labjack.com/products/t7"
