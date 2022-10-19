@@ -91,6 +91,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-labjack/-/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-labjack/tree/main/example-yaq-configs/labjack-sensor",
         "source": "https://github.com/yaq-project/yaqd-labjack"
     },
     "messages": {
