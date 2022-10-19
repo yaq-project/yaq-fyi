@@ -2,52 +2,46 @@
 <html>
 <head>
   <meta charset="utf-8" name="viewport" content="width=80ch">
-  <title>wright-aerotech</title>
+  <title>labjack-digital-output</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>
-<a href=../../>yaq</a>/<a href=../>daemons</a>/wright-aerotech
+<a href=../../>yaq</a>/<a href=../>daemons</a>/labjack-digital-output
 </h1>
 
 <hr>
 
-New format TOML for aerotech yaq daemon
 
 
 
 <h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
 <p class="tab30">
 
-  <a href=https://github.com/wright-group/yaqd-wright/issues>bugtracker</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-labjack/-/issues>bugtracker</a> <br>
 
-  <a href=https://github.com/wright-group/yaqd-wright>source</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-labjack>source</a> <br>
 
 
 
 
 <h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
 <p>
-  The wright-aerotech daemon can be installed using the following package managers:
+  The labjack-digital-output daemon can be installed using the following package managers:
 </p>
 <p class="tab30">
 
-  <a href=https://pypi.org/project/yaqd-wright>PyPI</a> <br>
-
-  <a href=https://anaconda.org/conda-forge/yaqd-wright>conda-forge</a> <br>
+  <a href=https://pypi.org/project/yaqd-labjack>PyPI</a> <br>
 
 
 
 
 <h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
 <p>
-  The wright-aerotech daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+  The labjack-digital-output daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
 </p>
 <p class="tab30">
-
-  <a href=../../traits/has-limits>has-limits</a>
-  <br>
 
   <a href=../../traits/has-position>has-position</a>
   <br>
@@ -55,18 +49,23 @@ New format TOML for aerotech yaq daemon
   <a href=../../traits/is-daemon>is-daemon</a>
   <br>
 
-  <a href=../../traits/is-homeable>is-homeable</a>
-  <br>
-
-  <a href=../../traits/uses-serial>uses-serial</a>
-  <br>
-
-  <a href=../../traits/uses-uart>uses-uart</a>
+  <a href=../../traits/is-discrete>is-discrete</a>
   <br>
 
 </p>
 
 
+
+<h2>hardware</h2>
+<p>
+  The labjack-digital-output daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+
+  
+  <a href="../../hardware/labjack">labjack</a>/<a href="../../hardware/labjack/t4">t4</a><br>
+
+</p>
 
 
 
@@ -74,12 +73,10 @@ New format TOML for aerotech yaq daemon
 
   
     <p class="tab30">
-    <b>baud_rate</b> (int)
-    <i>default: 57600</i>
+    <b>address</b> (string)
+    
     <br>
-    
-    
-      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+     TCP address of labjack. For T4, default is 192.168.1.204 <br> 
     
     
     </p>
@@ -100,12 +97,23 @@ New format TOML for aerotech yaq daemon
 
   
     <p class="tab30">
-    <b>limits</b> (array)
-    <i>default: [-inf, inf]</i>
+    <b>identifiers</b> ({'type': 'map', 'values': 'double'})
+    <i>default: {}</i>
     <br>
-     Configuration limits are strictly optional. <br> 
+     Position identifiers <br> 
     
-      <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+      <i>from <a href='../../traits/is-discrete'>is-discrete</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>invert</b> (boolean)
+    <i>default: False</i>
+    <br>
+     Set to true to invert the sense of this pin. This does nothing if identifiers is set in config. <br> 
     
     
     </p>
@@ -152,6 +160,17 @@ New format TOML for aerotech yaq daemon
 
   
     <p class="tab30">
+    <b>modbus_address</b> (int)
+    
+    <br>
+     Modbus address, refer to LabJack documentation. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>model</b> (['null', 'string'])
     <i>default: None</i>
     <br>
@@ -165,12 +184,10 @@ New format TOML for aerotech yaq daemon
 
   
     <p class="tab30">
-    <b>out_of_limits</b> (enum)
-    <i>default: closest</i>
-    <br>
-     Control behavior of daemon when set_position is given a value outside of limits. <br> 
+    <b>pin_type</b> ({'name': 'pin_type', 'symbols': ['FIO', 'DAC'], 'type': 'enum'})
     
-      <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    <br>
+     Daemon will work slightly differently for DAC vs FIO. <br> 
     
     
     </p>
@@ -202,25 +219,12 @@ New format TOML for aerotech yaq daemon
     </p>
     
 
-  
-    <p class="tab30">
-    <b>serial_port</b> (string)
-    
-    <br>
-    
-    
-      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
-    
-    
-    </p>
-    
-
 
 
 
 <h2 id='state'>state<a href='#state'> ¶</a></h2>
 <p>
-  The wright-aerotech daemon will provide the following state information:
+  The labjack-digital-output daemon will provide the following state information:
 </p>
 
   
@@ -235,20 +239,20 @@ New format TOML for aerotech yaq daemon
 
   
     <p class="tab30">
-    <b>hw_limits</b> (array) <br>
+    <b>position</b> (double) <br>
     
     
-        <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
     
     </p>
     
 
   
     <p class="tab30">
-    <b>position</b> (double) <br>
+    <b>position_identifier</b> (['null', 'string']) <br>
+     Current position identifier. <br> 
     
-    
-        <i>from <a href='../../traits/has-position'>has-position</a></i>
+        <i>from <a href='../../traits/is-discrete'>is-discrete</a></i>
     
     </p>
     
@@ -258,7 +262,7 @@ New format TOML for aerotech yaq daemon
 
 <h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
 <p>
-  The wright-aerotech daemon will expose the following public messages:
+  The labjack-digital-output daemon will expose the following public messages:
 </p>
 
   
@@ -271,35 +275,6 @@ New format TOML for aerotech yaq daemon
     <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
     
      </p>
-    
-    
-
-  
-    <p class="tab30">
-    <b>direct_serial_write</b>
-     ➜  null 
-    <br>
-     Expose direct access to the serial port to clients.
-
-This should not be encouraged for normal use, but may be very important for debugging.
-If a device is expected to return data, it should be logged at the INFO level, not returned to the client.
-This is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.
-Setting `busy` to true is encouraged, but individual daemon writers should consider their own use case.
- <br> 
-    
-    <i>from <a href='../../traits/uses-serial'>uses-serial</a></i> <br>
-    
-    
-    parameters: <br>
-    </p>
-    
-    <p class="tab60">
-        <b>message</b> (bytes)
-        
-        <br>
-        
-    </p>
-    
     
     
 
@@ -347,12 +322,12 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
-    <b>get_limits</b>
-     ➜  {'items': 'double', 'type': 'array'} 
+    <b>get_identifier</b>
+     ➜  ['null', 'string'] 
     <br>
-     Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable). <br> 
+     Get current identifier string. Current identifier may be None. <br> 
     
-    <i>from <a href='../../traits/has-limits'>has-limits</a></i> <br>
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
     
      </p>
     
@@ -366,6 +341,32 @@ This includes defaults and shared settings not directly specified in the daemon-
      Get current daemon position. <br> 
     
     <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position_identifier_options</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+     Get position identifier names. Identifiers may not change at runtime. <br> 
+    
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_position_identifiers</b>
+     ➜  {'type': 'map', 'values': 'double'} 
+    <br>
+     Get position identifiers. Identifiers may not change at runtime. <br> 
+    
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
     
      </p>
     
@@ -399,22 +400,6 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
-    <b>home</b>
-     ➜  null 
-    <br>
-     Initiates the homing procedure.
-The daemon will report as busy during the homing procedure.
- After the homing procedure is complete, the daemon will return to the current destination.
- <br> 
-    
-    <i>from <a href='../../traits/is-homeable'>is-homeable</a></i> <br>
-    
-     </p>
-    
-    
-
-  
-    <p class="tab30">
     <b>id</b>
      ➜  {'type': 'map', 'values': ['null', 'string']} 
     <br>
@@ -429,19 +414,19 @@ The daemon will report as busy during the homing procedure.
 
   
     <p class="tab30">
-    <b>in_limits</b>
-     ➜  boolean 
+    <b>set_identifier</b>
+     ➜  double 
     <br>
-     Check if a given position is within daemon limits. <br> 
+     Set using an identifier. Returns new destination. <br> 
     
-    <i>from <a href='../../traits/has-limits'>has-limits</a></i> <br>
+    <i>from <a href='../../traits/is-discrete'>is-discrete</a></i> <br>
     
     
     parameters: <br>
     </p>
     
     <p class="tab60">
-        <b>position</b> (double)
+        <b>identifier</b> (string)
         
         <br>
         
