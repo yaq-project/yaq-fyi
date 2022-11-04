@@ -11,9 +11,13 @@ links.manufacturer = "https://www.adafruit.com/product/2348"
 
 [brooks]
 
-[brooks.mfc-gf]
+[brooks.mfc-gf40]
 doc = "Thermal Mass Flow Controllers"
-links.manufacturer = "https://brooksinstrument.com/en/products/mass-flow-controllers/metal-sealed/gf100-series"
+links.manufacturer = "https://www.brooksinstrument.com/en/products/mass-flow-controllers/thermal-elastomer-sealed/gf40-series"
+
+[brooks.mfc-gf80]
+doc = "Thermal Mass Flow Controllers"
+links.manufacturer = "https://www.brooksinstrument.com/en/products/mass-flow-controllers/thermal-elastomer-sealed/gf80-series"
 
 [dwyer]
 
