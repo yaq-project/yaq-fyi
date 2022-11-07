@@ -178,7 +178,7 @@ links.manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-se
 [pmc]
 doc = "Precision MicroControl Corporation (PMC) designs and manufactures high-performance multi-axis motion controllers for servo and stepper motor control."
 links.homepage = "https://pmccorp.com/"
- 
+
 [pmc.dcx-pci100]
 doc = "1 to 8 axis PCI-bus motion controller which can control and drive up to eight small DC servo motors without the need for external amplifiers."
 links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
