@@ -3,11 +3,26 @@
 [acton.2150i]
 doc = "Monochromator from Princeton Instruments."
 
+[acton.sp-2300i]
+doc = "Monochromator from Princeton Instruments."
+
 [adafruit]
 
 [adafruit.2348]
 doc = "Rasperry Pi hat capable of driving up to 4 DC or 2 Stepper motors with full PWM speed control."
 links.manufacturer = "https://www.adafruit.com/product/2348"
+
+[andor]
+
+[andor.neo-5.5]
+doc = "sCMOS monochromatic camera, 5.5 Megapixel"
+links.manufacturer = "https://andor.oxinst.com/products/scmos-camera-series/neo-5-5-scmos"
+
+[becker-hickl]
+
+[becker-hickl.spc130]
+doc = "Time Correlated Single Photon Counting module"
+links.manufacturer = "https://www.becker-hickl.com/products/spc-130-emn-series/"
 
 [brooks]
 
@@ -37,6 +52,12 @@ links.manufacturer = "https://www.ealingcatalog.com/50-mm-encoderdrivertm-oem-ac
 doc = "Four channel multifunction isoPod with USB."
 links.manufacturer = "https://www.edaq.com/EPU452"
 
+[ekspla]
+
+[ekspla.nt-342]
+doc = "Optical Parametric Oscillator tunable laser."
+links.manufacturer = "https://ekspla.com/product/nt340-series-tunable-lasers/"
+
 [gage]
 
 [gage.cse8442]
@@ -48,6 +69,15 @@ links.manufacturer = "http://www.gage-applied.com/digitizers/16-bit/pcie/digitiz
 [horiba.microhr]
 doc = "Short Focal Length Imaging Spectrometer."
 links.manufacturer = "https://www.horiba.com/en_en/products/detail/action/show/Product/microhr-series-1591/"
+
+[horiba.ihr-320]
+doc = "Mid-Focal Length Imaging Spectrometer."
+links.manufacturer = "https://www.horiba.com/int/scientific/products/detail/action/show/Product/ihr-series-1590/"
+
+[idquantique]
+[idquantique.id100-50]
+doc = "Visible Single-Photon Detector. Used for Time Correlated Single Photon Counting via Becker-Hickl SPC-130."
+links.manufacturer = "https://www.idquantique.com/quantum-sensing/products/id100/"
 
 [labjack]
 
@@ -68,6 +98,14 @@ links.manufacturer = "http://lightcon.com/Product/TOPAS-800.html"
 [lightcon.topas-c]
 doc = "Optical Parametric Amplifier."
 links.manufacturer = "http://lightcon.com/Products/opa-topas.html"
+
+[lightcon.orpheus-hp]
+doc = "Optical Parametric Amplifier."
+links.manufacturer = "https://lightcon.com/product/orpheus-opa/"
+
+[lightcon.orpheus-twins]
+doc = "Dual Output Optical Parametric Amplifier."
+links.manufacturer = "https://lightcon.com/product/orpheus-twins-opa/"
 
 [mccdaq]
 
@@ -123,6 +161,10 @@ links.manufacturer = "https://www.newport.com/p/SMC100PP"
 doc = "PCI Multifunction I/O Device 'DAQ'."
 links.manufacturer = "https://www.ni.com/en-us/support/model.pci-6251.html"
 
+[ni.pcie-6361]
+doc = "PCIe Multifunction I/O Device 'DAQ'."
+links.manufacturer = "https://www.ni.com/en-us/support/model.pcie-6361.html"
+
 [ocean-insight]
 
 [ocean-insight.usb2000]
@@ -136,9 +178,13 @@ links.manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-se
 [pmc]
 doc = "Precision MicroControl Corporation (PMC) designs and manufactures high-performance multi-axis motion controllers for servo and stepper motor control."
 links.homepage = "https://pmccorp.com/"
-
+ 
 [pmc.dcx-pci100]
 doc = "1 to 8 axis PCI-bus motion controller which can control and drive up to eight small DC servo motors without the need for external amplifiers."
+links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
+
+[pmc.dcx-mc110]
+doc = "Servo Motor Control Module for the DCX-PCI100"
 links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
 
 [omega]
@@ -187,6 +233,10 @@ links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=BSC201
 doc = "Three-channel benchtop stepper motor controller."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=BSC203"
 
+[thorlabs.drv250]
+doc = "50 mm Trapezoidal Stepper Motor Drive"
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=DRV250"
+
 [thorlabs.ell18]
 doc = "Rotation stage."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=ELL18"
@@ -230,6 +280,10 @@ links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=PAX100
 [thorlabs.pm100d]
 doc = "Digital optical power and energy meter."
 links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=PM100D"
+
+[thorlabs.z812]
+doc = "12 mm Motorized Actuator, 1/4\"-80 Thread"
+links.manufacturer = "https://www.thorlabs.com/thorproduct.cfm?partnumber=Z812"
 
 [ti]
 doc = "Texas Instruments Incorporated"
