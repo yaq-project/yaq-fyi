@@ -14,7 +14,7 @@ links.manufacturer = "https://www.adafruit.com/product/2348"
 
 [andor]
 
-[andor.neo-5.5]
+[andor.neo-5-5]
 doc = "sCMOS monochromatic camera, 5.5 Megapixel"
 links.manufacturer = "https://andor.oxinst.com/products/scmos-camera-series/neo-5-5-scmos"
 
