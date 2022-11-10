@@ -55,6 +55,11 @@
 
 {% if daemon.config %}
 {{ helpers.h2("configuration") }}
+{% if daemon.example_configs %}
+<p>
+  <a href="{{ daemon["example_configs"] }}">Example configuration files.</a>
+</p>
+{% endif %}
 {% for k, v in daemon.config.items() %}
   {{ helpers.config(k, v, daemon) }}
 {% endfor %}

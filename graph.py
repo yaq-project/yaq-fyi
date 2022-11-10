@@ -63,6 +63,7 @@ class Daemon(object):
         self.hardwares = kwargs.get("hardware", [])
         self.types = kwargs.get("types", [])
         self.types = [ty for ty in self.types if ty["name"] != "ndarray"]
+        self.example_configs = self.links.get("example-configs", None)
 
     def __repr__(self):
         return self.name
