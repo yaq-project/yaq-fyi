@@ -227,6 +227,14 @@ links.manufacturer = "https://www.broadcom.com/products/optical-sensors/spectrom
 doc = "Rigol oscilloscope with built-in function generator."
 links.manufacturer = "https://www.rigolna.com/products/digital-oscilloscopes/1000z/"
 
+[seek-thermal]
+doc = "Seek Thermal, Inc. designs affordable Thermal Cameras that are popular among the DIY community."
+links.manufacturer = "https://www.thermal.com/"
+
+[seek-thermal.compact]
+doc = "206 x 156 micro-bolometer array, 36° Field of View, < 9 Hz Frame Rate.  No SDK neccessary."
+links.manufacturer = "https://www.thermal.com/compact-series.html"
+
 [thorlabs]
 
 [thorlabs.bsc201]
