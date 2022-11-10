@@ -231,6 +231,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-seabreeze'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-seabreeze'></a>",
 ]
 
+[daemons.yaqd-seek]
+badges = [
+  "<a href='https://github.com/yaq-project/yaqd-seek'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-seek/main'></a>",
+  "<a href='https://pypi.org/project/yaqd-seek'><img src='https://img.shields.io/pypi/v/yaqd-seek'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-seek'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-seek'></a>",
+]
+
 [daemons.yaqd-system-monitor]
 badges = [
   "<a href='https://github.com/yaq-project/yaqd-system-monitor'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-system-monitor/main'></a>",
