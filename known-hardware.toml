@@ -311,3 +311,9 @@ links.manufacturer = "https://www.vici.com/vval/hplc_semi_16-75.php"
 doc = "Two-position medium torque valve."
 links.manufacturer = "https://www.vici.com//act/ua.php"
 
+[zaber]
+
+[zaber.t-mm2]
+doc = "Motorized mirror mounts with built-in controllers."
+links.manufacturer = "https://www.zaber.com/products/optical-mounts/T-MM"
+
