@@ -110,15 +110,17 @@
     },
     "doc": "Triggered NI-daqmx with multiplex.",
     "hardware": [
-        "ni:pci-6251"
+        "ni:pci-6251",
+        "ni:pci-6361"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-ni"
     },
     "links": {
-        "bugtracker": "",
+        "bugtracker": "https://github.com/yaq-project/yaqd-ni/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-ni/tree/main/example-yaq-configs/ni-daqmx-tmux",
         "manufacturer": "",
-        "source": ""
+        "source": "https://github.com/yaq-project/yaqd-ni"
     },
     "messages": {
         "busy": {
