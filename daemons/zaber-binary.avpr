@@ -98,11 +98,15 @@
         }
     },
     "doc": "Daemon for products using Zaber Technologies binary serial interface\n",
+    "hardware": [
+        "zaber:t-mm2"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-zaber"
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq/yaqd-zaber/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-zaber/tree/main/example-yaq-configs/zaber-binary",
         "manufacturer": "https://www.zaber.com/wiki/Manuals/Binary_Protocol_Manual",
         "source": "https://gitlab.com/yaq/yaqd-zaber/"
     },

@@ -75,6 +75,9 @@
         }
     },
     "doc": "",
+    "hardware": [
+        "ekspla.nt-342"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-ekspla"
     },

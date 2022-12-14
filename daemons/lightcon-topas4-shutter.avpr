@@ -88,7 +88,7 @@
     "doc": "Expose a single light conversion shutter as a yaq daemon.\n",
     "hardware": [
         "lightcon:topas-800",
-        "lightcon.topas-c"
+        "lightcon:topas-c"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-lightcon",
@@ -96,6 +96,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-lightcon/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-lightcon/tree/main/example-yaq-configs/lightcon-topas4-shutter",
         "manufacturer": "http://topas4info.lightcon.com/",
         "source": "https://github.com/yaq-project/yaqd-lightcon"
     },
@@ -232,13 +233,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -249,7 +250,7 @@
             "limits_getter": null,
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         },

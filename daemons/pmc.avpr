@@ -223,7 +223,8 @@
     },
     "doc": "Motor driver for motors from Precision MicroControl Corporation.\n",
     "hardware": [
-        "pmc:dcx-pci100"
+        "pmc:dcx-pci100",
+        "pmc:dcx-mc110"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-pmc",
@@ -231,6 +232,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-pmc/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-pmc/tree/main/example-yaq-configs/pmc",
         "manufacturer": "https://pmccorp.com/products/api.php",
         "source": "https://github.com/yaq-project/yaqd-pmc/"
     },
@@ -387,13 +389,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
-            "limits_getter": null,
+            "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -404,7 +406,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         }

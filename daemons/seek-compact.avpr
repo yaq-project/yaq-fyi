@@ -1,19 +1,5 @@
 {
     "config": {
-        "channels": {
-            "default": {},
-            "type": "map",
-            "values": "channel"
-        },
-        "choppers": {
-            "default": {},
-            "type": "map",
-            "values": "chopper"
-        },
-        "device_name": {
-            "doc": "DAQmx name of device to address.",
-            "type": "string"
-        },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
@@ -67,19 +53,15 @@
                 "string"
             ]
         },
-        "nsamples": {
-            "default": 900,
-            "type": "int"
+        "pixel_pitch": {
+            "default": 12,
+            "doc": "Pixel spacing, in microns",
+            "type": "float"
         },
         "port": {
             "doc": "TCP port for daemon to occupy.",
             "origin": "is-daemon",
             "type": "int"
-        },
-        "rest_channel": {
-            "default": "ai0",
-            "doc": "Channel to occupy when not making an explicitly specified measurement.",
-            "type": "string"
         },
         "serial": {
             "default": null,
@@ -89,38 +71,15 @@
                 "null",
                 "string"
             ]
-        },
-        "shots_processing_script": {
-            "default": null,
-            "doc": "Path to script for shots processing.",
-            "type": [
-                "null",
-                "string"
-            ]
-        },
-        "timeout": {
-            "default": 10.0,
-            "doc": "Timeout in seconds between each trigger edge.",
-            "type": "float"
-        },
-        "trigger_source": {
-            "default": "ai0",
-            "type": "string"
         }
     },
-    "doc": "Triggered NI-daqmx with multiplex.",
-    "hardware": [
-        "ni:pci-6251",
-        "ni:pci-6361"
-    ],
+    "doc": "",
     "installation": {
-        "PyPI": "https://pypi.org/project/yaqd-ni"
+        "PyPI": "https://pypi.org/project/yaqd-seek"
     },
     "links": {
-        "bugtracker": "https://github.com/yaq-project/yaqd-ni/issues",
-        "example-configs": "https://github.com/yaq-project/yaqd-ni/tree/main/example-yaq-configs/ni-daqmx-tmux",
-        "manufacturer": "",
-        "source": "https://github.com/yaq-project/yaqd-ni"
+        "bugtracker": "https://github.com/yaq-project/yaqd-seek/-/issues",
+        "source": "https://github.com/yaq-project/yaqd-seek"
     },
     "messages": {
         "busy": {
@@ -187,15 +146,6 @@
                 ]
             }
         },
-        "get_measured_samples": {
-            "doc": "Get an array of shape (sample, shot).",
-            "request": [],
-            "response": "ndarray"
-        },
-        "get_measured_shots": {
-            "request": [],
-            "response": "ndarray"
-        },
         "get_measurement_id": {
             "doc": "Get current measurement_id. Clients are encouraged to watch for this to be updated before calling get_measured to get entire measurement.",
             "origin": "is-sensor",
@@ -203,21 +153,6 @@
             "response": {
                 "type": "int"
             }
-        },
-        "get_ms_wait": {
-            "doc": "Get the number of milliseconds to wait before acquiring.",
-            "request": [],
-            "response": "int"
-        },
-        "get_nshots": {
-            "doc": "Get the currently planned number of shots.",
-            "request": [],
-            "response": "int"
-        },
-        "get_sample_correspondances": {
-            "doc": "Returns an array of integers of length nsamples. Zero indicates rest sample. Postive indicates channel. Negative indicates chopper.",
-            "request": [],
-            "response": "ndarray"
         },
         "get_state": {
             "doc": "Get version of the running daemon",
@@ -249,26 +184,6 @@
             ],
             "response": "int"
         },
-        "set_ms_wait": {
-            "doc": "Set the number of milliseconds to wait before acquiring.",
-            "request": [
-                {
-                    "name": "ms_wait",
-                    "type": "int"
-                }
-            ],
-            "response": "null"
-        },
-        "set_nshots": {
-            "doc": "Set the number of shots to acquire.",
-            "request": [
-                {
-                    "name": "nshots",
-                    "type": "int"
-                }
-            ],
-            "response": "null"
-        },
         "shutdown": {
             "doc": "Cleanly shutdown (or restart) daemon.",
             "origin": "is-daemon",
@@ -288,154 +203,15 @@
             "response": "null"
         }
     },
-    "properties": {
-        "ms_wait": {
-            "control_kind": "normal",
-            "dynamic": true,
-            "getter": "get_ms_wait",
-            "limits_getter": null,
-            "options_getter": null,
-            "record_kind": "metadata",
-            "setter": "set_ms_wait",
-            "type": "int",
-            "units_getter": null
-        },
-        "nshots": {
-            "control_kind": "hinted",
-            "dynamic": true,
-            "getter": "get_nshots",
-            "limits_getter": null,
-            "options_getter": null,
-            "record_kind": "metadata",
-            "setter": "set_nshots",
-            "type": "int",
-            "units_getter": null
-        }
-    },
-    "protocol": "ni-daqmx-tmux",
+    "protocol": "seek-compact",
     "requires": [],
-    "state": {
-        "ms_wait": {
-            "default": 0,
-            "type": "int"
-        },
-        "nshots": {
-            "default": 100,
-            "type": "int"
-        }
-    },
+    "state": {},
     "traits": [
         "has-measure-trigger",
         "is-daemon",
         "is-sensor"
     ],
     "types": [
-        {
-            "default": "average",
-            "name": "processing_method",
-            "symbols": [
-                "average",
-                "sum",
-                "min",
-                "max"
-            ],
-            "type": "enum"
-        },
-        {
-            "fields": [
-                {
-                    "name": "name",
-                    "type": "string"
-                },
-                {
-                    "name": "range",
-                    "type": "string"
-                },
-                {
-                    "default": true,
-                    "name": "enabled",
-                    "type": "boolean"
-                },
-                {
-                    "default": false,
-                    "name": "invert",
-                    "type": "boolean"
-                },
-                {
-                    "name": "signal_start",
-                    "type": "int"
-                },
-                {
-                    "name": "signal_stop",
-                    "type": "int"
-                },
-                {
-                    "default": 0,
-                    "name": "signal_presample",
-                    "type": "int"
-                },
-                {
-                    "name": "signal_method",
-                    "type": "processing_method"
-                },
-                {
-                    "default": false,
-                    "name": "use_baseline",
-                    "type": "boolean"
-                },
-                {
-                    "default": null,
-                    "name": "baseline_start",
-                    "type": [
-                        "null",
-                        "int"
-                    ]
-                },
-                {
-                    "default": null,
-                    "name": "baseline_stop",
-                    "type": [
-                        "null",
-                        "int"
-                    ]
-                },
-                {
-                    "default": 0,
-                    "name": "baseline_presample",
-                    "type": "int"
-                },
-                {
-                    "name": "baseline_method",
-                    "type": "processing_method"
-                }
-            ],
-            "name": "channel",
-            "type": "record"
-        },
-        {
-            "fields": [
-                {
-                    "name": "name",
-                    "type": "string"
-                },
-                {
-                    "default": true,
-                    "name": "enabled",
-                    "type": "boolean"
-                },
-                {
-                    "default": false,
-                    "name": "invert",
-                    "type": "boolean"
-                },
-                {
-                    "name": "index",
-                    "type": "int"
-                }
-            ],
-            "name": "chopper",
-            "type": "record"
-        },
         {
             "fields": [
                 {
