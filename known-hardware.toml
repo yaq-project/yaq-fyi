@@ -9,6 +9,12 @@ doc = "Monochromator from Princeton Instruments."
 doc = "Rasperry Pi hat capable of driving up to 4 DC or 2 Stepper motors with full PWM speed control."
 links.manufacturer = "https://www.adafruit.com/product/2348"
 
+[bronkhorst]
+
+[bronkhorst.el-flow]
+doc = "Thermal mass flow controllers."
+links.manufacturer = "https://www.bronkhorst.com/int/products/gas-flow/el-flow-select/"
+
 [brooks]
 
 [brooks.mfc-gf]
