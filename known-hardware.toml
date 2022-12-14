@@ -18,6 +18,12 @@ links.manufacturer = "https://www.adafruit.com/product/2348"
 doc = "sCMOS monochromatic camera, 5.5 Megapixel"
 links.manufacturer = "https://andor.oxinst.com/products/scmos-camera-series/neo-5-5-scmos"
 
+[bronkhorst]
+
+[bronkhorst.el-flow]
+doc = "Thermal mass flow controllers."
+links.manufacturer = "https://www.bronkhorst.com/int/products/gas-flow/el-flow-select/"
+
 [becker-hickl]
 
 [becker-hickl.spc130]
