@@ -111,6 +111,9 @@
         }
     },
     "doc": "",
+    "hardware": [
+        "bronkhorst:el-flow"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-bronkhorst"
     },
