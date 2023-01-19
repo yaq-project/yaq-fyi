@@ -104,6 +104,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-horiba/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-horiba/tree/main/example-yaq-configs/horiba-ihr320",
         "manufacturer": "https://www.horiba.com/en_en/products/detail/action/show/Product/ihr-series-1590/",
         "source": "https://github.com/yaq-project/yaqd-horiba"
     },
@@ -353,13 +354,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
-            "limits_getter": null,
+            "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -414,7 +415,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         },
