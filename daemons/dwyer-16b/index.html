@@ -19,9 +19,9 @@
 <h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
 <p class="tab30">
 
-  <a href=https://gitlab.com/yaq/yaqd-dwyer/-/issues>bugtracker</a> <br>
+  <a href=https://gitlab.com/yaq-project/yaqd-dwyer/-/issues>bugtracker</a> <br>
 
-  <a href=https://gitlab.com/yaq/yaqd-dwyer>source</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-dwyer>source</a> <br>
 
 
 
@@ -258,6 +258,14 @@
     </p>
     
 
+  
+    <p class="tab30">
+    <b>ramp_time</b> (double) <br>
+     Ramp time, in minutes. <br> 
+    
+    </p>
+    
+
 
 
 
@@ -378,6 +386,39 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
+    <b>get_ramp_time</b>
+     ➜  double 
+    <br>
+     Ramp time, in minutes. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_ramp_time_limits</b>
+     ➜  {'items': 'double', 'type': 'array'} 
+    <br>
+     Ramp time limits in minutes. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_ramp_time_units</b>
+     ➜  string 
+    <br>
+     Ramp time units. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
     <b>get_state</b>
      ➜  string 
     <br>
@@ -464,6 +505,27 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
+    <b>set_ramp_time</b>
+     ➜  null 
+    <br>
+     Ramp time, in minutes. Set to zero to disable ramping. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>ramp_time</b> (float)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
     <b>set_relative</b>
      ➜  double 
     <br>
@@ -515,7 +577,7 @@ This includes defaults and shared settings not directly specified in the daemon-
 <hr>
 
 <p>
-built 2023-01-19 04:08:16
+built 2023-01-28 01:46:23
                                     
 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
 </p>
