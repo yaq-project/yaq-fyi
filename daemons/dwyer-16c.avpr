@@ -140,8 +140,8 @@
         "PyPI": "https://pypi.org/project/yaqd-dwyer"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-dwyer/-/issues",
-        "source": "https://gitlab.com/yaq/yaqd-dwyer"
+        "bugtracker": "https://gitlab.com/yaq-project/yaqd-dwyer/-/issues",
+        "source": "https://github.com/yaq-project/yaqd-dwyer"
     },
     "messages": {
         "busy": {
