@@ -100,8 +100,8 @@
         "PyPI": "https://pypi.org/project/yaqd-dwyer"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-dwyer/-/issues",
-        "source": "https://gitlab.com/yaq/yaqd-dwyer"
+        "bugtracker": "https://gitlab.com/yaq-project/yaqd-dwyer/-/issues",
+        "source": "https://github.com/yaq-project/yaqd-dwyer"
     },
     "messages": {
         "busy": {
@@ -154,6 +154,24 @@
             "request": [],
             "response": "double"
         },
+        "get_ramp_time": {
+            "doc": "Ramp time, in minutes.",
+            "request": [],
+            "response": "double"
+        },
+        "get_ramp_time_limits": {
+            "doc": "Ramp time limits in minutes.",
+            "request": [],
+            "response": {
+                "items": "double",
+                "type": "array"
+            }
+        },
+        "get_ramp_time_units": {
+            "doc": "Ramp time units.",
+            "request": [],
+            "response": "string"
+        },
         "get_state": {
             "doc": "Get version of the running daemon",
             "origin": "is-daemon",
@@ -199,6 +217,16 @@
                 {
                     "name": "position",
                     "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_ramp_time": {
+            "doc": "Ramp time, in minutes. Set to zero to disable ramping.",
+            "request": [
+                {
+                    "name": "ramp_time",
+                    "type": "float"
                 }
             ],
             "response": "null"
@@ -249,6 +277,17 @@
             "setter": null,
             "type": "double",
             "units_getter": "get_units"
+        },
+        "ramp_time": {
+            "control_kind": "hinted",
+            "dynamic": true,
+            "getter": "get_ramp_time",
+            "limits_getter": "get_ramp_time_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_ramp_time",
+            "type": "float",
+            "units_getter": "get_ramp_time_units"
         }
     },
     "protocol": "dwyer-16b",
@@ -271,6 +310,11 @@
         "position": {
             "default": NaN,
             "origin": "has-position",
+            "type": "double"
+        },
+        "ramp_time": {
+            "default": 0.0,
+            "doc": "Ramp time, in minutes.",
             "type": "double"
         }
     },
