@@ -80,6 +80,12 @@
                 "null",
                 "string"
             ]
+        },
+        "settings": {
+            "default": [],
+            "doc": "All settings will be written roughly once per minute.",
+            "items": "setting",
+            "type": "array"
         }
     },
     "doc": "",
@@ -226,22 +232,71 @@
     ],
     "types": [
         {
+            "name": "modbus_type",
+            "symbols": [
+                "float32",
+                "uint16",
+                "uint32",
+                "int32"
+            ],
+            "type": "enum"
+        },
+        {
             "fields": [
                 {
                     "name": "modbus_address",
                     "type": "int"
                 },
                 {
+                    "name": "modbus_type",
+                    "type": "modbus_type"
+                },
+                {
+                    "default": null,
+                    "name": "units",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                {
                     "default": true,
                     "name": "enabled",
                     "type": "boolean"
-                },
-                {
-                    "name": "range",
-                    "type": "float"
                 }
             ],
             "name": "channel",
+            "type": "record"
+        },
+        {
+            "fields": [
+                {
+                    "name": "modbus_address",
+                    "type": "int"
+                },
+                {
+                    "name": "modbus_type",
+                    "type": "modbus_type"
+                },
+                {
+                    "name": "value",
+                    "type": [
+                        "double",
+                        "long"
+                    ]
+                },
+                {
+                    "doc": "comment for human consumption",
+                    "name": "comment",
+                    "type": "string"
+                },
+                {
+                    "default": true,
+                    "name": "enabled",
+                    "type": "boolean"
+                }
+            ],
+            "name": "setting",
             "type": "record"
         },
         {
