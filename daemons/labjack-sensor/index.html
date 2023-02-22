@@ -210,6 +210,17 @@
     </p>
     
 
+  
+    <p class="tab30">
+    <b>settings</b> (array)
+    <i>default: []</i>
+    <br>
+     All settings will be written roughly once per minute. <br> 
+    
+    
+    </p>
+    
+
 
 
 
@@ -423,6 +434,17 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
+    <b>modbus_type</b> (enum) <br>
+    
+    
+     symbols: ['float32', 'uint16', 'uint32', 'int32'] <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>channel</b> (record) <br>
     
     
@@ -438,15 +460,71 @@ This includes defaults and shared settings not directly specified in the daemon-
         </p>
         
         <p class="tab60">
+        <b>modbus_type</b> (modbus_type)
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>units</b> (['string', 'null'])
+        <i>default: None</i>
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
         <b>enabled</b> (boolean)
         <i>default: True</i>
         <br>
         
         </p>
         
-        <p class="tab60">
-        <b>range</b> (float)
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>setting</b> (record) <br>
+    
+    
+    
+    
+    fields: <br>
         
+        <p class="tab60">
+        <b>modbus_address</b> (int)
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>modbus_type</b> (modbus_type)
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>value</b> (['double', 'long'])
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>comment</b> (string)
+        
+        <br>
+         comment for human consumption <br> 
+        </p>
+        
+        <p class="tab60">
+        <b>enabled</b> (boolean)
+        <i>default: True</i>
         <br>
         
         </p>
@@ -461,7 +539,7 @@ This includes defaults and shared settings not directly specified in the daemon-
 <hr>
 
 <p>
-built 2023-01-28 01:46:23
+built 2023-02-22 05:21:40
                                     
 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
 </p>
