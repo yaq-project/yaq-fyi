@@ -8,6 +8,17 @@
 
 {{ trait.doc }}
 
+{% if trait.posts %}
+{{ helpers.h2("blog posts") }}
+<p>
+  The {{ trait.name }} trait is mentioned in the following posts:
+</p>
+<p class="tab30">
+{% for p in trait.posts %}
+   <a href="../../blog/{{ p.id }}">{{ p.title }}</a> <br>
+{% endfor %}
+</p>
+{% endif %}
 
 {% if trait.requires %}
 {{ helpers.h2("requires") }}
@@ -18,7 +29,6 @@
 {% endfor %}
 </p>
 {% endif %}
-
 
 {% if trait.config %}
 {{ helpers.h2("configuration") }}
