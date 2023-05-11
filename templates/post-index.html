@@ -1,0 +1,26 @@
+{% include "header.html"  %}
+
+<h1>
+<a href=../>yaq</a>/blog
+</h1>
+
+<hr>
+
+<p>
+Welcome to the ✨<em>official</em>✨ yaq blog! <br>
+This page lists blog entries in reverse chronological order. <br>
+You may also <a href="./tags/">browse by tag</a>. <br>
+</p>
+
+<p>
+{% for post in posts %}
+  {{ post.date }}
+  <a href=./{{ post.path }}>{{ post.title }}</a>
+  {% for tag in post.tags %}
+  <a href="./tags/#{{ tag }}" style="color:#b294bb;font-style:italic;">#{{ tag }}</a>
+  {% endfor %}
+  <br>
+{% endfor %}
+</p>
+
+{% include "footer.html" %}

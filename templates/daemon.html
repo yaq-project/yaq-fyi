@@ -41,7 +41,7 @@
 {% endif %}
 
 {% if daemon.hardwares %}
-<h2>hardware</h2>
+{{ helpers.h2("hardware") }}
 <p>
   The {{ daemon.name }} daemon has been tested with the following hardware:
 </p>
@@ -49,6 +49,18 @@
 {% for h in daemon.hardwares %}
   {% set list1 = h.split(':') %}
   <a href="../../hardware/{{ list1[0] }}">{{ list1[0] }}</a>/<a href="../../hardware/{{ list1[0] }}/{{ list1[1] }}">{{ list1[1] }}</a><br>
+{% endfor %}
+</p>
+{% endif %}
+
+{% if daemon.posts %}
+{{ helpers.h2("blog posts") }}
+<p>
+  The {{ daemon.name }} daemon is mentioned in the following posts:
+</p>
+<p class="tab30">
+{% for p in daemon.posts %}
+   <a href="../../blog/{{ p.id }}">{{ p.title }}</a> <br>
 {% endfor %}
 </p>
 {% endif %}
