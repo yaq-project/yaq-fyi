@@ -6,12 +6,11 @@ import toml
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 
-from graph import traits, daemons, hardwares
+from graph import traits, daemons, hardwares, posts, tags
 from helpers import helpers
 
 
 __here__ = pathlib.Path(__file__).resolve().parent
-
 
 if not os.path.isdir(__here__ / "public"):
     os.mkdir(__here__ / "public")
@@ -55,6 +54,29 @@ with open(p, "w") as fh:
     pkgs = toml.load(__here__ / "known-packages.toml")
     fh.write(template.render(title="packages", packages=pkgs))
 
+# blog posts --------------------------------------------------------------------------------------
+
+
+if not os.path.isdir(__here__ / "public" / "blog"):
+    os.mkdir(__here__ / "public" / "blog")
+
+template = env.get_template("post-index.html")
+with open(__here__ / "public" / "blog" / "index.html", "w") as f:
+    f.write(template.render(posts=posts))
+
+template = env.get_template("post-tags.html")
+if not os.path.isdir(__here__ / "public" / "blog" / "tags"):
+    os.mkdir(__here__ / "public" / "blog" / "tags")
+with open(__here__ / "public" / "blog" / "tags" / "index.html", "w") as f:
+    f.write(template.render(posts=posts, tags=tags, title="tags", date=date))
+
+template = env.get_template("post.html")
+for post in posts:
+    (__here__ / "public" / "blog" / post.id).mkdir(exist_ok=True)
+    with open(__here__ / "public" / "blog" / post.id / "index.html", "w") as f:
+        f.write(template.render(post=post, title=post.title, date=date))
+
+
 # traits ------------------------------------------------------------------------------------------
 
 if not os.path.isdir(__here__ / "public" / "traits"):
@@ -75,7 +97,7 @@ for trait in traits.values():
     # run template
     template = env.get_template("trait.html")
     with open(p, "w") as fh:
-        fh.write(template.render(trait=trait, title=trait.name, ))
+        fh.write(template.render(trait=trait, title=trait.name, posts=posts, ))
 
 # daemons -----------------------------------------------------------------------------------------
 
@@ -97,7 +119,7 @@ for daemon in daemons.values():
     # run template
     template = env.get_template("daemon.html")
     with open(p, "w") as fh:
-        fh.write(template.render(daemon=daemon, title=daemon.name, ))
+        fh.write(template.render(daemon=daemon, title=daemon.name, posts=posts, ))
 
 # hardware ----------------------------------------------------------------------------------------
 

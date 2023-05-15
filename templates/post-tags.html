@@ -1,0 +1,30 @@
+{% include "header.html"  %}
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>blog</a>/tags
+</h1>
+
+<hr>
+
+{% for tag in tags %}
+
+<h1 id={{ tag }}><a href="#{{ tag }}">{{ tag }}</a></h1>
+
+<p>
+{% for post in posts %}
+  {% if tag in post.tags %}
+    {{ post.date }}
+    <a href=./{{ post.path }}>{{ post.title }}</a>
+    {% for tag_ in post.tags %}
+      {% if tag_ != tag %}
+        <a href="./tags/#{{ tag_ }}" style="color:#b294bb;font-style:italic;">#{{ tag_ }}</a>
+      {% endif %}
+    {% endfor %}
+    <br>
+  {% endif %}
+{% endfor %}
+</p>
+
+{% endfor %}
+
+{% include "footer.html" %}

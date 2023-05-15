@@ -7,11 +7,51 @@ import copy
 import collections
 import toml
 import json
+from dataclasses import dataclass
 
 from yaq_traits.__traits__ import traits
+import markdown
 
 
 __here__ = pathlib.Path(__file__).resolve().parent
+
+
+# posts -------------------------------------------------------------------------------------------
+
+
+extension_configs = {"toc": {"permalink": " ¶"}}
+md = markdown.Markdown(
+    extensions=["meta", "toc", "extra"], extension_configs=extension_configs
+)
+
+@dataclass
+class Post:
+    id: str
+    title: str
+    content: str
+    date: str
+    tags: list
+
+posts = []
+tags = []
+for post in (__here__ / "posts").iterdir():
+    with open(post, "r") as f:
+        s = f.read()
+        content = md.convert(s)
+        kwargs = {
+            "id": md.Meta["id"][0],
+            "title": md.Meta["title"][0],
+            "content": content,
+            "date": md.Meta["date"][0],
+            "tags": md.Meta.get("tags", list()),
+        }
+        posts.append(Post(**kwargs))
+        tags += kwargs["tags"]
+
+posts.sort(key=lambda y: y.date)
+
+tags = list(set(tags))
+tags.sort()
 
 
 # trait -------------------------------------------------------------------------------------------
@@ -29,6 +69,7 @@ class Trait(object):
         self.daemons = []
         self.types = kwargs.get("types", [])
         self.types = [ty for ty in self.types if ty["name"] != "ndarray"]
+        self.posts = [post for post in posts if self.name in post.tags]
 
     def __repr__(self):
         return self.name
@@ -64,6 +105,7 @@ class Daemon(object):
         self.types = kwargs.get("types", [])
         self.types = [ty for ty in self.types if ty["name"] != "ndarray"]
         self.example_configs = self.links.get("example-configs", None)
+        self.posts = [post for post in posts if self.name in post.tags]
 
     def __repr__(self):
         return self.name
