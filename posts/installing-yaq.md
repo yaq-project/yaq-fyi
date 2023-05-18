@@ -18,7 +18,7 @@ This tutorial will take you from a bare [conda installation](https://docs.conda.
 video tutorial
 --------------
 
-<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/J12AuHj3JH0" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/_9HSoPL0KyM" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 install conda
 -------------
