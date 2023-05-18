@@ -49,6 +49,10 @@ code {
   margin-left: 8ch;
 }
 
+table {
+  width: 100%;
+}
+
 table, th, td {
   border: 1px solid #969896;
   border-collapse: collapse;
