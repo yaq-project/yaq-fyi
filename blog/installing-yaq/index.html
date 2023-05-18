@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>Installing yaq</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>blog</a>/installing-yaq
+</h1>
+
+<hr>
+<h1> Installing yaq </h1>
+
+<p>This page attempts to provide a quickstart guide to brand-new yaq/Python users.
+Please note that there are many ways to install yaq, this is just one approach that we find easiest for beginners.
+We are assuming Windows here.</p>
+<p>This tutorial will take you from a bare <a href="https://docs.conda.io/en/latest/miniconda.html">conda installation</a> through configuring and running your first yaq daemon.</p>
+<div class="toc">
+<ul>
+<li><a href="#video-tutorial">video tutorial</a></li>
+<li><a href="#install-conda">install conda</a></li>
+<li><a href="#install-yaqd-fakes">install yaqd-fakes</a></li>
+<li><a href="#install-yaqc">install yaqc</a></li>
+<li><a href="#install-yaqd-control">install yaqd-control</a></li>
+<li><a href="#configure-your-daemon">configure your daemon</a></li>
+<li><a href="#run-your-daemon-in-the-foreground">run your daemon in the foreground</a></li>
+<li><a href="#communicate-with-your-daemon">communicate with your daemon</a></li>
+<li><a href="#run-your-daemon-in-the-background">run your daemon in the background</a></li>
+</ul>
+</div>
+<h2 id="video-tutorial">video tutorial<a class="headerlink" href="#video-tutorial" title="Permanent link"> ¶</a></h2>
+<iframe width="100%" height="450" src="https://www.youtube-nocookie.com/embed/J12AuHj3JH0" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="install-conda">install conda<a class="headerlink" href="#install-conda" title="Permanent link"> ¶</a></h2>
+<p>On Windows, we prefer to manage Python via Anaconda.
+You may already have Anaconda installed, in which case you can skip this step.
+Please note that yaq requires Python 3.7 or newer.
+Download and install <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda3</a>.
+You'll want the 64-bit version.</p>
+<p>Add the <a href="https://conda-forge.org/">conda-forge</a> channel, which hosts yaq packages.</p>
+<pre><code>&gt; conda config --add channels conda-forge
+</code></pre>
+<h2 id="install-yaqd-fakes">install yaqd-fakes<a class="headerlink" href="#install-yaqd-fakes" title="Permanent link"> ¶</a></h2>
+<p>In this tutorial we will be working with the <a href="https://yaq.fyi/daemons/fake-continuous-hardware/">fake-continuous-hardware</a> daemon, which is provided by the <a href="https://anaconda.org/conda-forge/yaqd-fakes">yaqd-fakes</a> package.</p>
+<pre><code>&gt; conda install yaqd-fakes
+</code></pre>
+<h2 id="install-yaqc">install yaqc<a class="headerlink" href="#install-yaqc" title="Permanent link"> ¶</a></h2>
+<p>yaqc is a general purpose Python client which will afford you basic communication with any yaq daemon.
+Full yaqc documentation is avaliable at <a href="https://python.yaq.fyi/yaqc">python.yaq.fyi/yaqc</a>.</p>
+<pre><code>&gt; conda install yaqc
+</code></pre>
+<h2 id="install-yaqd-control">install yaqd-control<a class="headerlink" href="#install-yaqd-control" title="Permanent link"> ¶</a></h2>
+<p>yaqd-control is a command line interface for managing and querying installed yaq daemons.
+Use <code>--help</code> to see all of the commands that yaqd-control offers.</p>
+<pre><code>&gt; conda install yaqd-control
+&gt; yaqd --help
+</code></pre>
+<p>Full yaqd-control documentation is avaliable at <a href="https://control.yaq.fyi/">control.yaq.fyi</a>.</p>
+<h2 id="configure-your-daemon">configure your daemon<a class="headerlink" href="#configure-your-daemon" title="Permanent link"> ¶</a></h2>
+<p>Before running your daemon, you must provide some minimal configuration.</p>
+<pre><code>&gt; yaqd edit-config fake-continuous-hardware
+</code></pre>
+<p>This command will open a blank toml file at the appropriate location in notepad.
+You should type the following into the configuration file:</p>
+<pre><code>[mydaemon]
+port = 39000
+</code></pre>
+<p>Here, <code>mydaemon</code> is a human-friendly name that you choose, and <code>port</code> is the TCP port that the daemon will serve at.
+The configuration options for a given daemon are documented on the yaq website, in this case at <a href="https://yaq.fyi/daemons/fake-continuous-hardware/#configuration">yaq.fyi/daemons/fake-continuous-hardware</a>.
+Any options without defaults must be provided (in this case, only <code>port</code>).
+Full specification of yaq daemon configuration can be found in <a href="https://yeps.yaq.fyi/102/">YEP-102</a>.</p>
+<h2 id="run-your-daemon-in-the-foreground">run your daemon in the foreground<a class="headerlink" href="#run-your-daemon-in-the-foreground" title="Permanent link"> ¶</a></h2>
+<p>Simply type <code>yaqd-&lt;kind&gt;</code> to run your daemon in the foreground directly within Anaconda Prompt.
+You should see some logging information get printed as the daemon runs.</p>
+<pre><code>&gt; yaqd-fake-continuous-hardware
+</code></pre>
+<p>Since this runs the daemon in the foreground, you must keep your Anaconda Prompt window open to continue running your daemon.
+To close the daemon, press Ctrl+C or close the Anaconda Prompt window.</p>
+<h2 id="communicate-with-your-daemon">communicate with your daemon<a class="headerlink" href="#communicate-with-your-daemon" title="Permanent link"> ¶</a></h2>
+<p>Keeping your original Anaconda Prompt window open with the daemon running in the foreground, open a second Anaconda Prompt.
+Type:</p>
+<pre><code>&gt; yaqd status
+</code></pre>
+<p>This will print a table of all of the daemons your computer knows about, as well as some quick information about their status.</p>
+<p>Let's also use the yaqc Python package we installed earler.
+From within Python:</p>
+<pre><code>&gt;&gt;&gt; import yaqc
+&gt;&gt;&gt; c = yaqc.Client(39000)
+&gt;&gt;&gt; c.id()
+&gt;&gt;&gt; c.set_position(0)
+&gt;&gt;&gt; c.get_position()
+</code></pre>
+<p>There are many ways to interact with a running daemon.
+Importantly, multiple clients can communicate with the same daemon simultaniously.
+Check out all of the client packages at <a href="https://yaq.fyi/packages/#clients">yaq.fyi/packages</a>.</p>
+<h2 id="run-your-daemon-in-the-background">run your daemon in the background<a class="headerlink" href="#run-your-daemon-in-the-background" title="Permanent link"> ¶</a></h2>
+<p>Now we will properly "enable" our daemon to run in the background.
+To do this, we have to register the daemon as a background application (Windows calls this a "process").
+If you haven't already, close out of your foreground daemon.</p>
+<p>Run Anaconda Prompt as Administrator.
+You will be asked for your Windows login password.
+These security steps are Window's way of making sure that not just anyone can install invisible applications to run in the background on your machine.</p>
+<pre><code>&gt; yaqd enable fake-continuous-hardware
+&gt; yaqd start fake-continuous-hardware
+</code></pre>
+<p>Now your daemon is running in the background and will restart every time Windows reboots.
+You can prove your daemon is online with <code>yaqd status</code>, or by using <code>yaqc</code> from within Python.</p>
+<p>Now that you're familiar with some of the basic tooling, consider installing one of the <a href="https://yaq.fyi/daemons/">many other daemons</a> that exist with the yaq ecosystem.
+Have fun!</p>
+
+<hr>
+
+<p>
+built 2023-05-18 16:53:30
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

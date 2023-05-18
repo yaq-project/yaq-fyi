@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>yaq and happi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>blog</a>/happi
+</h1>
+
+<hr>
+<h1> yaq and happi </h1>
+
+<p><a href="https://github.com/pcdshub/happi">Happi</a> (Heuristic Access to Positioning of Photon Instrumentation), is a Python package developed at the <a href="https://lcls.slac.stanford.edu/">Linac Coherent Light Source</a>.
+Happi is part of the <a href="https://blueskyproject.io/">Bluesky ecosystem</a>.</p>
+<p>Happi provides an interface for discovering hardware interfaces.
+Despite the name containing "photon", Happi's interface is generic.
+It's somewhat like a database for <a href="https://blueskyproject.io/bluesky/hardware.html">Bluesky interface</a> objects.
+Tools like <a href="https://github.com/pcdshub/typhos">Typhos</a> can automatically use Happi to discover what hardware is avaliable on a given machine.</p>
+<p>yaq integrates with Happi via the <a href="https://github.com/bluesky/yaqc-bluesky">yaqc-bluesky</a> package.
+yaq users may add yaqc-bluesky instances to the Happi database.
+Importantly, yaqc-bluesky instances exist seamlessly in Happi alongside other Bluesky interface providers.</p>
+<h1 id="backends">backends<a class="headerlink" href="#backends" title="Permanent link"> ¶</a></h1>
+<p>We recommend using Happi's JSON backend in user data directory.
+Here's how to make a Happi client using this path.</p>
+<pre><code>import appdirs
+import pathlib
+import happi
+
+# make happi client
+db_path = pathlib.Path(appdirs.user_data_dir(&quot;happi&quot;)) / &quot;db.json&quot;
+happi_backend = happi.backends.backend(db_path)
+happi_client = happi.Client(database=happi_backend)
+</code></pre>
+<p>We'll be using this as our backend example for the rest of this discussion.
+Of-course any Happi-supported backend will work, see <a href="https://pcdshub.github.io/happi/client.html#selecting-a-backend">Happi's documentation on selecting a backend</a>.</p>
+<h1 id="adding">adding<a class="headerlink" href="#adding" title="Permanent link"> ¶</a></h1>
+<p>Let's add a new yaqc-bluesky instance to Happi.
+In this case we have a daemon locally at port 38500.</p>
+<pre><code>&gt;&gt;&gt; import yaqc_bluesky
+&gt;&gt;&gt; item = yaqc_bluesky.happi_containers.YAQItem(name=&quot;test&quot;, port=38500)
+&gt;&gt;&gt; happi_client.add_device(item)
+`test`
+</code></pre>
+<h1 id="searching">searching<a class="headerlink" href="#searching" title="Permanent link"> ¶</a></h1>
+<p>Once a device has been added to Happi we can search for it.</p>
+<pre><code>&gt;&gt;&gt; happi_client.find_device(name=&quot;test&quot;)
+</code></pre>
+<h1 id="loading">loading<a class="headerlink" href="#loading" title="Permanent link"> ¶</a></h1>
+<p>Loading gives back the yaqc-bluesky device itself.</p>
+<pre><code>&gt;&gt;&gt; happi_client.load_device(name=&quot;test&quot;)
+&lt;yaqc_bluesky._device.YAQDevice object at 0x7f227963e790&gt;
+</code></pre>
+
+<hr>
+
+<p>
+built 2023-05-18 16:53:30
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>

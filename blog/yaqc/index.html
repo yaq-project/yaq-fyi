@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" name="viewport" content="width=80ch">
+  <title>yaqc Introduction</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>
+<a href=../../>yaq</a>/<a href=../>blog</a>/yaqc
+</h1>
+
+<hr>
+<h1> yaqc Introduction </h1>
+
+<div class="toc">
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#connecting">Connecting</a></li>
+<li><a href="#using-the-client">Using the Client</a><ul>
+<li><a href="#subclassing">Subclassing</a></li>
+</ul>
+</li>
+<li><a href="#links">Links</a></li>
+</ul>
+</div>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link"> ¶</a></h2>
+<p>A generic python yaq client is can be installed via
+<a href="https://pypi.org/project/yaqc/">PyPI</a>. The client program works on
+Python ≥ 3.6.</p>
+<pre><code>$ pip install yaqc
+</code></pre>
+<p>Or installed via conda:</p>
+<pre><code>conda install -c conda-forge yaqc
+</code></pre>
+<p>You may also install from source:</p>
+<pre><code>$ git clone https://gitlab.com/yaq/yaqc-python
+$ cd yaqc-python
+$ pip install .
+</code></pre>
+<h2 id="connecting">Connecting<a class="headerlink" href="#connecting" title="Permanent link"> ¶</a></h2>
+<p><code>yaqc</code> provides a generic client which dynamically adds methods to match
+those provided by the daemon it is connected to. To connect to a daemon
+running locally on port 38000:</p>
+<pre><code>&gt;&gt;&gt; import yaqc
+&gt;&gt;&gt; client = yaqc.Client(38000)
+</code></pre>
+<p>If your daemon is running remotely, simply add the host as a paramter:</p>
+<pre><code>&gt;&gt;&gt; import yaqc
+&gt;&gt;&gt; client = yaqc.Client(38000, host="123.123.123.123")
+</code></pre>
+<p><code>client</code> is now a python object which can be used as any other, with all
+the expected methods. For example, if the daemon implements the
+<code>has-position</code> trait, the object will have methods <code>get_position</code>,
+<code>set_position</code> and so on.</p>
+<p>The daemon which you are connecting to need not be itself implemented in
+python, only has to follow the yaq daemon specification.</p>
+<h2 id="using-the-client">Using the Client<a class="headerlink" href="#using-the-client" title="Permanent link"> ¶</a></h2>
+<p>Methods are called on the client object, which handles the daemon
+communication layer transparently:</p>
+<pre><code>&gt;&gt;&gt; client.id()
+{'name': 'my-test-daemon', 'kind': 'some-daemon-kind', 'make': None, 'model': None, 'serial': None}
+</code></pre>
+<h3 id="subclassing">Subclassing<a class="headerlink" href="#subclassing" title="Permanent link"> ¶</a></h3>
+<p>While the generic client exposes all daemon capabilities, there may be
+times where you wish to add some client side computation (e.g. unit
+translation, stringing together multiple daemon calls). This is allowed,
+and can be accomplished using subclassing. The code which is generates
+the dynamic functions will not overwrite your own functions (it will
+also not populate the doc string).</p>
+<p>The following is an example of a subclass which uses the
+<a href="https://unyt.readthedocs.io/en/stable/">unyt</a> library to provide client
+side unit conversion:</p>
+<pre><code>import unyt
+import yaqc
+
+class UnitClient(yaqc.Client):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # This assumes the `has_position` trait is implemented
+        self._units = self.get_units()
+
+    def set_position(self, position, units=None):
+        &quot;&quot;&quot;Set the position to a value in units.
+
+        Parameters
+        ----------
+        position: float or unyt.unyt_quantity
+        The position to set.
+        units: string or unyt.Unit
+        The units for the number.
+        &quot;&quot;&quot;
+        if units is not None:
+           position = unyt.unyt_quantity(position, units)
+        if isinstance(position, unyt.unyt_quantity):
+           position.convert_to_units(self._units)
+        return self.send(&quot;set_position&quot;, float(position))
+</code></pre>
+<p>In this example, the <code>set_position</code> method will not be overwritten. A
+similar function could be written for <code>get_position</code>.</p>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link"> ¶</a></h2>
+<ul>
+<li><a href="https://gitlab.com/yaq/yaqc-python">Source Code</a></li>
+<li><a href="https://gitlab.com/yaq/yaqc-python">Issue Tracker</a></li>
+<li><a href="https://pypi.org/project/yaqc/">PyPi</a></li>
+</ul>
+
+<hr>
+
+<p>
+built 2023-05-18 16:53:30
+                                    
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
+</p>
+
+</body>
+</html>
