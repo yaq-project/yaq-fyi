@@ -2,6 +2,7 @@
 title: SciPy 2020 Recap
 id: scipy-2020-recap
 date: 2023-05-11
+authors: Kyle Sunden
 ---
 
 [TOC]
@@ -42,5 +43,3 @@ Blaise Thompson and Kyle Sunden (the lead developers of yaq) hosted a BOF at Sci
 
 After attending SciPy 2020 and talking to the developers of Bluesky, we at yaq have decided to push forward with a first class bridge from yaq into bluesky.
 This will enable users of yaq to tap into the powerful data acquisition pipeline provided by Bluesky.
-
-

@@ -2,6 +2,7 @@
 title: yaqc Introduction
 id: yaqc
 date: 2023-05-11
+authors: Kyle Sunden
 ---
 
 [TOC]

@@ -1,6 +1,5 @@
 name: Build and Deploy
-on:
-  push:
+on: push
 permissions:
   contents: write
 jobs:
