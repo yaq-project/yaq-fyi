@@ -1,8 +1,6 @@
 name: Build and Deploy
 on:
   push:
-    branches:
-      - main
 permissions:
   contents: write
 jobs:
@@ -18,10 +16,12 @@ jobs:
           python3 -m pip install toml
           python3 -m pip install jinja2
           python3 -m pip install yaq-traits
+          python3 -m pip install markdown
           python3 build.py
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           branch: gh-pages  # The branch the action should deploy to.
           folder: public  # The folder the action should deploy.
