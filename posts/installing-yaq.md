@@ -2,6 +2,8 @@
 title: Installing yaq
 id: installing-yaq
 date: 2023-05-11
+authors: Blaise Thompson
+tags: video
 ---
 
 This page attempts to provide a quickstart guide to brand-new yaq/Python users.

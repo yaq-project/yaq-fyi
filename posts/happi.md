@@ -2,6 +2,8 @@
 title: yaq and happi
 id: happi
 date: 2023-05-11
+authors: Blaise Thompson
+tags: bluesky
 ---
 
 [Happi](https://github.com/pcdshub/happi) (Heuristic Access to Positioning of Photon Instrumentation), is a Python package developed at the [Linac Coherent Light Source](https://lcls.slac.stanford.edu/).

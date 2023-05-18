@@ -43,7 +43,7 @@ for post in (__here__ / "posts").iterdir():
             "title": md.Meta["title"][0],
             "content": content,
             "date": md.Meta["date"][0],
-            "tags": md.Meta.get("tags", list()),
+            "tags": md.Meta.get("tags", [""])[0].split(),
         }
         posts.append(Post(**kwargs))
         tags += kwargs["tags"]

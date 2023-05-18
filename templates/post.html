@@ -5,7 +5,25 @@
 </h1>
 
 <hr>
+
 <h1> {{ post.title }} </h1>
+
+<table>
+<tr><th>Title:</th><td>{{ post.title }}</td></tr>
+<tr><th>ID:</th><td>{{ post.id }}</td></tr>
+{% if post.authors %}
+  <tr><th>Authors:</th><td>{{ post.authors }}</td></tr>
+{% endif %}
+<tr><th>Date:</th><td>{{ post.date }}</td></tr>
+{% if post.tags %}
+  <tr><th>Tags:</th><td>
+  {% for tag in post.tags %}
+    <a href="../tags/#{{ tag }}" style="color:#b294bb;font-style:italic;">#{{ tag }}</a>
+  {% endfor %}
+  </td></tr>
+{% endif %}
+</table>
+<br>
 
 {{ post.content }}
 

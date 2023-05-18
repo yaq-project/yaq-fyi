@@ -14,7 +14,7 @@
 {% for post in posts %}
   {% if tag in post.tags %}
     {{ post.date }}
-    <a href=./{{ post.path }}>{{ post.title }}</a>
+    <a href=./{{ post.id }}>{{ post.title }}</a>
     {% for tag_ in post.tags %}
       {% if tag_ != tag %}
         <a href="./tags/#{{ tag_ }}" style="color:#b294bb;font-style:italic;">#{{ tag_ }}</a>
