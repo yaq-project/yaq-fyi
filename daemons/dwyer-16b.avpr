@@ -4,6 +4,10 @@
             "origin": "uses-uart",
             "type": "int"
         },
+        "byte_size": {
+            "doc": "Byte size of your instrument.",
+            "type": "int"
+        },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
@@ -53,6 +57,16 @@
                 "string"
             ]
         },
+        "modbus_address": {
+            "default": 1,
+            "doc": "Unique address in the modbus network.",
+            "type": "int"
+        },
+        "modbus_handle_echo": {
+            "default": true,
+            "doc": "Configure echo handling.",
+            "type": "boolean"
+        },
         "model": {
             "default": null,
             "origin": "is-daemon",
@@ -73,6 +87,19 @@
             ],
             "type": "enum"
         },
+        "parity": {
+            "default": "none",
+            "doc": "Modbus parity.",
+            "type": {
+                "name": "parity",
+                "symbols": [
+                    "even",
+                    "odd",
+                    "none"
+                ],
+                "type": "enum"
+            }
+        },
         "port": {
             "doc": "TCP port for daemon to occupy.",
             "origin": "is-daemon",
@@ -90,9 +117,22 @@
         "serial_port": {
             "origin": "uses-uart",
             "type": "string"
+        },
+        "stop_bits": {
+            "default": "one",
+            "doc": "Number of stop bits.",
+            "type": {
+                "name": "stop_bits",
+                "symbols": [
+                    "one",
+                    "one_and_half",
+                    "two"
+                ],
+                "type": "enum"
+            }
         }
     },
-    "doc": "",
+    "doc": "Daemon for Dwyer 16b temperature controller with support for ramping. Note that this daemon assumes ModBus RTU.",
     "hardware": [
         "dwyer:16b"
     ],
@@ -101,6 +141,7 @@
     },
     "links": {
         "bugtracker": "https://gitlab.com/yaq-project/yaqd-dwyer/-/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-dwyer/tree/main/example-yaq-configs/dwyer-16b",
         "source": "https://github.com/yaq-project/yaqd-dwyer"
     },
     "messages": {
@@ -133,9 +174,21 @@
             "request": [],
             "response": "string"
         },
+        "get_derivative_constant": {
+            "request": [],
+            "response": "double"
+        },
         "get_destination": {
             "doc": "Get current daemon destination.",
             "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_integral_constant": {
+            "request": [],
+            "response": "double"
+        },
+        "get_integral_offset": {
             "request": [],
             "response": "double"
         },
@@ -148,9 +201,23 @@
                 "type": "array"
             }
         },
+        "get_output_1_duty": {
+            "doc": "Current output duty cycle as a percentage.",
+            "request": [],
+            "response": "double"
+        },
+        "get_output_2_duty": {
+            "doc": "Current output duty cycle as a percentage.",
+            "request": [],
+            "response": "double"
+        },
         "get_position": {
             "doc": "Get current daemon position.",
             "origin": "has-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_proportional_constant": {
             "request": [],
             "response": "double"
         },
@@ -210,6 +277,33 @@
             ],
             "response": "boolean"
         },
+        "set_derivative_constant": {
+            "request": [
+                {
+                    "name": "derivative",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_integral_constant": {
+            "request": [
+                {
+                    "name": "integral",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_integral_offset": {
+            "request": [
+                {
+                    "name": "integral_offset",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
         "set_position": {
             "doc": "Give the daemon a new destination, and begin motion towards that destination.",
             "origin": "has-position",
@@ -221,12 +315,21 @@
             ],
             "response": "null"
         },
+        "set_proportional_constant": {
+            "request": [
+                {
+                    "name": "proportional",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
         "set_ramp_time": {
             "doc": "Ramp time, in minutes. Set to zero to disable ramping.",
             "request": [
                 {
                     "name": "ramp_time",
-                    "type": "float"
+                    "type": "double"
                 }
             ],
             "response": "null"
@@ -256,6 +359,17 @@
         }
     },
     "properties": {
+        "derivative_constant": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_derivative_constant",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_derivative_constant",
+            "type": "double",
+            "units_getter": null
+        },
         "destination": {
             "control_kind": "hinted",
             "dynamic": true,
@@ -266,6 +380,50 @@
             "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
+        },
+        "integral_constant": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_integral_constant",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_integral_constant",
+            "type": "double",
+            "units_getter": null
+        },
+        "integral_offset": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_integral_offset",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_integral_offset",
+            "type": "double",
+            "units_getter": null
+        },
+        "output_1_duty": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_output_1_duty",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": null,
+            "type": "double",
+            "units_getter": null
+        },
+        "output_2_duty": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_output_2_duty",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "data",
+            "setter": null,
+            "type": "double",
+            "units_getter": null
         },
         "position": {
             "control_kind": "hinted",
@@ -278,6 +436,17 @@
             "type": "double",
             "units_getter": "get_units"
         },
+        "proportional_constant": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_proportional_constant",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_proportional_constant",
+            "type": "double",
+            "units_getter": null
+        },
         "ramp_time": {
             "control_kind": "hinted",
             "dynamic": true,
@@ -286,13 +455,18 @@
             "options_getter": null,
             "record_kind": "metadata",
             "setter": "set_ramp_time",
-            "type": "float",
+            "type": "double",
             "units_getter": "get_ramp_time_units"
         }
     },
     "protocol": "dwyer-16b",
     "requires": [],
     "state": {
+        "derivative_constant": {
+            "default": 0.0,
+            "doc": "Derivative constant. Note that this daemon forces controller to only use PID profile zero.",
+            "type": "double"
+        },
         "destination": {
             "default": NaN,
             "origin": "has-position",
@@ -307,14 +481,34 @@
             "origin": "has-limits",
             "type": "array"
         },
+        "integral_constant": {
+            "default": 0.0,
+            "doc": "Integral constant. Note that this daemon forces controller to only use PID profile zero.",
+            "type": "double"
+        },
+        "integral_offset": {
+            "default": 0.0,
+            "doc": "Integral offset. Correction value for systems that tend to ring. Note that this daemon forces controller to only use PID profile zero. Units percentage",
+            "type": "double"
+        },
         "position": {
             "default": NaN,
             "origin": "has-position",
             "type": "double"
         },
+        "proportional_constant": {
+            "default": 0.0,
+            "doc": "Proportional constant. Note that this daemon forces controller to only use PID profile zero.",
+            "type": "double"
+        },
         "ramp_time": {
             "default": 0.0,
             "doc": "Ramp time, in minutes.",
+            "type": "double"
+        },
+        "temperature_regulation_value": {
+            "default": 0.0,
+            "doc": "Current output duty cycle as a percentage.",
             "type": "double"
         }
     },
