@@ -1,5 +1,12 @@
 [clients]
 
+[clients.auto_rxn]
+badges = [
+  "<a href='https://github.com/uw-madison-chem-shops/auto_rxn'><img alt='CI' src='https://img.shields.io/github/checks-status/bluesky/auto_rxn/master'></a>",
+  "<a href='https://pypi.org/project/auto_rxn'><img src='https://img.shields.io/pypi/v/auto_rxn'></a>",
+  "<a href='https://anaconda.org/conda-forge/auto_rxn'><img src='https://img.shields.io/conda/vn/conda-forge/auto_rxn'></a>",
+]
+
 [clients.yaqc-bluesky]
 badges = [
   "<a href='https://github.com/bluesky/yaqc-bluesky'><img alt='CI' src='https://img.shields.io/github/checks-status/bluesky/yaqc-bluesky/master'></a>",
