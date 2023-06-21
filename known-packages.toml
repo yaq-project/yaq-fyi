@@ -79,7 +79,7 @@ badges = [
 
 [daemons.yaqd-bertram]
 badges = [
-  "<a href='https://github.com/yaq-project/yaqd-bertram'><img src='https://github.com/uw-madison-chem-shops/yaqd-bertram'></a>",
+  "<a href='https://github.com/uw-madison-chem-shops/yaqd-bertram'><img src='https://img.shields.io/github/checks-status/uw-madison-chem-shops/yaqd-bertram/main'></a>",
   "<a href='https://pypi.org/project/yaqd-bertram'><img src='https://img.shields.io/pypi/v/yaqd-bertram'></a>",
 ]
 
