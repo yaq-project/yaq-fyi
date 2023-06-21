@@ -7,6 +7,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/auto_rxn'><img src='https://img.shields.io/conda/vn/conda-forge/auto_rxn'></a>",
 ]
 
+[clients.bluesky-hwproxy]
+badges = [
+  "<a href='https://github.com/ksunden/bluesky-hwproxy'><img alt='CI' src='https://img.shields.io/github/checks-status/ksunden/bluesky-hwproxy/main'></a>",
+  "<a href='https://pypi.org/project/bluesky-hwproxy'><img src='https://img.shields.io/pypi/v/bluesky-hwproxy'></a>",
+  "<a href='https://anaconda.org/conda-forge/bluesky-hwproxy'><img src='https://img.shields.io/conda/vn/conda-forge/bluesky-hwproxy'></a>",
+]
+
 [clients.yaqc-bluesky]
 badges = [
   "<a href='https://github.com/bluesky/yaqc-bluesky'><img alt='CI' src='https://img.shields.io/github/checks-status/bluesky/yaqc-bluesky/master'></a>",
