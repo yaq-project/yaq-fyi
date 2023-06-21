@@ -81,7 +81,6 @@ badges = [
 badges = [
   "<a href='https://github.com/yaq-project/yaqd-bertram'><img src='https://github.com/uw-madison-chem-shops/yaqd-bertram'></a>",
   "<a href='https://pypi.org/project/yaqd-bertram'><img src='https://img.shields.io/pypi/v/yaqd-bertram'></a>",
-  "<a href='https://anaconda.org/conda-forge/yaqd-bertram'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-bertram'></a>",
 ]
 
 [daemons.yaqd-bronkhorst]
