@@ -60,6 +60,7 @@
         },
         "microsteps": {
             "default": 16,
+            "doc": "Number of microsteps between full steps. Default is 16.",
             "type": "int"
         },
         "model": {
@@ -103,6 +104,11 @@
             "default": 0.5555555555556,
             "type": "double"
         },
+        "style": {
+            "default": "DOUBLE",
+            "doc": "Style of step to take. Default is 'DOUBLE'.",
+            "type": "step_style"
+        },
         "units": {
             "default": "deg",
             "type": "string"
@@ -125,6 +131,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-adafruit/-/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-adafruit/tree/main/example-yaq-configs/adafruit-stepper-motor-hat",
         "source": "https://github.com/yaq-project/yaqd-adafruit"
     },
     "messages": {
@@ -259,13 +266,13 @@
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
-            "limits_getter": null,
+            "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
         },
@@ -276,7 +283,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         }
@@ -328,6 +335,16 @@
             ],
             "name": "limit_switch",
             "type": "record"
+        },
+        {
+            "name": "step_style",
+            "symbols": [
+                "DOUBLE",
+                "SINGLE",
+                "INTERLEAVE",
+                "MICROSTEP"
+            ],
+            "type": "enum"
         },
         {
             "fields": [
