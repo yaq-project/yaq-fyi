@@ -7,10 +7,6 @@ authors: Kyle Sunden
 
 [TOC]
 
-## Virtual 'Poster'
-
-[Here](https://python.yaq.fyi/scipy-2020/) is a link to our SciPy 2020 virtual 'poster'.
-
 ## Hardware Birds-Of-a-Feather session
 
 Blaise Thompson and Kyle Sunden (the lead developers of yaq) hosted a BOF at Scipy 2020, the [recording](https://www.youtube.com/watch?v=6HxVbK14EDI) is available on youtube.

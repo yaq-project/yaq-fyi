@@ -310,11 +310,6 @@ badges = [
 
 [documentation]
 
-[documentation.python-yaq-fyi]
-badges = [
-  "<a href='https://github.com/yaq-project/python-yaq-fyi'><img src='https://img.shields.io/github/checks-status/yaq-project/python-yaq-fyi/main'></a>",
-]
-
 [documentation.yeps]
 badges = [
   "<a href='https://github.com/yaq-project/yeps'><img src='https://img.shields.io/github/checks-status/yaq-project/yeps/main'></a>",

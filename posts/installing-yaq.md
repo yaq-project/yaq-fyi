@@ -44,7 +44,6 @@ install yaqc
 ------------
 
 yaqc is a general purpose Python client which will afford you basic communication with any yaq daemon.
-Full yaqc documentation is avaliable at [python.yaq.fyi/yaqc](https://python.yaq.fyi/yaqc).
 
     > conda install yaqc
 
