@@ -2,44 +2,48 @@
 <html>
 <head>
   <meta charset="utf-8" name="viewport" content="width=80ch">
-  <title>dwyer-16c</title>
+  <title>fake-furnace</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>
-<a href=../../>yaq</a>/<a href=../>daemons</a>/dwyer-16c
+<a href=../../>yaq</a>/<a href=../>daemons</a>/fake-furnace
 </h1>
 
 <hr>
 
-
+Fake for simulating furnaces that support ramp_time property.
 
 
 <h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
 <p class="tab30">
 
-  <a href=https://gitlab.com/yaq-project/yaqd-dwyer/-/issues>bugtracker</a> <br>
+  <a href=https://github.com/yaq-project/yaq-python/-/issues>bugtracker</a> <br>
 
-  <a href=https://github.com/yaq-project/yaqd-dwyer>source</a> <br>
+  <a href=https://yaq.fyi/daemons/fake-furnace/>documentation</a> <br>
+
+  <a href=https://github.com/yaq-project/yaq-python>source</a> <br>
 
 
 
 
 <h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
 <p>
-  The dwyer-16c daemon can be installed using the following package managers:
+  The fake-furnace daemon can be installed using the following package managers:
 </p>
 <p class="tab30">
 
-  <a href=https://pypi.org/project/yaqd-dwyer>PyPI</a> <br>
+  <a href=https://pypi.org/project/yaqd-fakes>PyPI</a> <br>
+
+  <a href=https://anaconda.org/conda-forge/yaqd-fakes>conda-forge</a> <br>
 
 
 
 
 <h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
 <p>
-  The dwyer-16c daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+  The fake-furnace daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
 </p>
 <p class="tab30">
 
@@ -52,26 +56,9 @@
   <a href=../../traits/is-daemon>is-daemon</a>
   <br>
 
-  <a href=../../traits/uses-serial>uses-serial</a>
-  <br>
-
-  <a href=../../traits/uses-uart>uses-uart</a>
-  <br>
-
 </p>
 
 
-
-<h2 id='hardware'>hardware<a href='#hardware'> ¶</a></h2>
-<p>
-  The dwyer-16c daemon has been tested with the following hardware:
-</p>
-<p class="tab30">
-
-  
-  <a href="../../hardware/dwyer">dwyer</a>/<a href="../../hardware/dwyer/16c">16c</a><br>
-
-</p>
 
 
 
@@ -79,30 +66,6 @@
 
 <h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
 
-
-  
-    <p class="tab30">
-    <b>baud_rate</b> (int)
-    
-    <br>
-    
-    
-      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
-    
-    
-    </p>
-    
-
-  
-    <p class="tab30">
-    <b>byte_size</b> (int)
-    
-    <br>
-     Byte size of your instrument. <br> 
-    
-    
-    </p>
-    
 
   
     <p class="tab30">
@@ -120,7 +83,7 @@
   
     <p class="tab30">
     <b>limits</b> (array)
-    <i>default: [-inf, inf]</i>
+    <i>default: [0, 1000]</i>
     <br>
      Configuration limits are strictly optional. <br> 
     
@@ -171,28 +134,6 @@
 
   
     <p class="tab30">
-    <b>modbus_address</b> (int)
-    <i>default: 1</i>
-    <br>
-     Unique address in the modbus network. <br> 
-    
-    
-    </p>
-    
-
-  
-    <p class="tab30">
-    <b>modbus_handle_echo</b> (boolean)
-    <i>default: True</i>
-    <br>
-     Configure echo handling. <br> 
-    
-    
-    </p>
-    
-
-  
-    <p class="tab30">
     <b>model</b> (['null', 'string'])
     <i>default: None</i>
     <br>
@@ -212,17 +153,6 @@
      Control behavior of daemon when set_position is given a value outside of limits. <br> 
     
       <i>from <a href='../../traits/has-limits'>has-limits</a></i>
-    
-    
-    </p>
-    
-
-  
-    <p class="tab30">
-    <b>parity</b> ({'name': 'parity', 'symbols': ['even', 'odd', 'none'], 'type': 'enum'})
-    <i>default: none</i>
-    <br>
-     Modbus parity. <br> 
     
     
     </p>
@@ -254,36 +184,12 @@
     </p>
     
 
-  
-    <p class="tab30">
-    <b>serial_port</b> (string)
-    
-    <br>
-    
-    
-      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
-    
-    
-    </p>
-    
-
-  
-    <p class="tab30">
-    <b>stop_bits</b> ({'name': 'stop_bits', 'symbols': ['one', 'one_and_half', 'two'], 'type': 'enum'})
-    <i>default: one</i>
-    <br>
-     Number of stop bits. <br> 
-    
-    
-    </p>
-    
-
 
 
 
 <h2 id='state'>state<a href='#state'> ¶</a></h2>
 <p>
-  The dwyer-16c daemon will provide the following state information:
+  The fake-furnace daemon will provide the following state information:
 </p>
 
   
@@ -316,12 +222,20 @@
     </p>
     
 
+  
+    <p class="tab30">
+    <b>ramp_time</b> (double) <br>
+     Ramp time, in minutes. <br> 
+    
+    </p>
+    
+
 
 
 
 <h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
 <p>
-  The dwyer-16c daemon will expose the following public messages:
+  The fake-furnace daemon will expose the following public messages:
 </p>
 
   
@@ -334,35 +248,6 @@
     <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
     
      </p>
-    
-    
-
-  
-    <p class="tab30">
-    <b>direct_serial_write</b>
-     ➜  null 
-    <br>
-     Expose direct access to the serial port to clients.
-
-This should not be encouraged for normal use, but may be very important for debugging.
-If a device is expected to return data, it should be logged at the INFO level, not returned to the client.
-This is done to allow long tasks to be run asynchronously, and to explicitly discourage use of this method except when debugging.
-Setting `busy` to true is encouraged, but individual daemon writers should consider their own use case.
- <br> 
-    
-    <i>from <a href='../../traits/uses-serial'>uses-serial</a></i> <br>
-    
-    
-    parameters: <br>
-    </p>
-    
-    <p class="tab60">
-        <b>message</b> (bytes)
-        
-        <br>
-        
-    </p>
-    
     
     
 
@@ -429,6 +314,39 @@ This includes defaults and shared settings not directly specified in the daemon-
      Get current daemon position. <br> 
     
     <i>from <a href='../../traits/has-position'>has-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_ramp_time</b>
+     ➜  double 
+    <br>
+     Ramp time, in minutes. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_ramp_time_limits</b>
+     ➜  {'items': 'double', 'type': 'array'} 
+    <br>
+     Ramp time limits in minutes. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_ramp_time_units</b>
+     ➜  string 
+    <br>
+     Ramp time units. <br> 
     
      </p>
     
@@ -512,6 +430,27 @@ This includes defaults and shared settings not directly specified in the daemon-
     
     <p class="tab60">
         <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_ramp_time</b>
+     ➜  null 
+    <br>
+     Ramp time, in minutes. Set to zero to disable ramping. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>ramp_time</b> (double)
         
         <br>
         
