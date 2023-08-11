@@ -329,6 +329,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/hart-protocol'><img src='https://img.shields.io/conda/vn/conda-forge/hart-protocol'></a>",
 ]
 
+[tooling.proxr-protocol]
+badges = [
+  "<a href='https://github.com/yaq-project/proxr-protocol'><img src='https://img.shields.io/github/checks-status/yaq-project/proxr-protocol/main'></a>",
+  "<a href='https://pypi.org/project/proxr-protocol'><img src='https://img.shields.io/pypi/v/proxr-protocol'></a>",
+  "<a href='https://anaconda.org/conda-forge/proxr-protocol'><img src='https://img.shields.io/conda/vn/conda-forge/proxr-protocol'></a>",
+]
+
 [tooling.qtypes]
 badges = [
   "<a href='https://github.com/yaq-project/qtypes'><img src='https://img.shields.io/github/checks-status/yaq-project/qtypes/main'></a>",
