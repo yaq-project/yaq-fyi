@@ -2,13 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8" name="viewport" content="width=80ch">
-  <title>thorlabs-ell18</title>
+  <title>bronkhorst-mfc-rs232</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>
-<a href=../../>yaq</a>/<a href=../>daemons</a>/thorlabs-ell18
+<a href=../../>yaq</a>/<a href=../>daemons</a>/bronkhorst-mfc-rs232
 </h1>
 
 <hr>
@@ -19,29 +19,29 @@
 <h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
 <p class="tab30">
 
-  <a href=https://github.com/yaq-project/yaqd-thorlabs/-/issues>bugtracker</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-bronkhorst/-/issues>bugtracker</a> <br>
 
-  <a href=https://www.thorlabs.us/thorproduct.cfm?partnumber=ELL18>manufacturer</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-bronkhorst/tree/main/example-yaq-configs/bronkhorst-mfc-rs232>example-configs</a> <br>
 
-  <a href=https://github.com/yaq-project/yaqd-thorlabs>source</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-bronkhorst>source</a> <br>
 
 
 
 
 <h2 id='installation'>installation<a href='#installation'> ¶</a></h2>
 <p>
-  The thorlabs-ell18 daemon can be installed using the following package managers:
+  The bronkhorst-mfc-rs232 daemon can be installed using the following package managers:
 </p>
 <p class="tab30">
 
-  <a href=https://pypi.org/project/yaqd-thorlabs>PyPI</a> <br>
+  <a href=https://pypi.org/project/yaqd-bronkhorst>PyPI</a> <br>
 
 
 
 
 <h2 id='traits'>traits<a href='#traits'> ¶</a></h2>
 <p>
-  The thorlabs-ell18 daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
+  The bronkhorst-mfc-rs232 daemon is <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">composed</a> of the following traits:
 </p>
 <p class="tab30">
 
@@ -51,10 +51,10 @@
   <a href=../../traits/has-position>has-position</a>
   <br>
 
-  <a href=../../traits/is-daemon>is-daemon</a>
+  <a href=../../traits/has-transformed-position>has-transformed-position</a>
   <br>
 
-  <a href=../../traits/is-homeable>is-homeable</a>
+  <a href=../../traits/is-daemon>is-daemon</a>
   <br>
 
   <a href=../../traits/uses-serial>uses-serial</a>
@@ -69,15 +69,12 @@
 
 <h2 id='hardware'>hardware<a href='#hardware'> ¶</a></h2>
 <p>
-  The thorlabs-ell18 daemon has been tested with the following hardware:
+  The bronkhorst-mfc-rs232 daemon has been tested with the following hardware:
 </p>
 <p class="tab30">
 
   
-  <a href="../../hardware/thorlabs">thorlabs</a>/<a href="../../hardware/thorlabs/ell18">ell18</a><br>
-
-  
-  <a href="../../hardware/thorlabs">thorlabs</a>/<a href="../../hardware/thorlabs/ell18m">ell18m</a><br>
+  <a href="../../hardware/bronkhorst">bronkhorst</a>/<a href="../../hardware/bronkhorst/el-flow">el-flow</a><br>
 
 </p>
 
@@ -87,13 +84,19 @@
 
 <h2 id='configuration'>configuration<a href='#configuration'> ¶</a></h2>
 
+<p>
+  <a href="https://github.com/yaq-project/yaqd-bronkhorst/tree/main/example-yaq-configs/bronkhorst-mfc-rs232">Example configuration files.</a>
+</p>
+
 
   
     <p class="tab30">
-    <b>address</b> (int)
-    <i>default: 0</i>
+    <b>baud_rate</b> (int)
+    <i>default: 38400</i>
     <br>
-     Address for ELL18 messages (default 0) <br> 
+    
+    
+      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
     
     
     </p>
@@ -101,12 +104,10 @@
 
   
     <p class="tab30">
-    <b>baud_rate</b> (int)
-    <i>default: 9600</i>
+    <b>calibration</b> ({'items': 'calibration_point', 'type': 'array'})
+    <i>default: [{'measured': 0.0, 'setpoint': 0.0}, {'measured': 1000000.0, 'setpoint': 1000000.0}]</i>
     <br>
-    
-    
-      <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+     Array of calibration points for MFC, in units. <br> 
     
     
     </p>
@@ -167,7 +168,7 @@
   
     <p class="tab30">
     <b>make</b> (['null', 'string'])
-    <i>default: Thorlabs</i>
+    <i>default: None</i>
     <br>
     
     
@@ -179,12 +180,36 @@
 
   
     <p class="tab30">
+    <b>max_position</b> (double)
+    
+    <br>
+     Maximum setpoint of the flow device. <br> 
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>model</b> (['null', 'string'])
-    <i>default: ell18</i>
+    <i>default: None</i>
     <br>
     
     
       <i>from <a href='../../traits/is-daemon'>is-daemon</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>native_limits</b> (array)
+    <i>default: [-inf, inf]</i>
+    <br>
+     Bounds of motion specified in native coordinates.  To specify bounds in transformed coordinates, use `limits`. <br> 
+    
+      <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i>
     
     
     </p>
@@ -218,17 +243,6 @@
 
   
     <p class="tab30">
-    <b>scalar</b> (double)
-    <i>default: 398</i>
-    <br>
-     Conversion factor from motor steps to units <br> 
-    
-    
-    </p>
-    
-
-  
-    <p class="tab30">
     <b>serial</b> (['null', 'string'])
     <i>default: None</i>
     <br>
@@ -253,23 +267,12 @@
     </p>
     
 
-  
-    <p class="tab30">
-    <b>units</b> (string)
-    <i>default: deg</i>
-    <br>
-    
-    
-    
-    </p>
-    
-
 
 
 
 <h2 id='state'>state<a href='#state'> ¶</a></h2>
 <p>
-  The thorlabs-ell18 daemon will provide the following state information:
+  The bronkhorst-mfc-rs232 daemon will provide the following state information:
 </p>
 
   
@@ -294,18 +297,21 @@
 
   
     <p class="tab30">
-    <b>position</b> (double) <br>
+    <b>native_reference_position</b> (double) <br>
+     The reference position, expressed in native coordinates.
+Default is `0.0` <br> 
     
-    
-        <i>from <a href='../../traits/has-position'>has-position</a></i>
+        <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i>
     
     </p>
     
 
   
     <p class="tab30">
-    <b>status</b> (string) <br>
-     Device status, translated into text from the get status (gs) command. <br> 
+    <b>position</b> (double) <br>
+    
+    
+        <i>from <a href='../../traits/has-position'>has-position</a></i>
     
     </p>
     
@@ -315,7 +321,7 @@
 
 <h2 id='messages'>messages<a href='#messages'> ¶</a></h2>
 <p>
-  The thorlabs-ell18 daemon will expose the following public messages:
+  The bronkhorst-mfc-rs232 daemon will expose the following public messages:
 </p>
 
   
@@ -417,6 +423,71 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
+    <b>get_native_destination</b>
+     ➜  double 
+    <br>
+     Get the destination in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_limits</b>
+     ➜  {'items': 'double', 'type': 'array'} 
+    <br>
+     Returns limits in the relative coordinate system. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_position</b>
+     ➜  double 
+    <br>
+     Get the current position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_reference</b>
+     ➜  double 
+    <br>
+     Get the reference position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_units</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get the units of native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
     <b>get_position</b>
      ➜  double 
     <br>
@@ -456,22 +527,6 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
-    <b>home</b>
-     ➜  null 
-    <br>
-     Initiates the homing procedure.
-The daemon will report as busy during the homing procedure.
- After the homing procedure is complete, the daemon will return to the current destination.
- <br> 
-    
-    <i>from <a href='../../traits/is-homeable'>is-homeable</a></i> <br>
-    
-     </p>
-    
-    
-
-  
-    <p class="tab30">
     <b>id</b>
      ➜  {'type': 'map', 'values': ['null', 'string']} 
     <br>
@@ -499,6 +554,53 @@ The daemon will report as busy during the homing procedure.
     
     <p class="tab60">
         <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_native_position</b>
+     ➜  null 
+    <br>
+     Set the current position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_native_reference</b>
+     ➜  null 
+    <br>
+     Set the reference position in native coordinates.
+Reference position need not be within hardware limits. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
         
         <br>
         
@@ -576,7 +678,89 @@ The daemon will report as busy during the homing procedure.
     
     
 
+  
+    <p class="tab30">
+    <b>to_native</b>
+     ➜  double 
+    <br>
+     Convert a transformed coordinate to native.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>transformed_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
 
+  
+    <p class="tab30">
+    <b>to_transformed</b>
+     ➜  double 
+    <br>
+     Convert a native coordinate to transformed.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+<h2 id='types'>types<a href='#types'> ¶</a></h2>
+<p>
+  The bronkhorst-mfc-rs232 daemon uses the following avro types:
+</p>
+
+  
+    <p class="tab30">
+    <b>calibration_point</b> (record) <br>
+    
+    
+    
+    
+    fields: <br>
+        
+        <p class="tab60">
+        <b>setpoint</b> (double)
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>measured</b> (double)
+        
+        <br>
+        
+        </p>
+        
+    
+    
+    </p>
+    
 
 
 
