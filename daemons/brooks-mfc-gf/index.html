@@ -49,6 +49,9 @@
   <a href=../../traits/has-position>has-position</a>
   <br>
 
+  <a href=../../traits/has-transformed-position>has-transformed-position</a>
+  <br>
+
   <a href=../../traits/is-daemon>is-daemon</a>
   <br>
 
@@ -61,6 +64,20 @@
 </p>
 
 
+
+<h2 id='hardware'>hardware<a href='#hardware'> ¶</a></h2>
+<p>
+  The brooks-mfc-gf daemon has been tested with the following hardware:
+</p>
+<p class="tab30">
+
+  
+  <a href="../../hardware/brooks">brooks</a>/<a href="../../hardware/brooks/gf40">gf40</a><br>
+
+  
+  <a href="../../hardware/brooks">brooks</a>/<a href="../../hardware/brooks/gf80">gf80</a><br>
+
+</p>
 
 
 
@@ -88,6 +105,17 @@
     
     
       <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>calibration</b> ({'items': 'calibration_point', 'type': 'array'})
+    <i>default: [{'measured': 0.0, 'setpoint': 0.0}, {'measured': 1000000.0, 'setpoint': 1000000.0}]</i>
+    <br>
+     Array of calibration points for MFC, in units. <br> 
     
     
     </p>
@@ -173,6 +201,19 @@
 
   
     <p class="tab30">
+    <b>native_limits</b> (array)
+    <i>default: [-inf, inf]</i>
+    <br>
+     Bounds of motion specified in native coordinates.  To specify bounds in transformed coordinates, use `limits`. <br> 
+    
+      <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>out_of_limits</b> (enum)
     <i>default: closest</i>
     <br>
@@ -245,17 +286,6 @@
     </p>
     
 
-  
-    <p class="tab30">
-    <b>tag</b> (string)
-    <i>default: none</i>
-    <br>
-     Unique address in the HART protocol network. <br> 
-    
-    
-    </p>
-    
-
 
 
 
@@ -280,6 +310,17 @@
     
     
         <i>from <a href='../../traits/has-limits'>has-limits</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>native_reference_position</b> (double) <br>
+     The reference position, expressed in native coordinates.
+Default is `0.0` <br> 
+    
+        <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i>
     
     </p>
     
@@ -401,6 +442,71 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
+    <b>get_native_destination</b>
+     ➜  double 
+    <br>
+     Get the destination in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_limits</b>
+     ➜  {'items': 'double', 'type': 'array'} 
+    <br>
+     Returns limits in the relative coordinate system. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_position</b>
+     ➜  double 
+    <br>
+     Get the current position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_reference</b>
+     ➜  double 
+    <br>
+     Get the reference position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_units</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get the units of native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
     <b>get_position</b>
      ➜  double 
     <br>
@@ -478,6 +584,53 @@ This includes defaults and shared settings not directly specified in the daemon-
     
     <p class="tab60">
         <b>position</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_native_position</b>
+     ➜  null 
+    <br>
+     Set the current position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_native_reference</b>
+     ➜  null 
+    <br>
+     Set the reference position in native coordinates.
+Reference position need not be within hardware limits. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
         
         <br>
         
@@ -576,14 +729,96 @@ This includes defaults and shared settings not directly specified in the daemon-
     
     
 
+  
+    <p class="tab30">
+    <b>to_native</b>
+     ➜  double 
+    <br>
+     Convert a transformed coordinate to native.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>transformed_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
 
+  
+    <p class="tab30">
+    <b>to_transformed</b>
+     ➜  double 
+    <br>
+     Convert a native coordinate to transformed.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+
+
+
+<h2 id='types'>types<a href='#types'> ¶</a></h2>
+<p>
+  The brooks-mfc-gf daemon uses the following avro types:
+</p>
+
+  
+    <p class="tab30">
+    <b>calibration_point</b> (record) <br>
+    
+    
+    
+    
+    fields: <br>
+        
+        <p class="tab60">
+        <b>setpoint</b> (double)
+        
+        <br>
+        
+        </p>
+        
+        <p class="tab60">
+        <b>measured</b> (double)
+        
+        <br>
+        
+        </p>
+        
+    
+    
+    </p>
+    
 
 
 
 <hr>
 
 <p>
-built 2023-08-18 21:36:12
+built 2023-08-19 01:24:26
                                     
 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
 </p>
