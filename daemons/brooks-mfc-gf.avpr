@@ -8,6 +8,23 @@
             "origin": "uses-uart",
             "type": "int"
         },
+        "calibration": {
+            "default": [
+                {
+                    "measured": 0.0,
+                    "setpoint": 0.0
+                },
+                {
+                    "measured": 1000000.0,
+                    "setpoint": 1000000.0
+                }
+            ],
+            "doc": "Array of calibration points for MFC, in units.",
+            "type": {
+                "items": "calibration_point",
+                "type": "array"
+            }
+        },
         "enable": {
             "default": true,
             "doc": "Disable this daemon. The kind entry-point will not attempt to start this daemon.",
@@ -65,6 +82,16 @@
                 "string"
             ]
         },
+        "native_limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "doc": "Bounds of motion specified in native coordinates.  To specify bounds in transformed coordinates, use `limits`.",
+            "items": "double",
+            "origin": "has-transformed-position",
+            "type": "array"
+        },
         "out_of_limits": {
             "default": "closest",
             "doc": "Control behavior of daemon when set_position is given a value outside of limits.",
@@ -118,11 +145,6 @@
                 ],
                 "type": "enum"
             }
-        },
-        "tag": {
-            "default": "none",
-            "doc": "Unique address in the HART protocol network.",
-            "type": "string"
         }
     },
     "doc": "",
@@ -134,6 +156,10 @@
             "type": "double"
         }
     },
+    "hardware": [
+        "brooks:gf40",
+        "brooks:gf80"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-brooks"
     },
@@ -186,6 +212,42 @@
                 "type": "array"
             }
         },
+        "get_native_destination": {
+            "doc": "Get the destination in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_native_limits": {
+            "doc": "Returns limits in the relative coordinate system.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": {
+                "items": "double",
+                "type": "array"
+            }
+        },
+        "get_native_position": {
+            "doc": "Get the current position in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_native_reference": {
+            "doc": "Get the reference position in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_native_units": {
+            "doc": "Get the units of native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
+        },
         "get_position": {
             "doc": "Get current daemon position.",
             "origin": "has-position",
@@ -235,6 +297,28 @@
             ],
             "response": "boolean"
         },
+        "set_native_position": {
+            "doc": "Set the current position in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "native_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_native_reference": {
+            "doc": "Set the reference position in native coordinates.\nReference position need not be within hardware limits.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "native_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
         "set_position": {
             "doc": "Give the daemon a new destination, and begin motion towards that destination.",
             "origin": "has-position",
@@ -278,19 +362,74 @@
                 }
             ],
             "response": "null"
+        },
+        "to_native": {
+            "doc": "Convert a transformed coordinate to native.\nThis is for debugging purposes and is discouraged in normal use.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "transformed_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
+        },
+        "to_transformed": {
+            "doc": "Convert a native coordinate to transformed.\nThis is for debugging purposes and is discouraged in normal use.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "native_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
         }
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
-            "limits_getter": null,
+            "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
+        },
+        "native_destination": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_native_destination",
+            "limits_getter": "get_native_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_native_position",
+            "type": "double",
+            "units_getter": "get_native_units"
+        },
+        "native_position": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_native_position",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": null,
+            "type": "double",
+            "units_getter": "get_native_units"
+        },
+        "native_reference_position": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_native_reference",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_native_reference",
+            "type": "double",
+            "units_getter": "get_native_units"
         },
         "position": {
             "control_kind": "hinted",
@@ -299,7 +438,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         }
@@ -321,6 +460,12 @@
             "origin": "has-limits",
             "type": "array"
         },
+        "native_reference_position": {
+            "default": 0.0,
+            "doc": "The reference position, expressed in native coordinates.\nDefault is `0.0`",
+            "origin": "has-transformed-position",
+            "type": "double"
+        },
         "position": {
             "default": NaN,
             "origin": "has-position",
@@ -330,11 +475,26 @@
     "traits": [
         "has-limits",
         "has-position",
+        "has-transformed-position",
         "is-daemon",
         "uses-serial",
         "uses-uart"
     ],
     "types": [
+        {
+            "fields": [
+                {
+                    "name": "setpoint",
+                    "type": "double"
+                },
+                {
+                    "name": "measured",
+                    "type": "double"
+                }
+            ],
+            "name": "calibration_point",
+            "type": "record"
+        },
         {
             "fields": [
                 {
