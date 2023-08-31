@@ -1,0 +1,30 @@
+protocol = "mcc-ulw-sensor"
+doc = ""
+traits = ["has-measure-trigger", "is-sensor", "is-daemon"]
+hardware = ["mccdaq:mcc-usb-205"]
+
+[links]
+source = "https://github.com/yaq-project/yaqd-mcc"
+bugtracker = "https://github.com/yaq-project/yaqd-mcc/-/issues"
+
+[installation]
+PyPI = "https://pypi.org/project/yaqd-mcc"
+
+[[types]]
+type = "record"
+name = "channel"
+fields = [{"name"="enabled", "type"="boolean", "default"=true},
+          {"name"="invert", "type"="boolean", "default"=false},
+	  {"name"="index", "type"="int", "doc"="Physical index of channel."},
+]
+
+
+[config]
+
+[config.channels]
+type = "map"
+values = "channel"
+
+[state]
+
+[messages]
