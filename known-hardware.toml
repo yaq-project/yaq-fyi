@@ -119,6 +119,10 @@ links.manufacturer = "https://lightcon.com/product/orpheus-twins-opa/"
 
 [mccdaq]
 
+[mccdaq.mcc-usb-205]
+doc = "Multifunction USB DAQ Device"
+links.manufacturer = "https://digilent.com/shop/mcc-usb-200-series-single-gain-multifunction-usb-daq-devices/"
+
 [mccdaq.mcc118]
 doc = "Voltage Measurement DAQ HAT for Raspberry Pi"
 links.manufacturer = "https://www.mccdaq.com/DAQ-HAT/MCC-118.aspx"
