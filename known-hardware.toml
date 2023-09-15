@@ -32,13 +32,17 @@ links.manufacturer = "https://www.becker-hickl.com/products/spc-130-emn-series/"
 
 [brooks]
 
-[brooks.mfc-gf40]
+[brooks.gf40]
 doc = "Thermal Mass Flow Controllers"
 links.manufacturer = "https://www.brooksinstrument.com/en/products/mass-flow-controllers/thermal-elastomer-sealed/gf40-series"
 
-[brooks.mfc-gf80]
+[brooks.gf80]
 doc = "Thermal Mass Flow Controllers"
 links.manufacturer = "https://www.brooksinstrument.com/en/products/mass-flow-controllers/thermal-elastomer-sealed/gf80-series"
+
+[brooks.sla5800]
+doc = "Sealed Thermal Mass Flow Controllers & Meters"
+links.manufacturer = "https://www.brooksinstrument.com/en/products/mass-flow-controllers/thermal-elastomer-sealed/sla5800-series"
 
 [dwyer]
 
