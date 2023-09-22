@@ -3,6 +3,7 @@ title: Use BAT Files to Launch yaq
 id: bat
 date: 2023-05-18
 authors: Blaise Thompson
+tags: howto
 ---
 
 Some of our graphical applications are only accessible via the command line.
