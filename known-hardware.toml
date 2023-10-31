@@ -207,6 +207,14 @@ links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
 
 [omega]
 
+[omega.cni16]
+doc = "Universal Input Digital Panel Meters"
+links.manufacturer = "https://www.omega.com/en-us/control-monitoring/controllers/pid-controllers/p/CNI-Series"
+
+[omega.cni32]
+doc = "Universal Input Digital Panel Meters"
+links.manufacturer = "https://www.omega.com/en-us/control-monitoring/controllers/pid-controllers/p/CNI-Series"
+
 [omega.dp16pt]
 doc = "Universal Input Digital Panel Meters"
 links.manufacturer = "https://www.omega.com/en-us/control-monitoring/meters/universal-input-meters/p/DPPT-Series"
