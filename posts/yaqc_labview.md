@@ -3,6 +3,7 @@ title: yaqc-labview
 id: labview1
 date: 2023-06-19
 authors: Kent Meyer
+tags: howto
 ---
 
 A LabVIEW library for base yaq traits has been developed and posted to the yaq-project repository. This library will be amended when additional base traits are YEPped.
