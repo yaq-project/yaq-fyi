@@ -215,6 +215,10 @@ links.manufacturer = "https://www.omega.com/en-us/control-monitoring/controllers
 doc = "Universal Input Digital Panel Meters"
 links.manufacturer = "https://www.omega.com/en-us/control-monitoring/controllers/pid-controllers/p/CNI-Series"
 
+[omega.d8200]
+doc = "USB Data Acquisition Interface Modules, Current Input"
+links.manufacturer = "https://www.omega.com/en-us/data-acquisition/data-acquisition-modules/p/D8000-Series"
+
 [omega.dp16pt]
 doc = "Universal Input Digital Panel Meters"
 links.manufacturer = "https://www.omega.com/en-us/control-monitoring/meters/universal-input-meters/p/DPPT-Series"
