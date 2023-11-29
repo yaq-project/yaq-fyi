@@ -90,7 +90,7 @@
                 "string"
             ]
         },
-        "shots_processing_script": {
+        "shots_processing_path": {
             "default": null,
             "doc": "Path to script for shots processing.",
             "type": [
@@ -128,6 +128,13 @@
             "origin": "is-daemon",
             "request": [],
             "response": "boolean"
+        },
+        "get_allowed_voltage_ranges": {
+            "request": [],
+            "response": {
+                "items": "string",
+                "type": "array"
+            }
         },
         "get_channel_names": {
             "doc": "Get current channel names.",
@@ -342,14 +349,24 @@
             "type": "enum"
         },
         {
+            "items": "float",
+            "name": "voltage_range",
+            "type": "array"
+        },
+        {
             "fields": [
                 {
                     "name": "name",
                     "type": "string"
                 },
                 {
+                    "default": [
+                        -10.0,
+                        10.0
+                    ],
+                    "doc": "[min_value, max_value], in volts. Range values are restricted to those the available to the device.",
                     "name": "range",
-                    "type": "string"
+                    "type": "voltage_range"
                 },
                 {
                     "default": true,
