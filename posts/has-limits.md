@@ -1,4 +1,11 @@
-## Implementing traits: has-limits
+---
+title: implementing has-limits
+id: has-limits
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `has-limits` augments `has-position` by adding boundaries which are
 queryable and checked when setting positions. Most of the implementation

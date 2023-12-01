@@ -1,4 +1,11 @@
-## Implementing traits: uses-i2c
+---
+title: implementing uses-i2c
+id: uses-i2c
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `uses-i2c` is a trait which exists solely to standardize the name of the
 config value for the I2C address, `i2c_addr`.

@@ -1,4 +1,11 @@
-## Implementing traits: has-position
+---
+title: implementing has-position
+id: has-position
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `has-position` is one of the most commonly used traits, and it is
 required by several other traits. The central idea is that there is one

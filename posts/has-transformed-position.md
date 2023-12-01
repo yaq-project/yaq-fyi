@@ -1,4 +1,11 @@
-## Implementing traits: has-transformed-position
+---
+title: implementing has-transformed-position
+id: has-transformed-position
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 At first, implementing `has-transformed-position` seems like a daunting
 task. There are many methods that are implemented which naturally are

@@ -1,4 +1,11 @@
-## Implementing traits: is-homeable
+---
+title: implementing is-homeable
+id: is-homeable
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `is-homeable` is a trait which provides a single method, `home`, which
 must be implemented.

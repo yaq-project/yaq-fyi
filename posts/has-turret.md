@@ -1,4 +1,11 @@
-## Implementing traits: has-turret
+---
+title: implementing has-turret
+id: has-turret
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `has-turret` is designed for devices such as monochromators that have a
 secondary position called a "turret", such as the ones used for

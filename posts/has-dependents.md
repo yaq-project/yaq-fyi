@@ -1,4 +1,10 @@
-## Implementing traits: has-dependents
+---
+title: implementing has-dependents
+id: has-dependents
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
 
 `has-dependents` provides a mechanism to discover relationships between
 daemons. It provides a single method, `get_dependent_hardware`, which

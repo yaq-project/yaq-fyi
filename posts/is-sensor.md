@@ -1,4 +1,11 @@
-## Implementing traits: is-sensor and has-measure-trigger
+---
+title: implementing is-sensor and has-measure-trigger
+id: is-sensor
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 Most sensor devices in the ecosystem also implement
 `has-measure-trigger` for software triggering of process of measurement.

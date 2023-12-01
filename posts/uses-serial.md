@@ -1,4 +1,11 @@
-## Implementing traits: uses-serial
+---
+title: implementing uses-serial
+id: uses-serial
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `uses-serial` is a trait which defines only one message:
 `direct_serial_write(bytes message)`. This trait is required by the

@@ -1,4 +1,11 @@
-## Implementing traits: is-discrete
+---
+title: implementing is-discrete
+id: is-discrete
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `is-discrete` is an addition to `has-position` which allows you to
 provide a set of named positions which can be set by providing the name

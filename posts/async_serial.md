@@ -1,4 +1,11 @@
-## Daemon patterns: async serial devices
+---
+title: async serial devices
+id: async_serial
+date: 2023-11-30
+authors: Kyle Sunden
+tags: patterns
+---
+
 
 One of the most common hardware interfaces is RS-232 style serial
 communication. While the exact protocol for what bytes get sent over the

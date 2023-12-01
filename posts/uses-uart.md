@@ -1,4 +1,11 @@
-## Implementing traits: uses-uart
+---
+title: implementing uses-uart
+id: uses-uart
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `uses-uart` is a trait which exists solely to standardize the names
 provided to common configuration values among Universal Asynchronous

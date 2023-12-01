@@ -1,4 +1,11 @@
-## Implementing traits: has-mapping
+---
+title: implementing has-mapping
+id: has-mapping
+date: 2023-11-30
+authors: Kyle Sunden
+tags: traits
+---
+
 
 `has-mapping` builds upon the `is-sensor` trait by providing access to
 parallel arrays, such as the wavelength data for an array detector or

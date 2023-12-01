@@ -1,4 +1,11 @@
-## Daemon patterns: loading and saving state
+---
+title: loading and saving state
+id: loading-state
+date: 2023-11-30
+authors: Kyle Sunden
+tags: patterns
+---
+
 
 Daemon state management is usually fairly automated such that individual
 daemon authors rarely need to think deeply on the subject. State files

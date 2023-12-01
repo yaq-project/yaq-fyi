@@ -1,4 +1,11 @@
-## Daemon patterns: logging
+---
+title: logging
+id: logging
+date: 2023-11-30
+authors: Kyle Sunden
+tags: patterns
+---
+
 
 Logging can be a powerful tool for decyphering what a daemon is doing.
 In the Python implementation, the logging system of is integrated with

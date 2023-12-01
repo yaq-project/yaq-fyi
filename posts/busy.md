@@ -1,4 +1,11 @@
-## Daemon patterns: busy
+---
+title: busy
+id: busy
+date: 2023-11-30
+authors: Kyle Sunden
+tags: patterns
+---
+
 
 The concept of `busy` is something all daemons have in common. The exact
 specifics do vary, but generally for motors it means that the motor is
