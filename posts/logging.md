@@ -42,4 +42,4 @@ class MyDaemon(IsDaemon):
         self.logger.info("This is an informational message")
         self.logger.warning("This is a warning message")
         self.logger.error("This is an error message")
-:::
+```
