@@ -246,7 +246,7 @@ Triggered NI-daqmx with multiplex.
 
   
     <p class="tab30">
-    <b>shots_processing_script</b> (['null', 'string'])
+    <b>shots_processing_path</b> (['null', 'string'])
     <i>default: None</i>
     <br>
      Path to script for shots processing. <br> 
@@ -317,6 +317,17 @@ Triggered NI-daqmx with multiplex.
      Returns true if daemon is currently busy. <br> 
     
     <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_allowed_voltage_ranges</b>
+     ➜  {'items': 'string', 'type': 'array'} 
+    <br>
+    
     
      </p>
     
@@ -620,6 +631,17 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
+    <b>voltage_range</b> (array) <br>
+    
+    
+    
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>channel</b> (record) <br>
     
     
@@ -635,10 +657,10 @@ This includes defaults and shared settings not directly specified in the daemon-
         </p>
         
         <p class="tab60">
-        <b>range</b> (string)
-        
+        <b>range</b> (voltage_range)
+        <i>default: [-10.0, 10.0]</i>
         <br>
-        
+         [min_value, max_value], in volts. Range values are restricted to those the available to the device. <br> 
         </p>
         
         <p class="tab60">
@@ -770,7 +792,7 @@ This includes defaults and shared settings not directly specified in the daemon-
 <hr>
 
 <p>
-built 2023-11-21 16:02:05
+built 2023-12-18 21:00:15
                                     
 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
 </p>
