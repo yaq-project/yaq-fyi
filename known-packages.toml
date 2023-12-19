@@ -154,6 +154,13 @@ badges = [
   "<a href='https://anaconda.org/conda-forge/yaqd-horiba'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-horiba'></a>",
 ]
 
+[daemons.yaqd-kd-scientific]
+badges = [
+  "<a href='https://github.com/yaq-project/yaqd-kd-scientific'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-kd-scientific/main'></a>",
+  "<a href='https://pypi.org/project/yaqd-kd-scientific'><img src='https://img.shields.io/pypi/v/yaqd-kd-scientific'></a>",
+  "<a href='https://anaconda.org/conda-forge/yaqd-kd-scientific'><img src='https://img.shields.io/conda/vn/conda-forge/yaqd-kd-scientific'></a>",
+]
+
 [daemons.yaqd-labjack]
 badges = [
   "<a href='https://github.com/yaq-project/yaqd-labjack/actions'><img src='https://img.shields.io/github/checks-status/yaq-project/yaqd-labjack/main'></a>",

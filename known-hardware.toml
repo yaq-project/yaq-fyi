@@ -93,6 +93,12 @@ links.manufacturer = "https://www.horiba.com/int/scientific/products/detail/acti
 doc = "Visible Single-Photon Detector. Used for Time Correlated Single Photon Counting via Becker-Hickl SPC-130."
 links.manufacturer = "https://www.idquantique.com/quantum-sensing/products/id100/"
 
+[kd-scientific]
+
+[kd-scientific.legato100]
+doc = "Infuse only single syringe pump."
+links.manufacturer = "https://www.kdscientific.com/legato-100-syringe-pump.html"
+
 [labjack]
 
 [labjack.t4]
