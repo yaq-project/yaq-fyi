@@ -2,7 +2,7 @@
 title: yaqc-cmds introduction
 id: yaqc-cmds
 date: 2023-05-18
-tags: video
+tags: video tutorial
 authors: Kyle Sunden
 ---
 
