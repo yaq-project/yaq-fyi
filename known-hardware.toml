@@ -32,6 +32,10 @@ links.manufacturer = "https://www.becker-hickl.com/products/spc-130-emn-series/"
 
 [brooks]
 
+[brooks-0254]
+doc = "Controller for mass flow and pressure devices."
+links.manufacturer = "https://www.brooksinstrument.com/product/0250-series-power-supply-readout-set-point-control"
+
 [brooks.gf40]
 doc = "Thermal Mass Flow Controllers"
 links.manufacturer = "https://www.brooksinstrument.com/en/products/mass-flow-controllers/thermal-elastomer-sealed/gf40-series"
