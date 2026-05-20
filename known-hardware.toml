@@ -199,18 +199,6 @@ links.manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-se
 doc = "Fiber optic spectrometer."
 links.manufacturer = "https://www.oceaninsight.com/products/spectrometers/usb-series/usb-uv-nir/"
 
-[pmc]
-doc = "Precision MicroControl Corporation (PMC) designs and manufactures high-performance multi-axis motion controllers for servo and stepper motor control."
-links.homepage = "https://pmccorp.com/"
-
-[pmc.dcx-pci100]
-doc = "1 to 8 axis PCI-bus motion controller which can control and drive up to eight small DC servo motors without the need for external amplifiers."
-links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
-
-[pmc.dcx-mc110]
-doc = "Servo Motor Control Module for the DCX-PCI100"
-links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
-
 [omega]
 
 [omega.cni16]
@@ -236,6 +224,42 @@ links.manufacturer = "https://www.omega.com/en-us/control-monitoring/meters/univ
 [omega.dp8pt]
 doc = "Universal Input Digital Panel Meters"
 links.manufacturer = "https://www.omega.com/en-us/control-monitoring/meters/universal-input-meters/p/DPPT-Series"
+
+[pmc]
+doc = "Precision MicroControl Corporation (PMC) designs and manufactures high-performance multi-axis motion controllers for servo and stepper motor control."
+links.homepage = "https://pmccorp.com/"
+
+[pmc.dcx-pci100]
+doc = "1 to 8 axis PCI-bus motion controller which can control and drive up to eight small DC servo motors without the need for external amplifiers."
+links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
+
+[pmc.dcx-mc110]
+doc = "Servo Motor Control Module for the DCX-PCI100"
+links.manufacturer = "https://pmccorp.com/products/dcxpci.php#pci100"
+
+[pololu]
+doc = "Pololu is an electronics manufacturer and online retailer serving education, maker, and professional engineering industries with products ranging from sensors and motion control electronics to motors and wheels to complete robots."
+links.homepage = "https://www.pololu.com/"
+
+[pololu.t500]
+doc = "Multi-Interface Stepper Motor Controller based on the MPS MP6500 driver."
+links.manufacturer = "https://www.pololu.com/product/3134"
+
+[pololu.t834]
+doc = "Multi-Interface Stepper Motor Controller based on the TI DRV8834 driver."
+links.manufacturer = "https://www.pololu.com/product/3132"
+
+[pololu.t825]
+doc = "Multi-Interface Stepper Motor Controller based on the TI DRV8825 driver."
+links.manufacturer = "https://www.pololu.com/product/3130"
+
+[pololu.t249]
+doc = "Multi-Interface Stepper Motor Controller based on the Toshiba TB67S249FTG driver."
+links.manufacturer = "https://www.pololu.com/product/3138"
+
+[pololu.36v4]
+doc = "Multi-Interface High-power Stepper Motor Controller implementing discrete MOSFET drivers."
+links.manufacturer = "https://www.pololu.com/product/3140"
 
 [rasperry-pi]
 
