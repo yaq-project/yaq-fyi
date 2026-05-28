@@ -20,11 +20,11 @@ Daemon for the Newport smc100-[CC|PP] controllers
 <h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
 <p class="tab30">
 
-  <a href=https://gitlab.com/yaq/yaqd-newport/issues>bugtracker</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-newport/issues>bugtracker</a> <br>
 
   <a href=https://www.newport.com/f/smc100-single-axis-dc-or-stepper-motion-controller>manufacturer</a> <br>
 
-  <a href=https://gitlab.com/yaq/yaqd-newport/>source</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-newport/>source</a> <br>
 
 
 
@@ -52,6 +52,9 @@ Daemon for the Newport smc100-[CC|PP] controllers
   <br>
 
   <a href=../../traits/has-position>has-position</a>
+  <br>
+
+  <a href=../../traits/has-transformed-position>has-transformed-position</a>
   <br>
 
   <a href=../../traits/is-daemon>is-daemon</a>
@@ -198,6 +201,19 @@ Daemon for the Newport smc100-[CC|PP] controllers
 
   
     <p class="tab30">
+    <b>native_limits</b> (array)
+    <i>default: [-inf, inf]</i>
+    <br>
+     Bounds of motion specified in native coordinates.  To specify bounds in transformed coordinates, use `limits`. <br> 
+    
+      <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>out_of_limits</b> (enum)
     <i>default: closest</i>
     <br>
@@ -243,6 +259,17 @@ Daemon for the Newport smc100-[CC|PP] controllers
     
     
       <i>from <a href='../../traits/uses-uart'>uses-uart</a></i>
+    
+    
+    </p>
+    
+
+  
+    <p class="tab30">
+    <b>software_tolerance</b> (float)
+    <i>default: 0</i>
+    <br>
+     allowable error, in default units, to clear a hardware positioning timeout <br> 
     
     
     </p>
@@ -297,6 +324,17 @@ Daemon for the Newport smc100-[CC|PP] controllers
 
   
     <p class="tab30">
+    <b>native_reference_position</b> (double) <br>
+     The reference position, expressed in native coordinates.
+Default is `0.0` <br> 
+    
+        <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i>
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>position</b> (double) <br>
     
     
@@ -329,6 +367,17 @@ Daemon for the Newport smc100-[CC|PP] controllers
      Returns true if daemon is currently busy. <br> 
     
     <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>clear_disable</b>
+     ➜  null 
+    <br>
+    
     
      </p>
     
@@ -413,6 +462,71 @@ This includes defaults and shared settings not directly specified in the daemon-
      Get daemon limits.Limits will be the <a href='https://en.wikipedia.org/wiki/Intersection_(set_theory)'>intersection</a> of config limits and driver limits (when appliciable). <br> 
     
     <i>from <a href='../../traits/has-limits'>has-limits</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_destination</b>
+     ➜  double 
+    <br>
+     Get the destination in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_limits</b>
+     ➜  {'items': 'double', 'type': 'array'} 
+    <br>
+     Returns limits in the relative coordinate system. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_position</b>
+     ➜  double 
+    <br>
+     Get the current position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_reference</b>
+     ➜  double 
+    <br>
+     Get the reference position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_native_units</b>
+     ➜  ['null', 'string'] 
+    <br>
+     Get the units of native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
     
      </p>
     
@@ -512,6 +626,53 @@ The daemon will report as busy during the homing procedure.
 
   
     <p class="tab30">
+    <b>set_native_position</b>
+     ➜  null 
+    <br>
+     Set the current position in native coordinates. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>set_native_reference</b>
+     ➜  null 
+    <br>
+     Set the reference position in native coordinates.
+Reference position need not be within hardware limits. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
     <b>set_position</b>
      ➜  null 
     <br>
@@ -579,6 +740,54 @@ The daemon will report as busy during the homing procedure.
     
     
 
+  
+    <p class="tab30">
+    <b>to_native</b>
+     ➜  double 
+    <br>
+     Convert a transformed coordinate to native.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>transformed_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
+    <b>to_transformed</b>
+     ➜  double 
+    <br>
+     Convert a native coordinate to transformed.
+This is for debugging purposes and is discouraged in normal use. <br> 
+    
+    <i>from <a href='../../traits/has-transformed-position'>has-transformed-position</a></i> <br>
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>native_coordinate</b> (double)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
 
 
 
@@ -586,7 +795,7 @@ The daemon will report as busy during the homing procedure.
 <hr>
 
 <p>
-built 2026-05-27 04:31:36
+built 2026-05-28 23:35:48
                                     
 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
 </p>

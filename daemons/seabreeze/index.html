@@ -19,11 +19,11 @@ Sensor daemon for Ocean Optics SeaBreeze spectrometers.
 <h2 id='external links'>external links<a href='#external links'> ¶</a></h2>
 <p class="tab30">
 
-  <a href=https://gitlab.com/yaq/yaqd-seabreeze/-/issues>bugtracker</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-seabreeze/issues>bugtracker</a> <br>
 
   <a href=https://www.oceaninsight.com/products/spectrometers/>manufacturer</a> <br>
 
-  <a href=https://gitlab.com/yaq/yaqd-seabreeze>source</a> <br>
+  <a href=https://github.com/yaq-project/yaqd-seabreeze>source</a> <br>
 
 
 
@@ -220,6 +220,14 @@ Sensor daemon for Ocean Optics SeaBreeze spectrometers.
 
   
     <p class="tab30">
+    <b>acquisition_number</b> (int) <br>
+     number of acquisitions to average <br> 
+    
+    </p>
+    
+
+  
+    <p class="tab30">
     <b>integration_time_micros</b> (int) <br>
      Integration time for collecting pixels <br> 
     
@@ -242,6 +250,28 @@ Sensor daemon for Ocean Optics SeaBreeze spectrometers.
      Returns true if daemon is currently busy. <br> 
     
     <i>from <a href='../../traits/is-daemon'>is-daemon</a></i> <br>
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_acquisitions</b>
+     ➜  int 
+    <br>
+     Get the number of acquisitions per measurement. <br> 
+    
+     </p>
+    
+    
+
+  
+    <p class="tab30">
+    <b>get_acquisitions_limits</b>
+     ➜  {'items': 'int', 'type': 'array'} 
+    <br>
+     Get the limits for acquisitions per measurement. <br> 
     
      </p>
     
@@ -478,6 +508,27 @@ This includes defaults and shared settings not directly specified in the daemon-
 
   
     <p class="tab30">
+    <b>set_acquisitions</b>
+     ➜  null 
+    <br>
+     Set the number of acquisitions per measurement. <br> 
+    
+    
+    parameters: <br>
+    </p>
+    
+    <p class="tab60">
+        <b>acquisitions</b> (int)
+        
+        <br>
+        
+    </p>
+    
+    
+    
+
+  
+    <p class="tab30">
     <b>set_integration_time_micros</b>
      ➜  null 
     <br>
@@ -540,7 +591,7 @@ This includes defaults and shared settings not directly specified in the daemon-
 <hr>
 
 <p>
-built 2026-05-27 04:31:36
+built 2026-05-28 23:35:48
                                     
 <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>: no copyright
 </p>
