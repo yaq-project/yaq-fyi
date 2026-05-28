@@ -152,6 +152,7 @@
         },
         "get_dependent_hardware": {
             "doc": "Get mapping of name to host:port string. 'localhost' should be replaced on the client side with the host for this daemon.",
+            "origin": "has-dependents",
             "request": [],
             "response": {
                 "type": "map",
@@ -452,6 +453,7 @@
         }
     },
     "traits": [
+        "has-dependents",
         "has-limits",
         "has-position",
         "is-daemon",

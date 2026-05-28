@@ -155,6 +155,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-gage/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-gage/tree/main/example-yaq-configs/config_wright_waldo",
         "source": "https://github.com/yaq-project/yaqd-gage"
     },
     "messages": {

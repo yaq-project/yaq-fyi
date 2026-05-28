@@ -87,6 +87,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-thorlabs/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-thorlabs/tree/main/example-yaq-configs/thorlabs-pm-triggered",
         "manufacturer": "https://www.thorlabs.com/",
         "source": "https://github.com/yaq-project/yaqd-thorlabs/"
     },

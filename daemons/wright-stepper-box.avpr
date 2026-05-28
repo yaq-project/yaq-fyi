@@ -11,6 +11,11 @@
             "origin": "is-daemon",
             "type": "boolean"
         },
+        "factor": {
+            "default": 1,
+            "doc": "Multiplier factor to transform position",
+            "type": "float"
+        },
         "identifiers": {
             "default": {},
             "doc": "Position identifiers",
@@ -81,6 +86,16 @@
             "doc": "Index for the motor",
             "type": "int"
         },
+        "native_limits": {
+            "default": [
+                -Infinity,
+                Infinity
+            ],
+            "doc": "Bounds of motion specified in native coordinates.  To specify bounds in transformed coordinates, use `limits`.",
+            "items": "double",
+            "origin": "has-transformed-position",
+            "type": "array"
+        },
         "out_of_limits": {
             "default": "closest",
             "doc": "Control behavior of daemon when set_position is given a value outside of limits.",
@@ -122,7 +137,7 @@
             "type": "string"
         }
     },
-    "doc": "Expose a stepper box motor as a yaq daemon.\n\nThe uses for this daemon combine the implementation of 'Filter Wheels' and \n'Linear stepper drivers' (sometimes referred to  as FuYu motors)\n\nYou can specify discrete stops which is particularly useful for discrete filter wheels.\n\nThe default settings are for operation as a continuous filter wheel:\n- No discrete stops\n- units of 'deg'\n- 1.11111... steps per unit (0.9 degrees per step, or 400 steps per revolution)\n- two full revolutions (720 degrees) in either direction from the home flag\n\nThe settings for our standard 50 mm 'fuyu' motors:\n- No discrete stops\n- units of 'mm'\n- -100.0 steps per unit (pitch of 2.0 mm per revolution,  200 steps per revolution)\n- Negative because of direction of travel from home\n- limits = [0.0, 50.0]\n\nThe settings for our larger 400 mm 'fuyu' motors:\n- No discrete stops\n- units of 'mm'\n- -20.0 steps per unit (pitch of 5.0 mm per revolution,  100 steps per revolution)\n- Negative because of direction of travel from home\n- limits = [0.0, 400.0]\n",
+    "doc": "Expose a stepper box motor as a yaq daemon.\n\nThe uses for this daemon combine the implementation of 'Filter Wheels' and\n'Linear stepper drivers' (sometimes referred to  as FuYu motors)\n\nYou can specify discrete stops which is particularly useful for discrete filter wheels.\n\nThe default settings are for operation as a continuous filter wheel:\n- No discrete stops\n- units of 'deg'\n- 1.11111... steps per unit (0.9 degrees per step, or 400 steps per revolution)\n- two full revolutions (720 degrees) in either direction from the home flag\n\nThe settings for our standard 50 mm 'fuyu' motors:\n- No discrete stops\n- units of 'mm'\n- -100.0 steps per unit (pitch of 2.0 mm per revolution,  200 steps per revolution)\n- Negative because of direction of travel from home\n- limits = [0.0, 50.0]\n\nThe settings for our larger 400 mm 'fuyu' motors:\n- No discrete stops\n- units of 'mm'\n- -20.0 steps per unit (pitch of 5.0 mm per revolution,  100 steps per revolution)\n- Negative because of direction of travel from home\n- limits = [0.0, 400.0]\n",
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-wright",
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-wright"
@@ -167,6 +182,11 @@
             "request": [],
             "response": "double"
         },
+        "get_factor": {
+            "doc": "Get the multiplier factor that transforms position.",
+            "request": [],
+            "response": "float"
+        },
         "get_identifier": {
             "doc": "Get current identifier string. Current identifier may be None.",
             "origin": "is-discrete",
@@ -184,6 +204,42 @@
                 "items": "double",
                 "type": "array"
             }
+        },
+        "get_native_destination": {
+            "doc": "Get the destination in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_native_limits": {
+            "doc": "Returns limits in the relative coordinate system.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": {
+                "items": "double",
+                "type": "array"
+            }
+        },
+        "get_native_position": {
+            "doc": "Get the current position in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_native_reference": {
+            "doc": "Get the reference position in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": "double"
+        },
+        "get_native_units": {
+            "doc": "Get the units of native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [],
+            "response": [
+                "null",
+                "string"
+            ]
         },
         "get_position": {
             "doc": "Get current daemon position.",
@@ -264,6 +320,28 @@
             ],
             "response": "double"
         },
+        "set_native_position": {
+            "doc": "Set the current position in native coordinates.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "native_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
+        "set_native_reference": {
+            "doc": "Set the reference position in native coordinates.\nReference position need not be within hardware limits.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "native_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "null"
+        },
         "set_position": {
             "doc": "Give the daemon a new destination, and begin motion towards that destination.",
             "origin": "has-position",
@@ -297,19 +375,85 @@
                 }
             ],
             "response": "null"
+        },
+        "to_native": {
+            "doc": "Convert a transformed coordinate to native.\nThis is for debugging purposes and is discouraged in normal use.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "transformed_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
+        },
+        "to_transformed": {
+            "doc": "Convert a native coordinate to transformed.\nThis is for debugging purposes and is discouraged in normal use.",
+            "origin": "has-transformed-position",
+            "request": [
+                {
+                    "name": "native_coordinate",
+                    "type": "double"
+                }
+            ],
+            "response": "double"
         }
     },
     "properties": {
         "destination": {
-            "control_kind": "normal",
+            "control_kind": "hinted",
             "dynamic": true,
             "getter": "get_destination",
-            "limits_getter": null,
+            "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": null,
+            "setter": "set_position",
             "type": "double",
             "units_getter": "get_units"
+        },
+        "factor": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_factor",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": null,
+            "type": "float",
+            "units_getter": null
+        },
+        "native_destination": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_native_destination",
+            "limits_getter": "get_native_limits",
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_native_position",
+            "type": "double",
+            "units_getter": "get_native_units"
+        },
+        "native_position": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_native_position",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": null,
+            "type": "double",
+            "units_getter": "get_native_units"
+        },
+        "native_reference_position": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_native_reference",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_native_reference",
+            "type": "double",
+            "units_getter": "get_native_units"
         },
         "position": {
             "control_kind": "hinted",
@@ -318,7 +462,7 @@
             "limits_getter": "get_limits",
             "options_getter": null,
             "record_kind": "data",
-            "setter": "set_position",
+            "setter": null,
             "type": "double",
             "units_getter": "get_units"
         },
@@ -351,6 +495,12 @@
             "origin": "has-limits",
             "type": "array"
         },
+        "native_reference_position": {
+            "default": 0.0,
+            "doc": "The reference position, expressed in native coordinates.\nDefault is `0.0`",
+            "origin": "has-transformed-position",
+            "type": "double"
+        },
         "position": {
             "default": NaN,
             "origin": "has-position",
@@ -369,6 +519,7 @@
     "traits": [
         "has-limits",
         "has-position",
+        "has-transformed-position",
         "is-daemon",
         "is-discrete",
         "is-homeable",

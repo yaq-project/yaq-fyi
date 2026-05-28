@@ -130,6 +130,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-thorlabs/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-thorlabs/tree/main/example-yaq-configs/thorlabs-bsc201",
         "manufacturer": "https://www.thorlabschina.cn/thorProduct.cfm?partNumber=BSC201",
         "source": "https://github.com/yaq-project/yaqd-thorlabs/"
     },

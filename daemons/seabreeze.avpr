@@ -86,9 +86,9 @@
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-seabreeze"
     },
     "links": {
-        "bugtracker": "https://gitlab.com/yaq/yaqd-seabreeze/-/issues",
+        "bugtracker": "https://github.com/yaq-project/yaqd-seabreeze/issues",
         "manufacturer": "https://www.oceaninsight.com/products/spectrometers/",
-        "source": "https://gitlab.com/yaq/yaqd-seabreeze"
+        "source": "https://github.com/yaq-project/yaqd-seabreeze"
     },
     "messages": {
         "busy": {
@@ -96,6 +96,19 @@
             "origin": "is-daemon",
             "request": [],
             "response": "boolean"
+        },
+        "get_acquisitions": {
+            "doc": "Get the number of acquisitions per measurement.",
+            "request": [],
+            "response": "int"
+        },
+        "get_acquisitions_limits": {
+            "doc": "Get the limits for acquisitions per measurement.",
+            "request": [],
+            "response": {
+                "items": "int",
+                "type": "array"
+            }
         },
         "get_channel_mappings": {
             "doc": "Defines which mapping keys apply to which channel keys. Each channel may have zero or many mappings. Mappings must broadcast into corresponding channels.",
@@ -254,6 +267,16 @@
             ],
             "response": "int"
         },
+        "set_acquisitions": {
+            "doc": "Set the number of acquisitions per measurement.",
+            "request": [
+                {
+                    "name": "acquisitions",
+                    "type": "int"
+                }
+            ],
+            "response": "null"
+        },
         "set_integration_time_micros": {
             "doc": "Set the integration time in microseconds.",
             "request": [
@@ -284,6 +307,17 @@
         }
     },
     "properties": {
+        "acquisitions": {
+            "control_kind": "normal",
+            "dynamic": true,
+            "getter": "get_acquisitions",
+            "limits_getter": null,
+            "options_getter": null,
+            "record_kind": "metadata",
+            "setter": "set_acquisitions",
+            "type": "int",
+            "units_getter": null
+        },
         "integration_time": {
             "control_kind": "normal",
             "dynamic": true,
@@ -299,6 +333,11 @@
     "protocol": "seabreeze",
     "requires": [],
     "state": {
+        "acquisition_number": {
+            "default": 1,
+            "doc": "number of acquisitions to average",
+            "type": "int"
+        },
         "integration_time_micros": {
             "default": 3000,
             "doc": "Integration time for collecting pixels",

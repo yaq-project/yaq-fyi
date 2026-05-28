@@ -130,6 +130,7 @@
     },
     "links": {
         "bugtracker": "https://github.com/yaq-project/yaqd-thorlabs/issues",
+        "example-configs": "https://github.com/yaq-project/yaqd-thorlabs/tree/main/example-yaq-configs/thorlabs-kdc101",
         "manufacturer": "https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=2419&pn=KDC101",
         "source": "https://github.com/yaq-project/yaqd-thorlabs/"
     },
