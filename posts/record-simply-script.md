@@ -3,6 +3,7 @@ title: Recording Data Simply
 id: record-simply-script
 date: 2023-05-18
 authors: Blaise Thompson
+tags: howto
 ---
 
 When you're trying something new, it can be daunting to develop a fully-featured framework for hardware orchestration and data recording.
