@@ -158,7 +158,8 @@
     },
     "hardware": [
         "brooks:gf40",
-        "brooks:gf80"
+        "brooks:gf80",
+        "brooks:sla5800"
     ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-brooks"
