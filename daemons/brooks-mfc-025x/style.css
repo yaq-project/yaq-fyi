@@ -1,0 +1,63 @@
+a {
+  text-decoration: none;
+  color: #81a2be;
+}
+
+body {
+  font-family: 'DejaVu Sans Mono', monospace;
+  margin: 40px auto;
+  min-width: 80ch;
+  max-width: 80ch;
+  font-size: 16px;
+  background-color: #1d1f21;
+  color: #c5c8c6;
+  padding: 0 10px;
+  text-align: left;
+  overflow-y: scroll;
+  line-height: 1.5;
+}
+
+pre {
+  width: 80ch;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  overflow-y: hidden;
+  font-size: 15.3px;
+  background: #111314;
+  border: 1px solid #c5c8c6;
+}
+
+code {
+  background: #111314;
+  color: #de935f
+}
+
+.horizontal {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.tab30 {
+  margin-left: 4ch;
+}
+
+.tab60 {
+  margin-left: 8ch;
+}
+
+table {
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid #969896;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
